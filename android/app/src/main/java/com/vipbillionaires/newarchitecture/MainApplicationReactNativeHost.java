@@ -19,7 +19,7 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.vipbillionaires.BuildConfig;
+import com.ninasoft.vipbillionaires.BuildConfig;
 import com.vipbillionaires.newarchitecture.components.MainComponentsRegistry;
 import com.vipbillionaires.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;

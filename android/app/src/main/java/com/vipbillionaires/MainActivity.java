@@ -1,4 +1,4 @@
-package com.vipbillionaires;
+package com.ninasoft.vipbillionaires;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
