@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {},
+      Object {
+        "backgroundColor": "#131517",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 24,
+          "flexDirection": "row",
+          "fontSize": 17,
+          "marginHorizontal": 8,
+          "marginVertical": 4,
+          "paddingHorizontal": 10,
+        },
+        Object {
+          "backgroundColor": "#2F3034",
+        },
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      selectable={false}
+      style={
+        Array [
+          Object {
+            "color": "#AFAFAF",
+            "fontSize": 18,
+          },
+          undefined,
+          Object {
+            "fontFamily": undefined,
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+    <TextInput
+      autoCapitalize="none"
+      autoCorrect={false}
+      blurOnSubmit={true}
+      clearButtonMode="while-editing"
+      onChangeText={[Function]}
+      placeholder="Search"
+      placeholderTextColor="#AFAFAF"
+      returnKeyType="search"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "flex": 1,
+            "fontFamily": "System",
+            "fontSize": 17,
+            "fontWeight": "400",
+            "height": 40,
+            "marginLeft": 8,
+            "paddingBottom": 0,
+            "paddingTop": 0,
+          },
+          Object {
+            "color": "#FFFFFF",
+          },
+        ]
+      }
+      theme="dark"
+      underlineColorAndroid="transparent"
+    />
+  </View>
+</View>
+`;
