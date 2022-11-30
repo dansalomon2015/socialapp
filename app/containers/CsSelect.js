@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import PropTypes from 'prop-types';
-import RNPickerSelect from 'react-native-picker-select';
+import React, { useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import RNPickerSelect from 'react-native-picker-select'
 
-import sharedStyles from '../views/Styles';
-import { themes } from '../constants/colors';
-import { isIOS } from '../utils/deviceInfo';
-import { VectorIcon } from './VectorIcon';
+import sharedStyles from '../views/Styles'
+import { themes } from '../constants/colors'
+import { isIOS } from '../utils/deviceInfo'
+import { VectorIcon } from './VectorIcon'
 
 const styles = StyleSheet.create({
   container: {
@@ -54,32 +53,32 @@ const styles = StyleSheet.create({
     right: 12,
     paddingTop: 14,
   },
-});
+})
 
 export const CsSelect = React.memo(
   ({
-    label,
-    containerStyle,
-    options = [],
-    placeholder,
-    onChange,
-    disabled,
-    value: initialValue,
-    theme,
-  }) => {
+     label,
+     containerStyle,
+     options = [],
+     placeholder,
+     onChange,
+     disabled,
+     value: initialValue,
+     theme,
+   }) => {
     const [selected, setSelected] = useState(
       !Array.isArray(initialValue) && (initialValue === 0 ? -1 : initialValue),
-    );
+    )
     const items = options.map(option => ({
       label: option.text,
       value: option.value === 0 ? -1 : option.value,
-    }));
+    }))
     const pickerStyle = {
       ...styles.viewContainer,
       ...(isIOS ? styles.iosPadding : {}),
       borderColor: '#999999',
       backgroundColor: themes[theme].backgroundColor,
-    };
+    }
 
     return (
       <View style={[styles.container, containerStyle]}>
@@ -104,8 +103,8 @@ export const CsSelect = React.memo(
             value={selected}
             disabled={disabled}
             onValueChange={value => {
-              setSelected(value);
-              onChange(value === -1 ? 0 : value);
+              setSelected(value)
+              onChange(value === -1 ? 0 : value)
             }}
             style={{
               viewContainer: pickerStyle,
@@ -129,16 +128,6 @@ export const CsSelect = React.memo(
           />
         </View>
       </View>
-    );
+    )
   },
-);
-
-CsSelect.propTypes = {
-  options: PropTypes.array,
-  placeholder: PropTypes.string,
-  onChange: PropTypes.func,
-  loading: PropTypes.bool,
-  disabled: PropTypes.bool,
-  value: PropTypes.array,
-  theme: PropTypes.string,
-};
+)

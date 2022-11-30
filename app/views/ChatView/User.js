@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React from 'react'
+import { StyleSheet, TouchableOpacity, Image } from 'react-native'
 
-import { withTheme } from '../../theme';
-import images from '../../assets/images';
+import { withTheme } from '../../theme'
+import images from '../../assets/images'
 
 const styles = StyleSheet.create({
   ownerContainer: {
@@ -23,7 +22,7 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'grey',
   },
-});
+})
 
 const User = React.memo(({ owner, isOwn, theme, ...props }) => (
   <TouchableOpacity style={styles.ownerContainer}>
@@ -32,12 +31,7 @@ const User = React.memo(({ owner, isOwn, theme, ...props }) => (
       style={styles.avatar}
     />
   </TouchableOpacity>
-));
+))
+User.displayName = 'MessageUser'
 
-User.propTypes = {
-  owner: PropTypes.object,
-  theme: PropTypes.string,
-};
-User.displayName = 'MessageUser';
-
-export default withTheme(User);
+export default withTheme(User)

@@ -1,10 +1,9 @@
-import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import PropTypes from 'prop-types';
-import styles from './styles';
-import images from '../../assets/images';
-import { themes } from '../../constants/colors';
-import { withTheme } from '../../theme';
+import React from 'react'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
+import styles from './styles'
+import images from '../../assets/images'
+import { themes } from '../../constants/colors'
+import { withTheme } from '../../theme'
 
 const Content = React.memo(({ msg, photo, isOwn, onPressMedia, theme }) => {
   if (photo) {
@@ -35,7 +34,7 @@ const Content = React.memo(({ msg, photo, isOwn, onPressMedia, theme }) => {
           />
         </View>
       </TouchableOpacity>
-    );
+    )
   }
   return (
     <View
@@ -72,16 +71,9 @@ const Content = React.memo(({ msg, photo, isOwn, onPressMedia, theme }) => {
         {msg}
       </Text>
     </View>
-  );
-});
+  )
+})
 
-Content.propTypes = {
-  photo: PropTypes.string,
-  isOwn: PropTypes.bool,
-  msg: PropTypes.string,
-  onPressMedia: PropTypes.func,
-  theme: PropTypes.string,
-};
-Content.displayName = 'MessageContent';
+Content.displayName = 'MessageContent'
 
-export default withTheme(Content);
+export default withTheme(Content)

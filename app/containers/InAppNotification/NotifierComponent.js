@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Notifier } from 'react-native-notifier';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { connect } from 'react-redux'
+import { Notifier } from 'react-native-notifier'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 // import Avatar from '../Avatar';
 // import {CustomIcon} from '../../lib/Icons';
-import sharedStyles from '../../views/Styles';
-import { themes } from '../../constants/colors';
-import { useTheme } from '../../theme';
-import { useOrientation } from '../../dimensions';
+import sharedStyles from '../../views/Styles'
+import { themes } from '../../constants/colors'
+import { useTheme } from '../../theme'
+import { useOrientation } from '../../dimensions'
 
-const AVATAR_SIZE = 48;
+const AVATAR_SIZE = 48
 const BUTTON_HIT_SLOP = {
   top: 12,
   right: 12,
   bottom: 12,
   left: 12,
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -63,39 +62,39 @@ const styles = StyleSheet.create({
     width: 0,
     height: 0,
   },
-});
+})
 
 const NotifierComponent = React.memo(
   ({ notification, isMasterDetail, duration, customEmojis }) => {
-    const { theme } = useTheme();
-    const insets = useSafeAreaInsets();
-    const { isLandscape } = useOrientation();
-    const [text, setText] = useState('');
+    const { theme } = useTheme()
+    const insets = useSafeAreaInsets()
+    const { isLandscape } = useOrientation()
+    const [text, setText] = useState('')
     // const [ pause, setPause ] = useState(true);
 
-    const { text: message, payload, room, avatar } = notification;
-    const { rid, type } = payload;
+    const { text: message, payload, room, avatar } = notification
+    const { rid, type } = payload
     // if sub is not on local database, title and avatar will be null, so we use payload from notification
     const { title = type === 'd' ? payload.sender.username : payload.name } =
-      notification;
+      notification
 
     useEffect(() => {
-      let text = message;
-      setText(text);
+      let text = message
+      setText(text)
       // setTimeout(() => { setPause(true)}, duration);
-    }, [payload, message, duration]);
+    }, [payload, message, duration])
 
     const onPress = () => {
-      const { rid, message } = payload;
+      const { rid, message } = payload
       if (!rid) {
-        return;
+        return
       }
-    };
+    }
 
     const hideNotification = () => {
       // setPause(true);
-      Notifier.hideNotification();
-    };
+      Notifier.hideNotification()
+    }
 
     return (
       <View
@@ -141,18 +140,14 @@ const NotifierComponent = React.memo(
           {/*<CustomIcon name='close' style={[styles.close, { color: themes[theme].titleText }]} size={20} />*/}
         </TouchableOpacity>
       </View>
-    );
+    )
   },
-);
+)
 
-NotifierComponent.propTypes = {
-  notification: PropTypes.object,
-  isMasterDetail: PropTypes.bool,
-};
 
 const mapStateToProps = state => ({
   isMasterDetail: state.app.isMasterDetail,
   customEmojis: state.customEmojis,
-});
+})
 
-export default connect(mapStateToProps)(NotifierComponent);
+export default connect(mapStateToProps)(NotifierComponent)

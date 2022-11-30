@@ -1,20 +1,19 @@
-import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { RectButton } from 'react-native-gesture-handler';
+import React, { useEffect, useRef } from 'react'
+import { RectButton } from 'react-native-gesture-handler'
 
-import { themes } from '../constants/colors';
+import { themes } from '../constants/colors'
 
 const Touch = props => {
-  const { children, onPress, theme, underlayColor, ...otherProps } = props;
-  const buttonRef = useRef(null);
+  const { children, onPress, theme, underlayColor, ...otherProps } = props
+  const buttonRef = useRef(null)
 
   useEffect(() => {
     // buttonRef.current.setNativeProps(props);
-  }, []);
+  }, [])
 
   return (
     <RectButton
-      ref={ref => {buttonRef.current = ref;}}
+      ref={ref => {buttonRef.current = ref}}
       onPress={onPress}
       activeOpacity={1}
       underlayColor={underlayColor || themes[theme].bannerBackground}
@@ -22,14 +21,6 @@ const Touch = props => {
       {...otherProps}>
       {children}
     </RectButton>
-  );
-};
-
-Touch.propTypes = {
-  children: PropTypes.node,
-  onPress: PropTypes.func,
-  theme: PropTypes.string,
-  underlayColor: PropTypes.string,
-};
-
-export default Touch;
+  )
+}
+export default Touch

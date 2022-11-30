@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Image, ScrollView, Text, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux'
@@ -71,11 +70,6 @@ const ThankYouView = props => {
       </ScrollView>
     </View>
   )
-}
-
-ThankYouView.propTypes = {
-  user: PropTypes.object,
-  theme: PropTypes.string,
 }
 
 const mapStateToProps = state => ({

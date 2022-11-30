@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react'
+import { connect } from 'react-redux'
 import {
   FlatList,
   Image,
@@ -12,49 +11,48 @@ import {
   View,
   Text,
   Platform,
-} from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-import database from '@react-native-firebase/database';
-import { KeyboardAccessoryView } from 'react-native-ui-lib/keyboard';
-import moment from 'moment';
-import ImagePicker from 'react-native-image-crop-picker';
-import { withSafeAreaInsets } from 'react-native-safe-area-context';
-import { BorderlessButton } from 'react-native-gesture-handler';
-import SoundPlayer from 'react-native-sound-player';
-import LinearGradient from 'react-native-linear-gradient';
-import { useNavigation } from '@react-navigation/native';
-import Entypo from 'react-native-vector-icons/Entypo';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+} from 'react-native'
+import firestore from '@react-native-firebase/firestore'
+import database from '@react-native-firebase/database'
+import { KeyboardAccessoryView } from 'react-native-ui-lib/keyboard'
+import moment from 'moment'
+import ImagePicker from 'react-native-image-crop-picker'
+import { withSafeAreaInsets } from 'react-native-safe-area-context'
+import { BorderlessButton } from 'react-native-gesture-handler'
+import SoundPlayer from 'react-native-sound-player'
+import { useNavigation } from '@react-navigation/native'
+import Entypo from 'react-native-vector-icons/Entypo'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
-import { HEADER_BAR_END, HEADER_BAR_START, themes } from '../../constants/colors';
-import SafeAreaView from '../../containers/SafeAreaView';
-import { withTheme } from '../../theme';
-import styles from './styles';
-import images from '../../assets/images';
-import firebaseSdk from '../../lib/firebaseSdk';
-import { showErrorAlert } from '../../lib/info';
-import Message from './Message';
+import { HEADER_BAR_END, HEADER_BAR_START, themes } from '../../constants/colors'
+import SafeAreaView from '../../containers/SafeAreaView'
+import { withTheme } from '../../theme'
+import styles from './styles'
+import images from '../../assets/images'
+import firebaseSdk from '../../lib/firebaseSdk'
+import { showErrorAlert } from '../../lib/info'
+import Message from './Message'
 import {
   checkCameraPermission,
   checkPhotosPermission,
   imagePickerConfig,
-} from '../../utils/permissions';
-import ActivityIndicator from '../../containers/ActivityIndicator';
-import { isIOS } from '../../utils/deviceInfo';
-import { fetchUnread as fetchUnreadAction } from '../../actions/chat';
-import debounce from '../../utils/debounce';
-import I18n from '../../i18n';
-import StatusBar from '../../containers/StatusBar';
+} from '../../utils/permissions'
+import ActivityIndicator from '../../containers/ActivityIndicator'
+import { isIOS } from '../../utils/deviceInfo'
+import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
+import debounce from '../../utils/debounce'
+import I18n from '../../i18n'
+import StatusBar from '../../containers/StatusBar'
 
 const scrollPersistTaps = {
   keyboardShouldPersistTaps: 'always',
   keyboardDismissMode: 'interactive',
-};
+}
 
-let typingTimeout = null;
+let typingTimeout = null
 
 const ChatView = props => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
   const [state, setState] = useState({
     loading: false,
     room: props.route.params?.room,
@@ -63,74 +61,74 @@ const ChatView = props => {
     refreshing: false,
     sending: false,
     otherTyping: false,
-  });
-  const [canSoundPlay, setCanSoundPlay] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const inputRef = useRef(null);
+  })
+  const [canSoundPlay, setCanSoundPlay] = useState(false)
+  const [messages, setMessages] = useState([])
+  const inputRef = useRef(null)
 
-  const { user, theme, insets, fetchUnread } = props;
+  const { user, theme, insets, fetchUnread } = props
   const { refreshing, sending, showActiveImage, otherTyping, room, inputText } =
-    state;
-  const unSubscribeMessage = useRef(null);
-  const finishedLoadingFileLister = useRef(null);
-  const finishedLoadingLister = useRef(null);
-  const finishedPlayingLister = useRef(null);
+    state
+  const unSubscribeMessage = useRef(null)
+  const finishedLoadingFileLister = useRef(null)
+  const finishedLoadingLister = useRef(null)
+  const finishedPlayingLister = useRef(null)
 
   useEffect(() => {
-    init();
+    init()
     if (Platform.OS === 'ios') {
       finishedLoadingFileLister.current = SoundPlayer.addEventListener(
         'FinishedLoadingFile',
         () => {
-          setCanSoundPlay(true);
+          setCanSoundPlay(true)
         },
-      );
+      )
       finishedLoadingLister.current = SoundPlayer.addEventListener(
         'FinishedLoading',
         () => {
-          setCanSoundPlay(true);
+          setCanSoundPlay(true)
         },
-      );
+      )
       finishedPlayingLister.current = SoundPlayer.addEventListener(
         'FinishedPlaying',
         () => {
-          setCanSoundPlay(true);
+          setCanSoundPlay(true)
         },
-      );
-      SoundPlayer.loadSoundFile('chat', 'caf');
+      )
+      SoundPlayer.loadSoundFile('chat', 'caf')
     }
 
     return async () => {
       if (unSubscribeMessage.current) {
-        unSubscribeMessage.current();
-        unSubscribeMessage.current = null;
+        unSubscribeMessage.current()
+        unSubscribeMessage.current = null
       }
       if (finishedLoadingFileLister.current) {
-        finishedLoadingFileLister.current.remove();
+        finishedLoadingFileLister.current.remove()
       }
       if (finishedLoadingLister.current) {
-        finishedLoadingLister.current.remove();
+        finishedLoadingLister.current.remove()
       }
       if (finishedPlayingLister.current) {
-        finishedPlayingLister.current.remove();
+        finishedPlayingLister.current.remove()
       }
       try {
-        await setUnReads();
-        firebaseSdk.onOffline(room.id, user.userId);
-        firebaseSdk.typing(room.id, user.userId, false);
-        fetchUnread();
+        await setUnReads()
+        firebaseSdk.onOffline(room.id, user.userId)
+        firebaseSdk.typing(room.id, user.userId, false)
+        fetchUnread()
       } catch (e) {
-        console.log('leftRoom Error', e);
+        console.log('leftRoom Error', e)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   useEffect(() => {
-    firebaseSdk.onOnline(state.room.id, props.user.userId);
+    firebaseSdk.onOnline(state.room.id, props.user.userId)
     return (() => {
-      handleTyping(false);
-    });
-  }, []);
+      handleTyping(false)
+    })
+  }, [])
 
   useEffect(() => {
     navigation.setOptions({
@@ -170,38 +168,38 @@ const ChatView = props => {
         color: themes[theme].activeTintColor,
         alignSelf: 'flex-start',
       },
-    });
-  }, [theme]);
+    })
+  }, [theme])
 
   const setUnReads = async () => {
     if (room.confirmUser === user.userId) {
       await firestore()
         .collection(firebaseSdk.TBL_ROOM)
         .doc(room.id)
-        .update({ confirmUser: '', unReads: 0 });
+        .update({ confirmUser: '', unReads: 0 })
     }
-  };
+  }
 
   const init = async () => {
-    await setUnReads();
+    await setUnReads()
     if (unSubscribeMessage.current) {
-      unSubscribeMessage.current();
-      unSubscribeMessage.current = null;
+      unSubscribeMessage.current()
+      unSubscribeMessage.current = null
     }
     const messagesSubscribe = await firestore().collection(
       firebaseSdk.TBL_MESSAGE,
-    );
+    )
     unSubscribeMessage.current = messagesSubscribe.onSnapshot(async querySnapShot => {
       const userSnaps = await firestore()
         .collection(firebaseSdk.TBL_USER)
-        .get();
-      const users = [];
-      userSnaps.forEach(s => users.push(s.data()));
+        .get()
+      const users = []
+      userSnaps.forEach(s => users.push(s.data()))
 
-      const list = [];
+      const list = []
       querySnapShot.forEach(doc => {
-        const message = doc.data();
-        const isOwn = message.sender === user.userId;
+        const message = doc.data()
+        const isOwn = message.sender === user.userId
         if (message.roomId === room.id) {
           list.push({
             id: doc.id,
@@ -220,38 +218,38 @@ const ChatView = props => {
                 name: room.account.displayName,
                 avatar: room.account.avatar,
               },
-          });
+          })
         }
-      });
+      })
 
-      list.sort((a, b) => b.createdAt - a.createdAt);
+      list.sort((a, b) => b.createdAt - a.createdAt)
       if (messages.length > 0 && messages.length !== list.length) {
-        playSound();
+        playSound()
       }
       if (messages > 0) {
-        setMessages([...messages, ...list]);
+        setMessages([...messages, ...list])
       } else {
-        setMessages(list);
+        setMessages(list)
       }
 
       const typingRef = database().ref(
         'rooms/' + room.id + '/typing/' + room.account.userId,
-      );
+      )
       typingRef.on('value', snapshot => {
-        const otherTyping = snapshot.val();
-        setState({ ...state, otherTyping });
-      });
-    });
-  };
+        const otherTyping = snapshot.val()
+        setState({ ...state, otherTyping })
+      })
+    })
+  }
 
   const sendMessage = async () => {
-    inputRef.current.setNativeProps({ text: '' });
-    handleTyping(false);
+    inputRef.current.setNativeProps({ text: '' })
+    handleTyping(false)
     if (inputText.trim().length === 0) {
-      return;
+      return
     }
-    const text = inputText.trim();
-    setState({ ...state, inputText: '' });
+    const text = inputText.trim()
+    setState({ ...state, inputText: '' })
     try {
       const message = {
         roomId: room.id,
@@ -259,46 +257,46 @@ const ChatView = props => {
         date: new Date(),
         sender: user.userId,
         receiver: room.account.userId,
-      };
-      await firebaseSdk.saveMessage(room.id, message, user, room.account);
+      }
+      await firebaseSdk.saveMessage(room.id, message, user, room.account)
     } catch (e) {
-      console.log('error', e);
-      showErrorAlert(I18n.t('error_sending_message'));
+      console.log('error', e)
+      showErrorAlert(I18n.t('error_sending_message'))
     }
-  };
+  }
 
   const onChangeText = debounce(async text => {
-    const isTextEmpty = text.length === 0;
-    handleTyping(!isTextEmpty);
-    setState({ ...state, inputText: text });
-  }, 100);
+    const isTextEmpty = text.length === 0
+    handleTyping(!isTextEmpty)
+    setState({ ...state, inputText: text })
+  }, 100)
 
   const handleTyping = isTyping => {
     if (!isTyping) {
       if (typingTimeout) {
-        clearTimeout(typingTimeout);
-        typingTimeout = null;
+        clearTimeout(typingTimeout)
+        typingTimeout = null
       }
-      firebaseSdk.typing(room.id, user.userId, false);
-      return;
+      firebaseSdk.typing(room.id, user.userId, false)
+      return
     }
 
     if (typingTimeout) {
-      return;
+      return
     }
 
     typingTimeout = setTimeout(() => {
-      firebaseSdk.typing(room.id, user.userId, true);
-    }, 1000);
-  };
+      firebaseSdk.typing(room.id, user.userId, true)
+    }, 1000)
+  }
 
   const sendMediaMessage = async image_path => {
     try {
-      setState({ ...state, sending: true });
+      setState({ ...state, sending: true })
       const image_url = await firebaseSdk.uploadMedia(
         firebaseSdk.STORAGE_TYPE_PHOTO,
         image_path,
-      );
+      )
 
       const message = {
         roomId: room.id,
@@ -307,42 +305,42 @@ const ChatView = props => {
         date: new Date(),
         sender: user.userId,
         receiver: room.account.userId,
-      };
+      }
 
-      await firebaseSdk.saveMessage(room.id, message, user, room.account);
-      setState({ ...state, sending: false });
+      await firebaseSdk.saveMessage(room.id, message, user, room.account)
+      setState({ ...state, sending: false })
     } catch (e) {
-      console.log('error', e);
-      showErrorAlert(I18n.t('error_sending_message'));
-      setState({ ...state, sending: false });
+      console.log('error', e)
+      showErrorAlert(I18n.t('error_sending_message'))
+      setState({ ...state, sending: false })
     }
-  };
+  }
 
   const playSound = () => {
     if (Platform.OS === 'ios') {
       if (canSoundPlay) {
-        setCanSoundPlay(false);
-        SoundPlayer.play();
-        console.log('play sound');
+        setCanSoundPlay(false)
+        SoundPlayer.play()
+        console.log('play sound')
       }
     }
-  };
+  }
 
   const onUploadPhoto = async () => {
     if (await checkCameraPermission()) {
       ImagePicker.openCamera(imagePickerConfig).then(image => {
-        sendMediaMessage(image.path);
-      });
+        sendMediaMessage(image.path)
+      })
     }
-  };
+  }
 
   const onUploadImage = async () => {
     if (await checkPhotosPermission()) {
       ImagePicker.openPicker(imagePickerConfig).then(image => {
-        sendMediaMessage(image.path);
-      });
+        sendMediaMessage(image.path)
+      })
     }
-  };
+  }
 
   const leftButtons = () => {
     return (
@@ -352,7 +350,7 @@ const ChatView = props => {
           onPress={onUploadImage}
           style={styles.actionButtonContainer}
           testID="messagebox-action-upload-image">
-          <AntDesign name='plus' size={18} />
+          <AntDesign name="plus" size={18} />
         </BorderlessButton>
         <BorderlessButton
           key="file-message-photo"
@@ -365,8 +363,8 @@ const ChatView = props => {
           />
         </BorderlessButton>
       </>
-    );
-  };
+    )
+  }
 
   const renderInput = () => {
     return (
@@ -405,25 +403,25 @@ const ChatView = props => {
           </TouchableOpacity>
         </View>
       </RNSafeAreaView>
-    );
-  };
+    )
+  }
 
   const onRefresh = async () => {
-    setState({ ...state, refreshing: true });
-    await init();
-    setState({ ...state, refreshing: false });
-  };
+    setState({ ...state, refreshing: true })
+    await init()
+    setState({ ...state, refreshing: false })
+  }
 
   const onPressMedia = message => {
-    setState({ ...state, showActiveImage: message.photo });
-  };
+    setState({ ...state, showActiveImage: message.photo })
+  }
 
   const renderItem = (item, prevItem, index) => {
-    let dateSeparator = null;
+    let dateSeparator = null
     if (!prevItem) {
-      dateSeparator = item.createdAt;
+      dateSeparator = item.createdAt
     } else if (!moment(item.createdAt).isSame(prevItem.createdAt, 'day')) {
-      dateSeparator = item.createdAt;
+      dateSeparator = item.createdAt
     }
     const message = (
       <Message
@@ -431,7 +429,7 @@ const ChatView = props => {
         onPressMedia={() => onPressMedia(item)}
         item={item}
       />
-    );
+    )
 
     if (dateSeparator) {
       return (
@@ -443,17 +441,17 @@ const ChatView = props => {
             </Text>
           </View>
         </>
-      );
+      )
     }
-    return message;
-  };
+    return message
+  }
 
   const renderTyping = () => {
     if (otherTyping) {
-      return <Text style={[styles.typing, { color: themes[theme].infoText }]}>{`${I18n.t('Typing')}...`}</Text>;
+      return <Text style={[styles.typing, { color: themes[theme].infoText }]}>{`${I18n.t('Typing')}...`}</Text>
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <SafeAreaView style={{ backgroundColor: themes[theme].chatBackground }}>
@@ -497,25 +495,17 @@ const ChatView = props => {
         </TouchableOpacity>
       )}
     </SafeAreaView>
-  );
-};
-
-ChatView.propTypes = {
-  user: PropTypes.object,
-  insets: PropTypes.object,
-  fetchUnread: PropTypes.func,
-  theme: PropTypes.string,
-};
-
+  )
+}
 const mapStateToProps = state => ({
   user: state.login.user,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   fetchUnread: params => dispatch(fetchUnreadAction(params)),
-});
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withSafeAreaInsets(withTheme(ChatView)));
+)(withSafeAreaInsets(withTheme(ChatView)))

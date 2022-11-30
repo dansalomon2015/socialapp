@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, Image } from 'react-native';
-import PropTypes from 'prop-types';
-
-import sharedStyles from '../views/Styles';
-import { COLOR_DANGER, COLOR_TEXT, themes } from '../constants/colors';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { isIOS } from '../utils/deviceInfo';
+import React, { useState } from 'react'
+import { View, StyleSheet, Text, TextInput, Image } from 'react-native'
+import sharedStyles from '../views/Styles'
+import { COLOR_DANGER, COLOR_TEXT, themes } from '../constants/colors'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { isIOS } from '../utils/deviceInfo'
 
 const styles = StyleSheet.create({
   error: {
@@ -71,10 +69,10 @@ const styles = StyleSheet.create({
   icon: {
     color: '#2F343D',
   },
-});
+})
 
 const CsTextInput = props => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
   const {
     label,
@@ -94,9 +92,9 @@ const CsTextInput = props => {
     placeholder,
     theme,
     ...inputProps
-  } = props;
+  } = props
 
-  const { dangerColor } = themes[theme];
+  const { dangerColor } = themes[theme]
 
   const leftIcon = () => {
     return (
@@ -111,23 +109,23 @@ const CsTextInput = props => {
           style={[styles.iconLeft, { color: themes[theme].bodyText }]}
         />
       </View>
-    );
-  };
+    )
+  }
 
   const rightIcon = () => {
-    const { iconRight, onIconRightPress, theme } = props;
+    const { iconRight, onIconRightPress, theme } = props
     return (
       <MaterialCommunityIcons
         name={iconRight.icon}
         style={{ color: themes[theme].bodyText }}
         size={18}
       />
-    );
-  };
+    )
+  }
 
   const tooglePassword = () => {
-    setShowPassword(!showPassword);
-  };
+    setShowPassword(!showPassword)
+  }
 
   return (
     <View style={[styles.inputContainer, containerStyle]}>
@@ -190,30 +188,11 @@ const CsTextInput = props => {
         </Text>
       ) : null}
     </View>
-  );
-};
-
-CsTextInput.propTypes = {
-  label: PropTypes.string,
-  required: PropTypes.string,
-  error: PropTypes.object,
-  loading: PropTypes.bool,
-  secureTextEntry: PropTypes.bool,
-  containerStyle: PropTypes.object,
-  inputStyle: PropTypes.object,
-  inputRef: PropTypes.func,
-  testID: PropTypes.string,
-  iconLeft: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  iconRight: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  placeholder: PropTypes.string,
-  left: PropTypes.element,
-  onIconRightPress: PropTypes.func,
-  theme: PropTypes.string,
-};
+  )
+}
 
 CsTextInput.defaultProps = {
   error: {},
   // theme: 'dark',
-};
-
-export default CsTextInput;
+}
+export default CsTextInput

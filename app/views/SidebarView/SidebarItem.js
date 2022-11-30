@@ -1,18 +1,11 @@
-import React from 'react';
-import { 
-  View, 
-  Text, 
-  TouchableOpacity 
-} from 'react-native';
-import PropTypes from 'prop-types';
-
-import styles from './styles';
-import LinearGradient from 'react-native-linear-gradient';
+import React from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
+import styles from './styles'
 import {
   NAV_BAR_END,
   NAV_BAR_START,
   themes,
-} from '../../constants/colors';
+} from '../../constants/colors'
 
 const Item = React.memo(
   ({ id, left, text, onPress, current, containerStyle, textStyle, theme }) => (
@@ -21,7 +14,13 @@ const Item = React.memo(
       onPress={onPress}
       underlayColor="#292E35"
       activeOpacity={0.3}
-      style={[containerStyle, { paddingRight: 24, marginHorizontal: 10, marginBottom: 5, borderRadius: 5, backgroundColor: current ? themes[theme].tintActive : undefined }]}>
+      style={[containerStyle, {
+        paddingRight: 24,
+        marginHorizontal: 10,
+        marginBottom: 5,
+        borderRadius: 5,
+        backgroundColor: current ? themes[theme].tintActive : undefined
+      }]}>
       {current ? (
         <View
           colors={[NAV_BAR_END, NAV_BAR_START]}
@@ -53,15 +52,6 @@ const Item = React.memo(
       )}
     </TouchableOpacity>
   ),
-);
+)
 
-Item.PropTypes = {
-  left: PropTypes.element,
-  text: PropTypes.string,
-  current: PropTypes.bool,
-  onPress: PropTypes.func,
-  testID: PropTypes.string,
-  showSort: PropTypes.bool,
-};
-
-export default Item;
+export default Item

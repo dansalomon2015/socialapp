@@ -1,7 +1,6 @@
-import { StyleSheet, Platform } from 'react-native';
-
-import { moderateScale } from '../utils/scaling';
-import { COLOR_DANGER, COLOR_SEPARATOR } from '../constants/colors';
+import { StyleSheet, Platform } from 'react-native'
+import { moderateScale } from '../utils/scaling'
+import { COLOR_DANGER, COLOR_SEPARATOR } from '../constants/colors'
 
 export default StyleSheet.create({
   container: {
@@ -301,4 +300,4 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})

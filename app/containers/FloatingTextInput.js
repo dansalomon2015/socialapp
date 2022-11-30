@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Image, Text, Platform } from 'react-native';
-import PropTypes from 'prop-types';
-import { TextInput } from 'react-native-paper';
+import React, { useState } from 'react'
+import { View, StyleSheet, Image, Text, Platform } from 'react-native'
+import { TextInput } from 'react-native-paper'
 
-import { themes } from '../constants/colors';
-import images from '../assets/images';
+import { themes } from '../constants/colors'
+import images from '../assets/images'
 
 const styles = StyleSheet.create({
   iconWrap: {
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 14,
   },
-});
+})
 
 const FloatingTextInput = props => {
   const {
@@ -52,11 +51,11 @@ const FloatingTextInput = props => {
     multiline,
     value,
     ...inputProps
-  } = props;
+  } = props
 
-  const [showPassword, setShowPassword] = useState(!secureTextEntry);
+  const [showPassword, setShowPassword] = useState(!secureTextEntry)
 
-  const { dangerColor } = themes[theme];
+  const { dangerColor } = themes[theme]
 
   const leftIcon = () => {
     return (
@@ -67,8 +66,8 @@ const FloatingTextInput = props => {
           style={[styles.icon, { tintColor: themes[theme].infoText }]}
         />
       </View>
-    );
-  };
+    )
+  }
 
   const rightIcon = () => {
     if (error) {
@@ -80,7 +79,7 @@ const FloatingTextInput = props => {
             style={[styles.icon]}
           />
         </View>
-      );
+      )
     }
     if (secureTextEntry) {
       return (
@@ -91,13 +90,13 @@ const FloatingTextInput = props => {
             style={[styles.icon, { tintColor: themes[theme].infoText }]}
           />
         </View>
-      );
+      )
     }
-  };
+  }
 
   const tooglePassword = () => {
-    setShowPassword(!showPassword);
-  };
+    setShowPassword(!showPassword)
+  }
 
   return (
     <View style={styles.container}>
@@ -143,31 +142,11 @@ const FloatingTextInput = props => {
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
-  );
-};
-
-FloatingTextInput.propTypes = {
-  label: PropTypes.string,
-  required: PropTypes.string,
-  error: PropTypes.string,
-  loading: PropTypes.bool,
-  secureTextEntry: PropTypes.bool,
-  containerStyle: PropTypes.object,
-  inputStyle: PropTypes.object,
-  inputRef: PropTypes.func,
-  testID: PropTypes.string,
-  iconLeft: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  iconRight: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  placeholder: PropTypes.string,
-  onIconRightPress: PropTypes.func,
-  theme: PropTypes.string,
-  outlineColor: PropTypes.string,
-  backgroundColor: PropTypes.string,
-  multiline: PropTypes.bool,
-};
+  )
+}
 
 FloatingTextInput.defaultProps = {
   error: '',
-};
+}
 
-export default FloatingTextInput;
+export default FloatingTextInput

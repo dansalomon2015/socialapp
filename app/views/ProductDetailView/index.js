@@ -1,29 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import firestore from '@react-native-firebase/firestore';
-import { 
-  Image, 
-  ScrollView, 
-  Text, 
-  TouchableOpacity, 
-  View 
-} from 'react-native';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import firestore from '@react-native-firebase/firestore'
+import {
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native'
+import { connect } from 'react-redux'
 
-import StatusBar from '../../containers/StatusBar';
-import { withTheme } from '../../theme';
-import styles from './styles';
-import { addToCart as addToCartAction } from '../../actions/cart';
-import MainScreen from '../../containers/MainScreen';
-import * as HeaderButton from '../../containers/HeaderButton';
-import { GradientHeader } from '../../containers/GradientHeader';
-import scrollPersistTaps from '../../utils/scrollPersistTaps';
-import { COLOR_YELLOW } from '../../constants/colors';
-import I18n from '../../i18n';
-import firebaseSdk from '../../lib/firebaseSdk';
+import StatusBar from '../../containers/StatusBar'
+import { withTheme } from '../../theme'
+import styles from './styles'
+import { addToCart as addToCartAction } from '../../actions/cart'
+import MainScreen from '../../containers/MainScreen'
+import * as HeaderButton from '../../containers/HeaderButton'
+import { GradientHeader } from '../../containers/GradientHeader'
+import scrollPersistTaps from '../../utils/scrollPersistTaps'
+import { COLOR_YELLOW } from '../../constants/colors'
+import I18n from '../../i18n'
+import firebaseSdk from '../../lib/firebaseSdk'
 
 const ProductDetailView = (props) => {
-  const productData = props.route.params?.product;
+  const productData = props.route.params?.product
   const [state, setState] = useState({
     product: productData,
     target_product_item: {
@@ -35,18 +34,18 @@ const ProductDetailView = (props) => {
       color: productData.colors ? productData.colors[0].id : null,
       image_url: productData.image_url,
       price: productData.price,
-    }
-  });
-  const { navigation } = props;
-  const { product, target_product_item } = state;
+    },
+  })
+  const { navigation } = props
+  const { product, target_product_item } = state
 
   useEffect(() => {
-    init(product.id);
-  }, []);
+    init(product.id)
+  }, [])
 
   const setSafeState = (states) => {
-    setState({ ...state, ...states });
-  };
+    setState({ ...state, ...states })
+  }
 
   const init = async id => {
     navigation.setOptions({
@@ -65,15 +64,15 @@ const ProductDetailView = (props) => {
         />
       ),
       headerBackground: () => <GradientHeader />,
-    });
+    })
 
     await firestore()
       .collection(firebaseSdk.TBL_PRODUCTS)
       .doc(id)
       .get()
       .then(querySnapShot => {
-        const product = querySnapShot.data();
-        console.log('product', product);
+        const product = querySnapShot.data()
+        console.log('product', product)
         setSafeState({
           product: { id: querySnapShot.id, ...product },
           target_product_item: {
@@ -88,23 +87,23 @@ const ProductDetailView = (props) => {
               : product.image_url,
             price: product.price,
           },
-        });
-      });
-  };
+        })
+      })
+  }
 
   const renderSize = () => {
-    let sides = [];
-    const { category } = state;
+    let sides = []
+    const { category } = state
     category.images.forEach(c => {
       sides.push(
         <View style={styles.colorItemContainer}>
           <Image source={{ uri: c }} style={styles.colorImage} key={c.id} />
           <Text style={styles.colorText}>{category.name_kana}</Text>
         </View>,
-      );
-    });
-    return sides;
-  };
+      )
+    })
+    return sides
+  }
 
   const onSelectColor = color => {
     setState({
@@ -114,26 +113,26 @@ const ProductDetailView = (props) => {
         color: color.id,
         image_url: color.image_url,
       },
-    });
-  };
+    })
+  }
 
   const onSelectSize = size => {
     setState({
       ...state,
       target_product_item: { ...state.target_product_item, size },
-    });
-  };
+    })
+  }
 
   const onAddCart = () => {
-    const { addToCart } = props;
-    const { target_product_item } = state;
+    const { addToCart } = props
+    const { target_product_item } = state
     const cartProduct = {
       ...target_product_item,
       quantity: 1,
-    };
-    addToCart(cartProduct);
-    props.navigation.replace('CheckOut');
-  };
+    }
+    addToCart(cartProduct)
+    props.navigation.replace('CheckOut')
+  }
 
   return (
     <MainScreen navigation={navigation}>
@@ -217,24 +216,18 @@ const ProductDetailView = (props) => {
         </TouchableOpacity>
       </ScrollView>
     </MainScreen>
-  );
-};
-
-
-ProductDetailView.PropTypes = {
-  user: PropTypes.object,
-  theme: PropTypes.string,
-};
+  )
+}
 
 const mapStateToProps = state => ({
   user: state.login.user,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   addToCart: params => dispatch(addToCartAction(params)),
-});
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withTheme(ProductDetailView));
+)(withTheme(ProductDetailView))

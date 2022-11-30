@@ -1,16 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Text, TouchableOpacity } from 'react-native';
-
-import { themes } from '../../constants/colors';
+import React from 'react'
+import { Text, TouchableOpacity } from 'react-native'
+import { themes } from '../../constants/colors'
 // import { CustomIcon } from '../../lib/Icons';
-import styles from './styles';
+import styles from './styles'
 
 export const Item = React.memo(({ item, hide, theme }) => {
   const onPress = () => {
-    hide();
-    item?.onPress();
-  };
+    hide()
+    item?.onPress()
+  }
 
   return (
     <TouchableOpacity
@@ -31,15 +29,5 @@ export const Item = React.memo(({ item, hide, theme }) => {
         {item.title}
       </Text>
     </TouchableOpacity>
-  );
-});
-Item.propTypes = {
-  item: PropTypes.shape({
-    title: PropTypes.string,
-    icon: PropTypes.string,
-    danger: PropTypes.bool,
-    onPress: PropTypes.func,
-  }),
-  hide: PropTypes.func,
-  theme: PropTypes.string,
-};
+  )
+})

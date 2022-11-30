@@ -1,15 +1,13 @@
-import React from 'react';
-import { View, Text, StyleSheet, I18nManager } from 'react-native';
-import PropTypes from 'prop-types';
-
-import Touch from '../../utils/touch';
-import { themes } from '../../constants/colors';
-import sharedStyles from '../../views/Styles';
-import { withTheme } from '../../theme';
-import I18n from '../../i18n';
-import { Icon } from '.';
-import { BASE_HEIGHT, PADDING_HORIZONTAL } from './constants';
-import { withDimensions } from '../../dimensions';
+import React from 'react'
+import { View, Text, StyleSheet, I18nManager } from 'react-native'
+import Touch from '../../utils/touch'
+import { themes } from '../../constants/colors'
+import sharedStyles from '../../views/Styles'
+import { withTheme } from '../../theme'
+import I18n from '../../i18n'
+import { Icon } from '.'
+import { BASE_HEIGHT, PADDING_HORIZONTAL } from './constants'
+import { withDimensions } from '../../dimensions'
 
 const styles = StyleSheet.create({
   container: {
@@ -44,23 +42,23 @@ const styles = StyleSheet.create({
   actionIndicator: {
     ...(I18nManager.isRTL ? { transform: [{ rotate: '180deg' }] } : {}),
   },
-});
+})
 
 const Content = React.memo(
   ({
-    title,
-    subtitle,
-    disabled,
-    testID,
-    left,
-    right,
-    color,
-    theme,
-    translateTitle,
-    translateSubtitle,
-    showActionIndicator,
-    fontScale,
-  }) => (
+     title,
+     subtitle,
+     disabled,
+     testID,
+     left,
+     right,
+     color,
+     theme,
+     translateTitle,
+     translateSubtitle,
+     showActionIndicator,
+     fontScale,
+   }) => (
     <View
       style={[
         styles.container,
@@ -93,7 +91,7 @@ const Content = React.memo(
       ) : null}
     </View>
   ),
-);
+)
 
 const Button = React.memo(
   ({ onPress, backgroundColor, underlayColor, ...props }) => (
@@ -108,11 +106,11 @@ const Button = React.memo(
       <Content {...props} />
     </Touch>
   ),
-);
+)
 
 const ListItem = React.memo(({ ...props }) => {
   if (props.onPress) {
-    return <Button {...props} />;
+    return <Button {...props} />
   }
   return (
     <View
@@ -122,49 +120,20 @@ const ListItem = React.memo(({ ...props }) => {
       }}>
       <Content {...props} />
     </View>
-  );
-});
+  )
+})
 
-ListItem.propTypes = {
-  onPress: PropTypes.func,
-  theme: PropTypes.string,
-  backgroundColor: PropTypes.string,
-};
 
-ListItem.displayName = 'List.Item';
-
-Content.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-  left: PropTypes.func,
-  right: PropTypes.func,
-  disabled: PropTypes.bool,
-  testID: PropTypes.string,
-  theme: PropTypes.string,
-  color: PropTypes.string,
-  translateTitle: PropTypes.bool,
-  translateSubtitle: PropTypes.bool,
-  showActionIndicator: PropTypes.bool,
-  fontScale: PropTypes.number,
-};
+ListItem.displayName = 'List.Item'
 
 Content.defaultProps = {
   translateTitle: true,
   translateSubtitle: true,
   showActionIndicator: false,
-};
-
-Button.propTypes = {
-  title: PropTypes.string,
-  onPress: PropTypes.func,
-  disabled: PropTypes.bool,
-  theme: PropTypes.string,
-  backgroundColor: PropTypes.string,
-  underlayColor: PropTypes.string,
-};
+}
 
 Button.defaultProps = {
   disabled: false,
-};
+}
 
-export default withTheme(withDimensions(ListItem));
+export default withTheme(withDimensions(ListItem))

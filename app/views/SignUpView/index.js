@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import PropTypes from 'prop-types'
 import {
   Image,
   SafeAreaView,
@@ -8,14 +7,13 @@ import {
   View,
   ScrollView
 } from 'react-native'
+// Geo
 // import ScrollView from 'react-native-nested-scroll-view';
-import LinearGradient from 'react-native-linear-gradient'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from '@react-navigation/native'
 import { connect } from 'react-redux'
 
 import { withTheme } from '../../theme'
-import TextInput from '../../containers/TextInput'
 import sharedStyles from '../Styles'
 import StatusBar from '../../containers/StatusBar'
 import styles from './styles'
@@ -24,15 +22,7 @@ import images from '../../assets/images'
 import { isValidEmail } from '../../utils/validators'
 import { showErrorAlert, showToast } from '../../lib/info'
 import firebaseSdk from '../../lib/firebaseSdk'
-import {
-  COLOR_BLACK,
-  COLOR_BLUE,
-  COLOR_YELLOW,
-  HEADER_BAR_END,
-  HEADER_BAR_START,
-  NAV_BAR_START,
-  themes,
-} from '../../constants/colors'
+import { COLOR_BLUE, themes } from '../../constants/colors'
 import I18n from '../../i18n'
 import CsSelectGender from '../../containers/CsSelectGender'
 import ExDatePicker from '../../containers/ExDatePicker'
@@ -222,7 +212,7 @@ const SignUpView = props => {
     <KeyboardView
       contentContainerStyle={[sharedStyles.container, { backgroundColor: themes[theme].backgroundColor }]}
       keyboardVerticalOffset={128}>
-      <StatusBar/>
+      <StatusBar />
       <SafeAreaView>
         <ScrollView
           contentContainerStyle={{
@@ -232,7 +222,7 @@ const SignUpView = props => {
           {...scrollPersistTaps}
           keyboardShouldPersistTaps="handled">
           <View style={sharedStyles.headerContainer}>
-            <Image style={styles.logo} source={images.logo_new}/>
+            <Image style={styles.logo} source={images.logo_new} />
           </View>
           <View style={styles.formContainer}>
             <Text style={styles.signupText}>{I18n.t('sign_up')}</Text>
@@ -494,12 +484,6 @@ const SignUpView = props => {
       </SafeAreaView>
     </KeyboardView>
   )
-}
-
-SignUpView.propTypes = {
-  navigation: PropTypes.object,
-  theme: PropTypes.string,
-  loginSuccess: PropTypes.func,
 }
 
 const mapDispatchToProps = dispatch => ({

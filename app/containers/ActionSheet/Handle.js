@@ -1,9 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { View } from 'react-native';
-
-import styles from './styles';
-import { themes } from '../../constants/colors';
+import React from 'react'
+import { View } from 'react-native'
+import styles from './styles'
+import { themes } from '../../constants/colors'
 
 export const Handle = React.memo(({ theme }) => (
   <View
@@ -16,7 +14,4 @@ export const Handle = React.memo(({ theme }) => (
       ]}
     />
   </View>
-));
-Handle.propTypes = {
-  theme: PropTypes.string,
-};
+))

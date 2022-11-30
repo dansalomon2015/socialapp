@@ -1,17 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+// Geo
 // import ScrollView from 'react-native-nested-scroll-view';
-import PropTypes from 'prop-types'
 import { TextInput } from 'react-native-paper'
 
 import I18n from '../i18n'
-import {
-  COLOR_BLACK,
-  COLOR_YELLOW,
-  DARK_WEAK,
-  themes,
-} from '../constants/colors'
+import { themes } from '../constants/colors'
 import sharedStyles from '../views/Styles'
 import { VectorIcon } from './VectorIcon'
 import scrollPersistTaps from '../utils/scrollPersistTaps'
@@ -219,16 +214,6 @@ const ExSalary = (props) => {
       </View>
     </View>
   )
-}
-
-ExSalary.PropTypes = {
-  label: PropTypes.string,
-  containerStyle: PropTypes.object,
-  value: PropTypes.string,
-  action: PropTypes.func,
-  toggleShow: PropTypes.func,
-  topScrollEnable: PropTypes.bool,
-  theme: PropTypes.string,
 }
 
 export default ExSalary

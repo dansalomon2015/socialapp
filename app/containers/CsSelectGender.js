@@ -1,15 +1,14 @@
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { View, StyleSheet, Text } from 'react-native'
 
-import sharedStyles from '../views/Styles';
+import sharedStyles from '../views/Styles'
 import {
   COLOR_DANGER,
   COLOR_BLUE,
   themes,
-} from '../constants/colors';
-import CheckBox from './CheckBox';
-import { Genders } from '../constants/app';
+} from '../constants/colors'
+import CheckBox from './CheckBox'
+import { Genders } from '../constants/app'
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -36,20 +35,20 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   CheckBoxContainer: {},
-});
+})
 
 const CsSelectGender = (props) => {
-  const { 
-    label, 
-    value, 
-    required, 
-    containerStyle, 
-    theme 
-  } = props;
-  
+  const {
+    label,
+    value,
+    required,
+    containerStyle,
+    theme
+  } = props
+
   const setCheck = value => {
-    props.onChange(value);
-  };
+    props.onChange(value)
+  }
 
   return (
     <View style={[styles.inputContainer, containerStyle]}>
@@ -86,16 +85,7 @@ const CsSelectGender = (props) => {
         ))}
       </View>
     </View>
-  );
-};
+  )
+}
 
-CsSelectGender.PropTypes = {
-  label: PropTypes.string,
-  value: PropTypes.string,
-  required: PropTypes.string,
-  containerStyle: PropTypes.object,
-  onChange: PropTypes.func,
-  theme: PropTypes.string,
-};
-
-export default CsSelectGender;
+export default CsSelectGender

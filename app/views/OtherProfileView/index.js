@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { HEADER_BAR_END, HEADER_BAR_START, themes } from '../../constants/colors';
 import StatusBar from '../../containers/StatusBar';
 import { withTheme } from '../../theme';
@@ -616,12 +615,6 @@ const OtherProfileView = props => {
       ) : null}
     </View>
   );
-};
-
-OtherProfileView.PropTypes = {
-  setUser: PropTypes.func,
-  user: PropTypes.object,
-  theme: PropTypes.string,
 };
 
 const mapStateToProps = state => ({

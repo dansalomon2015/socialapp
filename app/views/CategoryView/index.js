@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import Swiper from 'react-native-swiper';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import Swiper from 'react-native-swiper'
+import { connect } from 'react-redux'
 import {
   ImageBackground,
   ScrollView,
   Text,
   View,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+} from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
-import styles from './styles';
-import { setUser as setUserAction } from '../../actions/login';
-import MainScreen from '../../containers/MainScreen';
-import * as HeaderButton from '../../containers/HeaderButton';
-import Product from './Product';
-import { GradientHeader } from '../../containers/GradientHeader';
-import StatusBar from '../../containers/StatusBar';
-import { withTheme } from '../../theme';
+import styles from './styles'
+import { setUser as setUserAction } from '../../actions/login'
+import MainScreen from '../../containers/MainScreen'
+import * as HeaderButton from '../../containers/HeaderButton'
+import Product from './Product'
+import { GradientHeader } from '../../containers/GradientHeader'
+import StatusBar from '../../containers/StatusBar'
+import { withTheme } from '../../theme'
 
 const CategoryView = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
   const [state, setState] = useState({
     text: '',
     data: [],
@@ -91,7 +90,7 @@ const CategoryView = () => {
         price: 190,
       },
     ],
-  });
+  })
 
   useEffect(() => {
     navigation.setOptions({
@@ -110,25 +109,25 @@ const CategoryView = () => {
         />
       ),
       headerBackground: () => <GradientHeader />,
-    });
-  }, []);
+    })
+  }, [])
 
   const onPressProduct = product => {
-    navigation.replace('ProductDetail', { product });
-  };
+    navigation.replace('ProductDetail', { product })
+  }
 
   const renderSlides = () => {
-    let sides = [];
-    const { category } = state;
+    let sides = []
+    const { category } = state
     category.images.forEach(c => {
       sides.push(
         <ImageBackground source={{ uri: c }} style={styles.slides} key={c.id} />,
-      );
-    });
-    return sides;
-  };
+      )
+    })
+    return sides
+  }
 
-  const { category, products } = state;
+  const { category, products } = state
 
   return (
     <MainScreen navigation={navigation}>
@@ -162,23 +161,17 @@ const CategoryView = () => {
         </View>
       </ScrollView>
     </MainScreen>
-  );
-};
-
-CategoryView.propTypes = {
-  user: PropTypes.object,
-  theme: PropTypes.string,
-};
-
+  )
+}
 const mapStateToProps = state => ({
   user: state.login.user,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
-});
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withTheme(CategoryView));
+)(withTheme(CategoryView))

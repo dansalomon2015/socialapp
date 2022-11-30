@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, Image } from 'react-native';
-import PropTypes from 'prop-types';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import React, { useState } from 'react'
+import { View, StyleSheet, Text, TextInput, Image } from 'react-native'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import sharedStyles from '../views/Styles';
+import sharedStyles from '../views/Styles'
 import {
   COLOR_DANGER,
   COLOR_YELLOW,
   themes,
-} from '../constants/colors';
-import { isIOS } from '../utils/deviceInfo';
+} from '../constants/colors'
+import { isIOS } from '../utils/deviceInfo'
 
 const styles = StyleSheet.create({
   error: {
@@ -70,10 +69,10 @@ const styles = StyleSheet.create({
   icon: {
     color: '#2F343D',
   },
-});
+})
 
 const RCTextInput = props => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
   const {
     label,
@@ -92,9 +91,9 @@ const RCTextInput = props => {
     theme,
     onIconRightPress,
     ...inputProps
-  } = props;
+  } = props
 
-  const { dangerColor } = themes[theme];
+  const { dangerColor } = themes[theme]
 
   const leftIcon = () => {
     return (
@@ -105,8 +104,8 @@ const RCTextInput = props => {
           style={[styles.iconLeft, { color: themes[theme].bodyText }]}
         />
       </View>
-    );
-  };
+    )
+  }
 
   const rightIcon = () => {
     return (
@@ -115,12 +114,12 @@ const RCTextInput = props => {
         style={{ color: themes[theme].bodyText }}
         size={18}
       />
-    );
-  };
+    )
+  }
 
   const tooglePassword = () => {
-    setShowPassword(!showPassword);
-  };
+    setShowPassword(!showPassword)
+  }
 
   return (
     <View style={[styles.inputContainer, containerStyle]}>
@@ -182,30 +181,12 @@ const RCTextInput = props => {
         </Text>
       ) : null}
     </View>
-  );
-};
-
-RCTextInput.propTypes = {
-  label: PropTypes.string,
-  required: PropTypes.string,
-  error: PropTypes.object,
-  loading: PropTypes.bool,
-  secureTextEntry: PropTypes.bool,
-  containerStyle: PropTypes.object,
-  inputStyle: PropTypes.object,
-  inputRef: PropTypes.func,
-  testID: PropTypes.string,
-  iconLeft: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  iconRight: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  placeholder: PropTypes.string,
-  left: PropTypes.element,
-  onIconRightPress: PropTypes.func,
-  theme: PropTypes.string,
-};
+  )
+}
 
 RCTextInput.defaultProps = {
   error: {},
   // theme: 'dark',
-};
+}
 
-export default RCTextInput;
+export default RCTextInput

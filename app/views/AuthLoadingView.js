@@ -1,19 +1,18 @@
-import React from 'react';
+import React from 'react'
 import {
   View,
   StyleSheet,
   ActivityIndicator,
   Image,
   ImageBackground,
-} from 'react-native';
-import PropTypes from 'prop-types';
+} from 'react-native'
 
-import StatusBar from '../containers/StatusBar';
-import { withTheme } from '../theme';
-import { themes } from '../constants/colors';
+import StatusBar from '../containers/StatusBar'
+import { withTheme } from '../theme'
+import { themes } from '../constants/colors'
 
-import sharedStyles from './Styles';
-import images from '../assets/images';
+import sharedStyles from './Styles'
+import images from '../assets/images'
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -36,25 +35,21 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     tintColor: 'white',
   },
-});
+})
 
 const AuthLoadingView = React.memo(({ theme }) => (
   <ImageBackground
-    style={sharedStyles.container}
-    source={images.bg_splash_back}>
+    style={ sharedStyles.container }
+    source={ images.bg_splash_back }>
     <StatusBar />
-    <View style={styles.mainContainer}>
-      <View style={styles.logoContainer}>
-        <Image source={images.logo} style={styles.logo} />
-        <Image style={styles.logoText} source={images.logo_text} />
+    <View style={ styles.mainContainer }>
+      <View style={ styles.logoContainer }>
+        <Image source={ images.logo } style={ styles.logo } />
+        <Image style={ styles.logoText } source={ images.logo_text } />
       </View>
-      <ActivityIndicator color={themes[theme].actionColor} size="large" />
+      <ActivityIndicator color={ themes[theme].actionColor } size="large" />
     </View>
   </ImageBackground>
-));
+))
 
-AuthLoadingView.propTypes = {
-  theme: PropTypes.string,
-};
-
-export default withTheme(AuthLoadingView);
+export default withTheme(AuthLoadingView)

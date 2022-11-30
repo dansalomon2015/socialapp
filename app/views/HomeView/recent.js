@@ -1,29 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { FlatList, ImageBackground, RefreshControl, Text } from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { FlatList, ImageBackground, RefreshControl, Text } from 'react-native'
+import firestore from '@react-native-firebase/firestore'
+import { useNavigation } from '@react-navigation/native'
 
-import { themes } from '../../constants/colors';
-import StatusBar from '../../containers/StatusBar';
-import { withTheme } from '../../theme';
-import { withDimensions } from '../../dimensions';
-import ActivityIndicator from '../../containers/ActivityIndicator';
+import { themes } from '../../constants/colors'
+import StatusBar from '../../containers/StatusBar'
+import { withTheme } from '../../theme'
+import { withDimensions } from '../../dimensions'
+import ActivityIndicator from '../../containers/ActivityIndicator'
 import firebaseSdk, {
   DB_ACTION_UPDATE,
   NOTIFICATION_TYPE_LIKE,
-} from '../../lib/firebaseSdk';
-import Post from './Post';
-import styles from '../ChatView/styles';
-import images from '../../assets/images';
-import SafeAreaView from '../../containers/SafeAreaView';
-import { GradientHeader } from '../../containers/GradientHeader';
-import I18n from '../../i18n';
-import { navigateToProfile } from '../../utils/const';
+} from '../../lib/firebaseSdk'
+import Post from './Post'
+import styles from '../ChatView/styles'
+import images from '../../assets/images'
+import SafeAreaView from '../../containers/SafeAreaView'
+import { GradientHeader } from '../../containers/GradientHeader'
+import I18n from '../../i18n'
+import { navigateToProfile } from '../../utils/const'
 
 const RecentView = props => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
   const [state, setState] = useState({
     text: '',
     data: [],
@@ -34,69 +33,69 @@ const RecentView = props => {
     refreshing: false,
     loading: false,
     notifying: false,
-  });
+  })
 
-  const { user, theme } = props;
-  const { data, loading, refreshing } = state;
+  const { user, theme } = props
+  const { data, loading, refreshing } = state
 
   useEffect(() => {
     navigation.setOptions({
       title: I18n.t('recent_posts'),
       headerBackground: () => <GradientHeader />,
-    });
-  }, []);
+    })
+  }, [])
 
   useEffect(() => {
-    init();
-  }, []);
+    init()
+  }, [])
 
   const init = async () => {
-    const { user } = props;
+    const { user } = props
     const querySnapShot = await firestore()
       .collection(firebaseSdk.TBL_POST)
-      .get();
+      .get()
 
-    const userSnaps = await firestore().collection(firebaseSdk.TBL_USER).get();
-    const users = [];
-    userSnaps.forEach(s => users.push(s.data()));
+    const userSnaps = await firestore().collection(firebaseSdk.TBL_USER).get()
+    const users = []
+    userSnaps.forEach(s => users.push(s.data()))
 
-    const list = [];
+    const list = []
     querySnapShot.forEach(doc => {
-      const post = doc.data();
+      const post = doc.data()
       if (!user.blocked || !user.blocked.includes(post.userId)) {
-        const owner = users.find(u => u.userId === post.userId);
-        list.push({ id: doc.id, ...post, owner });
+        const owner = users.find(u => u.userId === post.userId)
+        list.push({ id: doc.id, ...post, owner })
       }
-    });
-    list.sort((a, b) => b.date - a.date);
-    setState({ ...state, data: list });
-    console.log('list', list, users);
-  };
+    })
+    list.sort((a, b) => b.date - a.date)
+    setState({ ...state, data: list })
+    console.log('list', list, users)
+  }
 
   const onOpenPost = item => {
-    navigation.push('PostDetail', { post: item });
-  };
+    navigation.push('PostDetail', { post: item })
+  }
 
   const onOpenProfile = item => {
-    const { user, navigation } = props;
+    const { user, navigation } = props
     if (item.userId === user.userId) {
-      navigation.push('Profile');
+      navigation.push('Profile')
     } else {
-      navigateToProfile(navigation, user, item);
+      navigateToProfile(navigation, user, item)
     }
-  };
+  }
 
   const onToggleLike = (item, isLiking) => {
-    const { user } = props;
+    const { user } = props
 
-    let update = {};
+    let update = {}
     if (isLiking) {
-      update = { id: item.id, likes: item.likes.filter(l => l !== user.userId) };
+      update = { id: item.id, likes: item.likes.filter(l => l !== user.userId) }
     } else {
-      update = { id: item.id, likes: [...item.likes, user.userId] };
+      update = { id: item.id, likes: [...item.likes, user.userId] }
     }
 
-    setState({ ...state, isLoading: true });
+    setState({ ...state, isLoading: true })
     firebaseSdk
       .setData(firebaseSdk.TBL_POST, DB_ACTION_UPDATE, update)
       .then(() => {
@@ -106,7 +105,7 @@ const RecentView = props => {
               ? item.thumbnail
               : item.type === 'photo'
                 ? item.photo
-                : '';
+                : ''
           const activity = {
             type: NOTIFICATION_TYPE_LIKE,
             sender: user.userId,
@@ -121,24 +120,24 @@ const RecentView = props => {
               name: user.displayName,
             }),
             date: new Date(),
-          };
-          firebaseSdk.addActivity(activity, item.owner.token).then(r => {});
+          }
+          firebaseSdk.addActivity(activity, item.owner.token).then(r => {})
         }
       })
       .catch(() => {
-        setState({ ...state, isLoading: false });
-      });
-  };
+        setState({ ...state, isLoading: false })
+      })
+  }
 
-  const onActionPost = item => {};
+  const onActionPost = item => {}
 
   const renderFooter = () => {
-    const { theme } = props;
+    const { theme } = props
     if (loading) {
-      return <ActivityIndicator theme={theme} size={'large'} />;
+      return <ActivityIndicator theme={theme} size={'large'} />
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <ImageBackground
@@ -177,20 +176,14 @@ const RecentView = props => {
         )}
       </SafeAreaView>
     </ImageBackground>
-  );
-};
-
-RecentView.propTypes = {
-  user: PropTypes.object,
-  theme: PropTypes.string,
-  width: PropTypes.number,
-};
+  )
+}
 
 const mapStateToProps = state => ({
   user: state.login.user,
-});
+})
 
 export default connect(
   mapStateToProps,
   null,
-)(withTheme(withDimensions(RecentView)));
+)(withTheme(withDimensions(RecentView)))

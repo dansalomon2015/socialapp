@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
 import {
   Image,
   ImageBackground,
@@ -12,9 +11,9 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import firestore from '@react-native-firebase/firestore'
-import LinearGradient from 'react-native-linear-gradient'
 import Video from 'react-native-video'
 import { useNavigation } from '@react-navigation/native'
+// Geo
 // import ScrollView from 'react-native-nested-scroll-view';
 
 import { withTheme } from '../../theme'
@@ -682,14 +681,6 @@ const PostDetailView = (props) => {
       </KeyboardView>
     </View>
   )
-}
-
-
-PostDetailView.PropTypes = {
-  navigation: PropTypes.object,
-  user: PropTypes.object,
-  setUser: PropTypes.func,
-  theme: PropTypes.string,
 }
 
 const mapStateToProps = state => ({

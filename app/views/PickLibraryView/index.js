@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
-import PropTypes from 'prop-types'
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
-import LinearGradient from 'react-native-linear-gradient'
 import CameraRoll from '@react-native-camera-roll/camera-roll'
 import Swiper from 'react-native-swiper'
 
@@ -19,7 +17,6 @@ import {
   POST_TYPE_VIDEO,
 } from '../../constants/app'
 import I18n from '../../i18n'
-import { GradientHeader } from '../../containers/GradientHeader'
 import { HEADER_BAR_END, HEADER_BAR_START, themes } from '../../constants/colors'
 
 const PickLibraryView = (props) => {
@@ -188,13 +185,6 @@ const PickLibraryView = (props) => {
       </SafeAreaView>
     </View>
   )
-}
-
-PickLibraryView.PropTypes = {
-  navigation: PropTypes.object,
-  user: PropTypes.object,
-  setUser: PropTypes.func,
-  theme: PropTypes.string,
 }
 
 const mapStateToProps = state => ({

@@ -1,27 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react'
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  ScrollView
-} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+  ScrollView,
+} from 'react-native'
+// Geo
 // import ScrollView from 'react-native-nested-scroll-view';
-import PropTypes from 'prop-types';
-import { TextInput } from 'react-native-paper';
-
-import I18n from '../i18n';
+import { TextInput } from 'react-native-paper'
 import {
   COLOR_BLACK,
   COLOR_YELLOW,
   DARK_WEAK,
   themes,
-} from '../constants/colors';
-import sharedStyles from '../views/Styles';
-import { VectorIcon } from './VectorIcon';
-import scrollPersistTaps from '../utils/scrollPersistTaps';
+} from '../constants/colors'
+import sharedStyles from '../views/Styles'
+import { VectorIcon } from './VectorIcon'
+import scrollPersistTaps from '../utils/scrollPersistTaps'
 
 const styles = StyleSheet.create({
   container: {
@@ -110,43 +107,43 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-});
+})
 
-const SELECT_YEARS = ['Male', 'Female', 'No answer'];
+const SELECT_YEARS = ['Male', 'Female', 'No answer']
 
 const ExGender = props => {
   const [state, setState] = useState({
     show: false,
     value: props.value,
-  });
-  const { show, value } = state;
+  })
+  const { show, value } = state
   const { label, containerStyle, theme, error, outlineColor, backgroundColor } =
-    props;
+    props
 
-  const inputBox = useRef(null);
+  const inputBox = useRef(null)
 
   useEffect(() => {
-    if (show) setState({ ...state, show: !props.topScrollEnable });
-  }, [props.topScrollEnable]);
+    if (show) setState({ ...state, show: !props.topScrollEnable })
+  }, [props.topScrollEnable])
 
   const onChange = value => {
-    setState({ ...state, value });
-    props.action({ value: value });
+    setState({ ...state, value })
+    props.action({ value: value })
     if (inputBox.current) {
-      inputBox.current.blur();
+      inputBox.current.blur()
     }
-  };
+  }
 
   const setShow = show => {
-    const { value } = props;
+    const { value } = props
 
     if (show && value) {
-      setState({ ...state, show, value: value });
+      setState({ ...state, show, value: value })
     } else {
-      setState({ ...state, show });
+      setState({ ...state, show })
     }
-    props.toggleShow(show);
-  };
+    props.toggleShow(show)
+  }
 
   const rightIcon = () => {
     return (
@@ -158,14 +155,14 @@ const ExGender = props => {
           size={18}
         />
       </View>
-    );
-  };
+    )
+  }
 
   return (
     <View style={[styles.container, containerStyle]}>
       <TextInput
         ref={ref => {
-          inputBox.current = ref;
+          inputBox.current = ref
         }}
         label={label}
         onFocus={() => setShow(true)}
@@ -223,17 +220,7 @@ const ExGender = props => {
         ) : null}
       </View>
     </View>
-  );
-};
+  )
+}
 
-ExGender.PropTypes = {
-  label: PropTypes.string,
-  containerStyle: PropTypes.object,
-  value: PropTypes.string,
-  action: PropTypes.func,
-  toggleShow: PropTypes.func,
-  topScrollEnable: PropTypes.bool,
-  theme: PropTypes.string,
-};
-
-export default ExGender;
+export default ExGender

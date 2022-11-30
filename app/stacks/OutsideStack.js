@@ -36,7 +36,7 @@ const OutsideStack = () => {
         component={SignUpView}
         options={{ headerShown: false }}
       />
-      <Outside.Screen name="About" component={AboutView}/>
+      <Outside.Screen name="About" component={AboutView} />
     </Outside.Navigator>
   )
 }

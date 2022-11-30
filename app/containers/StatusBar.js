@@ -1,7 +1,5 @@
 import React from 'react'
 import { Platform, StatusBar as StatusBarRN } from 'react-native'
-import PropTypes from 'prop-types'
-
 import { withTheme } from '../theme'
 
 export const StatusBar = React.memo(({ theme }) => {
@@ -21,9 +19,5 @@ export const StatusBar = React.memo(({ theme }) => {
     )
   }
 })
-
-StatusBar.propTypes = {
-  theme: PropTypes.string,
-}
 
 export default withTheme(StatusBar)

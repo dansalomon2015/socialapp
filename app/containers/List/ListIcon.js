@@ -1,17 +1,15 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
-
-import { themes } from '../../constants/colors';
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
+import { themes } from '../../constants/colors'
 // import { CustomIcon } from '../../lib/Icons';
-import { withTheme } from '../../theme';
+import { withTheme } from '../../theme'
 
 const styles = StyleSheet.create({
   icon: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
 
 const ListIcon = React.memo(({ theme, name, color, style }) => (
   <View style={[styles.icon, style]}>
@@ -21,15 +19,8 @@ const ListIcon = React.memo(({ theme, name, color, style }) => (
     {/*	size={20}*/}
     {/*/>*/}
   </View>
-));
+))
 
-ListIcon.propTypes = {
-  theme: PropTypes.string,
-  name: PropTypes.string,
-  color: PropTypes.string,
-  style: PropTypes.object,
-};
+ListIcon.displayName = 'List.Icon'
 
-ListIcon.displayName = 'List.Icon';
-
-export default withTheme(ListIcon);
+export default withTheme(ListIcon)

@@ -114,7 +114,7 @@ const Root = () => {
               <ActionSheetProvider>
                 <AppContainer/>
                 <InAppNotification/>
-                {/*<Toast/>*/}
+                <Toast/>
               </ActionSheetProvider>
             </MenuProvider>
           </DimensionsContext.Provider>

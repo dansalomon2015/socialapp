@@ -1,13 +1,12 @@
-import React, { useState, useMemo, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
-import PropTypes from 'prop-types';
-import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker';
-import { TextInput } from 'react-native-paper';
+import React, { useState, useMemo, useRef } from 'react'
+import { StyleSheet, View } from 'react-native'
+import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker'
+import { TextInput } from 'react-native-paper'
 
-import { date_str_format, DATE_STRING_DISPLAY_FORMAT } from '../utils/datetime';
-import { COLOR_BLUE, COLOR_YELLOW, themes } from '../constants/colors';
-import sharedStyles from '../views/Styles';
-import { VectorIcon } from './VectorIcon';
+import { date_str_format, DATE_STRING_DISPLAY_FORMAT } from '../utils/datetime'
+import { COLOR_BLUE, COLOR_YELLOW, themes } from '../constants/colors'
+import sharedStyles from '../views/Styles'
+import { VectorIcon } from './VectorIcon'
 
 const styles = StyleSheet.create({
   container: {
@@ -103,12 +102,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-});
+})
 
 const calendarLightOption = {
   mainColor: COLOR_BLUE,
   borderColor: 'transparent',
-};
+}
 
 const calendarDarkOption = {
   mainColor: COLOR_BLUE,
@@ -116,12 +115,12 @@ const calendarDarkOption = {
   backgroundColor: 'transparent',
   textHeaderColor: COLOR_BLUE,
   textDefaultColor: 'white',
-};
+}
 
 const ExDatePicker = props => {
-  const [show, setShow] = useState(false);
-  const { label, containerStyle, theme, error, value: currentDate } = props;
-  const inputBox = useRef(null);
+  const [show, setShow] = useState(false)
+  const { label, containerStyle, theme, error, value: currentDate } = props
+  const inputBox = useRef(null)
 
   const rightIcon = () => {
     return (
@@ -133,24 +132,24 @@ const ExDatePicker = props => {
           size={18}
         />
       </View>
-    );
-  };
+    )
+  }
 
   const selectedDate = useMemo(() => {
     if (currentDate) {
-      const units = currentDate.split('/');
-      const newDate = `${units[2]}-${units[0]}-${units[1]}`;
-      return newDate;
+      const units = currentDate.split('/')
+      const newDate = `${units[2]}-${units[0]}-${units[1]}`
+      return newDate
     } else {
-      return getFormatedDate(new Date(), 'YYYY/MM/DD');
+      return getFormatedDate(new Date(), 'YYYY/MM/DD')
     }
-  }, [currentDate]);
+  }, [currentDate])
 
   return (
     <View style={[styles.container, containerStyle]}>
       <View style={styles.content}>
         <TextInput
-          ref={ref => {inputBox.current = ref;}}
+          ref={ref => {inputBox.current = ref}}
           label={label}
           onFocus={() => setShow(true)}
           onBlur={() => setShow(false)}
@@ -199,16 +198,16 @@ const ExDatePicker = props => {
               current={selectedDate}
               selected={selectedDate}
               onSelectedChange={date => {
-                console.log('MMM - ' + date);
-                let units = date.split('/');
-                const newDate = `${units[1]}/${units[2]}/${units[0]}`;
-                units = selectedDate.split(/-|\//);
-                const selDate = `${units[1]}/${units[2]}/${units[0]}`;
+                console.log('MMM - ' + date)
+                let units = date.split('/')
+                const newDate = `${units[1]}/${units[2]}/${units[0]}`
+                units = selectedDate.split(/-|\//)
+                const selDate = `${units[1]}/${units[2]}/${units[0]}`
                 if (newDate !== selDate) {
                   if (inputBox.current) {
-                    inputBox.current.blur();
+                    inputBox.current.blur()
                   }
-                  props.action({ value: newDate });
+                  props.action({ value: newDate })
                 }
               }}
             />
@@ -216,17 +215,7 @@ const ExDatePicker = props => {
         ) : null}
       </View>
     </View>
-  );
-};
+  )
+}
 
-ExDatePicker.PropTypes = {
-  label: PropTypes.string,
-  containerStyle: PropTypes.object,
-  value: PropTypes.string,
-  action: PropTypes.func,
-  toggleShow: PropTypes.func,
-  topScrollEnable: PropTypes.bool,
-  theme: PropTypes.string,
-};
-
-export default ExDatePicker;
+export default ExDatePicker

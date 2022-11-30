@@ -1,28 +1,27 @@
-import React from 'react';
-import { SafeAreaView, View, Image, Text } from 'react-native';
-import { connect } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { SafeAreaView, View, Image, Text } from 'react-native'
+import { connect } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
+import LinearGradient from 'react-native-linear-gradient'
 
-import { appStart as appStartAction } from '../../actions/app';
-import images from '../../assets/images';
-import StatusBar from '../../containers/StatusBar';
-import Button from '../../containers/Button';
-import { withTheme } from '../../theme';
-import I18n from '../../i18n';
+import { appStart as appStartAction } from '../../actions/app'
+import images from '../../assets/images'
+import StatusBar from '../../containers/StatusBar'
+import Button from '../../containers/Button'
+import { withTheme } from '../../theme'
+import I18n from '../../i18n'
 import {
   HEADER_BAR_END,
   HEADER_BAR_START,
   NAV_BAR_START,
   themes,
-} from '../../constants/colors';
-import { styles } from './style';
+} from '../../constants/colors'
+import { styles } from './style'
 
-const theme = 'light';
+const theme = 'light'
 
 const OnBoardingView = (props) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   return (
     <SafeAreaView style={{ backgroundColor: themes[theme].backgroundColor }}>
@@ -65,17 +64,11 @@ const OnBoardingView = (props) => {
         </View>
       </View>
     </SafeAreaView>
-  );
-};
-
-OnBoardingView.PropTypes = {
-  navigation: PropTypes.object,
-  appStart: PropTypes.func,
-  theme: PropTypes.string,
-};
+  )
+}
 
 const mapDispatchToProps = dispatch => ({
   appStart: params => dispatch(appStartAction(params)),
-});
+})
 
-export default connect(null, mapDispatchToProps)(withTheme(OnBoardingView));
+export default connect(null, mapDispatchToProps)(withTheme(OnBoardingView))

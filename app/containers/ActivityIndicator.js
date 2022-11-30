@@ -1,7 +1,6 @@
-import React from 'react';
-import { ActivityIndicator, StyleSheet } from 'react-native';
-import { PropTypes } from 'prop-types';
-import { themes } from '../constants/colors';
+import React from 'react'
+import { ActivityIndicator, StyleSheet } from 'react-native'
+import { themes } from '../constants/colors'
 
 const styles = StyleSheet.create({
   indicator: {
@@ -18,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 100000,
   },
-});
+})
 
 const RCActivityIndicator = ({ theme, absolute, ...props }) => (
   <ActivityIndicator
@@ -26,12 +25,5 @@ const RCActivityIndicator = ({ theme, absolute, ...props }) => (
     color={themes[theme].actionColor}
     {...props}
   />
-);
-
-RCActivityIndicator.propTypes = {
-  theme: PropTypes.string,
-  absolute: PropTypes.bool,
-  props: PropTypes.object,
-};
-
-export default RCActivityIndicator;
+)
+export default RCActivityIndicator

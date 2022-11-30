@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   Dimensions,
   Image,
@@ -9,34 +9,32 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-} from 'react-native';
-import ImagePicker from 'react-native-image-crop-picker';
-import { connect, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-
-import { COLOR_YELLOW, themes } from '../constants/colors';
-import { withTheme } from '../theme';
-import sharedStyles from '../views/Styles';
-import images from '../assets/images';
-import { isAndroid, isIOS } from '../utils/deviceInfo';
-import Touch from '../utils/touch';
-import { withDimensions } from '../dimensions';
+} from 'react-native'
+import ImagePicker from 'react-native-image-crop-picker'
+import { connect, useSelector } from 'react-redux'
+import { COLOR_YELLOW, themes } from '../constants/colors'
+import { withTheme } from '../theme'
+import sharedStyles from '../views/Styles'
+import images from '../assets/images'
+import { isAndroid, isIOS } from '../utils/deviceInfo'
+import Touch from '../utils/touch'
+import { withDimensions } from '../dimensions'
 import {
   checkCameraPermission,
   checkPhotosPermission,
   imagePickerConfig,
   libraryVideoPickerConfig,
   videoPickerConfig,
-} from '../utils/permissions';
+} from '../utils/permissions'
 import {
   POST_TYPE_PHOTO,
   POST_TYPE_TEXT,
   POST_TYPE_VIDEO,
-} from '../constants/app';
-import SearchBox from './SearchBox';
-import I18n from '../i18n';
+} from '../constants/app'
+import SearchBox from './SearchBox'
+import I18n from '../i18n'
 
-export const Button = isAndroid ? Touch : TouchableOpacity;
+export const Button = isAndroid ? Touch : TouchableOpacity
 
 const styles = StyleSheet.create({
   container: {
@@ -157,16 +155,16 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#5790DF',
   },
-});
+})
 
 export const MainTabBar = React.memo(({ theme, navigation, state }) => {
-  const { unread } = useSelector(state => state.chat);
-  const [showVipScreen, setShowVipScreen] = useState(false);
-  const { width } = Dimensions.get('window');
+  const { unread } = useSelector(state => state.chat)
+  const [showVipScreen, setShowVipScreen] = useState(false)
+  const { width } = Dimensions.get('window')
 
   const onVip = () => {
-    setShowVipScreen({ showVipScreen: true });
-  };
+    setShowVipScreen({ showVipScreen: true })
+  }
 
   return (
     <>
@@ -201,7 +199,7 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
                     overflow: 'hidden',
                   },
                 ]}>
-                <Image source={theme === 'dark' ? images.bk_vip_dark : images.bk_vip_light} blurRadius={0}/>
+                <Image source={theme === 'dark' ? images.bk_vip_dark : images.bk_vip_light} blurRadius={0} />
                 <Text style={[styles.vipButtonText, { position: 'absolute' }]}>VIP</Text>
               </View>
             </Button>
@@ -240,63 +238,63 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
         />
       )}
     </>
-  );
-});
+  )
+})
 
 const VipScreen = React.memo(({ onClose, theme, width, navigation }) => {
   const takePhoto = async () => {
-    onClose();
+    onClose()
     if (await checkCameraPermission()) {
       ImagePicker.openCamera(imagePickerConfig).then(image => {
-        console.log('image', image);
+        console.log('image', image)
         navigation.push('CreatePost', {
           type: POST_TYPE_PHOTO,
           file_path: image.path,
-        });
-      });
+        })
+      })
     }
-  };
+  }
 
   const takeVideo = async () => {
-    onClose();
+    onClose()
     if (await checkCameraPermission()) {
       ImagePicker.openCamera(videoPickerConfig).then(video => {
         navigation.push('CreatePost', {
           type: POST_TYPE_VIDEO,
           file_path: video.path,
-        });
-      });
+        })
+      })
     }
-  };
+  }
 
   const choosePhoto = async () => {
-    onClose();
+    onClose()
     // navigation.push('PickLibrary', { type: POST_TYPE_PHOTO });
     if (await checkPhotosPermission()) {
-    	ImagePicker.openPicker(imagePickerConfig).then(image => {
-    		navigation.push('CreatePost', { type: POST_TYPE_PHOTO, file_path: image.path });
-    	});
+      ImagePicker.openPicker(imagePickerConfig).then(image => {
+        navigation.push('CreatePost', { type: POST_TYPE_PHOTO, file_path: image.path })
+      })
     }
-  };
+  }
 
   const chooseVideo = async () => {
-    onClose();
+    onClose()
     //navigation.push('PickLibrary', {type: POST_TYPE_VIDEO});
     if (await checkPhotosPermission()) {
       ImagePicker.openPicker(libraryVideoPickerConfig).then(video => {
         navigation.push('CreatePost', {
           type: POST_TYPE_VIDEO,
           file_path: video.path,
-        });
-      });
+        })
+      })
     }
-  };
+  }
 
-  const itemWidth = 80;
-  const radius = 120;
-  const baseBottom = 80;
-  const middleRadius = Math.round(Math.sqrt((radius * radius) / 2));
-  const middleWidth = width / 2 - itemWidth / 2;
+  const itemWidth = 80
+  const radius = 120
+  const baseBottom = 80
+  const middleRadius = Math.round(Math.sqrt((radius * radius) / 2))
+  const middleWidth = width / 2 - itemWidth / 2
 
   return (
     <>
@@ -327,8 +325,8 @@ const VipScreen = React.memo(({ onClose, theme, width, navigation }) => {
           { left: middleWidth, bottom: baseBottom + radius },
         ]}
         onPress={() => {
-          onClose();
-          navigation.push('CreatePost', { type: POST_TYPE_TEXT });
+          onClose()
+          navigation.push('CreatePost', { type: POST_TYPE_TEXT })
         }}
         theme={theme}>
         <Image source={images.text_image} style={styles.itemImage} />
@@ -352,8 +350,8 @@ const VipScreen = React.memo(({ onClose, theme, width, navigation }) => {
         <Image source={images.choose_video} style={styles.itemImage} />
       </Button>
     </>
-  );
-});
+  )
+})
 
 const MainView = props => {
   const {
@@ -364,7 +362,7 @@ const MainView = props => {
     onSearchChangeText,
     onSearch,
     theme,
-  } = props;
+  } = props
 
   return (
     <View
@@ -385,25 +383,14 @@ const MainView = props => {
         {children}
       </View>
     </View>
-  );
-};
-
-MainView.PropTypes = {
-  testID: PropTypes.string,
-  vertical: PropTypes.bool,
-  style: PropTypes.object,
-  children: PropTypes.element,
-  hideNavBorderBar: PropTypes.bool,
-  route: PropTypes.string,
-  unread: PropTypes.number,
-};
-
+  )
+}
 const mapStateToProps = state => ({
   route: state.app.route,
   unread: state.chat.unread,
-});
+})
 
 export default connect(
   mapStateToProps,
   null,
-)(withDimensions(withTheme(MainView)));
+)(withDimensions(withTheme(MainView)))

@@ -1,14 +1,13 @@
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
-import { withTheme } from '../../theme';
-import scrollPersistTaps from '../../utils/scrollPersistTaps';
+import React from 'react'
+import { ScrollView, StyleSheet } from 'react-native'
+import { withTheme } from '../../theme'
+import scrollPersistTaps from '../../utils/scrollPersistTaps'
 
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 16,
   },
-});
+})
 
 const ListContainer = React.memo(({ children, ...props }) => (
   <ScrollView
@@ -18,12 +17,8 @@ const ListContainer = React.memo(({ children, ...props }) => (
     {...props}>
     {children}
   </ScrollView>
-));
+))
 
-ListContainer.propTypes = {
-  children: PropTypes.array.isRequired,
-};
+ListContainer.displayName = 'List.Container'
 
-ListContainer.displayName = 'List.Container';
-
-export default withTheme(ListContainer);
+export default withTheme(ListContainer)

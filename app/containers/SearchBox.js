@@ -1,11 +1,9 @@
-import React from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
-import PropTypes from 'prop-types';
-
-import sharedStyles from '../views/Styles';
-import { withTheme } from '../theme';
-import { themes, COLOR_BLACK } from '../constants/colors';
-import { VectorIcon } from './VectorIcon';
+import React from 'react'
+import { View, StyleSheet, TextInput } from 'react-native'
+import sharedStyles from '../views/Styles'
+import { withTheme } from '../theme'
+import { themes, COLOR_BLACK } from '../constants/colors'
+import { VectorIcon } from './VectorIcon'
 
 const styles = StyleSheet.create({
   container: {},
@@ -34,19 +32,19 @@ const styles = StyleSheet.create({
     ...sharedStyles.textRegular,
     fontSize: 17,
   },
-});
+})
 
 export const SearchBox = ({
-  onChangeText,
-  onSubmitEditing,
-  testID,
-  hasCancel,
-  onCancelPress,
-  inputRef,
-  placeholder,
-  theme,
-  ...props
-}) => (
+                            onChangeText,
+                            onSubmitEditing,
+                            testID,
+                            hasCancel,
+                            onCancelPress,
+                            inputRef,
+                            placeholder,
+                            theme,
+                            ...props
+                          }) => (
   <View
     style={[
       styles.container,
@@ -78,17 +76,6 @@ export const SearchBox = ({
       />
     </View>
   </View>
-);
+)
 
-SearchBox.propTypes = {
-  onChangeText: PropTypes.func.isRequired,
-  onSubmitEditing: PropTypes.func,
-  hasCancel: PropTypes.bool,
-  onCancelPress: PropTypes.func,
-  theme: PropTypes.string,
-  inputRef: PropTypes.func,
-  testID: PropTypes.string,
-  placeholder: PropTypes.string,
-};
-
-export default withTheme(SearchBox);
+export default withTheme(SearchBox)

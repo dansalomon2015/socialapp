@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
+import React from 'react'
+import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view'
 
-import scrollPersistTaps from '../utils/scrollPersistTaps';
+import scrollPersistTaps from '../utils/scrollPersistTaps'
 
 const KeyboardView = props => {
   const {
@@ -11,7 +10,7 @@ const KeyboardView = props => {
     scrollEnabled,
     keyboardVerticalOffset,
     children,
-  } = props;
+  } = props
 
   return (
     <KeyboardAwareScrollView
@@ -21,21 +20,10 @@ const KeyboardView = props => {
       scrollEnabled={scrollEnabled}
       alwaysBounceVertical={false}
       extraHeight={keyboardVerticalOffset}
-      behavior='position'>
+      behavior="position">
       {children}
     </KeyboardAwareScrollView>
-  );
-};
+  )
+}
 
-KeyboardView.propTypes = {
-  style: PropTypes.any,
-  contentContainerStyle: PropTypes.any,
-  keyboardVerticalOffset: PropTypes.number,
-  scrollEnabled: PropTypes.bool,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-};
-
-export default KeyboardView;
+export default KeyboardView

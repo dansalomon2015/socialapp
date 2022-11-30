@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+// Geo
 // import ScrollView from 'react-native-nested-scroll-view';
-import PropTypes from 'prop-types'
 import { TextInput } from 'react-native-paper'
 
 import I18n from '../i18n'
@@ -214,16 +214,4 @@ const ExYears = (props) => {
     </View>
   )
 }
-
-
-ExYears.PropTypes = {
-  label: PropTypes.string,
-  containerStyle: PropTypes.object,
-  value: PropTypes.string,
-  action: PropTypes.func,
-  toggleShow: PropTypes.func,
-  topScrollEnable: PropTypes.bool,
-  theme: PropTypes.string,
-}
-
 export default ExYears

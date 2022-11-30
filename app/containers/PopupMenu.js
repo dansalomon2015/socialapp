@@ -1,15 +1,14 @@
-import React from 'react';
-import { Text, Image } from 'react-native';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { Text, Image } from 'react-native'
 import {
   Menu,
   MenuOptions,
   MenuOption,
   MenuTrigger,
-} from 'react-native-popup-menu';
+} from 'react-native-popup-menu'
 
-import { themes } from '../constants/colors';
-import images from '../assets/images';
+import { themes } from '../constants/colors'
+import images from '../assets/images'
 
 const PopupMenu = React.memo(
   ({ theme, options, renderTrigger }) => (
@@ -56,12 +55,6 @@ const PopupMenu = React.memo(
       </MenuOptions>
     </Menu>
   ),
-);
+)
 
-PopupMenu.propTypes = {
-  theme: PropTypes.string,
-  options: PropTypes.array,
-  renderTrigger: PropTypes.func,
-};
-
-export default PopupMenu;
+export default PopupMenu

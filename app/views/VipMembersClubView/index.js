@@ -1,31 +1,27 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Image, Linking, Text, TouchableOpacity, View } from 'react-native';
-import { connect } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react'
+import { Image, Linking, Text, TouchableOpacity, View } from 'react-native'
+import { connect } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
 
-import StatusBar from '../../containers/StatusBar';
-import { withTheme } from '../../theme';
-import styles from './styles';
-import sharedStyles from '../Styles';
-import { setUser as setUserAction } from '../../actions/login';
-import images from '../../assets/images';
-import MainScreen from '../../containers/MainScreen';
-import * as HeaderButton from '../../containers/HeaderButton';
-import { GradientHeader } from '../../containers/GradientHeader';
-import { COLOR_YELLOW, themes } from '../../constants/colors';
-import I18n from '../../i18n';
-import { SITE_VIP_MEMBERS_URL } from '../../constants/app';
+import StatusBar from '../../containers/StatusBar'
+import { withTheme } from '../../theme'
+import styles from './styles'
+import sharedStyles from '../Styles'
+import { setUser as setUserAction } from '../../actions/login'
+import images from '../../assets/images'
+import { COLOR_YELLOW, themes } from '../../constants/colors'
+import I18n from '../../i18n'
+import { SITE_VIP_MEMBERS_URL } from '../../constants/app'
 
 const VipMembersClubView = (props) => {
-  const { theme } = props;
-  const navigation = useNavigation();
+  const { theme } = props
+  const navigation = useNavigation()
 
   useEffect(() => {
     navigation.setOptions({
       title: I18n.t('Vip_members'),
-    });
-  }, []);
+    })
+  }, [])
 
   return (
     <View style={[
@@ -49,24 +45,18 @@ const VipMembersClubView = (props) => {
         </TouchableOpacity>
       </View>
     </View>
-  );
-};
-
-VipMembersClubView.propTypes = {
-  user: PropTypes.object,
-  theme: PropTypes.string,
-  navigation: PropTypes.object,
-};
+  )
+}
 
 const mapStateToProps = state => ({
   user: state.login.user,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
-});
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withTheme(VipMembersClubView));
+)(withTheme(VipMembersClubView))

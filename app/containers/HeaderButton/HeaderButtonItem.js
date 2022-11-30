@@ -1,18 +1,16 @@
-import React from 'react';
-import { Text, StyleSheet, Platform, TouchableOpacity, View } from 'react-native';
-import PropTypes from 'prop-types';
-
-import { withTheme } from '../../theme';
-import { COLOR_BLUE, COLOR_WHITE, COLOR_YELLOW, themes } from '../../constants/colors';
-import sharedStyles from '../../views/Styles';
-import { VectorIcon } from '../VectorIcon';
+import React from 'react'
+import { Text, StyleSheet, Platform, TouchableOpacity, View } from 'react-native'
+import { withTheme } from '../../theme'
+import { COLOR_BLUE, COLOR_WHITE, COLOR_YELLOW, themes } from '../../constants/colors'
+import sharedStyles from '../../views/Styles'
+import { VectorIcon } from '../VectorIcon'
 
 export const BUTTON_HIT_SLOP = {
   top: 5,
   right: 5,
   bottom: 5,
   left: 5,
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -36,19 +34,19 @@ const styles = StyleSheet.create({
   icon: {
     padding: 4,
   },
-});
+})
 
 const Item = ({
-  title,
-  titleStyle,
-  iconName,
-  onPress,
-  testID,
-  theme,
-  badge,
-  vector,
-  size,
-}) => (
+                title,
+                titleStyle,
+                iconName,
+                onPress,
+                testID,
+                theme,
+                badge,
+                vector,
+                size,
+              }) => (
   <TouchableOpacity
     onPress={onPress}
     testID={testID}
@@ -74,19 +72,7 @@ const Item = ({
       {badge ? badge() : null}
     </>
   </TouchableOpacity>
-);
+)
+Item.displayName = 'HeaderButton.Item'
 
-Item.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  title: PropTypes.string,
-  titleStyle: PropTypes.bool,
-  vector: PropTypes.string,
-  iconName: PropTypes.string,
-  testID: PropTypes.string,
-  theme: PropTypes.string,
-  badge: PropTypes.func,
-};
-
-Item.displayName = 'HeaderButton.Item';
-
-export default withTheme(Item);
+export default withTheme(Item)

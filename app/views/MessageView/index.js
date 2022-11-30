@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useState, useEffect, useRef } from 'react'
+import { connect } from 'react-redux'
 import {
   FlatList,
   Image,
@@ -9,28 +8,28 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-import Feather from 'react-native-vector-icons/Feather';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+} from 'react-native'
+import firestore from '@react-native-firebase/firestore'
+import Feather from 'react-native-vector-icons/Feather'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
-import { themes } from '../../constants/colors';
-import StatusBar from '../../containers/StatusBar';
-import { withTheme } from '../../theme';
-import images from '../../assets/images';
-import styles from './styles';
-import firebaseSdk from '../../lib/firebaseSdk';
-import { dateStringFromNow } from '../../utils/datetime';
-import ActivityIndicator from '../../containers/ActivityIndicator';
-import I18n from '../../i18n';
-import MainScreen from '../../containers/MainScreen';
-import * as HeaderButton from '../../containers/HeaderButton';
-import debounce from '../../utils/debounce';
-import { navigateToProfile } from '../../utils/const';
-import { fetchUnread as fetchUnreadAction } from '../../actions/chat';
+import { themes } from '../../constants/colors'
+import StatusBar from '../../containers/StatusBar'
+import { withTheme } from '../../theme'
+import images from '../../assets/images'
+import styles from './styles'
+import firebaseSdk from '../../lib/firebaseSdk'
+import { dateStringFromNow } from '../../utils/datetime'
+import ActivityIndicator from '../../containers/ActivityIndicator'
+import I18n from '../../i18n'
+import MainScreen from '../../containers/MainScreen'
+import * as HeaderButton from '../../containers/HeaderButton'
+import debounce from '../../utils/debounce'
+import { navigateToProfile } from '../../utils/const'
+import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
 
 const MessageView = props => {
-  const tabbarHeight = useBottomTabBarHeight();
+  const tabbarHeight = useBottomTabBarHeight()
   const [state, setState] = useState({
     text: '',
     data: [],
@@ -39,11 +38,11 @@ const MessageView = props => {
     loading: true,
     unReads: 0,
     users: [],
-  });
-  const { theme, navigation, user } = props;
-  const { searchData, data, refreshing, loading, users } = state;
+  })
+  const { theme, navigation, user } = props
+  const { searchData, data, refreshing, loading, users } = state
 
-  const unSubscribeRoom = useRef(null);
+  const unSubscribeRoom = useRef(null)
 
   useEffect(() => {
     navigation.setOptions({
@@ -88,69 +87,69 @@ const MessageView = props => {
         color: themes[theme].activeTintColor,
         alignSelf: 'flex-start',
       },
-    });
-  }, [theme]);
+    })
+  }, [theme])
 
   useEffect(() => {
-    init();
+    init()
 
     return () => {
       if (unSubscribeRoom.current) {
-        unSubscribeRoom.current();
-        unSubscribeRoom.current = null;
+        unSubscribeRoom.current()
+        unSubscribeRoom.current = null
       }
-    };
-  }, []);
+    }
+  }, [])
 
   // useEffect(() => {
   //   onSearch();
   // }, [state.text, state.data]);
 
   const init = async () => {
-    const messageUsers = [];
+    const messageUsers = []
     if (global.unSubscribeRoom) {
-      global.unSubscribeRoom();
-      global.unSubscribeRoom = undefined;
+      global.unSubscribeRoom()
+      global.unSubscribeRoom = undefined
     }
     if (unSubscribeRoom.current) {
-      unSubscribeRoom.current();
-      unSubscribeRoom.current = null;
+      unSubscribeRoom.current()
+      unSubscribeRoom.current = null
     }
-    const roomSubscribe = await firestore().collection(firebaseSdk.TBL_ROOM);
+    const roomSubscribe = await firestore().collection(firebaseSdk.TBL_ROOM)
     unSubscribeRoom.current = roomSubscribe.onSnapshot(async querySnapShot => {
       const userSnaps = await firestore()
         .collection(firebaseSdk.TBL_USER)
-        .get();
-      const users = [];
-      userSnaps.forEach(s => users.push(s.data()));
+        .get()
+      const users = []
+      userSnaps.forEach(s => users.push(s.data()))
 
-      let allUnReads = 0;
-      let list = [];
+      let allUnReads = 0
+      let list = []
       querySnapShot.forEach(doc => {
-        const room = doc.data();
+        const room = doc.data()
         if (room.sender === user.userId || room.receiver === user.userId) {
           const receiver = users.find(
             u =>
               u.userId ===
               (room.sender === user.userId ? room.receiver : room.sender),
-          );
-          let unReads = 0;
+          )
+          let unReads = 0
           if (room.confirmUser === user.userId) {
-            unReads = room.unReads;
+            unReads = room.unReads
           }
           if (!messageUsers.find(messageUser => messageUser.userId === receiver.userId)) {
-            messageUsers.push(receiver);
+            messageUsers.push(receiver)
           }
-          allUnReads += unReads;
+          allUnReads += unReads
           list.push({
             id: doc.id,
             ...room,
             account: receiver,
             unReads,
-          });
+          })
         }
-      });
-      list.sort((a, b) => b.date.seconds - a.date.seconds);
+      })
+      list.sort((a, b) => b.date.seconds - a.date.seconds)
       setState({
         ...state,
         data: list,
@@ -158,15 +157,15 @@ const MessageView = props => {
         loading: false,
         unReads: allUnReads,
         users: messageUsers,
-      });
-      props.fetchUnread();
-    });
-  };
+      })
+      props.fetchUnread()
+    })
+  }
 
   const onRefresh = () => {
-    setState({ ...state, refreshing: true });
-    init();
-  };
+    setState({ ...state, refreshing: true })
+    init()
+  }
 
   const onSearchChangeText = text => {
     // console.log(text);
@@ -175,7 +174,7 @@ const MessageView = props => {
     //   text: text.trim(),
     //   loading: false,
     // });
-  };
+  }
 
   const onSearch = () => {
     // const {text, data} = state;
@@ -199,11 +198,11 @@ const MessageView = props => {
     //     refreshing: false,
     //   });
     // }
-  };
+  }
 
   const onPressItem = item => {
-    navigation.navigate('Chat', { room: item });
-  };
+    navigation.navigate('Chat', { room: item })
+  }
 
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
@@ -244,7 +243,7 @@ const MessageView = props => {
         </View>
       </View>
     </TouchableOpacity>
-  );
+  )
 
   return (
     <MainScreen
@@ -284,7 +283,7 @@ const MessageView = props => {
                     {user?.displayName}
                   </Text>
                 </TouchableOpacity>
-              );
+              )
             })}
           </ScrollView>
         ) : null}
@@ -318,20 +317,14 @@ const MessageView = props => {
         </View>
       </View>
     </MainScreen>
-  );
-};
-
-MessageView.PropTypes = {
-  user: PropTypes.object,
-  theme: PropTypes.string,
-};
-
+  )
+}
 const mapStateToProps = state => ({
   user: state.login.user,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   fetchUnread: params => dispatch(fetchUnreadAction(params)),
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTheme(MessageView));
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(MessageView))

@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { FlatList, Image, RefreshControl, ScrollView, Share, Text, TouchableOpacity, View } from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-import { useNavigation } from '@react-navigation/native';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { FlatList, Image, RefreshControl, ScrollView, Share, Text, TouchableOpacity, View } from 'react-native'
+import firestore from '@react-native-firebase/firestore'
+import { useNavigation } from '@react-navigation/native'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
-import { themes } from '../../constants/colors';
-import StatusBar from '../../containers/StatusBar';
-import { withTheme } from '../../theme';
-import NoFriends from './NoFriends';
-import ActivityIndicator from '../../containers/ActivityIndicator';
-import * as HeaderButton from '../../containers/HeaderButton';
-import MainScreen from '../../containers/MainScreen';
+import { themes } from '../../constants/colors'
+import StatusBar from '../../containers/StatusBar'
+import { withTheme } from '../../theme'
+import NoFriends from './NoFriends'
+import ActivityIndicator from '../../containers/ActivityIndicator'
+import * as HeaderButton from '../../containers/HeaderButton'
+import MainScreen from '../../containers/MainScreen'
 import firebaseSdk, {
   DB_ACTION_ADD,
   DB_ACTION_DELETE,
   DB_ACTION_UPDATE,
   NOTIFICATION_TYPE_LIKE,
-} from '../../lib/firebaseSdk';
-import Post from './Post';
-import { withActionSheet } from '../../containers/ActionSheet';
-import { showErrorAlert, showToast } from '../../lib/info';
-import I18n from '../../i18n';
-import { setUser as setUserAction } from '../../actions/login';
-import images from '../../assets/images';
-import styles from './styles';
-import { navigateToProfile, onSharePost } from '../../utils/const';
+} from '../../lib/firebaseSdk'
+import Post from './Post'
+import { withActionSheet } from '../../containers/ActionSheet'
+import { showErrorAlert, showToast } from '../../lib/info'
+import I18n from '../../i18n'
+import { setUser as setUserAction } from '../../actions/login'
+import images from '../../assets/images'
+import styles from './styles'
+import { navigateToProfile, onSharePost } from '../../utils/const'
 
 const PostView = props => {
-  const navigation = useNavigation();
-  const tabbarHeight = useBottomTabBarHeight();
+  const navigation = useNavigation()
+  const tabbarHeight = useBottomTabBarHeight()
   const [state, setState] = useState({
     text: '',
     data: [],
@@ -43,10 +42,10 @@ const PostView = props => {
     loading: false,
     notifying: false,
     isUpdating: false,
-  });
+  })
 
-  const { user, theme, setUser } = props;
-  const { data, loading, isUpdating, refreshing, postUsers } = state;
+  const { user, theme, setUser } = props
+  const { data, loading, isUpdating, refreshing, postUsers } = state
 
   useEffect(() => {
     navigation.setOptions({
@@ -70,61 +69,61 @@ const PostView = props => {
       headerTitleStyle: {
         color: themes[theme].activeTintColor,
       },
-    });
-  }, [theme]);
+    })
+  }, [theme])
 
   useEffect(() => {
-    init();
-  }, [user]);
+    init()
+  }, [user])
 
   const init = async () => {
-    const postUsers = [];
-    const postSubscribe = await firestore().collection(firebaseSdk.TBL_POST);
+    const postUsers = []
+    const postSubscribe = await firestore().collection(firebaseSdk.TBL_POST)
     postSubscribe.onSnapshot(async querySnapShot => {
       const userSnaps = await firestore()
         .collection(firebaseSdk.TBL_USER)
-        .get();
-      const users = [];
-      userSnaps.forEach(s => users.push(s.data()));
+        .get()
+      const users = []
+      userSnaps.forEach(s => users.push(s.data()))
 
-      const list = [];
+      const list = []
       querySnapShot.forEach(doc => {
-        const post = doc.data();
+        const post = doc.data()
         if (!user.blocked || !user.blocked.includes(post.userId)) {
-          const owner = users.find(u => u.userId === post.userId);
+          const owner = users.find(u => u.userId === post.userId)
           if (!postUsers.find(postUser => postUser.userId === owner.userId)) {
-            postUsers.push(owner);
+            postUsers.push(owner)
           }
-          list.push({ id: doc.id, ...post, owner });
+          list.push({ id: doc.id, ...post, owner })
         }
-      });
-      list.sort((a, b) => b.date - a.date);
-      setState({ ...state, data: list, refreshing: false, postUsers: postUsers });
-      console.log('list', list, users);
-    });
-  };
+      })
+      list.sort((a, b) => b.date - a.date)
+      setState({ ...state, data: list, refreshing: false, postUsers: postUsers })
+      console.log('list', list, users)
+    })
+  }
 
   const onOpenPost = item => {
-    navigation.push('PostDetail', { post: item });
-  };
+    navigation.push('PostDetail', { post: item })
+  }
 
   const onOpenProfile = item => {
     if (item.userId === user.userId) {
-      navigation.navigate('Profile');
+      navigation.navigate('Profile')
     } else {
-      navigateToProfile(navigation, user, item);
+      navigateToProfile(navigation, user, item)
     }
-  };
+  }
 
   const onToggleLike = (item, isLiking) => {
-    let update = {};
+    let update = {}
     if (isLiking) {
-      update = { id: item.id, likes: item.likes.filter(l => l !== user.userId) };
+      update = { id: item.id, likes: item.likes.filter(l => l !== user.userId) }
     } else {
-      update = { id: item.id, likes: [...item.likes, user.userId] };
+      update = { id: item.id, likes: [...item.likes, user.userId] }
     }
 
-    setState({ ...state, isUpdating: true });
+    setState({ ...state, isUpdating: true })
     firebaseSdk
       .setData(firebaseSdk.TBL_POST, DB_ACTION_UPDATE, update)
       .then(() => {
@@ -134,7 +133,7 @@ const PostView = props => {
               ? item.thumbnail
               : item.type === 'photo'
                 ? item.photo
-                : '';
+                : ''
           const activity = {
             type: NOTIFICATION_TYPE_LIKE,
             sender: user.userId,
@@ -147,14 +146,14 @@ const PostView = props => {
             title: item.owner.displayName,
             message: I18n.t('likes_your_post', { name: user.displayName }),
             date: new Date(),
-          };
-          firebaseSdk.addActivity(activity, item.owner.token).then(r => {});
+          }
+          firebaseSdk.addActivity(activity, item.owner.token).then(r => {})
         }
       })
       .catch(() => {
-        setState({ ...state, isUpdating: false });
-      });
-  };
+        setState({ ...state, isUpdating: false })
+      })
+  }
 
   const onActionPost = item => {
     const onReport = () => {
@@ -163,40 +162,40 @@ const PostView = props => {
         postId: item.id,
         ownerId: item.owner.userId,
         createdAt: new Date(),
-      };
+      }
 
-      setState({ ...state, isUpdating: true });
+      setState({ ...state, isUpdating: true })
       firebaseSdk
         .setData(firebaseSdk.TBL_REPORTS, DB_ACTION_ADD, report)
         .then(() => {
-          setState({ ...state, isUpdating: false });
-          showToast(I18n.t('Report_post_complete'));
+          setState({ ...state, isUpdating: false })
+          showToast(I18n.t('Report_post_complete'))
         })
         .catch(err => {
-          showErrorAlert(I18n.t('Report_post_failed'), I18n.t('Oops'));
-          setState({ ...state, isUpdating: false });
-        });
-    };
+          showErrorAlert(I18n.t('Report_post_failed'), I18n.t('Oops'))
+          setState({ ...state, isUpdating: false })
+        })
+    }
 
     const onBlock = () => {
-      const account = item.owner;
-      const blocked = user.blocked ?? [];
-      const update = { id: user.id, blocked: [...blocked, account.userId] };
+      const account = item.owner
+      const blocked = user.blocked ?? []
+      const update = { id: user.id, blocked: [...blocked, account.userId] }
 
-      setState({ ...state, isUpdating: true });
+      setState({ ...state, isUpdating: true })
       firebaseSdk
         .setData(firebaseSdk.TBL_USER, DB_ACTION_UPDATE, update)
         .then(() => {
-          setUser({ blocked: update.blocked });
-          showToast(I18n.t('Block_user_complete'));
-          setState({ ...state, isUpdating: false });
-          init();
+          setUser({ blocked: update.blocked })
+          showToast(I18n.t('Block_user_complete'))
+          setState({ ...state, isUpdating: false })
+          init()
         })
         .catch(err => {
-          showErrorAlert(I18n.t('Block_user_failed'), I18n.t('Oops'));
-          setState({ ...state, isUpdating: false });
-        });
-    };
+          showErrorAlert(I18n.t('Block_user_failed'), I18n.t('Oops'))
+          setState({ ...state, isUpdating: false })
+        })
+    }
 
     // Actions
     const options = [
@@ -209,25 +208,25 @@ const PostView = props => {
         // danger: true,
         onPress: onBlock,
       },
-    ];
+    ]
 
     const onEdit = () => {
-      navigation.push('EditPost', { postId: item.id });
-    };
+      navigation.push('EditPost', { postId: item.id })
+    }
 
     const onRemove = () => {
-      setState({ ...state, isUpdating: true });
+      setState({ ...state, isUpdating: true })
       firebaseSdk
         .setData(firebaseSdk.TBL_POST, DB_ACTION_DELETE, { id: item.id })
         .then(() => {
-          showToast(I18n.t('Remove_post_complete'));
-          setState({ ...state, isUpdating: false });
+          showToast(I18n.t('Remove_post_complete'))
+          setState({ ...state, isUpdating: false })
         })
         .catch(err => {
-          showErrorAlert(I18n.t('Remove_post_failed'), I18n.t('Oops'));
-          setState({ ...state, isUpdating: false });
-        });
-    };
+          showErrorAlert(I18n.t('Remove_post_failed'), I18n.t('Oops'))
+          setState({ ...state, isUpdating: false })
+        })
+    }
 
     const ownerOptions = [
       {
@@ -239,24 +238,24 @@ const PostView = props => {
         // danger: true,
         onPress: onRemove,
       },
-    ];
+    ]
 
-    const isOwner = item.owner.userId === user.userId;
-    return ({ options: isOwner ? ownerOptions : options });
+    const isOwner = item.owner.userId === user.userId
+    return ({ options: isOwner ? ownerOptions : options })
     // showActionSheet({ options: isOwner ? ownerOptions : options });
-  };
+  }
 
   const renderFooter = () => {
     if (loading) {
-      return <ActivityIndicator theme={theme} size={'large'} />;
+      return <ActivityIndicator theme={theme} size={'large'} />
     }
-    return null;
-  };
+    return null
+  }
 
   const onRefresh = () => {
-    setState({ ...state, refreshing: true });
-    init();
-  };
+    setState({ ...state, refreshing: true })
+    init()
+  }
 
   return (
     <MainScreen navigation={navigation}>
@@ -267,7 +266,8 @@ const PostView = props => {
           testID="rooms-list-view-sidebar"
           theme={theme}
         />
-        <Text style={{ fontSize: 17, fontWeight: 'bold', color: themes[theme].activeTintColor }}>{I18n.t('Posts')}</Text>
+        <Text
+          style={{ fontSize: 17, fontWeight: 'bold', color: themes[theme].activeTintColor }}>{I18n.t('Posts')}</Text>
         <HeaderButton.Search
           title="menu"
           navigation={navigation}
@@ -309,7 +309,7 @@ const PostView = props => {
                     {user?.displayName}
                   </Text>
                 </TouchableOpacity>
-              );
+              )
             })}
           </ScrollView>
         ) : null}
@@ -347,24 +347,18 @@ const PostView = props => {
         <NoFriends onPress={() => {}} />
       )}
     </MainScreen>
-  );
-};
-
-PostView.propTypes = {
-  user: PropTypes.object,
-  setUser: PropTypes.func,
-  theme: PropTypes.string,
-};
+  )
+}
 
 const mapStateToProps = state => ({
   user: state.login.user,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
-});
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withActionSheet(withTheme(PostView)));
+)(withActionSheet(withTheme(PostView)))

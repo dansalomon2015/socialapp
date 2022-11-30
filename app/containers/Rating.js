@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import PropTypes from 'prop-types';
-import images from '../assets/images';
+import React, { useEffect, useState } from 'react'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import images from '../assets/images'
 
 const styles = StyleSheet.create({
   container: {
@@ -14,17 +13,12 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-});
+})
 
-export const Rating = ({
-  value,
-  onChangeRating,
-  size = 20,
-  changeable = true,
-}) => {
+export const Rating = ({ value, onChangeRating, size = 20, changeable = true }) => {
   const onChangeValue = rate => {
-    onChangeRating(rate);
-  };
+    onChangeRating(rate)
+  }
   return (
     <View style={styles.container}>
       {[0, 1, 2, 3, 4].map(i => (
@@ -40,12 +34,5 @@ export const Rating = ({
         </TouchableOpacity>
       ))}
     </View>
-  );
-};
-
-Rating.propTypes = {
-  value: PropTypes.number,
-  size: PropTypes.number,
-  changeable: PropTypes.bool,
-  onChangeRating: PropTypes.func,
-};
+  )
+}

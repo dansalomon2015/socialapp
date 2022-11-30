@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Image, ScrollView, Text, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux'
@@ -28,7 +27,7 @@ const VerifyEmailView = props => {
         sharedStyles.container,
         { backgroundColor: themes[theme].navbarBackground },
       ]}>
-      <StatusBar/>
+      <StatusBar />
       <ScrollView
         {...scrollPersistTaps}
         style={{ flex: 1 }}
@@ -39,8 +38,8 @@ const VerifyEmailView = props => {
         <LinearGradient style={styles.logoContainer} colors={[NAV_BAR_START, NAV_BAR_END]}>
           <View
             style={styles.logoInnerContainer}>
-            <Image style={styles.logo} source={images.logo}/>
-            <Image style={styles.logoText} source={images.logo_text}/>
+            <Image style={styles.logo} source={images.logo} />
+            <Image style={styles.logoText} source={images.logo_text} />
           </View>
         </LinearGradient>
         <View
@@ -54,7 +53,7 @@ const VerifyEmailView = props => {
           <Text style={[styles.mainText, { marginTop: 40, color: themes[theme].activeTintColor }]}>
             Verify your email address
           </Text>
-          <Image style={[styles.logo, { width: '30%', height: 125 }]} source={images.email_verified}/>
+          <Image style={[styles.logo, { width: '30%', height: 125 }]} source={images.email_verified} />
           <Text style={[styles.subText, { color: themes[theme].activeTintColor }]}>
             Thank you for your registration, before we move forward please
             verify your email address
@@ -69,13 +68,6 @@ const VerifyEmailView = props => {
     </View>
   )
 }
-
-VerifyEmailView.propTypes = {
-  user: PropTypes.object,
-  loginSuccess: PropTypes.func,
-  theme: PropTypes.string,
-}
-
 const mapStateToProps = state => ({
   user: state.login.user,
 })

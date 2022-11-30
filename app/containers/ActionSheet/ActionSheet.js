@@ -7,7 +7,6 @@ import React, {
   useCallback,
   isValidElement,
 } from 'react'
-import PropTypes from 'prop-types'
 import { Keyboard, Text, Easing } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { TapGestureHandler, State } from 'react-native-gesture-handler'
@@ -17,7 +16,7 @@ import Animated, {
   interpolateNode,
   Value,
 } from 'react-native-reanimated'
-import { useBackHandler } from '@react-native-community/hooks'
+// import { useBackHandler } from '@react-native-community/hooks'
 
 import { Item } from './Item'
 import { Handle } from './Handle'
@@ -103,12 +102,12 @@ const ActionSheet = React.memo(
       }
     }
 
-    useBackHandler(() => {
-      if (isVisible) {
-        hide()
-      }
-      return isVisible
-    })
+    // useBackHandler(() => {
+    //   if (isVisible) {
+    //     hide()
+    //   }
+    //   return isVisible
+    // })
 
     useEffect(() => {
       if (isVisible) {
@@ -211,9 +210,5 @@ const ActionSheet = React.memo(
     )
   }),
 )
-ActionSheet.propTypes = {
-  children: PropTypes.node,
-  theme: PropTypes.string,
-}
 
 export default ActionSheet

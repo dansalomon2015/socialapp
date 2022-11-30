@@ -1,12 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
-import { isIOS } from '../../utils/deviceInfo';
-import I18n from '../../i18n';
-import Container from './HeaderButtonContainer';
-import Item from './HeaderButtonItem';
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
-import images from '../../assets/images';
+import React from 'react'
+import { isIOS } from '../../utils/deviceInfo'
+import I18n from '../../i18n'
+import Container from './HeaderButtonContainer'
+import Item from './HeaderButtonItem'
+import { Image, StyleSheet, TouchableOpacity } from 'react-native'
+import images from '../../assets/images'
 
 const styles = StyleSheet.create({
   icon: {
@@ -15,7 +13,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginHorizontal: 19,
   },
-});
+})
 
 // Left
 export const Drawer = React.memo(({ navigation, theme, testID, ...props }) => (
@@ -29,7 +27,7 @@ export const Drawer = React.memo(({ navigation, theme, testID, ...props }) => (
       />
     </TouchableOpacity>
   </Container>
-));
+))
 
 export const CloseButtonGoTop = React.memo(({ navigation, testID }) => (
   <Container left>
@@ -40,7 +38,7 @@ export const CloseButtonGoTop = React.memo(({ navigation, testID }) => (
       testID={testID}
     />
   </Container>
-));
+))
 
 export const CloseGoSignIn = React.memo(({ navigation, testID }) => (
   <Container left>
@@ -51,7 +49,7 @@ export const CloseGoSignIn = React.memo(({ navigation, testID }) => (
       testID={testID}
     />
   </Container>
-));
+))
 
 export const CloseModal = React.memo(
   ({ navigation, testID, onPress = () => navigation.pop(), ...props }) => (
@@ -59,7 +57,7 @@ export const CloseModal = React.memo(
       <Item iconName="close" onPress={onPress} testID={testID} {...props} />
     </Container>
   ),
-);
+)
 
 export const CancelModal = React.memo(({ onPress, testID }) => (
   <Container left>
@@ -69,7 +67,7 @@ export const CancelModal = React.memo(({ onPress, testID }) => (
       <Item iconName="close" onPress={onPress} testID={testID} />
     )}
   </Container>
-));
+))
 
 // Right
 export const More = React.memo(({ onPress, testID }) => (
@@ -82,7 +80,7 @@ export const More = React.memo(({ onPress, testID }) => (
       testID={testID}
     />
   </Container>
-));
+))
 
 export const Contact = React.memo(({ navigation, testID, ...props }) => (
   <Container>
@@ -95,13 +93,13 @@ export const Contact = React.memo(({ navigation, testID, ...props }) => (
       {...props}
     />
   </Container>
-));
+))
 
 export const Save = React.memo(({ onPress, testID, ...props }) => (
   <Container>
     <Item title={I18n.t('Save')} onPress={onPress} testID={testID} {...props} />
   </Container>
-));
+))
 
 export const Complete = React.memo(({ onPress, testID, ...props }) => (
   <Container>
@@ -112,7 +110,7 @@ export const Complete = React.memo(({ onPress, testID, ...props }) => (
       {...props}
     />
   </Container>
-));
+))
 
 export const Publish = React.memo(({ onPress, testID, ...props }) => (
   <Container>
@@ -123,13 +121,13 @@ export const Publish = React.memo(({ onPress, testID, ...props }) => (
       {...props}
     />
   </Container>
-));
+))
 
 export const Next = React.memo(({ onPress, testID, ...props }) => (
   <Container>
     <Item title={I18n.t('Next')} onPress={onPress} testID={testID} {...props} />
   </Container>
-));
+))
 
 export const Report = React.memo(({ onPress, testID, ...props }) => (
   <Container>
@@ -142,7 +140,7 @@ export const Report = React.memo(({ onPress, testID, ...props }) => (
       {...props}
     />
   </Container>
-));
+))
 
 export const Search = React.memo(({ navigation, theme, testID, ...props }) => (
   <Container>
@@ -155,7 +153,7 @@ export const Search = React.memo(({ navigation, theme, testID, ...props }) => (
       />
     </TouchableOpacity>
   </Container>
-));
+))
 
 export const Cart = React.memo(({ navigation, testID, ...props }) => (
   <Container>
@@ -168,54 +166,4 @@ export const Cart = React.memo(({ navigation, testID, ...props }) => (
       {...props}
     />
   </Container>
-));
-
-Drawer.propTypes = {
-  navigation: PropTypes.object.isRequired,
-  testID: PropTypes.string.isRequired,
-};
-CloseButtonGoTop.propTypes = {
-  navigation: PropTypes.object.isRequired,
-  testID: PropTypes.string.isRequired,
-};
-CloseGoSignIn.propTypes = {
-  navigation: PropTypes.object.isRequired,
-  testID: PropTypes.string.isRequired,
-};
-CloseModal.propTypes = {
-  navigation: PropTypes.object.isRequired,
-  testID: PropTypes.string.isRequired,
-  onPress: PropTypes.func,
-};
-CancelModal.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  testID: PropTypes.string.isRequired,
-};
-More.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  testID: PropTypes.string.isRequired,
-};
-Contact.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  testID: PropTypes.string.isRequired,
-};
-Save.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  testID: PropTypes.string.isRequired,
-};
-Complete.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  testID: PropTypes.string.isRequired,
-};
-Publish.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  testID: PropTypes.string.isRequired,
-};
-Next.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  testID: PropTypes.string.isRequired,
-};
-Search.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  testID: PropTypes.string.isRequired,
-};
+))

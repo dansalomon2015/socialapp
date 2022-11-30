@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import Slider from 'rn-range-slider'
+import { themes } from '../constants/colors'
 
-import Slider from 'rn-range-slider';
-import { themes } from '../constants/colors';
-
-const THUMB_RADIUS = 12;
+const THUMB_RADIUS = 12
 const styles = StyleSheet.create({
   container: {
     marginBottom: 8,
@@ -63,20 +61,20 @@ const styles = StyleSheet.create({
   valueText: {
     fontSize: 12,
   },
-});
+})
 
 export const RangeSlider = ({
-  style,
-  min,
-  max,
-  step,
-  initValue,
-  onValueChanged,
-  label,
-  theme,
-}) => {
-  const [low, setLow] = useState(initValue.low);
-  const [high, setHigh] = useState(initValue.high);
+                              style,
+                              min,
+                              max,
+                              step,
+                              initValue,
+                              onValueChanged,
+                              label,
+                              theme,
+                            }) => {
+  const [low, setLow] = useState(initValue.low)
+  const [high, setHigh] = useState(initValue.high)
 
   return (
     <View
@@ -104,9 +102,9 @@ export const RangeSlider = ({
           )}
           renderNotch={() => <View style={styles.notch} />}
           onValueChanged={(low, high) => {
-            setLow(low);
-            setHigh(high);
-            onValueChanged(low, high);
+            setLow(low)
+            setHigh(high)
+            onValueChanged(low, high)
           }}
         />
         <Text style={[styles.valueText, { color: themes[theme].actionColor }]}>
@@ -114,15 +112,5 @@ export const RangeSlider = ({
         </Text>
       </View>
     </View>
-  );
-};
-RangeSlider.propTypes = {
-  style: PropTypes.array,
-  min: PropTypes.number,
-  max: PropTypes.number,
-  step: PropTypes.number,
-  initValue: PropTypes.object,
-  onValueChange: PropTypes.bool,
-  label: PropTypes.string,
-  theme: PropTypes.string,
-};
+  )
+}

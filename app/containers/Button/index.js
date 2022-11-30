@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
 import {
   StyleSheet,
   View,
@@ -7,10 +6,10 @@ import {
   Image,
   ActivityIndicator,
   TouchableHighlight,
-} from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import LinearGradient from 'react-native-linear-gradient';
+} from 'react-native'
+import { RectButton } from 'react-native-gesture-handler'
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
+import LinearGradient from 'react-native-linear-gradient'
 
 import {
   COLOR_BUTTON_PRIMARY,
@@ -40,9 +39,9 @@ import {
   COLOR_WHITE,
   NAV_BAR_START,
   NAV_BAR_END,
-} from '../../constants/colors';
-import sharedStyles from '../../views/Styles';
-import images from '../../assets/images';
+} from '../../constants/colors'
+import sharedStyles from '../../views/Styles'
+import images from '../../assets/images'
 
 /* eslint-disable react-native/no-unused-styles */
 const styles = StyleSheet.create({
@@ -216,7 +215,7 @@ const styles = StyleSheet.create({
   font_weight_bold: {
     ...sharedStyles.textBold,
   },
-});
+})
 
 const Button = props => {
   const {
@@ -239,12 +238,12 @@ const Button = props => {
     theme,
     pressingHighlight,
     ...otherProps
-  } = props;
+  } = props
 
-  const [isPress, setIsPress] = React.useState(false);
+  const [isPress, setIsPress] = React.useState(false)
 
   if (hidden) {
-    return null;
+    return null
   }
 
   if (type === 'oauth') {
@@ -252,16 +251,16 @@ const Button = props => {
       <RectButton onPress={onPress} style={styles.oauthButtonContainer}>
         <Image source={images[title]} style={styles.oauthBtn} />
       </RectButton>
-    );
+    )
   }
 
   if (type === 'gradient') {
     return (
       <TouchableHighlight
         onPress={onPress}
-        underlayColor='white'
+        underlayColor="white"
         onHideUnderlay={_ => setIsPress(false)}
-        onShowUnderlay={_ => {if (pressingHighlight) setIsPress(true);}}
+        onShowUnderlay={_ => {if (pressingHighlight) setIsPress(true)}}
         style={[styles.gradientButtonContainer, style]}
         disabled={(disabled || loading)}>
         <LinearGradient
@@ -269,7 +268,11 @@ const Button = props => {
           style={[
             styles.gradientButtonText,
             size ? styles[`button_size_${size}`] : {},
-            { borderColor: themes[theme].bodyText, borderWidth: 2, backgroundColor: !isPress ? themes[theme].bodyText : themes[theme].backgroundColor }
+            {
+              borderColor: themes[theme].bodyText,
+              borderWidth: 2,
+              backgroundColor: !isPress ? themes[theme].bodyText : themes[theme].backgroundColor,
+            },
           ]}>
           {loading ? (
             <ActivityIndicator color={'white'} />
@@ -290,7 +293,7 @@ const Button = props => {
           )}
         </LinearGradient>
       </TouchableHighlight>
-    );
+    )
   }
 
   return (
@@ -298,7 +301,7 @@ const Button = props => {
       onPress={onPress}
       underlayColor={themes[theme].bodyText}
       onHideUnderlay={_ => setIsPress(false)}
-      onShowUnderlay={_ => {if (pressingHighlight) setIsPress(true);}}
+      onShowUnderlay={_ => {if (pressingHighlight) setIsPress(true)}}
       disabled={(disabled || loading)}
       style={[
         styles.container,
@@ -312,7 +315,7 @@ const Button = props => {
           size ? styles[`button_size_${size}`] : {},
           width ? { width } : {},
           height ? { height } : {},
-          { backgroundColor: isPress ? themes[theme].bodyText : 'white' }
+          { backgroundColor: isPress ? themes[theme].bodyText : 'white' },
         ]}>
         {icon ? (
           <FontAwesomeIcon
@@ -340,28 +343,8 @@ const Button = props => {
         )}
       </View>
     </TouchableHighlight>
-  );
-};
-
-Button.propTypes = {
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  icon: PropTypes.string,
-  iconCenter: PropTypes.func,
-  type: PropTypes.string,
-  size: PropTypes.string,
-  onPress: PropTypes.func,
-  hidden: PropTypes.bool,
-  disabled: PropTypes.bool,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  backgroundColor: PropTypes.string,
-  loading: PropTypes.bool,
-  style: PropTypes.any,
-  textColor: PropTypes.string,
-  fontWeight: PropTypes.string,
-  theme: PropTypes.string,
-};
+  )
+}
 
 Button.defaultProps = {
   title: 'Press me!',
@@ -372,6 +355,6 @@ Button.defaultProps = {
   hidden: false,
   disabled: false,
   loading: false,
-};
+}
 
-export default Button;
+export default Button

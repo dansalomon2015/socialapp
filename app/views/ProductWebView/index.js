@@ -1,21 +1,20 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { WebView } from 'react-native-webview';
+import React, { useEffect } from 'react'
+import { WebView } from 'react-native-webview'
 
-import StatusBar from '../../containers/StatusBar';
-import { withTheme } from '../../theme';
-import { GradientHeader } from '../../containers/GradientHeader';
-import MainScreen from '../../containers/MainScreen';
-import * as HeaderButton from '../../containers/HeaderButton';
+import StatusBar from '../../containers/StatusBar'
+import { withTheme } from '../../theme'
+import { GradientHeader } from '../../containers/GradientHeader'
+import MainScreen from '../../containers/MainScreen'
+import * as HeaderButton from '../../containers/HeaderButton'
 
 
 const ProductWebView = (props) => {
-  const { navigation } = props;
-  const product = props.route.params?.product;
+  const { navigation } = props
+  const product = props.route.params?.product
 
   useEffect(() => {
-    init();
-  }, []);
+    init()
+  }, [])
 
   const init = () => {
     navigation.setOptions({
@@ -27,8 +26,8 @@ const ProductWebView = (props) => {
       ),
       title: product.name,
       headerBackground: () => <GradientHeader />,
-    });
-  };
+    })
+  }
 
   return (
     <MainScreen navigation={navigation}>
@@ -40,12 +39,8 @@ const ProductWebView = (props) => {
         }}
       />
     </MainScreen>
-  );
+  )
 
-};
+}
 
-ProductWebView.PropTypes = {
-  theme: PropTypes.string,
-};
-
-export default withTheme(ProductWebView);
+export default withTheme(ProductWebView)

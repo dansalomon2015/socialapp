@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react'
 import {
   Alert,
   Image,
@@ -9,47 +8,47 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import { connect } from 'react-redux';
-import firestore from '@react-native-firebase/firestore';
-import ImagePicker from 'react-native-image-crop-picker';
-import Feather from 'react-native-vector-icons/Feather';
-import { chunk, isEmpty } from 'lodash';
+} from 'react-native'
+import { connect } from 'react-redux'
+import firestore from '@react-native-firebase/firestore'
+import ImagePicker from 'react-native-image-crop-picker'
+import Feather from 'react-native-vector-icons/Feather'
+import { chunk, isEmpty } from 'lodash'
 
-import { themes } from '../../constants/colors';
-import StatusBar from '../../containers/StatusBar';
-import { withTheme } from '../../theme';
-import images from '../../assets/images';
-import styles from './styles';
-import { setUser as setUserAction } from '../../actions/login';
-import ActivityIndicator from '../../containers/ActivityIndicator';
+import { themes } from '../../constants/colors'
+import StatusBar from '../../containers/StatusBar'
+import { withTheme } from '../../theme'
+import images from '../../assets/images'
+import styles from './styles'
+import { setUser as setUserAction } from '../../actions/login'
+import ActivityIndicator from '../../containers/ActivityIndicator'
 import firebaseSdk, {
   DB_ACTION_DELETE,
   DB_ACTION_UPDATE,
   NOTIFICATION_TYPE_LIKE,
-} from '../../lib/firebaseSdk';
-import { showErrorAlert, showToast } from '../../lib/info';
-import { VectorIcon } from '../../containers/VectorIcon';
-import scrollPersistTaps from '../../utils/scrollPersistTaps';
-import I18n from '../../i18n';
+} from '../../lib/firebaseSdk'
+import { showErrorAlert, showToast } from '../../lib/info'
+import { VectorIcon } from '../../containers/VectorIcon'
+import scrollPersistTaps from '../../utils/scrollPersistTaps'
+import I18n from '../../i18n'
 import {
   checkCameraPermission,
   checkPhotosPermission,
   backImagePickerConfig,
-} from '../../utils/permissions';
-import { isValidURL } from '../../utils/validators';
-import { withActionSheet } from '../../containers/ActionSheet';
-import PostText from './PostText';
-import PopupMenu from '../../containers/PopupMenu';
+} from '../../utils/permissions'
+import { isValidURL } from '../../utils/validators'
+import { withActionSheet } from '../../containers/ActionSheet'
+import PostText from './PostText'
+import PopupMenu from '../../containers/PopupMenu'
 import {
   POST_TYPE_PHOTO,
   POST_TYPE_TEXT,
   POST_TYPE_VIDEO,
-} from '../../constants/app';
-import { getUserRepresentString, onSharePost } from '../../utils/const';
+} from '../../constants/app'
+import { getUserRepresentString, onSharePost } from '../../utils/const'
 
 const ProfileView = props => {
-  const { navigation, user, theme } = props;
+  const { navigation, user, theme } = props
   const [state, setState] = useState({
     account: {
       userId: user.userId,
@@ -58,76 +57,76 @@ const ProfileView = props => {
     isLoading: true,
     updating: false,
     refreshing: false,
-  });
-  const [isPostTab, setIsPostTab] = useState(true);
+  })
+  const [isPostTab, setIsPostTab] = useState(true)
 
-  const { account, posts, isLoading } = state;
-  let unSubscribePost = '';
+  const { account, posts, isLoading } = state
+  let unSubscribePost = ''
 
   useEffect(() => {
-    if (!isEmpty(user)) init();
-  }, [user]);
+    if (!isEmpty(user)) init()
+  }, [user])
 
   const setSafeState = states => {
-    setState({ ...state, ...states });
-  };
+    setState({ ...state, ...states })
+  }
 
   const init = () => {
-    const { navigation } = props;
+    const { navigation } = props
     firebaseSdk
       .getUser(state.account.userId)
       .then(user => {
         const userPostSubscribe = firestore()
           .collection(firebaseSdk.TBL_POST)
-          .where('userId', '==', state.account.userId);
+          .where('userId', '==', state.account.userId)
         unSubscribePost = userPostSubscribe.onSnapshot(querySnap => {
-          let posts = [];
+          let posts = []
           if (querySnap) {
             querySnap.forEach(doc => {
-              posts.push({ id: doc.id, ...doc.data(), owner: user });
-            });
-            posts.sort((a, b) => b.date - a.date);
-            setSafeState({ account: user, isLoading: false, posts });
+              posts.push({ id: doc.id, ...doc.data(), owner: user })
+            })
+            posts.sort((a, b) => b.date - a.date)
+            setSafeState({ account: user, isLoading: false, posts })
           }
-        });
+        })
       })
       .catch(err => {
-        setSafeState({ isLoading: false });
+        setSafeState({ isLoading: false })
         // showErrorAlert(I18n.t('user_not_found'), '', () => navigation.pop());
-      });
-  };
+      })
+  }
 
   const goToFollowers = async () => {
-    const { navigation } = props;
+    const { navigation } = props
     navigation.push('Follow', {
       type: 'followers',
       account: state.account,
-    });
-  };
+    })
+  }
 
   const goToFollowings = async () => {
-    const { navigation } = props;
+    const { navigation } = props
     navigation.push('Follow', {
       type: 'followings',
       account: state.account,
-    });
-  };
+    })
+  }
 
   const onOpenPost = item => {
-    props.navigation.push('PostDetail', { post: item });
-  };
+    props.navigation.push('PostDetail', { post: item })
+  }
 
   const onToggleLike = (item, isLiking) => {
-    const { user } = props;
+    const { user } = props
 
-    let update = {};
+    let update = {}
     if (isLiking) {
-      update = { id: item.id, likes: item.likes.filter(l => l !== user.userId) };
+      update = { id: item.id, likes: item.likes.filter(l => l !== user.userId) }
     } else {
-      update = { id: item.id, likes: [...item.likes, user.userId] };
+      update = { id: item.id, likes: [...item.likes, user.userId] }
     }
 
-    setState({ ...state, isLoading: true });
+    setState({ ...state, isLoading: true })
     firebaseSdk
       .setData(firebaseSdk.TBL_POST, DB_ACTION_UPDATE, update)
       .then(() => {
@@ -137,7 +136,7 @@ const ProfileView = props => {
               ? item?.thumbnail
               : item.type === 'photo'
                 ? item?.photo
-                : '';
+                : ''
           const activity = {
             type: NOTIFICATION_TYPE_LIKE,
             sender: user.userId,
@@ -150,40 +149,40 @@ const ProfileView = props => {
             title: item.owner.displayName,
             message: `${user.displayName} ${I18n('likes_your_post')}.`,
             date: new Date(),
-          };
-          firebaseSdk.addActivity(activity, item.owner.token).then(r => {});
+          }
+          firebaseSdk.addActivity(activity, item.owner.token).then(r => {})
         }
       })
       .catch(() => {
-        setState({ ...state, isLoading: false });
-      });
-  };
+        setState({ ...state, isLoading: false })
+      })
+  }
 
   const openLink = url => {
     if (url && url.length > 0 && isValidURL(url)) {
-      Linking.openURL(url);
+      Linking.openURL(url)
     }
-  };
+  }
 
   const takePhoto = async () => {
     if (await checkCameraPermission()) {
       ImagePicker.openCamera(backImagePickerConfig).then(image => {
-        onUpdateUser(image.path);
-      });
+        onUpdateUser(image.path)
+      })
     }
-  };
+  }
 
   const chooseFromLibrary = async () => {
     if (await checkPhotosPermission()) {
       ImagePicker.openPicker(backImagePickerConfig).then(image => {
-        onUpdateUser(image.path);
-      });
+        onUpdateUser(image.path)
+      })
     }
-  };
+  }
 
   const onUpdateUser = image_path => {
-    const { user, setUser } = props;
-    setState({ ...state, isLoading: true });
+    const { user, setUser } = props
+    setState({ ...state, isLoading: true })
     if (image_path) {
       firebaseSdk
         .uploadMedia(firebaseSdk.STORAGE_TYPE_AVATAR, image_path)
@@ -191,27 +190,27 @@ const ProfileView = props => {
           let userInfo = {
             id: user.id,
             back_image: image_url,
-          };
+          }
 
           firebaseSdk
             .setData(firebaseSdk.TBL_USER, DB_ACTION_UPDATE, userInfo)
             .then(() => {
-              setState({ ...state, isLoading: false });
-              const updateUser = { ...user, ...userInfo };
-              setUser(updateUser);
-              init();
+              setState({ ...state, isLoading: false })
+              const updateUser = { ...user, ...userInfo }
+              setUser(updateUser)
+              init()
             })
             .catch(err => {
-              showToast(I18n.t(err.message));
-              setState({ ...state, isLoading: false });
-            });
+              showToast(I18n.t(err.message))
+              setState({ ...state, isLoading: false })
+            })
         })
         .catch(err => {
-          showErrorAlert(err, I18n.t('Oops'));
-          setState({ ...state, isLoading: false });
-        });
+          showErrorAlert(err, I18n.t('Oops'))
+          setState({ ...state, isLoading: false })
+        })
     }
-  };
+  }
 
   const onEditBackImage = () => {
     Alert.alert('', I18n.t('Upload_photo'), [
@@ -222,40 +221,40 @@ const ProfileView = props => {
       {
         text: I18n.t('Take_a_photo'),
         onPress: () => {
-          takePhoto();
+          takePhoto()
         },
       },
       {
         text: I18n.t('Choose_a_photo'),
         onPress: () => {
-          chooseFromLibrary();
+          chooseFromLibrary()
         },
       },
-    ]);
-  };
+    ])
+  }
 
   if (!user) {
-    return null;
+    return null
   }
 
   const onActionPost = item => {
     const onEdit = () => {
-      navigation.push('EditPost', { postId: item.id });
-    };
+      navigation.push('EditPost', { postId: item.id })
+    }
 
     const onRemove = () => {
-      setState({ ...state, isUpdating: true });
+      setState({ ...state, isUpdating: true })
       firebaseSdk
         .setData(firebaseSdk.TBL_POST, DB_ACTION_DELETE, { id: item.id })
         .then(() => {
-          showToast(I18n.t('Remove_post_complete'));
-          setState({ ...state, isUpdating: false });
+          showToast(I18n.t('Remove_post_complete'))
+          setState({ ...state, isUpdating: false })
         })
         .catch(err => {
-          showErrorAlert(I18n.t('Remove_post_failed'), I18n.t('Oops'));
-          setState({ ...state, isUpdating: false });
-        });
-    };
+          showErrorAlert(I18n.t('Remove_post_failed'), I18n.t('Oops'))
+          setState({ ...state, isUpdating: false })
+        })
+    }
 
     const ownerOptions = [
       {
@@ -267,9 +266,9 @@ const ProfileView = props => {
         // danger: true,
         onPress: onRemove,
       },
-    ];
-    return { options: ownerOptions };
-  };
+    ]
+    return { options: ownerOptions }
+  }
 
   return (
     <View style={{ flex: 1 }}>
@@ -445,7 +444,7 @@ const ProfileView = props => {
                     onActions={onActionPost(p)}
                     theme={theme}
                   />
-                );
+                )
             })
           ) : (
             <View
@@ -495,7 +494,7 @@ const ProfileView = props => {
                         </TouchableOpacity>
                       </View>
                     </View>
-                  );
+                  )
                 if (index % 4 === 1 || index % 4 === 3)
                   return (
                     <View style={{ flexDirection: 'row' }}>
@@ -518,7 +517,7 @@ const ProfileView = props => {
                         />
                       </TouchableOpacity>
                     </View>
-                  );
+                  )
                 if (index % 4 === 2)
                   return (
                     <View style={{ flexDirection: 'row' }}>
@@ -543,7 +542,7 @@ const ProfileView = props => {
                         />
                       </TouchableOpacity>
                     </View>
-                  );
+                  )
               })}
             </View>
           )}
@@ -553,24 +552,18 @@ const ProfileView = props => {
         <ActivityIndicator absolute size="large" theme={theme} />
       ) : null}
     </View>
-  );
-};
-
-ProfileView.PropTypes = {
-  setUser: PropTypes.func,
-  user: PropTypes.object,
-  theme: PropTypes.string,
-};
+  )
+}
 
 const mapStateToProps = state => ({
   user: state.login.user,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
-});
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withActionSheet(withTheme(ProfileView)));
+)(withActionSheet(withTheme(ProfileView)))

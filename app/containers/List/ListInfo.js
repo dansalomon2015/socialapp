@@ -1,12 +1,10 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
-
-import sharedStyles from '../../views/Styles';
-import { themes } from '../../constants/colors';
-import { withTheme } from '../../theme';
-import { PADDING_HORIZONTAL } from './constants';
-import I18n from '../../i18n';
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+import sharedStyles from '../../views/Styles'
+import { themes } from '../../constants/colors'
+import { withTheme } from '../../theme'
+import { PADDING_HORIZONTAL } from './constants'
+import I18n from '../../i18n'
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +15,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     ...sharedStyles.textRegular,
   },
-});
+})
 
 const ListInfo = React.memo(({ info, translateInfo, theme }) => (
   <View style={styles.container}>
@@ -25,18 +23,12 @@ const ListInfo = React.memo(({ info, translateInfo, theme }) => (
       {translateInfo ? I18n.t(info) : info}
     </Text>
   </View>
-));
-
-ListInfo.propTypes = {
-  info: PropTypes.string,
-  theme: PropTypes.string,
-  translateInfo: PropTypes.bool,
-};
+))
 
 ListInfo.defaultProps = {
   translateInfo: true,
-};
+}
 
-ListInfo.displayName = 'List.Info';
+ListInfo.displayName = 'List.Info'
 
-export default withTheme(ListInfo);
+export default withTheme(ListInfo)

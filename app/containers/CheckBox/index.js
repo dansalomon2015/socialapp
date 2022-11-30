@@ -1,9 +1,7 @@
-import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
-
-import { COLOR_YELLOW } from '../../constants/colors';
-import { VectorIcon } from '../VectorIcon';
+import React from 'react'
+import { Text, TouchableOpacity } from 'react-native'
+import { COLOR_YELLOW } from '../../constants/colors'
+import { VectorIcon } from '../VectorIcon'
 
 const Index = React.memo(
   ({ title, checked, textStyle, containerStyle, onPress }) => (
@@ -26,18 +24,6 @@ const Index = React.memo(
       ) : null}
     </TouchableOpacity>
   ),
-);
+)
 
-Index.propTypes = {
-  title: PropTypes.string,
-  checked: PropTypes.bool,
-  checkedColor: PropTypes.string,
-  unCheckedColor: PropTypes.string,
-  checkedIcon: PropTypes.string,
-  uncheckedIcon: PropTypes.string,
-  textStyle: PropTypes.object,
-  containerStyle: PropTypes.object,
-  onPress: PropTypes.func,
-};
-
-export default Index;
+export default Index
