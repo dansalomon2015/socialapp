@@ -63,16 +63,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export const RangeSlider = ({
-                              style,
-                              min,
-                              max,
-                              step,
-                              initValue,
-                              onValueChanged,
-                              label,
-                              theme,
-                            }) => {
+export const RangeSlider = ({ style, min, max, step, initValue, onValueChanged, label, theme }) => {
   const [low, setLow] = useState(initValue.low)
   const [high, setHigh] = useState(initValue.high)
 

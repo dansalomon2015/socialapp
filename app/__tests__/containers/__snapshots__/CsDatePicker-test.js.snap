@@ -14,5 +14,25 @@ exports[`renders correctly 1`] = `
       undefined,
     ]
   }
-/>
+>
+  <RNDateTimePicker
+    date={1669799718823}
+    displayIOS="default"
+    enabled={true}
+    is24Hour={true}
+    mode="date"
+    onChange={[Function]}
+    onPickerDismiss={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "width": 116,
+      }
+    }
+    testID="date-time-picker"
+    textColor="black"
+    themeVariant="light"
+  />
+</View>
 `;

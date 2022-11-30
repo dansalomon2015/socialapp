@@ -2,7 +2,7 @@ import * as ReactNative from 'react-native'
 import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock'
 
 jest.mock('@react-native-community/netinfo', () => {})
-jest.mock('@react-native-community/async-storage', () => mockAsyncStorage)
+jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage)
 jest.mock('rn-fetch-blob', () => ({
   Value: jest.fn(),
   event: jest.fn(),
@@ -49,27 +49,6 @@ jest.doMock('react-native', () => {
       },
       NativeEventEmitter: () => {},
       RNPermissions: {},
-    },
-    ReactNative,
-  )
-})
-jest.doMock('react-native-vector-icons/lib/react-native', () => {
-  return Object.setPrototypeOf(
-    {
-      Platform: {
-        ...ReactNative.Platform,
-        OS: 'ios',
-        Version: 123,
-        isTesting: true,
-        select: objs => objs['ios'],
-      },
-      NativeModules: {
-        ...ReactNative.NativeModules,
-        Override: { great: 'success' },
-        SettingsManager: {
-          settings: {},
-        },
-      },
     },
     ReactNative,
   )

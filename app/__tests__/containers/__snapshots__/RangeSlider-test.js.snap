@@ -11,7 +11,7 @@ exports[`renders correctly 1`] = `
         "padding": 8,
       },
       Object {
-        "borderColor": "#cbcbcc",
+        "borderColor": "#6d6d6d",
       },
     ]
   }
@@ -73,6 +73,7 @@ exports[`renders correctly 1`] = `
         }
       >
         <View
+          collapsable={false}
           style={
             Object {
               "opacity": 0,
@@ -111,6 +112,7 @@ exports[`renders correctly 1`] = `
           </View>
         </View>
         <View
+          collapsable={false}
           style={
             Object {
               "opacity": 0,
@@ -181,6 +183,7 @@ exports[`renders correctly 1`] = `
             }
           />
           <View
+            collapsable={false}
             style={
               Object {
                 "left": 0,
@@ -201,6 +204,7 @@ exports[`renders correctly 1`] = `
           </View>
         </View>
         <View
+          collapsable={false}
           onLayout={[Function]}
           style={
             Object {
@@ -226,6 +230,7 @@ exports[`renders correctly 1`] = `
           />
         </View>
         <View
+          collapsable={false}
           style={
             Object {
               "position": "absolute",

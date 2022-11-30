@@ -2,10 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <ActivityIndicator
-  animating={true}
   color="#efc455"
-  hidesWhenStopped={true}
-  size="small"
   style={
     Array [
       Object {

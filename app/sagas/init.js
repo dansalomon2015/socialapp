@@ -7,7 +7,6 @@ import firebaseSdk from '../lib/firebaseSdk'
 import { loginSuccess } from '../actions/login'
 
 export const restore = function* restore() {
-  console.log(CURRENT_USER)
   const user = yield AsyncStorage.getItem(CURRENT_USER)
   const auth = yield firebaseSdk.authorizedUser()
   if (auth && user) {

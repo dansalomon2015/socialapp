@@ -34,7 +34,6 @@ const locale =
   Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale
     : NativeModules.I18nManager.localeIdentifier
-console.log('local', locale)
 i18n.locale = locale?.indexOf('ja') > -1 ? 'ja' : defaultLanguage.languageTag
 i18n.isRTL = I18nManager.isRTL
 
