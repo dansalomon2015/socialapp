@@ -11,7 +11,6 @@ import { connect } from 'react-redux'
 
 import {
   COLOR_WHITE,
-  HEADER_BACKGROUND,
   HEADER_BAR_START,
   NAV_BAR_END,
   NAV_BAR_START,
@@ -26,7 +25,6 @@ import scrollPersistTaps from '../../utils/scrollPersistTaps'
 import { logout as logoutAction } from '../../actions/login'
 import { showConfirmationAlert } from '../../lib/info'
 import { GradientHeader } from '../../containers/GradientHeader'
-import LinearGradient from 'react-native-linear-gradient'
 import Navigation from '../../lib/Navigation'
 import I18n from '../../i18n'
 import { SITE_SHOP_URL } from '../../constants/app'
@@ -178,6 +176,7 @@ const SidebarView = (props) => {
         </View>
         {menus.map(m => (
           <SidebarItem
+            key={m.id}
             id={`sidebar-view-key-${m.id}`}
             text={m.name}
             left={<Image source={m.icon}
@@ -221,7 +220,4 @@ const mapDispatchToProps = dispatch => ({
   logout: params => dispatch(logoutAction(params)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withTheme(SidebarView))
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(SidebarView))

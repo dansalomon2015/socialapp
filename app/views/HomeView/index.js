@@ -57,9 +57,9 @@ const HomeView = props => {
   const { user, theme, setUser } = props
   const { data, loading, isUpdating, refreshing, postUsers } = state
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!global.unSubscribeRoom) {
-      const roomSubscribe = await firestore().collection(firebaseSdk.TBL_ROOM)
+      const roomSubscribe = firestore().collection(firebaseSdk.TBL_ROOM)
       global.unSubscribeRoom = roomSubscribe.onSnapshot(async querySnapShot => {
         props.fetchUnread()
       })
