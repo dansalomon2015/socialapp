@@ -39,15 +39,15 @@ const styles = StyleSheet.create({
 
 const AuthLoadingView = React.memo(({ theme }) => (
   <ImageBackground
-    style={ sharedStyles.container }
-    source={ images.bg_splash_back }>
+    style={sharedStyles.container}
+    source={images.bg_splash_back}>
     <StatusBar />
-    <View style={ styles.mainContainer }>
-      <View style={ styles.logoContainer }>
-        <Image source={ images.logo } style={ styles.logo } />
-        <Image style={ styles.logoText } source={ images.logo_text } />
+    <View style={styles.mainContainer}>
+      <View style={styles.logoContainer}>
+        <Image source={images.logo} style={styles.logo} />
+        <Image style={styles.logoText} source={images.logo_text} />
       </View>
-      <ActivityIndicator color={ themes[theme].actionColor } size="large" />
+      <ActivityIndicator color={themes[theme].actionColor} size="large" />
     </View>
   </ImageBackground>
 ))

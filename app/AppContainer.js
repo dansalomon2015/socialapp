@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { connect } from 'react-redux'
-
 import Navigation from './lib/Navigation'
 import { getActiveRouteName, navigationTheme } from './utils/navigation'
 import {
@@ -17,7 +16,6 @@ import {
 
 // Stacks
 import AuthLoadingView from './views/AuthLoadingView'
-
 import OutsideStack from './stacks/OutsideStack'
 import { ThemeContext } from './theme'
 import InsideStack from './stacks/InsideStack'

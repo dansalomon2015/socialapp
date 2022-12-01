@@ -1,39 +1,39 @@
-import React, { memo, useEffect } from 'react';
-import { NotifierRoot, Notifier, Easing } from 'react-native-notifier';
+import React, { memo, useEffect } from 'react'
+import { NotifierRoot, Notifier, Easing } from 'react-native-notifier'
 
-import NotifierComponent from './NotifierComponent';
-import EventEmitter from '../../utils/events';
-import Navigation from '../../lib/Navigation';
-import { getActiveRoute } from '../../utils/navigation';
+import NotifierComponent from './NotifierComponent'
+import EventEmitter from '../../utils/events'
+import Navigation from '../../lib/Navigation'
+import { getActiveRoute } from '../../utils/navigation'
 
-export const INAPP_NOTIFICATION_EMITTER = 'NotificationInApp';
-export const INAPP_NOTIFICATION_DURATION = 3000;
-export const INAPP_NOTIFICATION_CALL_DURATION = 20000;
+export const INAPP_NOTIFICATION_EMITTER = 'NotificationInApp'
+export const INAPP_NOTIFICATION_DURATION = 3000
+export const INAPP_NOTIFICATION_CALL_DURATION = 20000
 
 const InAppNotification = memo(() => {
   const show = notification => {
-    const { payload } = notification;
-    const state = Navigation.navigationRef.current?.getRootState();
-    const route = getActiveRoute(state);
+    const { payload } = notification
+    const state = Navigation.navigationRef.current?.getRootState()
+    const route = getActiveRoute(state)
     if (payload.rid) {
       if (
         (route?.name === 'RoomView' && route.params?.rid === payload.rid) ||
         route?.name === 'JitsiMeetView'
       ) {
-        return;
+        return
       }
 
       // Call Duration 15s
-      let duration = INAPP_NOTIFICATION_DURATION;
+      let duration = INAPP_NOTIFICATION_DURATION
       if (
         payload.message.t === 'jitsi_call_started' ||
         payload.message.t === 'jitsi_video_call_started'
       ) {
-        duration = INAPP_NOTIFICATION_CALL_DURATION;
+        duration = INAPP_NOTIFICATION_CALL_DURATION
 
         // When Calling, Notification Bug By Updating Message
         if (route?.name === 'JitsiMeetView') {
-          return;
+          return
         }
       }
 
@@ -45,18 +45,18 @@ const InAppNotification = memo(() => {
           duration,
         },
         duration: duration,
-      });
+      })
     }
-  };
+  }
 
   useEffect(() => {
-    EventEmitter.addEventListener(INAPP_NOTIFICATION_EMITTER, show);
+    EventEmitter.addEventListener(INAPP_NOTIFICATION_EMITTER, show)
     return () => {
-      EventEmitter.removeListener(INAPP_NOTIFICATION_EMITTER);
-    };
-  }, []);
+      EventEmitter.removeListener(INAPP_NOTIFICATION_EMITTER)
+    }
+  }, [])
 
-  return <NotifierRoot />;
-});
+  return <NotifierRoot />
+})
 
-export default InAppNotification;
+export default InAppNotification

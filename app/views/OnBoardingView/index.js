@@ -2,8 +2,6 @@ import React from 'react'
 import { SafeAreaView, View, Image, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
-import LinearGradient from 'react-native-linear-gradient'
-
 import { appStart as appStartAction } from '../../actions/app'
 import images from '../../assets/images'
 import StatusBar from '../../containers/StatusBar'
@@ -11,16 +9,13 @@ import Button from '../../containers/Button'
 import { withTheme } from '../../theme'
 import I18n from '../../i18n'
 import {
-  HEADER_BAR_END,
-  HEADER_BAR_START,
-  NAV_BAR_START,
   themes,
 } from '../../constants/colors'
 import { styles } from './style'
 
 const theme = 'light'
 
-const OnBoardingView = (props) => {
+const OnBoardingView = () => {
   const navigation = useNavigation()
 
   return (
