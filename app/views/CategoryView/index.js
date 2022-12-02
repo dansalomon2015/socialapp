@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
-import {
-  ImageBackground,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native'
+import { ImageBackground, ScrollView, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-
-import styles from './styles'
 import { setUser as setUserAction } from '../../actions/login'
-import MainScreen from '../../containers/MainScreen'
 import * as HeaderButton from '../../containers/HeaderButton'
-import Product from './Product'
 import { GradientHeader } from '../../containers/GradientHeader'
-import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
+import MainScreen from '../../containers/MainScreen'
+import Product from './Product'
+import StatusBar from '../../containers/StatusBar'
+import styles from './styles'
 
 const CategoryView = () => {
   const navigation = useNavigation()
@@ -58,7 +51,7 @@ const CategoryView = () => {
         price: 190,
       },
       {
-        id: 1,
+        id: 3,
         name_kana: '太田貴之',
         name: 'Belts',
         image_url:
@@ -66,7 +59,7 @@ const CategoryView = () => {
         price: 190,
       },
       {
-        id: 1,
+        id: 4,
         name_kana: '太田貴之',
         name: 'Belts',
         image_url:
@@ -74,7 +67,7 @@ const CategoryView = () => {
         price: 190,
       },
       {
-        id: 1,
+        id: 5,
         name_kana: '太田貴之',
         name: 'Belts',
         image_url:
@@ -82,7 +75,7 @@ const CategoryView = () => {
         price: 190,
       },
       {
-        id: 1,
+        id: 6,
         name_kana: '太田貴之',
         name: 'Belts',
         image_url:
@@ -133,15 +126,7 @@ const CategoryView = () => {
     <MainScreen navigation={navigation}>
       <StatusBar />
       <View style={styles.header}>
-        <Swiper
-          loop={false}
-          ref={ref => (swipe = ref)}
-          activeDotStyle={styles.activeDot}
-          containerStyle={styles.swiperContainer}
-          dotStyle={styles.dot}
-          paginationStyle={{ position: 'absolute', bottom: 10 }}>
-          {renderSlides()}
-        </Swiper>
+        <Text style={styles.topCategoryTitle}>[ ----- Swiper Slider Content ----- ] </Text>
         <Text style={styles.topCategoryTitle}>{category.name_kana}</Text>
       </View>
       <ScrollView style={{ flexGrow: 1, marginBottom: 60, marginTop: 4 }}>
@@ -151,9 +136,9 @@ const CategoryView = () => {
             flexWrap: 'wrap',
             justifyContent: 'center',
           }}>
-          {products.map(p => (
+          {products.map((p, index) => (
             <Product
-              key={p.id}
+              key={index}
               item={p}
               onPressItem={() => onPressProduct(p)}
             />
@@ -171,7 +156,4 @@ const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withTheme(CategoryView))
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(CategoryView))

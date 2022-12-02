@@ -2,15 +2,12 @@ import React from 'react'
 import { Image, ScrollView, Text, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux'
-
 import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import styles from './styles'
 import images from '../../assets/images'
 import sharedStyles from '../../views/Styles'
 import {
-  COLOR_WHITE,
-  HEADER_BAR_START,
   NAV_BAR_END,
   NAV_BAR_START,
   themes,
@@ -27,7 +24,7 @@ const ThankYouView = props => {
         sharedStyles.container,
         { backgroundColor: themes[theme].navbarBackground },
       ]}>
-      <StatusBar/>
+      <StatusBar />
       <ScrollView
         {...scrollPersistTaps}
         style={{ flex: 1 }}
@@ -39,8 +36,8 @@ const ThankYouView = props => {
           <View
             style={styles.logoInnerContainer}
             colors={[NAV_BAR_START, NAV_BAR_END]}>
-            <Image style={styles.logo} source={images.logo}/>
-            <Image style={styles.logoText} source={images.logo_text}/>
+            <Image style={styles.logo} source={images.logo} />
+            <Image style={styles.logoText} source={images.logo_text} />
           </View>
         </LinearGradient>
         <View

@@ -1,8 +1,7 @@
-import React, { useState, useMemo, useRef } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker'
 import { TextInput } from 'react-native-paper'
-
 import { date_str_format, DATE_STRING_DISPLAY_FORMAT } from '../utils/datetime'
 import { COLOR_BLUE, COLOR_YELLOW, themes } from '../constants/colors'
 import sharedStyles from '../views/Styles'
@@ -138,8 +137,7 @@ const ExDatePicker = props => {
   const selectedDate = useMemo(() => {
     if (currentDate) {
       const units = currentDate.split('/')
-      const newDate = `${units[2]}-${units[0]}-${units[1]}`
-      return newDate
+      return `${units[2]}-${units[0]}-${units[1]}`
     } else {
       return getFormatedDate(new Date(), 'YYYY/MM/DD')
     }

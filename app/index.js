@@ -7,7 +7,6 @@ import {
 } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { MenuProvider } from 'react-native-popup-menu'
-
 import { defaultTheme, subscribeTheme } from './utils/theme'
 import store from './lib/createStore'
 import { ThemeContext } from './theme'
@@ -19,8 +18,6 @@ import Toast from './containers/Toast'
 import debounce from './utils/debounce'
 import { APP_THEME } from './constants/keys'
 
-// Ignore all log notifications:
-LogBox.ignoreAllLogs()
 const Root = () => {
   const [state, setState] = useState({
     theme: defaultTheme(),
@@ -34,29 +31,25 @@ const Root = () => {
 
   useEffect(() => {
     Dimensions.addEventListener('change', onDimensionsChange)
-
-    return () => {
-      Dimensions.removeEventListener('change', onDimensionsChange)
-    }
   }, [])
 
-  // useEffect(() => {
-  //   let timer = setInterval(() => {
-  //     const hour = new Date().getHours()
-  //     if (theme === 'dark' && hour >= 6 && hour <= 17) {
-  //       setTheme('light')
-  //     } else if (theme === 'light' && (hour < 6 || hour >= 18)) {
-  //       setTheme('dark')
-  //     }
-  //     // setTheme('dark');
-  //   }, 1000)
-  //   init()
-  //   return () => {
-  //     if (timer) {
-  //       clearInterval(timer)
-  //     }
-  //   }
-  // }, [])
+  useEffect(() => {
+    let timer = setInterval(() => {
+      const hour = new Date().getHours()
+      if (theme === 'dark' && hour >= 6 && hour <= 17) {
+        setTheme('light')
+      } else if (theme === 'light' && (hour < 6 || hour >= 18)) {
+        setTheme('dark')
+      }
+      // setTheme('dark')
+    }, 1000)
+    init()
+    return () => {
+      if (timer) {
+        clearInterval(timer)
+      }
+    }
+  }, [])
 
   const init = async () => {
     const theme = await AsyncStorage.getItem(APP_THEME)
@@ -73,7 +66,6 @@ const Root = () => {
         scale,
         fontScale,
       })
-      // setMasterDetail(width);
     },
   )
 
@@ -112,9 +104,9 @@ const Root = () => {
             }}>
             <MenuProvider>
               <ActionSheetProvider>
-                <AppContainer/>
-                <InAppNotification/>
-                <Toast/>
+                <AppContainer />
+                <InAppNotification />
+                <Toast />
               </ActionSheetProvider>
             </MenuProvider>
           </DimensionsContext.Provider>

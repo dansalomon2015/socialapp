@@ -1,11 +1,9 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-
 import { ThemeContext } from '../theme'
 import { outsideHeader, themedHeader, StackAnimation } from '../utils/navigation'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
 import SidebarView from '../views/SidebarView'
 import HomeView from '../views/HomeView'
 import PostsView from '../views/HomeView/posts'
@@ -33,7 +31,6 @@ import EditPostView from '../views/EditPostView'
 import ProductWebView from '../views/ProductWebView'
 import PickLibraryView from '../views/PickLibraryView'
 import { MainTabBar } from '../containers/MainScreen'
-import { themes } from '../constants/colors'
 
 const Tab = createBottomTabNavigator()
 const Inside = createStackNavigator()
@@ -80,8 +77,8 @@ const TabStack = () => {
         component={ProfileView}
         options={{ headerShown: false }}
       />
-      <Tab.Screen name="Message" component={MessageView}/>
-      <Tab.Screen name="Activity" component={ActivityView}/>
+      <Tab.Screen name="Message" component={MessageView} />
+      <Tab.Screen name="Activity" component={ActivityView} />
     </Tab.Navigator>
   )
 }
@@ -111,7 +108,7 @@ const InsideStack = () => {
         component={PopularView}
         options={PopularView.navigationOptions}
       />
-      <Inside.Screen name="ProfileEdit" component={ProfileEditView}/>
+      <Inside.Screen name="ProfileEdit" component={ProfileEditView} />
       <Inside.Screen
         name="Friend"
         component={FriendView}
@@ -127,20 +124,20 @@ const InsideStack = () => {
         component={OtherProfileView}
         options={{ headerShown: false }}
       />
-      <Inside.Screen name="Follow" component={FollowView}/>
-      <Inside.Screen name="CreatePost" component={CreatePostView}/>
-      <Inside.Screen name="EditPost" component={EditPostView}/>
+      <Inside.Screen name="Follow" component={FollowView} />
+      <Inside.Screen name="CreatePost" component={CreatePostView} />
+      <Inside.Screen name="EditPost" component={EditPostView} />
       <Inside.Screen
         name="PostDetail"
         component={PostDetailView}
         options={{ headerShown: false }}
       />
-      <Inside.Screen name="Chat" component={ChatView}/>
-      <Inside.Screen name="Setting" component={SettingView}/>
-      <Inside.Screen name="About" component={AboutView}/>
-      <Inside.Screen name="Security" component={SecurityView}/>
-      <Inside.Screen name="Block" component={BlockView}/>
-      <Inside.Screen name="ProductWeb" component={ProductWebView}/>
+      <Inside.Screen name="Chat" component={ChatView} />
+      <Inside.Screen name="Setting" component={SettingView} />
+      <Inside.Screen name="About" component={AboutView} />
+      <Inside.Screen name="Security" component={SecurityView} />
+      <Inside.Screen name="Block" component={BlockView} />
+      <Inside.Screen name="ProductWeb" component={ProductWebView} />
       <Inside.Screen
         name="Category"
         component={CategoryView}
@@ -151,8 +148,8 @@ const InsideStack = () => {
         component={VipMembersClubView}
         options={VipMembersClubView.navigationOptions}
       />
-      <Inside.Screen name="ProductDetail" component={ProductDetailView}/>
-      <Inside.Screen name="PickLibrary" component={PickLibraryView}/>
+      <Inside.Screen name="ProductDetail" component={ProductDetailView} />
+      <Inside.Screen name="PickLibrary" component={PickLibraryView} />
     </Inside.Navigator>
   )
 }

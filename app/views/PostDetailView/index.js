@@ -7,7 +7,7 @@ import {
   View,
   TextInput,
   Share,
-  ScrollView
+  ScrollView,
 } from 'react-native'
 import { connect } from 'react-redux'
 import firestore from '@react-native-firebase/firestore'
@@ -39,14 +39,12 @@ import firebaseSdk, {
   NOTIFICATION_TYPE_COMMENT,
   NOTIFICATION_TYPE_LIKE,
 } from '../../lib/firebaseSdk'
-import { HEADER_BAR_END, HEADER_BAR_START, themes } from '../../constants/colors'
+import { themes } from '../../constants/colors'
 import { VectorIcon } from '../../containers/VectorIcon'
 import { dateStringFromNow, dateToString } from '../../utils/datetime'
-import { GradientHeader } from '../../containers/GradientHeader'
 import I18n from '../../i18n'
 import PopupMenu from '../../containers/PopupMenu'
 import { showErrorAlert, showToast } from '../../lib/info'
-import DialogInput from 'react-native-dialog-input'
 import { getUserRepresentString, onSharePost } from '../../utils/const'
 
 const PostDetailView = (props) => {
@@ -223,15 +221,15 @@ const PostDetailView = (props) => {
         <ImageBackground
           style={sharedStyles.container}
           source={images.bg_splash_onboard}>
-          <StatusBar/>
-          <ActivityIndicator absolute theme={theme} size={'large'}/>
+          <StatusBar />
+          <ActivityIndicator absolute theme={theme} size={'large'} />
         </ImageBackground>
       )
     }
     return (
       <View style={sharedStyles.container}>
-        <StatusBar/>
-        <ActivityIndicator absolute theme={theme} size={'large'}/>
+        <StatusBar />
+        <ActivityIndicator absolute theme={theme} size={'large'} />
       </View>
     )
   }
@@ -329,12 +327,12 @@ const PostDetailView = (props) => {
   const isLiking = post.likes && post.likes.includes(user.userId)
   return (
     <View style={sharedStyles.container}>
-      <StatusBar/>
+      <StatusBar />
       <KeyboardView
         contentContainerStyle={[sharedStyles.contentContainer, {
           backgroundColor: themes[theme].backgroundColor,
           height: '100%',
-          paddingTop: 50
+          paddingTop: 50,
         }]}
         keyboardVerticalOffset={128}>
         <View style={{
@@ -343,22 +341,22 @@ const PostDetailView = (props) => {
           flexDirection: 'row',
           alignItems: 'center',
           paddingHorizontal: 15,
-          borderBottomColor: themes[theme].separatorColor
+          borderBottomColor: themes[theme].separatorColor,
         }}>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             style={{ height: 40, width: 40, justifyContent: 'center', alignItems: 'center' }}>
             <Image style={{ width: 18, height: 14, tintColor: themes[theme].activeTintColor }}
-                   source={images.nav_back}/>
+                   source={images.nav_back} />
           </TouchableOpacity>
           <Text style={[styles.profileName, {
             color: themes[theme].activeTintColor,
             fontSize: 18,
-            marginLeft: 10
+            marginLeft: 10,
           }]}>{I18n.t(post.type)}</Text>
         </View>
         {isLoading && (
-          <ActivityIndicator absolute theme={theme} size={'large'}/>
+          <ActivityIndicator absolute theme={theme} size={'large'} />
         )}
         <ScrollView>
           <View
@@ -381,7 +379,7 @@ const PostDetailView = (props) => {
                 <Text style={{
                   color: themes[theme].infoText,
                   fontSize: 14,
-                  marginTop: 5
+                  marginTop: 5,
                 }}>{getUserRepresentString(post.owner)}</Text>
               </View>
               <PopupMenu
@@ -418,7 +416,7 @@ const PostDetailView = (props) => {
                       backgroundColor: themes[theme].modalBackground,
                     }}
                     onPress={() => setPhotoMode(true)}>
-                    <Image source={{ uri: post.photo }} style={styles.photoImage} resizeMode="cover"/>
+                    <Image source={{ uri: post.photo }} style={styles.photoImage} resizeMode="cover" />
                   </TouchableOpacity>
                 </>
               )}
@@ -471,17 +469,17 @@ const PostDetailView = (props) => {
               style={[styles.captionText, { color: themes[theme].infoText }]}>
               {dateToString(post.date, 'hh:MM A · DD MMM YY')}
             </Text>
-            <View style={[styles.separator, { backgroundColor: themes[theme].separatorColor }]}/>
+            <View style={[styles.separator, { backgroundColor: themes[theme].separatorColor }]} />
             <View style={styles.likes}>
               <Text
                 style={[styles.likesContent, { color: themes[theme].activeTintColor }]}>{post.likes?.length ?? 0}</Text>
               <Text style={{
                 color: themes[theme].infoText,
                 fontSize: 14,
-                marginLeft: 4
+                marginLeft: 4,
               }}>{(post.likes?.length ?? 0) <= 1 ? I18n.t('Like') : I18n.t('Likes')}</Text>
             </View>
-            <View style={[styles.separator, { backgroundColor: themes[theme].separatorColor }]}/>
+            <View style={[styles.separator, { backgroundColor: themes[theme].separatorColor }]} />
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <TouchableOpacity onPress={() => toggleLikes(isLiking)}>
                 <Image
@@ -503,22 +501,22 @@ const PostDetailView = (props) => {
                 <Image source={images.chat} style={[styles.toolIcon, {
                   tintColor: themes[theme].inactiveTintColor,
                   width: 20, height: 20,
-                }]}/>
+                }]} />
               </TouchableOpacity>
               <TouchableOpacity
                 style={{ position: 'absolute', right: 0 }}
                 onPress={() => {onSharePost(post)}}>
                 <Image source={images.share} style={[styles.toolIcon, {
                   tintColor: themes[theme].inactiveTintColor,
-                }]}/>
+                }]} />
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[styles.separator, { backgroundColor: themes[theme].separatorColor }]}/>
+          <View style={[styles.separator, { backgroundColor: themes[theme].separatorColor }]} />
           <View style={styles.commentContents}>
             {post.comment_accounts &&
               post.comment_accounts.map((c, index) => (
-                <View style={styles.commentContainer}>
+                <View style={styles.commentContainer} key={index}>
                   <View style={styles.commentMain}>
                     <Image
                       source={
@@ -534,7 +532,7 @@ const PostDetailView = (props) => {
                       }}>
                         <Text style={[styles.commentAccountName, {
                           fontWeight: 'bold',
-                          color: themes[theme].activeTintColor
+                          color: themes[theme].activeTintColor,
                         }]}>
                           {c.displayName}
                         </Text>
@@ -548,7 +546,7 @@ const PostDetailView = (props) => {
                       {/* <Text style={{ color: themes[theme].infoText, fontSize: 12, marginTop: 4 }}>{I18n.t('replying_to', { name: index == 0 ? post.owner.handle : post.comment_accounts[index - 1].handle })}</Text> */}
                       <Text style={[styles.commentText, {
                         color: themes[theme].activeTintColor,
-                        marginTop: 4
+                        marginTop: 4,
                       }]}>{c.text}</Text>
                     </View>
                   </View>
@@ -589,7 +587,7 @@ const PostDetailView = (props) => {
         </View>)}
         {photoMode && (
           <View style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: '#000000E0' }}>
-            <Image source={{ uri: post.photo }} style={{ width: '100%', height: '100%', resizeMode: 'contain' }}/>
+            <Image source={{ uri: post.photo }} style={{ width: '100%', height: '100%', resizeMode: 'contain' }} />
             <View
               style={{ position: 'absolute', left: 0, right: 0, top: 40, bottom: 0, justifyContent: 'space-between' }}>
               <View>
@@ -597,12 +595,12 @@ const PostDetailView = (props) => {
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                   paddingHorizontal: 20,
-                  marginTop: 10
+                  marginTop: 10,
                 }}>
                   <TouchableOpacity
                     onPress={() => setPhotoMode(false)}
                     style={{ height: 40, width: 40, justifyContent: 'center', alignItems: 'center' }}>
-                    <Image style={{ width: 18, height: 14, tintColor: 'white' }} source={images.close}/>
+                    <Image style={{ width: 18, height: 14, tintColor: 'white' }} source={images.close} />
                   </TouchableOpacity>
                   <PopupMenu
                     theme={theme}
@@ -623,7 +621,7 @@ const PostDetailView = (props) => {
                     <Image
                       source={images.heart}
                       style={[styles.toolIcon, {
-                        tintColor: isLiking ? 'red' : 'white'
+                        tintColor: isLiking ? 'red' : 'white',
                       }]}
                     />
                     <Text style={[styles.count, { color: 'white' }]}>{post.likes?.length ?? 0}</Text>
@@ -633,7 +631,7 @@ const PostDetailView = (props) => {
                     <Image source={images.chat} style={[styles.toolIcon, {
                       tintColor: 'white',
                       width: 20, height: 20,
-                    }]}/>
+                    }]} />
                     <Text style={[styles.count, { color: 'white' }]}>{post.comments?.length ?? 0}</Text>
                   </View>
                 </View>
@@ -642,7 +640,7 @@ const PostDetailView = (props) => {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   marginHorizontal: 20,
-                  marginVertical: 20
+                  marginVertical: 20,
                 }}>
                   <Image
                     source={

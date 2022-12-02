@@ -294,9 +294,7 @@ const ProfileView = props => {
                 onPress: () => navigation.navigate('ProfileEdit'),
               },
             ]}
-            renderTrigger={() => (
-              <Image source={images.profile_more} style={styles.toolButton} />
-            )}
+            renderTrigger={() => (<Image source={images.profile_more} style={styles.toolButton} />)}
           />
         </View>
       </SafeAreaView>
@@ -394,9 +392,11 @@ const ProfileView = props => {
                   </TouchableOpacity>
                 ) : null}
               </View>
-              {account.purpose && account.purpose.length > 0 ? (
-                <Text style={styles.bio}>{account.purpose}</Text>
-              ) : null}
+              {
+                account.purpose && account.purpose.length > 0
+                  ? (<Text style={styles.bio}>{account.purpose}</Text>)
+                  : null
+              }
             </View>
           </View>
           <View style={styles.tab}>
@@ -431,7 +431,7 @@ const ProfileView = props => {
           </View>
           {isPostTab ? (
             posts.map(p => {
-              if (p.type === POST_TYPE_TEXT)
+              if (p.type === POST_TYPE_TEXT) {
                 return (
                   <PostText
                     key={p.id}
@@ -445,6 +445,7 @@ const ProfileView = props => {
                     theme={theme}
                   />
                 )
+              }
             })
           ) : (
             <View
@@ -458,99 +459,98 @@ const ProfileView = props => {
                 elevation: 2,
                 padding: 5,
               }}>
-              {chunk(
-                posts.filter(
-                  p => p.type === POST_TYPE_PHOTO || p.type === POST_TYPE_VIDEO,
-                ),
-                3,
-              ).map((p, index) => {
-                if (index % 4 === 0)
-                  return (
-                    <View style={{ flexDirection: 'row' }}>
-                      <TouchableOpacity onPress={() => onOpenPost(p[0])}>
-                        <Image
-                          source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
-                          style={[
-                            styles.tile1,
-                            index === 0 && { borderTopLeftRadius: 50 },
-                          ]}
-                        />
-                      </TouchableOpacity>
-                      <View>
-                        <TouchableOpacity onPress={() => onOpenPost(p[1])}>
-                          <Image
-                            source={{ uri: p[1]?.photo || p[1]?.thumbnail }}
-                            style={[
-                              styles.tile2,
-                              index === 0 && { borderTopRightRadius: 50 },
-                            ]}
-                          />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => onOpenPost(p[2])}>
-                          <Image
-                            source={{ uri: p[2]?.photo || p[2]?.thumbnail }}
-                            style={styles.tile2}
-                          />
-                        </TouchableOpacity>
-                      </View>
-                    </View>
-                  )
-                if (index % 4 === 1 || index % 4 === 3)
-                  return (
-                    <View style={{ flexDirection: 'row' }}>
-                      <TouchableOpacity onPress={() => onOpenPost(p[0])}>
-                        <Image
-                          source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
-                          style={styles.tile3}
-                        />
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => onOpenPost(p[1])}>
-                        <Image
-                          source={{ uri: p[1]?.photo || p[1]?.thumbnail }}
-                          style={styles.tile3}
-                        />
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => onOpenPost(p[2])}>
-                        <Image
-                          source={{ uri: p[2]?.photo || p[2]?.thumbnail }}
-                          style={styles.tile3}
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  )
-                if (index % 4 === 2)
-                  return (
-                    <View style={{ flexDirection: 'row' }}>
-                      <View>
-                        <TouchableOpacity onPress={() => onOpenPost(p[0])}>
-                          <Image
-                            source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
-                            style={styles.tile2}
-                          />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => onOpenPost(p[1])}>
-                          <Image
-                            source={{ uri: p[1]?.photo || p[1]?.thumbnail }}
-                            style={styles.tile2}
-                          />
-                        </TouchableOpacity>
-                      </View>
-                      <TouchableOpacity onPress={() => onOpenPost(p[2])}>
-                        <Image
-                          source={{ uri: p[2]?.photo || p[2]?.thumbnail }}
-                          style={styles.tile1}
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  )
-              })}
+              {
+                chunk(posts.filter(p => p.type === POST_TYPE_PHOTO || p.type === POST_TYPE_VIDEO), 3)
+                  .map((p, index) => {
+                    if (index % 4 === 0) {
+                      return (
+                        <View style={{ flexDirection: 'row' }} key={index}>
+                          <TouchableOpacity onPress={() => onOpenPost(p[0])}>
+                            <Image
+                              source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
+                              style={[
+                                styles.tile1,
+                                index === 0 && { borderTopLeftRadius: 50 },
+                              ]}
+                            />
+                          </TouchableOpacity>
+                          <View>
+                            <TouchableOpacity onPress={() => onOpenPost(p[1])}>
+                              <Image
+                                source={{ uri: p[1]?.photo || p[1]?.thumbnail }}
+                                style={[
+                                  styles.tile2,
+                                  index === 0 && { borderTopRightRadius: 50 },
+                                ]}
+                              />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => onOpenPost(p[2])}>
+                              <Image
+                                source={{ uri: p[2]?.photo || p[2]?.thumbnail }}
+                                style={styles.tile2}
+                              />
+                            </TouchableOpacity>
+                          </View>
+                        </View>
+                      )
+                    }
+                    if (index % 4 === 1 || index % 4 === 3) {
+                      return (
+                        <View style={{ flexDirection: 'row' }} key={index}>
+                          <TouchableOpacity onPress={() => onOpenPost(p[0])}>
+                            <Image
+                              source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
+                              style={styles.tile3}
+                            />
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={() => onOpenPost(p[1])}>
+                            <Image
+                              source={{ uri: p[1]?.photo || p[1]?.thumbnail }}
+                              style={styles.tile3}
+                            />
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={() => onOpenPost(p[2])}>
+                            <Image
+                              source={{ uri: p[2]?.photo || p[2]?.thumbnail }}
+                              style={styles.tile3}
+                            />
+                          </TouchableOpacity>
+                        </View>
+                      )
+                    }
+                    if (index % 4 === 2) {
+                      return (
+                        <View style={{ flexDirection: 'row' }} key={index}>
+                          <View>
+                            <TouchableOpacity onPress={() => onOpenPost(p[0])}>
+                              <Image
+                                source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
+                                style={styles.tile2}
+                              />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => onOpenPost(p[1])}>
+                              <Image
+                                source={{ uri: p[1]?.photo || p[1]?.thumbnail }}
+                                style={styles.tile2}
+                              />
+                            </TouchableOpacity>
+                          </View>
+                          <TouchableOpacity onPress={() => onOpenPost(p[2])}>
+                            <Image
+                              source={{ uri: p[2]?.photo || p[2]?.thumbnail }}
+                              style={styles.tile1}
+                            />
+                          </TouchableOpacity>
+                        </View>
+                      )
+                    }
+                  })
+              }
             </View>
           )}
         </View>
       </ScrollView>
-      {isLoading ? (
-        <ActivityIndicator absolute size="large" theme={theme} />
-      ) : null}
+      {isLoading ? <ActivityIndicator absolute size="large" theme={theme} /> : null}
     </View>
   )
 }

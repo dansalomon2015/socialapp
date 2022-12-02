@@ -1,18 +1,13 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
-import Video from 'react-native-video';
-
-import { themes } from '../../constants/colors';
-import { dateStringFromNowShort } from '../../utils/datetime';
-import images from '../../assets/images';
-import {
-  POST_TYPE_PHOTO,
-  POST_TYPE_TEXT,
-  POST_TYPE_VIDEO,
-} from '../../constants/app';
-import { VectorIcon } from '../../containers/VectorIcon';
-import PopupMenu from '../../containers/PopupMenu';
-import { getUserRepresentString } from '../../utils/const';
+import React, { useState } from 'react'
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
+import Video from 'react-native-video'
+import { themes } from '../../constants/colors'
+import { dateStringFromNowShort } from '../../utils/datetime'
+import images from '../../assets/images'
+import { POST_TYPE_PHOTO, POST_TYPE_TEXT, POST_TYPE_VIDEO } from '../../constants/app'
+import { VectorIcon } from '../../containers/VectorIcon'
+import PopupMenu from '../../containers/PopupMenu'
+import { getUserRepresentString } from '../../utils/const'
 
 const styles = StyleSheet.create({
   container: {
@@ -170,21 +165,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 22,
     backgroundColor: '#00000090',
   },
-});
+})
 
-const Post = ({
-  key,
-  item,
-  isLiking,
-  onPressUser,
-  onPress,
-  onPressShare,
-  onActions,
-  onLike,
-  theme,
-  style,
-}) => {
-  const [playing, setPlaying] = useState(false);
+const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActions, onLike, theme, style }) => {
+  const [playing, setPlaying] = useState(false)
 
   return (
     <View
@@ -247,7 +231,12 @@ const Post = ({
           <TouchableOpacity
             onPress={onPress}
             style={[styles.content, { paddingHorizontal: 20, marginBottom: 16 }]}>
-            <Text style={[styles.titleText, { fontWeight: 'normal', fontSize: 14, lineHeight: 20, color: themes[theme].titleText }]}>
+            <Text style={[styles.titleText, {
+              fontWeight: 'normal',
+              fontSize: 14,
+              lineHeight: 20,
+              color: themes[theme].titleText,
+            }]}>
               {item?.text}
             </Text>
           </TouchableOpacity>
@@ -365,9 +354,9 @@ const Post = ({
                 <TouchableOpacity
                   onPress={() => {
                     if (playing) {
-                      onPress();
+                      onPress()
                     } else {
-                      setPlaying(true);
+                      setPlaying(true)
                     }
                   }}
                   style={[styles.playIcon, { position: 'absolute' }]}>
@@ -406,7 +395,7 @@ const Post = ({
         </TouchableOpacity>
       )}
     </View>
-  );
-};
+  )
+}
 
-export default Post;
+export default Post

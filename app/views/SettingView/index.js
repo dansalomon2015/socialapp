@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import {
-  FlatList,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import DialogInput from 'react-native-dialog-input'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 
 import styles from './styles'
-import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import { VectorIcon } from '../../containers/VectorIcon'
-import { GradientHeader } from '../../containers/GradientHeader'
-import * as HeaderButton from '../../containers/HeaderButton'
-import MainScreen from '../../containers/MainScreen'
-import firebaseSdk from '../../lib/firebaseSdk'
 import I18n from '../../i18n'
 import sharedStyles from '../Styles'
 import { themes } from '../../constants/colors'
 import ActivityIndicator from '../../containers/ActivityIndicator'
-import { showErrorAlert } from '../../lib/info'
 import { logout as logoutAction } from '../../actions/login'
 
 const SettingView = (props) => {
@@ -156,20 +145,20 @@ const SettingView = (props) => {
           keyExtractor={item => item.id}
         />
       </View>
-      <DialogInput isDialogVisible={showDeleteAccount}
-                   textInputProps={{ secureTextEntry: true }}
-                   title={I18n.t('del_account_title')}
-                   message={I18n.t('del_account_text')}
-                   hintInput={I18n.t('please_enter_password')}
-                   submitInput={(password) => {
-                     if (password && password !== '') {
-                       setShowDeleteAccount(false)
-                       deleteAccount(password)
-                       console.log('OK Pressed, password: ' + password)
-                     }
-                   }}
-                   closeDialog={() => {setShowDeleteAccount(false)}}>
-      </DialogInput>
+      <DialogInput
+        isDialogVisible={showDeleteAccount}
+        textInputProps={{ secureTextEntry: true }}
+        title={I18n.t('del_account_title')}
+        message={I18n.t('del_account_text')}
+        hintInput={I18n.t('please_enter_password')}
+        submitInput={(password) => {
+          if (password && password !== '') {
+            setShowDeleteAccount(false)
+            deleteAccount(password)
+            console.log('OK Pressed, password: ' + password)
+          }
+        }}
+        closeDialog={() => {setShowDeleteAccount(false)}} />
       {renderFooter()}
     </View>
   )

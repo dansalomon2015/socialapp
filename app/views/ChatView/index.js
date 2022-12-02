@@ -477,16 +477,17 @@ const ChatView = props => {
         ListHeaderComponent={renderTyping}
         {...scrollPersistTaps}
       />
-      <KeyboardAccessoryView
-        key="input"
-        renderContent={renderInput}
-        requiresSameParentToManageScrollView
-        addBottomView
-        iOSScrollbehavior={
-          NativeModules.KeyboardTrackingViewManager
-            ?.keyboardTrackingScrollBehaviorFixedOffset
-        }
-      />
+      {/*Geo*/}
+      {/*<KeyboardAccessoryView*/}
+      {/*  key="input"*/}
+      {/*  renderContent={renderInput}*/}
+      {/*  requiresSameParentToManageScrollView*/}
+      {/*  addBottomView*/}
+      {/*  iOSScrollbehavior={*/}
+      {/*    NativeModules.KeyboardTrackingViewManager*/}
+      {/*      ?.keyboardTrackingScrollBehaviorFixedOffset*/}
+      {/*  }*/}
+      {/*/>*/}
       {showActiveImage && (
         <TouchableOpacity
           style={styles.activeImageContainer}
