@@ -2,8 +2,6 @@ import React, { useEffect, useState, useRef } from 'react'
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 import CameraRoll from '@react-native-camera-roll/camera-roll'
-import Swiper from 'react-native-swiper'
-
 import { withTheme } from '../../theme'
 import sharedStyles from '../Styles'
 import StatusBar from '../../containers/StatusBar'
@@ -12,12 +10,9 @@ import SafeAreaView from '../../containers/SafeAreaView'
 import { setUser as setUserAction } from '../../actions/login'
 import * as HeaderButton from '../../containers/HeaderButton'
 import ActivityIndicator from '../../containers/ActivityIndicator'
-import {
-  POST_TYPE_PHOTO,
-  POST_TYPE_VIDEO,
-} from '../../constants/app'
+import { POST_TYPE_PHOTO, POST_TYPE_VIDEO } from '../../constants/app'
 import I18n from '../../i18n'
-import { HEADER_BAR_END, HEADER_BAR_START, themes } from '../../constants/colors'
+import { themes } from '../../constants/colors'
 
 const PickLibraryView = (props) => {
   const type = props.route.params?.type ?? POST_TYPE_PHOTO
@@ -28,7 +23,7 @@ const PickLibraryView = (props) => {
     text: '',
     isLoading: true,
     data: [],
-    showGallery: false,
+    showGallery: true,
     currentSideIndex: null,
   })
   const { theme } = props
@@ -135,11 +130,11 @@ const PickLibraryView = (props) => {
       <SafeAreaView style={[sharedStyles.contentContainer, {
         backgroundColor: themes[theme].backgroundColor,
         paddingTo: 20,
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
       }]}>
-        <StatusBar/>
+        <StatusBar />
         {isLoading && (
-          <ActivityIndicator absolute theme={theme} size={'large'}/>
+          <ActivityIndicator absolute theme={theme} size={'large'} />
         )}
         {data.length ? (
           <>
@@ -169,17 +164,7 @@ const PickLibraryView = (props) => {
         )}
         {showGallery && (
           <View style={styles.galleryView}>
-            <Swiper
-              loop={false}
-              index={select_image_index}
-              ref={ref => (swipe.current = ref)}
-              onIndexChanged={index =>
-                setState({ ...state, select_image_index: index })
-              }
-              dotColor={themes[theme].infoText}
-              containerStyle={styles.swipeContainer}>
-              {renderSlides()}
-            </Swiper>
+            <Text style={styles.topCategoryTitle}>[ ----- Swiper Slider Content ----- ] </Text>
           </View>
         )}
       </SafeAreaView>
@@ -195,10 +180,7 @@ const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withTheme(PickLibraryView))
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(PickLibraryView))
 
 
 //

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import styles from './styles';
+import React from 'react'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
+import styles from './styles'
 
-const Product = React.memo(({ item, onPressItem, theme }) => (
+const Product = React.memo(({ item, onPressItem }) => (
   <TouchableOpacity style={styles.productContainer} onPress={onPressItem}>
     <View style={styles.productImageContainer}>
       <Image source={{ uri: item.image_url }} style={styles.productImage} />
@@ -13,6 +13,6 @@ const Product = React.memo(({ item, onPressItem, theme }) => (
       <Text style={styles.productPrice}>${item.price}</Text>
     </View>
   </TouchableOpacity>
-));
+))
 
-export default Product;
+export default Product

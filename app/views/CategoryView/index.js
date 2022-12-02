@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
 import { ImageBackground, ScrollView, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
@@ -52,7 +51,7 @@ const CategoryView = () => {
         price: 190,
       },
       {
-        id: 1,
+        id: 3,
         name_kana: '太田貴之',
         name: 'Belts',
         image_url:
@@ -60,7 +59,7 @@ const CategoryView = () => {
         price: 190,
       },
       {
-        id: 1,
+        id: 4,
         name_kana: '太田貴之',
         name: 'Belts',
         image_url:
@@ -68,7 +67,7 @@ const CategoryView = () => {
         price: 190,
       },
       {
-        id: 1,
+        id: 5,
         name_kana: '太田貴之',
         name: 'Belts',
         image_url:
@@ -76,7 +75,7 @@ const CategoryView = () => {
         price: 190,
       },
       {
-        id: 1,
+        id: 6,
         name_kana: '太田貴之',
         name: 'Belts',
         image_url:
@@ -127,16 +126,7 @@ const CategoryView = () => {
     <MainScreen navigation={navigation}>
       <StatusBar />
       <View style={styles.header}>
-        <Text>test</Text>
-        <Swiper
-          loop={false}
-          ref={ref => (swipe = ref)}
-          activeDotStyle={styles.activeDot}
-          containerStyle={styles.swiperContainer}
-          dotStyle={styles.dot}
-          paginationStyle={{ position: 'absolute', bottom: 10 }}>
-          {renderSlides()}
-        </Swiper>
+        <Text style={styles.topCategoryTitle}>[ ----- Swiper Slider Content ----- ] </Text>
         <Text style={styles.topCategoryTitle}>{category.name_kana}</Text>
       </View>
       <ScrollView style={{ flexGrow: 1, marginBottom: 60, marginTop: 4 }}>
@@ -146,9 +136,9 @@ const CategoryView = () => {
             flexWrap: 'wrap',
             justifyContent: 'center',
           }}>
-          {products.map(p => (
+          {products.map((p, index) => (
             <Product
-              key={p.id}
+              key={index}
               item={p}
               onPressItem={() => onPressProduct(p)}
             />

@@ -56,9 +56,9 @@ const App = React.memo(({ root, isMasterDetail }) => {
           {root === ROOT_SPLASH ? <Stack.Screen name="Splash" component={SplashView} /> : null}
           {root === ROOT_LOADING ? <Stack.Screen name="AuthLoading" component={AuthLoadingView} /> : null}
           {root === ROOT_OUTSIDE ? <Stack.Screen name="OutsideStack" component={OutsideStack} /> : null}
-          { root === ROOT_INSIDE ? <Stack.Screen name="InsideStack" component={ InsideStack } /> : null }
-          { root === ROOT_VERIFY_EMAIL ? <Stack.Screen name="VerifyEmail" component={ VerifyEmailView } /> : null }
-          { root === ROOT_THANK_YOU ? <Stack.Screen name="ThankYou" component={ ThankYouView } /> : null }
+          {root === ROOT_INSIDE ? <Stack.Screen name="InsideStack" component={InsideStack} /> : null}
+          {root === ROOT_VERIFY_EMAIL ? <Stack.Screen name="VerifyEmail" component={VerifyEmailView} /> : null}
+          {root === ROOT_THANK_YOU ? <Stack.Screen name="ThankYou" component={ThankYouView} /> : null}
         </>
       </Stack.Navigator>
     </NavigationContainer>
