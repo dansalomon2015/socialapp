@@ -518,7 +518,7 @@ const PostDetailView = (props) => {
           <View style={styles.commentContents}>
             {post.comment_accounts &&
               post.comment_accounts.map((c, index) => (
-                <View style={styles.commentContainer}>
+                <View style={styles.commentContainer} key={index}>
                   <View style={styles.commentMain}>
                     <Image
                       source={

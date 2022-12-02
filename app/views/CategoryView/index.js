@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
-import {
-  ImageBackground,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native'
+import { ImageBackground, ScrollView, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-
-import styles from './styles'
 import { setUser as setUserAction } from '../../actions/login'
-import MainScreen from '../../containers/MainScreen'
 import * as HeaderButton from '../../containers/HeaderButton'
-import Product from './Product'
 import { GradientHeader } from '../../containers/GradientHeader'
-import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
+import MainScreen from '../../containers/MainScreen'
+import Product from './Product'
+import StatusBar from '../../containers/StatusBar'
+import styles from './styles'
 
 const CategoryView = () => {
   const navigation = useNavigation()
@@ -133,6 +127,7 @@ const CategoryView = () => {
     <MainScreen navigation={navigation}>
       <StatusBar />
       <View style={styles.header}>
+        <Text>test</Text>
         <Swiper
           loop={false}
           ref={ref => (swipe = ref)}
@@ -171,7 +166,4 @@ const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withTheme(CategoryView))
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(CategoryView))

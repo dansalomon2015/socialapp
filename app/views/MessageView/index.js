@@ -261,30 +261,29 @@ const MessageView = props => {
               paddingVertical: 20,
               paddingLeft: 15,
             }}>
-            {users.map(user => {
-              return (
-                <TouchableOpacity
-                  onPress={() =>
-                    navigateToProfile(navigation, props.user, user)
+            {users.map((user, i) => (
+              <TouchableOpacity
+                key={i}
+                onPress={() =>
+                  navigateToProfile(navigation, props.user, user)
+                }
+                style={styles.postUser}>
+                <Image
+                  source={
+                    user?.avatar ? { uri: user.avatar } : images.default_avatar
                   }
-                  style={styles.postUser}>
-                  <Image
-                    source={
-                      user?.avatar ? { uri: user.avatar } : images.default_avatar
-                    }
-                    style={styles.postUserAvatar}
-                  />
-                  <Text
-                    numberOfLines={2}
-                    style={[
-                      styles.postUserName,
-                      { color: themes[theme].activeTintColor },
-                    ]}>
-                    {user?.displayName}
-                  </Text>
-                </TouchableOpacity>
-              )
-            })}
+                  style={styles.postUserAvatar}
+                />
+                <Text
+                  numberOfLines={2}
+                  style={[
+                    styles.postUserName,
+                    { color: themes[theme].activeTintColor },
+                  ]}>
+                  {user?.displayName}
+                </Text>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         ) : null}
       </View>

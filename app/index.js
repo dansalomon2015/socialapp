@@ -18,8 +18,6 @@ import Toast from './containers/Toast'
 import debounce from './utils/debounce'
 import { APP_THEME } from './constants/keys'
 
-// Ignore all log notifications:
-LogBox.ignoreAllLogs()
 const Root = () => {
   const [state, setState] = useState({
     theme: defaultTheme(),
@@ -31,14 +29,9 @@ const Root = () => {
 
   const { theme, width, height, scale, fontScale } = state
 
-  // Geo
-  // useEffect(() => {
-  //   Dimensions.addEventListener('change', onDimensionsChange)
-  //
-  //   return () => {
-  //     Dimensions.removeEventListener('change', onDimensionsChange)
-  //   }
-  // }, [])
+  useEffect(() => {
+    Dimensions.addEventListener('change', onDimensionsChange)
+  }, [])
 
   useEffect(() => {
     let timer = setInterval(() => {
@@ -48,7 +41,7 @@ const Root = () => {
       } else if (theme === 'light' && (hour < 6 || hour >= 18)) {
         setTheme('dark')
       }
-      // setTheme('dark');
+      // setTheme('dark')
     }, 1000)
     init()
     return () => {
@@ -73,7 +66,6 @@ const Root = () => {
         scale,
         fontScale,
       })
-      // setMasterDetail(width);
     },
   )
 

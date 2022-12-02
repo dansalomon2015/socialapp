@@ -124,7 +124,6 @@ const HomeView = props => {
       })
       list.sort((a, b) => b.date - a.date)
       setState({ ...state, data: list, refreshing: false, postUsers: postUsers })
-      console.log('list', list, users)
     })
   }
 
@@ -301,34 +300,33 @@ const HomeView = props => {
           <ScrollView
             horizontal
             contentContainerStyle={styles.postUserList}>
-            {postUsers.map(user => {
-              return (
-                <TouchableOpacity
-                  onPress={() =>
-                    onOpenProfile(user)
-                  }
-                  style={{ width: 70, marginRight: 20 }}>
-                  <View style={styles.postUser}>
-                    <Image
-                      source={
-                        user?.avatar
-                          ? { uri: user.avatar }
-                          : images.default_avatar
-                      }
-                      style={styles.postUserAvatar}
-                    />
-                  </View>
-                  <Text
-                    numberOfLines={2}
-                    style={[
-                      styles.postUserName,
-                      { color: themes[theme].activeTintColor },
-                    ]}>
-                    {user?.displayName}
-                  </Text>
-                </TouchableOpacity>
-              )
-            })}
+            {postUsers.map((user, i) => (
+              <TouchableOpacity
+                key={i}
+                onPress={() =>
+                  onOpenProfile(user)
+                }
+                style={{ width: 70, marginRight: 20 }}>
+                <View style={styles.postUser}>
+                  <Image
+                    source={
+                      user?.avatar
+                        ? { uri: user.avatar }
+                        : images.default_avatar
+                    }
+                    style={styles.postUserAvatar}
+                  />
+                </View>
+                <Text
+                  numberOfLines={2}
+                  style={[
+                    styles.postUserName,
+                    { color: themes[theme].activeTintColor },
+                  ]}>
+                  {user?.displayName}
+                </Text>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         ) : null}
       </View>
@@ -337,7 +335,6 @@ const HomeView = props => {
           data={data}
           renderItem={({ item, index }) => (
             <Post
-              key={index}
               item={item}
               onPress={() => onOpenPost(item)}
               onPressUser={() => onOpenProfile(item)}

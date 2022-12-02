@@ -464,7 +464,7 @@ const ProfileView = props => {
                   .map((p, index) => {
                     if (index % 4 === 0) {
                       return (
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row' }} key={index}>
                           <TouchableOpacity onPress={() => onOpenPost(p[0])}>
                             <Image
                               source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
@@ -496,7 +496,7 @@ const ProfileView = props => {
                     }
                     if (index % 4 === 1 || index % 4 === 3) {
                       return (
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row' }} key={index}>
                           <TouchableOpacity onPress={() => onOpenPost(p[0])}>
                             <Image
                               source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
@@ -520,7 +520,7 @@ const ProfileView = props => {
                     }
                     if (index % 4 === 2) {
                       return (
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row' }} key={index}>
                           <View>
                             <TouchableOpacity onPress={() => onOpenPost(p[0])}>
                               <Image
