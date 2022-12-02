@@ -47,8 +47,8 @@ const PopupMenu = React.memo(
           color: 'brown',
         },
       }}>
-        {options.map(item => (
-          <MenuOption onSelect={() => item.onPress()}>
+        {options.map((item, key) => (
+          <MenuOption key={key} onSelect={() => item.onPress()}>
             <Text style={{ color: item.danger ? 'red' : themes[theme].activeTintColor }}>{item.title}</Text>
           </MenuOption>
         ))}
