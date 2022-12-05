@@ -1,6 +1,4 @@
-import { StyleSheet } from 'react-native';
-import { COLOR_BORDER } from '../../constants/colors';
-import sharedStyles from '../../views/Styles';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   mainContainer: {
@@ -150,4 +148,17 @@ export default StyleSheet.create({
     borderRadius: 20,
     marginRight: 27,
   },
-});
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  box: {
+    width: 60,
+    height: 60,
+    marginVertical: 20,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+})

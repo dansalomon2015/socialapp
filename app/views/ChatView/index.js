@@ -3,18 +3,17 @@ import { connect } from 'react-redux'
 import {
   FlatList,
   Image,
-  NativeModules,
   RefreshControl,
   TextInput,
   TouchableOpacity,
   SafeAreaView as RNSafeAreaView,
   View,
   Text,
+  Animated,
   Platform,
 } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
 import database from '@react-native-firebase/database'
-import { KeyboardAccessoryView } from 'react-native-ui-lib/keyboard'
 import moment from 'moment'
 import ImagePicker from 'react-native-image-crop-picker'
 import { withSafeAreaInsets } from 'react-native-safe-area-context'
@@ -23,8 +22,7 @@ import SoundPlayer from 'react-native-sound-player'
 import { useNavigation } from '@react-navigation/native'
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-
-import { HEADER_BAR_END, HEADER_BAR_START, themes } from '../../constants/colors'
+import { themes } from '../../constants/colors'
 import SafeAreaView from '../../containers/SafeAreaView'
 import { withTheme } from '../../theme'
 import styles from './styles'
@@ -43,6 +41,7 @@ import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
 import debounce from '../../utils/debounce'
 import I18n from '../../i18n'
 import StatusBar from '../../containers/StatusBar'
+import { useKeyboardAnimationReplica } from 'react-native-keyboard-controller'
 
 const scrollPersistTaps = {
   keyboardShouldPersistTaps: 'always',
@@ -52,6 +51,7 @@ const scrollPersistTaps = {
 let typingTimeout = null
 
 const ChatView = props => {
+  const { height: heightReplica } = useKeyboardAnimationReplica()
   const navigation = useNavigation()
   const [state, setState] = useState({
     loading: false,
@@ -67,8 +67,7 @@ const ChatView = props => {
   const inputRef = useRef(null)
 
   const { user, theme, insets, fetchUnread } = props
-  const { refreshing, sending, showActiveImage, otherTyping, room, inputText } =
-    state
+  const { refreshing, sending, showActiveImage, otherTyping, room, inputText } = state
   const unSubscribeMessage = useRef(null)
   const finishedLoadingFileLister = useRef(null)
   const finishedLoadingLister = useRef(null)
@@ -366,46 +365,6 @@ const ChatView = props => {
     )
   }
 
-  const renderInput = () => {
-    return (
-      <RNSafeAreaView>
-        <View
-          style={[
-            styles.inputContainer,
-            {
-              backgroundColor: themes[theme].chatInput,
-              marginBottom: Platform.OS === 'android' ? 10 : 0,
-            },
-          ]}>
-          {leftButtons()}
-          <TextInput
-            ref={inputRef}
-            returnKeyType={'default'}
-            keyboardType="default"
-            multiline
-            blurOnSubmit={true}
-            placeholder={I18n.t('enter_message')}
-            placeholderTextColor={themes[theme].chatInputPlaceholder}
-            onChangeText={onChangeText}
-            onSubmitEditing={sendMessage}
-            style={[styles.input, { color: themes[theme].activeTintColor }]}
-          />
-          <TouchableOpacity style={styles.btnContainer} onPress={sendMessage}>
-            <Image
-              source={images.ic_send}
-              style={[
-                styles.sendBtn,
-                {
-                  tintColor: themes[theme].sendButton,
-                },
-              ]}
-            />
-          </TouchableOpacity>
-        </View>
-      </RNSafeAreaView>
-    )
-  }
-
   const onRefresh = async () => {
     setState({ ...state, refreshing: true })
     await init()
@@ -477,17 +436,45 @@ const ChatView = props => {
         ListHeaderComponent={renderTyping}
         {...scrollPersistTaps}
       />
-      {/*Geo*/}
-      {/*<KeyboardAccessoryView*/}
-      {/*  key="input"*/}
-      {/*  renderContent={renderInput}*/}
-      {/*  requiresSameParentToManageScrollView*/}
-      {/*  addBottomView*/}
-      {/*  iOSScrollbehavior={*/}
-      {/*    NativeModules.KeyboardTrackingViewManager*/}
-      {/*      ?.keyboardTrackingScrollBehaviorFixedOffset*/}
-      {/*  }*/}
-      {/*/>*/}
+
+      <Animated.View style={{ transform: [{ translateY: heightReplica }] }}>
+        <RNSafeAreaView>
+          <View
+            style={[
+              styles.inputContainer,
+              {
+                backgroundColor: themes[theme].chatInput,
+                marginBottom: Platform.OS === 'android' ? 10 : 0,
+              },
+            ]}>
+            {leftButtons()}
+            <TextInput
+              ref={inputRef}
+              returnKeyType={'default'}
+              keyboardType="default"
+              multiline
+              blurOnSubmit={true}
+              placeholder={I18n.t('enter_message')}
+              placeholderTextColor={themes[theme].chatInputPlaceholder}
+              onChangeText={onChangeText}
+              onSubmitEditing={sendMessage}
+              style={[styles.input, { color: themes[theme].activeTintColor }]}
+            />
+            <TouchableOpacity style={styles.btnContainer} onPress={sendMessage}>
+              <Image
+                source={images.ic_send}
+                style={[
+                  styles.sendBtn,
+                  {
+                    tintColor: themes[theme].sendButton,
+                  },
+                ]}
+              />
+            </TouchableOpacity>
+          </View>
+        </RNSafeAreaView>
+      </Animated.View>
+
       {showActiveImage && (
         <TouchableOpacity
           style={styles.activeImageContainer}
