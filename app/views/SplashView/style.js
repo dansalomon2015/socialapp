@@ -22,6 +22,5 @@ export const styles = StyleSheet.create({
     maxWidth: '80%',
     resizeMode: 'contain',
     alignSelf: 'center',
-    tintColor: 'white',
   },
-});
+})

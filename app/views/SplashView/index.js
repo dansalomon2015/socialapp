@@ -14,6 +14,7 @@ import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import { PERMISSIONS, requestMultiple } from 'react-native-permissions'
 import { styles } from './style'
+import { COLOR_BLACK, themes } from '../../constants/colors'
 
 const SplashView = (props) => {
   useEffect(() => {
@@ -79,16 +80,8 @@ const SplashView = (props) => {
   }
 
   return (
-    <ImageBackground
-      style={ styles.container }
-      source={ images.bg_splash_back }>
+    <ImageBackground style={styles.container} source={images.bg_splash}>
       <StatusBar />
-      <View style={ [styles.mainContainer] }>
-        <View style={ styles.logoContainer }>
-          <Image source={ images.logo } style={ styles.logo } />
-          <Image style={ styles.logoText } source={ images.logo_text } />
-        </View>
-      </View>
     </ImageBackground>
   )
 }

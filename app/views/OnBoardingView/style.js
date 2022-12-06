@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   topLinearGradient: {
@@ -36,4 +36,4 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 24,
     alignItems: 'center',
   },
-});
+})

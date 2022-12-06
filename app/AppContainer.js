@@ -9,12 +9,13 @@ import {
   ROOT_LOADING,
   ROOT_OUTSIDE,
   ROOT_SPLASH,
-  ROOT_THANK_YOU,
+  ROOT_THANK_YOU, ROOT_TUTORIAL,
   ROOT_VERIFY_EMAIL,
   setRoute,
 } from './actions/app'
 
 // Stacks
+import TutorialStack from './stacks/TutorialStack'
 import AuthLoadingView from './views/AuthLoadingView'
 import OutsideStack from './stacks/OutsideStack'
 import { ThemeContext } from './theme'
@@ -54,6 +55,7 @@ const App = React.memo(({ root, isMasterDetail }) => {
         screenOptions={{ headerShown: false, animationEnabled: false }}>
         <>
           {root === ROOT_SPLASH ? <Stack.Screen name="Splash" component={SplashView} /> : null}
+          {/*{root === ROOT_TUTORIAL ? <Stack.Screen name="Splash" component={TutorialStack} /> : null}*/}
           {root === ROOT_LOADING ? <Stack.Screen name="AuthLoading" component={AuthLoadingView} /> : null}
           {root === ROOT_OUTSIDE ? <Stack.Screen name="OutsideStack" component={OutsideStack} /> : null}
           {root === ROOT_INSIDE ? <Stack.Screen name="InsideStack" component={InsideStack} /> : null}

@@ -27,7 +27,9 @@
 		8884078C29374B02006EAEEF /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8884077C29374B02006EAEEF /* EvilIcons.ttf */; };
 		8884078D29374B02006EAEEF /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8884077D29374B02006EAEEF /* SimpleLineIcons.ttf */; };
 		8884078E29374B02006EAEEF /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8884077E29374B02006EAEEF /* MaterialIcons.ttf */; };
-		88846C15293E8BA300E79FC0 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88846C14293E8BA300E79FC0 /* File.swift */; };
+		88A0949F293F522200268616 /* Raleway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 88A0949E293F522200268616 /* Raleway.ttf */; };
+		88A094A3293F530400268616 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 88A094A1293F530400268616 /* Inter.ttf */; };
+		88A094A5293F540200268616 /* Hind Vadodara.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 88A094A4293F540200268616 /* Hind Vadodara.ttf */; };
 		88E2DE452936830D00ED7634 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88E2DE442936830D00ED7634 /* GoogleService-Info.plist */; };
 		FBFC98B184B808099A699897 /* Pods_VipBillionaires.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F6B7F86AC0E0B521070BF0 /* Pods_VipBillionaires.framework */; };
 /* End PBXBuildFile section */
@@ -59,8 +61,9 @@
 		8884077C29374B02006EAEEF /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		8884077D29374B02006EAEEF /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		8884077E29374B02006EAEEF /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
-		88846C13293E8BA200E79FC0 /* VipBillionaires-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VipBillionaires-Bridging-Header.h"; sourceTree = "<group>"; };
-		88846C14293E8BA300E79FC0 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		88A0949E293F522200268616 /* Raleway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Raleway.ttf; path = ../../../app/assets/fonts/Raleway.ttf; sourceTree = "<group>"; };
+		88A094A1293F530400268616 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Inter.ttf; path = ../../../app/assets/fonts/Inter.ttf; sourceTree = "<group>"; };
+		88A094A4293F540200268616 /* Hind Vadodara.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Hind Vadodara.ttf"; path = "../../../app/assets/fonts/Hind Vadodara.ttf"; sourceTree = "<group>"; };
 		88E2DE442936830D00ED7634 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -87,8 +90,6 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				88846C14293E8BA300E79FC0 /* File.swift */,
-				88846C13293E8BA200E79FC0 /* VipBillionaires-Bridging-Header.h */,
 			);
 			name = VipBillionaires;
 			sourceTree = "<group>";
@@ -135,6 +136,9 @@
 		8884076E29374B02006EAEEF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				88A094A4293F540200268616 /* Hind Vadodara.ttf */,
+				88A094A1293F530400268616 /* Inter.ttf */,
+				88A0949E293F522200268616 /* Raleway.ttf */,
 				8884076F29374B02006EAEEF /* Fontisto.ttf */,
 				8884077029374B02006EAEEF /* Octicons.ttf */,
 				8884077129374B02006EAEEF /* Feather.ttf */,
@@ -226,6 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88A0949F293F522200268616 /* Raleway.ttf in Resources */,
 				8884078929374B02006EAEEF /* FontAwesome5_Regular.ttf in Resources */,
 				8884078029374B02006EAEEF /* Octicons.ttf in Resources */,
 				8884078329374B02006EAEEF /* FontAwesome5_Brands.ttf in Resources */,
@@ -239,11 +244,13 @@
 				8884078B29374B02006EAEEF /* Zocial.ttf in Resources */,
 				8884078629374B02006EAEEF /* Foundation.ttf in Resources */,
 				8884078129374B02006EAEEF /* Feather.ttf in Resources */,
+				88A094A3293F530400268616 /* Inter.ttf in Resources */,
 				8884078C29374B02006EAEEF /* EvilIcons.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				8884078A29374B02006EAEEF /* FontAwesome.ttf in Resources */,
 				8884077F29374B02006EAEEF /* Fontisto.ttf in Resources */,
 				8884078429374B02006EAEEF /* MaterialCommunityIcons.ttf in Resources */,
+				88A094A5293F540200268616 /* Hind Vadodara.ttf in Resources */,
 				88E2DE452936830D00ED7634 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,7 +353,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
-				88846C15293E8BA300E79FC0 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

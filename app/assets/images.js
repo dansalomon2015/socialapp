@@ -1,5 +1,6 @@
 const images = {
   nav_back: require('./images/nav_back.png'),
+  bg_splash: require('./img/splash.png'),
   bg_splash_onboard: require('./images/background_splash.png'),
   logo: require('./images/logo.png'),
   logo_text: require('./images/logo_text.png'),
