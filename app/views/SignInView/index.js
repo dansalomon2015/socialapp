@@ -177,7 +177,6 @@ const SignInView = (props) => {
             if (email && email !== '') {
               setShowResetPassword(false)
               setIsLoading(true)
-              console.log('OK Pressed, password: ' + email)
               firebaseSdk.resetPassword(email).then(_ => {
                 setIsLoading(false)
               }).catch(_ => {

@@ -5,8 +5,10 @@ import { setUnread } from '../actions/chat'
 
 const fetchUnread = function* fetchUnread() {
   const user = yield select(state => state.login.user)
-  const unReads = yield firebaseSdk.getUnReads(user.userId)
-  yield put(setUnread(unReads))
+  if (user) {
+    const unReads = yield firebaseSdk.getUnReads(user.userId)
+    yield put(setUnread(unReads))
+  }
 }
 
 const root = function* root() {

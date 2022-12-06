@@ -12,6 +12,8 @@ import sharedStyles from '../Styles'
 import { themes } from '../../constants/colors'
 import ActivityIndicator from '../../containers/ActivityIndicator'
 import { logout as logoutAction } from '../../actions/login'
+import firebaseSdk from '../../lib/firebaseSdk'
+import { showErrorAlert } from '../../lib/info'
 
 const SettingView = (props) => {
   const { navigation, theme } = props
@@ -63,28 +65,27 @@ const SettingView = (props) => {
 
   const deleteAccount = (password) => {
     const { user, logout } = props
-    // setLoading(true);
+    setLoading(true)
 
-    // firebaseSdk
-    //   .signInWithEmail(user.email, password)
-    //   .then(_ => {
-    //     console.log('MMMM - Success');
-    //     firebaseSdk
-    //       .deleteUser(user.id)
-    //       .then(_ => {
-    //         setLoading(false);
-    //         logout();
-    //       })
-    //       .catch(err => {
-    //         setLoading(false);
-    //         console.log('error', err);
-    //       });
-    //   })
-    //   .catch(err => {
-    //     setLoading(false);
-    //     showErrorAlert(I18n.t('error-invalid-password'));
-    //     console.log('error', err);
-    //   });
+    firebaseSdk
+      .signInWithEmail(user.email, password)
+      .then(_ => {
+        firebaseSdk
+          .deleteUser(user.id)
+          .then(_ => {
+            setLoading(false)
+            logout()
+          })
+          .catch(err => {
+            setLoading(false)
+            console.log('error', err)
+          })
+      })
+      .catch(err => {
+        setLoading(false)
+        showErrorAlert(I18n.t('error-invalid-password'))
+        console.log('error', err)
+      })
   }
 
   const renderItem = ({ item }) => {
@@ -155,7 +156,6 @@ const SettingView = (props) => {
           if (password && password !== '') {
             setShowDeleteAccount(false)
             deleteAccount(password)
-            console.log('OK Pressed, password: ' + password)
           }
         }}
         closeDialog={() => {setShowDeleteAccount(false)}} />

@@ -257,23 +257,18 @@ const firebaseSdk = {
 
   deleteUser(id) {
     return new Promise((resolve, reject) => {
+      auth().currentUser.delete()
+
       firestore()
         .collection(this.TBL_USER)
         .doc(id)
         .delete()
         .then(() => {
           console.log('delete user on doc success')
-        })
-        .catch(err => {
-          console.log('delete user on doc error', err)
-        })
-
-      auth()
-        .currentUser.delete()
-        .then(() => {
           resolve()
         })
         .catch(err => {
+          console.log('delete user on doc error', err)
           reject(err)
         })
     })
