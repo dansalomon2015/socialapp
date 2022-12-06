@@ -44,7 +44,7 @@ export const COLOR_BLUE_DARK = '#00387f';
 export const COLOR_GREEN = '#21b632';
 export const COLOR_GRAY = '#e3e3e3';
 export const COLOR_GRAY_LIGHT = '#fdf8f8';
-export const COLOR_YELLOW = '#DCB042';
+export const COLOR_YELLOW = '#DBAA2E';
 
 export const STATUS_COLORS = {
   online: '#2de0a5',
@@ -76,13 +76,15 @@ const mentions = {
 export const themes = {
   light: {
     activeTintColor: '#000000',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#F5F5F5',
     focusedBackground: '#ffffff',
     chatComponentBackground: '#f3f4f5',
     postBackground: '#E6EEFA',
     auxiliaryBackground: '#efeff4',
     avatarBackground: '#caced1',
     bannerBackground: '#f1f2f4',
+    titleColor: '#1D1C1C',
+    textColor: '#2F3131',
     titleText: '#000000',
     ownMsgText: '#000000',
     otherMsgText: '#ffffff',
@@ -147,13 +149,15 @@ export const themes = {
   },
   dark: {
     activeTintColor: '#FFFFFF',
-    backgroundColor: '#131517',
+    backgroundColor: '#2B2A2A',
     focusedBackground: '#131517',
     chatComponentBackground: '#f3f4f5',
     postBackground: '#21242C',
     auxiliaryBackground: '#efeff4',
     avatarBackground: '#caced1',
     bannerBackground: '#f1f2f4',
+    titleColor: '#ffffff',
+    textColor: '#C4C4C4',
     titleText: '#ffffff',
     ownMsgText: '#ffffff',
     otherMsgText: '#ffffff',
