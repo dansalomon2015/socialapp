@@ -115,6 +115,7 @@ const SignInView = (props) => {
               keyboardType="email-address"
               textContentType="oneTimeCode"
               label={I18n.t('Email')}
+              placeholder={"Enter your email"}
               onChangeText={val => setEmail(val)}
               theme={theme}
               onSubmitEditing={() => {
@@ -128,6 +129,7 @@ const SignInView = (props) => {
               inputRef={passwordInput}
               iconLeft={images.password}
               label={I18n.t('Password')}
+              placeholder={"Enter your password"}
               returnKeyType="send"
               textContentType="oneTimeCode"
               onChangeText={value => setPassword(value)}
@@ -149,9 +151,9 @@ const SignInView = (props) => {
               title={I18n.t('Login')}
               type="gradient"
               size="W"
-              iconCenter={(s) => (
-                <Image source={images.login} style={[styles.loginIcon, { ...s }]} />
-              )}
+              // iconCenter={(s) => (
+              //   <Image source={images.login} style={[styles.loginIcon, { ...s }]} />
+              // )}
               onPress={onSubmit}
               testID="login-submit"
               loading={isLoading}
