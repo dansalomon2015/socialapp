@@ -4,6 +4,7 @@ import { Image, SafeAreaView, ScrollView, Text, View } from 'react-native'
 import DialogInput from 'react-native-dialog-input'
 import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import { withTheme } from '../../theme'
 import KeyboardView from '../../containers/KeyboardView'
@@ -22,6 +23,7 @@ import { appStart as appStartAction } from '../../actions/app'
 import I18n from '../../i18n'
 import { themes } from '../../constants/colors'
 import FloatingTextInput from '../../containers/FloatingTextInput'
+import CsAutocompletePicker from '../../containers/CsAutocompleteSelect'
 
 const theme = 'light'
 

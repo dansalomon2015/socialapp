@@ -240,7 +240,7 @@ const SignUpView = props => {
               // error={errEmail}
             />
             <CsSelectGender
-              label={I18n.t('Gender')}
+              label={I18n.t('Select_Your_Gender')}
               value={gender}
               onChange={value => setState({ ...state, gender: value })}
               theme={theme}
@@ -316,6 +316,7 @@ const SignUpView = props => {
                 backgroundColor: themes[theme].auxiliaryBackground,
               }}
               label={I18n.t('Birthday')}
+              placeholder='Select Date of Birth'
               value={birthday}
               topScrollEnable={topScrollEnable}
               toggleShow={show => {

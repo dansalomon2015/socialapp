@@ -192,6 +192,7 @@ export default {
   Edit_profile: 'Edit Profile',
   Phone: 'Phone',
   Gender: 'Gender',
+  Select_Your_Gender: 'Select Your Gender',
   Male: 'Male',
   Female: 'Female',
   Gender_other: 'No answer',
