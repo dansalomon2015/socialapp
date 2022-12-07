@@ -9,7 +9,7 @@ import { loginSuccess } from '../actions/login'
 export const restore = function* restore() {
   const user = yield AsyncStorage.getItem(CURRENT_USER)
   const auth = yield firebaseSdk.authorizedUser()
-  // yield AsyncStorage.removeItem('isShowIntro')
+  yield AsyncStorage.removeItem('isShowIntro')
   const isShowIntro = yield AsyncStorage.getItem('isShowIntro')
   if (auth && user) {
     const userInfo = yield firebaseSdk.getUser(auth.uid)
