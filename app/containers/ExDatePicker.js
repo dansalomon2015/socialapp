@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   content: {},
   selectContainer: {
     flex: 1,
-    borderRadius: 12,
+    borderRadius: 8,
     paddingBottom: 8,
     width: '100%',
     shadowColor: 'black',
@@ -118,7 +118,7 @@ const calendarDarkOption = {
 
 const ExDatePicker = props => {
   const [show, setShow] = useState(false)
-  const { label, containerStyle, theme, error, value: currentDate } = props
+  const { label, containerStyle, theme, error, value: currentDate, placeholder } = props
   const inputBox = useRef(null)
 
   const rightIcon = () => {
@@ -126,7 +126,7 @@ const ExDatePicker = props => {
       <View style={styles.iconWrap}>
         <VectorIcon
           type={'Entypo'}
-          name={show ? 'chevron-thin-up' : 'chevron-thin-down'}
+          name={show ? 'chevron-thin-up' : 'chevron-thin-right'}
           color={themes[theme].activeTintColor}
           size={18}
         />
@@ -148,15 +148,16 @@ const ExDatePicker = props => {
       <View style={styles.content}>
         <TextInput
           ref={ref => {inputBox.current = ref}}
-          label={label}
+          placeholder={placeholder}
           onFocus={() => setShow(true)}
           onBlur={() => setShow(false)}
+          onChangeText={() => setShow(true)}
           value={
             currentDate
               ? date_str_format(currentDate, DATE_STRING_DISPLAY_FORMAT)
               : null
           }
-          mode="outlined"
+          mode='outlined'
           style={[
             styles.textInput,
             {
@@ -168,7 +169,7 @@ const ExDatePicker = props => {
           outlineColor={error ? '#DD2E2E' : '#888888'}
           activeOutlineColor={error ? '#DD2E2E' : themes[theme].infoText}
           theme={{
-            roundness: 15,
+            roundness: 8,
             borderWidth: 1,
             colors: {
               text: themes[theme].activeTintColor,
