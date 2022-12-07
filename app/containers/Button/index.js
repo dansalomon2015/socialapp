@@ -58,10 +58,10 @@ const styles = StyleSheet.create({
   },
   gradientButtonContainer: {
     width: '100%',
-    borderRadius: 13,
+    borderRadius: 7,
   },
   gradientButtonText: {
-    borderRadius: 13,
+    borderRadius: 7,
     height: 45,
     flexDirection: 'row',
     alignItems: 'center',
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     letterSpacing: 1.6,
     textAlign: 'center',
+    fontFamily: 'Raleway'
   },
   shadow: {
     shadowColor: '#000',

@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 14,
   },
+  labelText: {
+    fontFamily: 'Raleway'
+  }
 })
 
 const FloatingTextInput = props => {
@@ -100,10 +103,10 @@ const FloatingTextInput = props => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.labelText}>{label}</Text>
       <TextInput
         ref={inputRef}
         value={value}
-        label={label}
         mode="outlined"
         style={[
           styles.textInput,
@@ -117,27 +120,17 @@ const FloatingTextInput = props => {
         outlineColor={error ? '#DD2E2E' : outlineColor || '#888888'}
         activeOutlineColor={error ? '#DD2E2E' : themes[theme].infoText}
         theme={{
-          roundness: 15,
+          roundness: 8,
           borderWidth: 1,
           colors: {
             text: themes[theme].activeTintColor,
             placeholder: themes[theme].infoText,
           },
         }}
-        left={
-          iconLeft && <TextInput.Icon name={leftIcon} style={{ marginTop: 15 }} />
-        }
-        right={
-          (error || secureTextEntry) && (
-            <TextInput.Icon
-              name={rightIcon}
-              style={{ marginTop: 15 }}
-              onPress={tooglePassword}
-            />
-          )
-        }
         multiline={multiline}
         secureTextEntry={!showPassword}
+        placeholder={placeholder}
+        placeholderTextColor='#858585'
         {...inputProps}
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}

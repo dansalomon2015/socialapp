@@ -458,15 +458,6 @@ const SignUpView = props => {
               loading={isLoading}
               disabled={!allowTerms}
               theme={theme}
-              iconCenter={(s) => (
-                <Image
-                  source={images.login}
-                  style={[
-                    styles.loginIcon,
-                    { opacity: allowTerms ? 1 : 0.6, ...s },
-                  ]}
-                />
-              )}
               pressingHighlight
             />
             <View style={styles.bottomContainer}>
