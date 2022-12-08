@@ -61,7 +61,7 @@ const IntroView = ({ appReady }) => {
                 />
               ))}
           </View>
-          <View style={{ marginHorizontal: 48 }}>
+          <View style={{ marginHorizontal: 48, marginTop: 48 }}>
             <Button
               style={styles.submitBtn}
               title={activeIndex < slides.length - 1 ? I18n.t('Next').toUpperCase() : 'Continue to app'}

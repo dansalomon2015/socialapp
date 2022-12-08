@@ -39,7 +39,7 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   submitBtn: {
-    marginBottom: 100,
+    marginBottom: 36,
   },
   paginationContainer: {
     position: 'absolute',
@@ -52,7 +52,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 48,
   },
   activatedDot: {
     width: 7,

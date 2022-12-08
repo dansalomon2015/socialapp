@@ -28,7 +28,7 @@ const OnBoardingView = () => {
             <Image style={styles.logo} source={images.logo} />
           </View>
           <View style={styles.welcome}>
-            <Text>
+            <Text style={{textAlign: 'center'}}>
               <Text style={[styles.welcomeTitle, { color: themes[theme].textColor }]}>
                 Welcome to &nbsp;
               </Text>
