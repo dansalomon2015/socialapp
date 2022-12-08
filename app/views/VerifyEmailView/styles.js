@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
+import { COLOR_WHITE } from '../../constants/colors'
 
 export default StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 300,
-    bottom: 0,
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
   },
   logoContainer: {
@@ -19,6 +19,7 @@ export default StyleSheet.create({
     height: 300,
   },
   logo: {
+    height: 120,
     maxHeight: 180,
     resizeMode: 'contain',
   },
@@ -30,13 +31,25 @@ export default StyleSheet.create({
   },
   mainText: {
     textAlign: 'center',
-    textTransform: 'uppercase',
-    fontSize: 20,
+    fontSize: 16,
+    lineHeight: 24,
+    fontFamily: 'HindVadodara-Bold',
   },
   subText: {
     textAlign: 'center',
-    marginHorizontal: 32,
-    marginTop: 20,
+    marginHorizontal: 48,
+    marginTop: 12,
+    fontFamily: 'Raleway',
+    fontSize: 14,
+    lineHeight: 16,
+  },
+  subLinkText: {
+    textAlign: 'center',
+    marginHorizontal: 48,
+    marginTop: 12,
+    fontFamily: 'Raleway-Bold',
+    fontSize: 14,
+    lineHeight: 16,
   },
   actionBtn: {
     marginTop: 20,
@@ -57,4 +70,4 @@ export default StyleSheet.create({
     fontSize: 20,
     color: 'white',
   },
-});
+})

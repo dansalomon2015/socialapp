@@ -1,6 +1,7 @@
 import { APP } from './actionsTypes'
 
 export const ROOT_SPLASH = 'splash'
+export const ROOT_INTRO = 'introduction'
 export const ROOT_OUTSIDE = 'outside'
 export const ROOT_INSIDE = 'inside'
 export const ROOT_LOADING = 'loading'

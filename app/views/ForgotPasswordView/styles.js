@@ -19,17 +19,6 @@ export default StyleSheet.create({
     paddingVertical: 2,
     alignSelf: 'center',
   },
-  forgotContainer: {
-    marginBottom: 10,
-  },
-  forgotText: {
-    textAlign: 'right',
-    textDecorationLine: 'none',
-    color: '#C4C4C4',
-    fontFamily: 'Raleway',
-    fontSize: 14,
-    lineHeight: 16,
-  },
   bottomContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -38,6 +27,7 @@ export default StyleSheet.create({
   description: {
     alignItems: 'center',
     marginBottom: 24,
+    paddingHorizontal: 48,
   },
   loginTitle: {
     fontSize: 24,
@@ -48,6 +38,7 @@ export default StyleSheet.create({
     fontFamily: 'Raleway',
     fontSize: 14,
     lineHeight: 16,
+    textAlign: 'center',
   },
   dontText: {
     fontFamily: 'Raleway',

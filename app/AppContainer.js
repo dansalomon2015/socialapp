@@ -6,6 +6,7 @@ import Navigation from './lib/Navigation'
 import { getActiveRouteName, navigationTheme } from './utils/navigation'
 import {
   ROOT_INSIDE,
+  ROOT_INTRO,
   ROOT_LOADING,
   ROOT_OUTSIDE,
   ROOT_SPLASH,
@@ -16,6 +17,7 @@ import {
 
 // Stacks
 import AuthLoadingView from './views/AuthLoadingView'
+import IntroView from './views/IntroView'
 import OutsideStack from './stacks/OutsideStack'
 import { ThemeContext } from './theme'
 import InsideStack from './stacks/InsideStack'
@@ -54,6 +56,7 @@ const App = React.memo(({ root, isMasterDetail }) => {
         screenOptions={{ headerShown: false, animationEnabled: false }}>
         <>
           {root === ROOT_SPLASH ? <Stack.Screen name="Splash" component={SplashView} /> : null}
+          {root === ROOT_INTRO ? <Stack.Screen name="Splash" component={IntroView} /> : null}
           {root === ROOT_LOADING ? <Stack.Screen name="AuthLoading" component={AuthLoadingView} /> : null}
           {root === ROOT_OUTSIDE ? <Stack.Screen name="OutsideStack" component={OutsideStack} /> : null}
           {root === ROOT_INSIDE ? <Stack.Screen name="InsideStack" component={InsideStack} /> : null}

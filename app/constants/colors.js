@@ -1,88 +1,90 @@
-import { isIOS, isAndroid } from '../utils/deviceInfo';
+import { isIOS, isAndroid } from '../utils/deviceInfo'
 
-export const COLOR_DANGER = '#f5455c';
-export const COLOR_BUTTON_PRIMARY = '#ffffff';
-export const COLOR_BUTTON_SECONDARY = '#C4CFD5';
-export const COLOR_BUTTON_DEFAULT = '#EBEBEB';
-export const COLOR_BUTTON_DANGER = '#F95522';
-export const COLOR_BUTTON_WHITE = '#FFFFFF';
-export const COLOR_BUTTON_GRAY = '#c7c7c7';
-export const COLOR_BUTTON_DONE = '#3f65b2';
-export const COLOR_BUTTON_FACEBOOK = '#3f65b2';
-export const COLOR_BUTTON_GOOGLE = '#ce011b';
-export const COLOR_BUTTON_APPLE_LIGHT = '#000000';
-export const COLOR_BUTTON_APPLE_DARK = '#FFFFFF';
-export const COLOR_BUTTON_APPLE_BLACK = '#FFFFFF';
+export const COLOR_DANGER = '#f5455c'
+export const COLOR_BUTTON_PRIMARY = '#ffffff'
+export const COLOR_BUTTON_SECONDARY = '#C4CFD5'
+export const COLOR_BUTTON_DEFAULT = '#EBEBEB'
+export const COLOR_BUTTON_DANGER = '#F95522'
+export const COLOR_BUTTON_WHITE = '#FFFFFF'
+export const COLOR_BUTTON_GRAY = '#c7c7c7'
+export const COLOR_BUTTON_DONE = '#3f65b2'
+export const COLOR_BUTTON_FACEBOOK = '#3f65b2'
+export const COLOR_BUTTON_GOOGLE = '#ce011b'
+export const COLOR_BUTTON_APPLE_LIGHT = '#000000'
+export const COLOR_BUTTON_APPLE_DARK = '#FFFFFF'
+export const COLOR_BUTTON_APPLE_BLACK = '#FFFFFF'
 
-export const COLOR_BUTTON_TEXT_PRIMARY = '#FFFFFF';
-export const COLOR_BUTTON_TEXT_SECONDARY = '#FFFFFF';
-export const COLOR_BUTTON_TEXT_DEFAULT = '#000000';
-export const COLOR_BUTTON_TEXT_DANGER = '#FFFFFF';
-export const COLOR_BUTTON_TEXT_WHITE = '#000000';
-export const COLOR_BUTTON_TEXT_DONE = '#FFFFFF';
-export const COLOR_BUTTON_TEXT_FACEBOOK = '#FFFFFF';
-export const COLOR_BUTTON_TEXT_GOOGLE = '#FFFFFF';
-export const COLOR_BUTTON_TEXT_APPLE_LIGHT = '#FFFFFF';
-export const COLOR_BUTTON_TEXT_APPLE_DARK = '#000000';
+export const COLOR_BUTTON_TEXT_PRIMARY = '#FFFFFF'
+export const COLOR_BUTTON_TEXT_SECONDARY = '#FFFFFF'
+export const COLOR_BUTTON_TEXT_DEFAULT = '#000000'
+export const COLOR_BUTTON_TEXT_DANGER = '#FFFFFF'
+export const COLOR_BUTTON_TEXT_WHITE = '#000000'
+export const COLOR_BUTTON_TEXT_DONE = '#FFFFFF'
+export const COLOR_BUTTON_TEXT_FACEBOOK = '#FFFFFF'
+export const COLOR_BUTTON_TEXT_GOOGLE = '#FFFFFF'
+export const COLOR_BUTTON_TEXT_APPLE_LIGHT = '#FFFFFF'
+export const COLOR_BUTTON_TEXT_APPLE_DARK = '#000000'
 
-export const COLOR_TEXT = '#292E35';
-export const COLOR_SEPARATOR = '#CBCED1';
-export const COLOR_SUCCESS = '#2de0a5';
-export const COLOR_PRIMARY = '#1d74f5';
-export const COLOR_WHITE = '#ffffff';
-export const COLOR_BLACK = '#000000';
-export const COLOR_BLACK_LIGHT = '#888888';
-export const COLOR_TITLE = '#0C0D0F';
-export const COLOR_BORDER = '#c9c9c9';
-export const COLOR_UNREAD = '#e1e5e8';
-export const COLOR_TOAST = '#0C0D0F';
-export const COLOR_ORANGE = '#f26522';
-export const COLOR_ORANGE_DARK = '#d6591e';
-export const COLOR_ORANGE_LIGHT = '#fa8e5b';
-export const COLOR_BLUE = '#5790DF';
-export const COLOR_BLUE_DARK = '#00387f';
-export const COLOR_GREEN = '#21b632';
-export const COLOR_GRAY = '#e3e3e3';
-export const COLOR_GRAY_LIGHT = '#fdf8f8';
-export const COLOR_YELLOW = '#DCB042';
+export const COLOR_TEXT = '#292E35'
+export const COLOR_SEPARATOR = '#CBCED1'
+export const COLOR_SUCCESS = '#2de0a5'
+export const COLOR_PRIMARY = '#1d74f5'
+export const COLOR_WHITE = '#ffffff'
+export const COLOR_BLACK = '#000000'
+export const COLOR_BLACK_LIGHT = '#888888'
+export const COLOR_TITLE = '#0C0D0F'
+export const COLOR_BORDER = '#605E5E'
+export const COLOR_UNREAD = '#e1e5e8'
+export const COLOR_TOAST = '#0C0D0F'
+export const COLOR_ORANGE = '#f26522'
+export const COLOR_ORANGE_DARK = '#d6591e'
+export const COLOR_ORANGE_LIGHT = '#fa8e5b'
+export const COLOR_BLUE = '#5790DF'
+export const COLOR_BLUE_DARK = '#00387f'
+export const COLOR_GREEN = '#21b632'
+export const COLOR_GRAY = '#e3e3e3'
+export const COLOR_GRAY_LIGHT = '#fdf8f8'
+export const COLOR_YELLOW = '#E6BF5C'
 
 export const STATUS_COLORS = {
   online: '#2de0a5',
   busy: '#f5455c',
   away: '#ffd21f',
   offline: '#cbced1',
-};
+}
 
-export const HEADER_BACKGROUND = '#000';
-export const HEADER_TITLE = '#efc455';
-export const HEADER_BACK = '#efc455';
-export const NAV_BAR_START = '#5D5D5A';
-export const NAV_BAR_END = '#222222';
-export const HEADER_BAR_START = '#DCB042';
-export const HEADER_BAR_END = '#faeac4';
-export const DARK_WEAK = '#808080';
+export const HEADER_BACKGROUND = '#000'
+export const HEADER_TITLE = '#efc455'
+export const HEADER_BACK = '#efc455'
+export const NAV_BAR_START = '#5D5D5A'
+export const NAV_BAR_END = '#222222'
+export const HEADER_BAR_START = '#DCB042'
+export const HEADER_BAR_END = '#faeac4'
+export const DARK_WEAK = '#808080'
 
 export const SWITCH_TRACK_COLOR = {
   false: '#f5455c',
   true: '#2de0a5',
-};
+}
 
 const mentions = {
   unreadColor: '#0bb203',
   tunreadColor: '#1d74f5',
   mentionGroupColor: '#F38C39',
-};
+}
 
 export const themes = {
   light: {
     activeTintColor: '#000000',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#F5F5F5',
     focusedBackground: '#ffffff',
     chatComponentBackground: '#f3f4f5',
     postBackground: '#E6EEFA',
     auxiliaryBackground: '#efeff4',
     avatarBackground: '#caced1',
     bannerBackground: '#f1f2f4',
+    titleColor: '#1D1C1C',
+    textColor: '#2F3131',
     titleText: '#000000',
     ownMsgText: '#000000',
     otherMsgText: '#ffffff',
@@ -110,6 +112,7 @@ export const themes = {
     headerSecondaryBackground: '#080808',
     headerTintColor: '#ffffff',
     headerTitleColor: '#ffffff',
+    headerColor: '#858585',
     headerSecondaryText: '#1d74f5',
     toastBackground: '#414852',
     videoBackground: '#1f2329',
@@ -136,6 +139,7 @@ export const themes = {
     chatInput: '#ffffff',
     sendButton: '#000000',
     chatInputPlaceholder: 'rgba(65, 65, 65, 0.45)',
+    placeholderColor: '#858585',
     vipColor: 'rgba(255, 255, 255, 0.6)',
     popupBackColor: '#FFFFFF',
     profileBackground: '#ffffff',
@@ -147,13 +151,15 @@ export const themes = {
   },
   dark: {
     activeTintColor: '#FFFFFF',
-    backgroundColor: '#131517',
+    backgroundColor: '#2B2A2A',
     focusedBackground: '#131517',
     chatComponentBackground: '#f3f4f5',
     postBackground: '#21242C',
     auxiliaryBackground: '#efeff4',
     avatarBackground: '#caced1',
     bannerBackground: '#f1f2f4',
+    titleColor: '#ffffff',
+    textColor: '#C4C4C4',
     titleText: '#ffffff',
     ownMsgText: '#ffffff',
     otherMsgText: '#ffffff',
@@ -181,6 +187,7 @@ export const themes = {
     headerSecondaryBackground: '#080808',
     headerTintColor: '#ffffff',
     headerTitleColor: '#ffffff',
+    headerColor: '#858585',
     headerSecondaryText: '#1d74f5',
     toastBackground: '#414852',
     videoBackground: '#1f2329',
@@ -207,6 +214,7 @@ export const themes = {
     chatInput: '#3D4354',
     sendButton: 'rgba(255, 255, 255, 0.45)',
     chatInputPlaceholder: 'rgba(255, 255, 255, 0.45)',
+    placeholderColor: '#858585',
     vipColor: 'rgba(0, 0, 0, 0.6)',
     popupBackColor: '#202326',
     profileBackground: '#131517',
@@ -216,4 +224,4 @@ export const themes = {
     profileMore: '#A2A8B8',
     messageButton: '#21242C',
   },
-};
+}

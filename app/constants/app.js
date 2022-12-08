@@ -14,7 +14,6 @@ export const MERCHANT_ID = 'merchant.com.ninasoft.vipbillionaires';
 export const Genders = [
   { value: 'male', text: I18n.t('Male') },
   { value: 'female', text: I18n.t('Female') },
-  { value: 'none', text: I18n.t('Gender_other') },
 ];
 
 export const Countries = [
