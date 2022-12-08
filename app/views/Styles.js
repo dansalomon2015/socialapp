@@ -27,7 +27,7 @@ export default StyleSheet.create({
     color: 'white',
   },
   headerContainer: {
-    marginTop: 40,
+    marginTop: 44,
     justifyContent: 'center',
     alignItems: 'center',
     height: 210,

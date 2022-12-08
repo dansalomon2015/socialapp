@@ -3,12 +3,9 @@ import {
   Image,
   SafeAreaView,
   Text,
-  TouchableOpacity,
   View,
-  ScrollView
+  ScrollView,
 } from 'react-native'
-// Geo
-// import ScrollView from 'react-native-nested-scroll-view';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from '@react-navigation/native'
 import { connect } from 'react-redux'
@@ -22,16 +19,11 @@ import images from '../../assets/images'
 import { isValidEmail } from '../../utils/validators'
 import { showErrorAlert, showToast } from '../../lib/info'
 import firebaseSdk from '../../lib/firebaseSdk'
-import { COLOR_BLUE, themes } from '../../constants/colors'
+import { COLOR_WHITE, COLOR_YELLOW } from '../../constants/colors'
 import I18n from '../../i18n'
-import CsSelectGender from '../../containers/CsSelectGender'
-import ExDatePicker from '../../containers/ExDatePicker'
-import ExSalary from '../../containers/ExSalary'
 import KeyboardView from '../../containers/KeyboardView'
-import ExYears from '../../containers/ExYears'
 import { CURRENT_USER } from '../../constants/keys'
 import { loginSuccess as loginSuccessAction } from '../../actions/login'
-import { VectorIcon } from '../../containers/VectorIcon'
 import scrollPersistTaps from '../../utils/scrollPersistTaps'
 import { sendEmail } from '../../utils/sendmail'
 import FloatingTextInput from '../../containers/FloatingTextInput'
@@ -209,272 +201,78 @@ const SignUpView = props => {
   } = state
 
   return (
-    <KeyboardView
-      contentContainerStyle={[sharedStyles.container, { backgroundColor: themes[theme].backgroundColor }]}
-      keyboardVerticalOffset={128}>
+    <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: COLOR_WHITE }}>
       <StatusBar />
-      <SafeAreaView>
+      <KeyboardView style={sharedStyles.container} keyboardVerticalOffset={128}>
         <ScrollView
-          contentContainerStyle={{
-            flexGrow: 1,
-            backgroundColor: themes[theme].backgroundColor,
-          }}
+          style={{ flex: 1, backgroundColor: COLOR_WHITE, height: '100%' }}
           {...scrollPersistTaps}
-          keyboardShouldPersistTaps="handled">
+          keyboardShouldPersistTaps="handled"
+        >
           <View style={sharedStyles.headerContainer}>
-            <Image style={styles.logo} source={images.logo_new} />
+            <Image style={styles.logo} source={images.logo} />
           </View>
           <View style={styles.formContainer}>
-            <Text style={styles.signupText}>{I18n.t('sign_up')}</Text>
-            <FloatingTextInput
-              inputRef={nameInput}
-              returnKeyType="next"
-              keyboardType="default"
-              textContentType="oneTimeCode"
-              label={I18n.t('Name')}
-              onChangeText={value => setState({ ...state, name: value })}
-              theme={theme}
-              onSubmitEditing={() => {
-                cityInput.current.focus()
-              }}
-              // error={errEmail}
-            />
-            <CsSelectGender
-              label={I18n.t('Select_Your_Gender')}
-              value={gender}
-              onChange={value => setState({ ...state, gender: value })}
-              theme={theme}
-            />
-            <FloatingTextInput
-              inputRef={cityInput}
-              returnKeyType="next"
-              keyboardType="default"
-              textContentType="oneTimeCode"
-              label={I18n.t('City')}
-              onChangeText={value => setState({ ...state, city: value })}
-              theme={theme}
-              onSubmitEditing={() => {
-                phoneInput.current.focus()
-              }}
-              // error={errEmail}
-            />
-            <FloatingTextInput
-              inputRef={phoneInput}
-              returnKeyType="next"
-              keyboardType="phone-pad"
-              textContentType="oneTimeCode"
-              label={I18n.t('Phone')}
-              onChangeText={phone => setState({ ...state, phone })}
-              theme={theme}
-              onSubmitEditing={() => {
-                emailInput.current.focus()
-              }}
-              // error={errEmail}
-            />
+            <View style={styles.description}>
+              <Text style={styles.loginTitle}>{I18n.t('sign_up')}</Text>
+              <Text>
+                <Text style={styles.loginText}>Already have an account? </Text>
+                <Text style={[{ ...sharedStyles.link, color: COLOR_YELLOW }, {
+                  fontFamily: 'Raleway',
+                  fontSize: 14,
+                }]} onPress={onGoToSignIn}>Log In </Text>
+              </Text>
+            </View>
             <FloatingTextInput
               inputRef={emailInput}
               returnKeyType="next"
               keyboardType="email-address"
               textContentType="oneTimeCode"
               label={I18n.t('Email')}
+              placeholder={'Enter your email'}
               onChangeText={email => setState({ ...state, email })}
               theme={theme}
               onSubmitEditing={() => {
                 passwordInput.current.focus()
               }}
-              // error={errEmail}
             />
             <FloatingTextInput
               inputRef={passwordInput}
               returnKeyType="next"
               secureTextEntry
               textContentType="oneTimeCode"
-              label={I18n.t('Password')}
+              label={'Create Password'}
+              placeholder={'Enter Your Password'}
               onChangeText={value => setState({ ...state, password: value })}
               theme={theme}
               onSubmitEditing={() => {
                 confirmPasswordInput.current.focus()
               }}
-              // error={errEmail}
             />
             <FloatingTextInput
               inputRef={confirmPasswordInput}
               returnKeyType="next"
               secureTextEntry
               textContentType="oneTimeCode"
-              label={I18n.t('Confirm_password')}
+              label={'Submit New Password'}
+              placeholder={'Submit Your Password'}
               onChangeText={value => setState({ ...state, confirm_password: value })}
               theme={theme}
-              onSubmitEditing={() => {
-                jobInput.current.focus()
-              }}
-              // error={errEmail}
             />
-            <ExDatePicker
-              containerStyle={styles.selectStyle}
-              inputStyle={{
-                backgroundColor: themes[theme].auxiliaryBackground,
-              }}
-              label={I18n.t('Birthday')}
-              placeholder='Select Date of Birth'
-              value={birthday}
-              topScrollEnable={topScrollEnable}
-              toggleShow={show => {
-                setState({ ...state, topScrollEnable: !show })
-              }}
-              action={({ value }) => {
-                if (!value) {
-                  return
-                }
-                setState({ ...state, birthday: value })
-              }}
-              theme={theme}
-            />
-            <FloatingTextInput
-              inputRef={jobInput}
-              returnKeyType="next"
-              keyboardType="default"
-              textContentType="oneTimeCode"
-              label={I18n.t('Job')}
-              onChangeText={value => setState({ ...state, job: value })}
-              theme={theme}
-              onSubmitEditing={() => {
-                companyInput.current.focus()
-              }}
-              // error={errEmail}
-            />
-            <FloatingTextInput
-              inputRef={companyInput}
-              returnKeyType="next"
-              keyboardType="default"
-              textContentType="oneTimeCode"
-              label={I18n.t('Company')}
-              onChangeText={value => setState({ ...state, company: value })}
-              theme={theme}
-              onSubmitEditing={() => {
-                roleInput.current.focus()
-              }}
-              // error={errEmail}
-            />
-            <FloatingTextInput
-              inputRef={roleInput}
-              returnKeyType="next"
-              keyboardType="default"
-              textContentType="oneTimeCode"
-              label={I18n.t('Role')}
-              onChangeText={value => setState({ ...state, role: value })}
-              theme={theme}
-              onSubmitEditing={() => {
-                purposeInput.current.focus()
-              }}
-              // error={errEmail}
-            />
-            <ExYears
-              containerStyle={styles.selectStyle}
-              label={I18n.t('Years_of_service')}
-              value={years_of_service}
-              topScrollEnable={topScrollEnable}
-              toggleShow={show => {
-                setState({ ...state, topScrollEnable: !show })
-              }}
-              action={({ value }) => {
-                if (!value) {
-                  return
-                }
-                setState({ ...state, years_of_service: value })
-              }}
-              theme={theme}
-            />
-            <ExSalary
-              containerStyle={styles.selectStyle}
-              label={I18n.t('Salary')}
-              value={salary}
-              topScrollEnable={topScrollEnable}
-              toggleShow={show => {
-                setState({ ...state, topScrollEnable: !show })
-              }}
-              action={({ value }) => {
-                if (!value) {
-                  return
-                }
-                setState({ ...state, salary: value })
-              }}
-              theme={theme}
-            />
-            <FloatingTextInput
-              inputRef={purposeInput}
-              returnKeyType="next"
-              keyboardType="default"
-              textContentType="oneTimeCode"
-              label={I18n.t('Membership_purpose')}
-              onChangeText={value => setState({ ...state, purpose: value })}
-              theme={theme}
-              multiline
-              // error={errEmail}
-            />
-            <View style={styles.terms}>
-              <TouchableOpacity
-                style={{ marginRight: 8 }}
-                onPress={() => setState({ ...state, allowTerms: !allowTerms })}>
-                {allowTerms ? (
-                  <VectorIcon
-                    name={'checksquare'}
-                    type={'AntDesign'}
-                    size={20}
-                    color={COLOR_BLUE}
-                  />
-                ) : (
-                  <VectorIcon
-                    name={'square-outline'}
-                    type={'Ionicons'}
-                    size={20}
-                    color={COLOR_BLUE}
-                  />
-                )}
-              </TouchableOpacity>
-              <View style={styles.termItem}>
-                <Text style={{ color: themes[theme].buttonText }}>
-                  {`${I18n.t('agree_with')} `}
-                </Text>
-                <Text
-                  style={{ color: COLOR_BLUE, fontWeight: '600' }}
-                  onPress={onGotoTerms}>
-                  {`${I18n.t('terms_and_conditions')}`}
-                </Text>
-                <Text style={{ color: themes[theme].buttonText }}>{` ${I18n.t('and')} `}</Text>
-                <Text
-                  style={{ color: COLOR_BLUE, fontWeight: '600', marginTop: 10 }}
-                  onPress={onGotoPrivacy}>
-                  {` ${I18n.t('privacy_policy')} `}
-                </Text>
-              </View>
-            </View>
             <Button
               style={styles.submitBtn}
-              title={I18n.t('sign_up')}
+              title={'Submit'}
               type="gradient"
               size="W"
-              onPress={onSubmit}
-              testID="login-view-submit"
+              // onPress={onSubmit}
               loading={isLoading}
-              disabled={!allowTerms}
               theme={theme}
               pressingHighlight
             />
-            <View style={styles.bottomContainer}>
-              <Text style={{ color: '#A3A7AF', fontWeight: '500' }}>
-                {I18n.t('Have_an_account')}
-              </Text>
-              <Text
-                style={[{ ...sharedStyles.link }, { textDecorationLine: 'none' }]}
-                onPress={onGoToSignIn}>
-                {` ${I18n.t('SignIn')}`}
-              </Text>
-            </View>
           </View>
         </ScrollView>
-      </SafeAreaView>
-    </KeyboardView>
+      </KeyboardView>
+    </SafeAreaView>
   )
 }
 

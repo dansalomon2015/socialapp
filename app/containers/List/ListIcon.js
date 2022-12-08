@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { themes } from '../../constants/colors'
-// import { CustomIcon } from '../../lib/Icons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { withTheme } from '../../theme'
 
 const styles = StyleSheet.create({
@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
 
 const ListIcon = React.memo(({ theme, name, color, style }) => (
   <View style={[styles.icon, style]}>
-    {/*<CustomIcon*/}
-    {/*	name={name}*/}
-    {/*	color={color ?? themes[theme].auxiliaryText}*/}
-    {/*	size={20}*/}
-    {/*/>*/}
+    <Icon
+      name={name}
+      color={color ?? themes[theme].auxiliaryText}
+      size={20}
+    />
   </View>
 ))
 

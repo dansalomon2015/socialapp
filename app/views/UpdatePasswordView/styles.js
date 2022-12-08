@@ -4,6 +4,7 @@ import { COLOR_WHITE } from '../../constants/colors'
 export default StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLOR_WHITE,
   },
   logo: {
     height: 82,
@@ -38,6 +39,7 @@ export default StyleSheet.create({
   description: {
     alignItems: 'center',
     marginBottom: 24,
+    paddingHorizontal: 48,
   },
   loginTitle: {
     fontSize: 24,
@@ -48,10 +50,6 @@ export default StyleSheet.create({
     fontFamily: 'Raleway',
     fontSize: 14,
     lineHeight: 16,
-  },
-  dontText: {
-    fontFamily: 'Raleway',
-    fontSize: 14,
-    color: '#4A4A4A',
+    textAlign: 'center',
   },
 })

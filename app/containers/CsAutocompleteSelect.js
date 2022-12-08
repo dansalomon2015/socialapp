@@ -1,9 +1,9 @@
-import React from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import {AutocompleteDropdown} from 'react-native-autocomplete-dropdown';
-import {themes} from '../constants/colors';
+import React from 'react'
+import { Dimensions, StyleSheet, View } from 'react-native'
+import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
+import { themes } from '../constants/colors'
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderRadius: 8,
     zIndex: 5,
-  }
-});
+  },
+})
 
 const CsAutocompletePicker = ({
   leftIcon,
@@ -47,15 +47,14 @@ const CsAutocompletePicker = ({
           backgroundColor: 'transparent',
         }}
         suggestionsListContainerStyle={{
-          backgroundColor: '#ffffff',
           width: width * 0.76,
           marginLeft: -40,
           backgroundColor: themes[theme].backgroundColor,
         }}
-        containerStyle={{width: width * 0.65, marginLeft: 15}}
+        containerStyle={{ width: width * 0.65, marginLeft: 15 }}
       />
     </View>
-  );
-};
+  )
+}
 
-export default CsAutocompletePicker;
+export default CsAutocompletePicker

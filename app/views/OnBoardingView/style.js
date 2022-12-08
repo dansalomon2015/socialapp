@@ -1,6 +1,11 @@
 import { StyleSheet } from 'react-native'
+import { COLOR_WHITE } from '../../constants/colors'
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLOR_WHITE,
+  },
   topLinearGradient: {
     height: 4,
   },
@@ -9,10 +14,10 @@ export const styles = StyleSheet.create({
     height: '100%',
   },
   logoContainer: {
-    marginVertical: 40,
+    marginTop: 140,
   },
   logo: {
-    height: 300,
+    height: 140,
     alignSelf: 'center',
     resizeMode: 'contain',
   },
@@ -22,17 +27,26 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   welcome: {
-    marginTop: 60,
+    marginTop: 20,
+    flex: 1,
+  },
+  welcomeTitle: {
+    fontSize: 22,
+    textAlign: 'center',
+    fontFamily: 'Raleway',
+    fontWeight: 'bold',
+    lineHeight: 38,
   },
   welcomeText: {
-    fontSize: 18,
-    textTransform: 'uppercase',
+    fontSize: 16,
     textAlign: 'center',
+    fontFamily: 'Raleway',
   },
   submitBtn: {
-    marginBottom: 20,
+    marginBottom: 12,
   },
   buttonWrap: {
+    justifyContent: 'flex-end',
     paddingHorizontal: 24,
     alignItems: 'center',
   },

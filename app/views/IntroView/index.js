@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Image, SafeAreaView, Text, View } from 'react-native'
+import { Image, ImageBackground, SafeAreaView, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { withTheme } from '../../theme'
 import styles from './styles'
@@ -10,6 +10,8 @@ import { themes } from '../../constants/colors'
 import I18n from '../../i18n'
 import Button from '../../containers/Button'
 import { appReady } from '../../actions/app'
+
+const theme = 'light'
 
 const slides = [
   {
@@ -32,16 +34,18 @@ const slides = [
   },
 ]
 
-const IntroView = ({ appReady, theme }) => {
+const IntroView = ({ appReady }) => {
   const sliderRef = useRef(null)
   const _renderItem = ({ item }) => (
-    <View style={styles.slide}>
-      <Image source={item.image} style={styles.image} />
-      <View style={styles.description}>
-        <Text style={[styles.title, { color: themes[theme].titleColor }]}>{item.title}</Text>
-        <Text style={[styles.text, { color: themes[theme].titleColor }]}>{item.text}</Text>
+    <ImageBackground style={styles.container} source={images.background}>
+      <View style={styles.slide}>
+        <Image source={item.image} style={styles.image} />
+        <View style={styles.description}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>{item.title}</Text>
+          <Text style={[styles.text, { color: themes[theme].titleColor }]}>{item.text}</Text>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   )
 
   const _renderPagination = (activeIndex) => {
@@ -57,7 +61,7 @@ const IntroView = ({ appReady, theme }) => {
                 />
               ))}
           </View>
-          <View style={{ marginHorizontal: 50 }}>
+          <View style={{ marginHorizontal: 48 }}>
             <Button
               style={styles.submitBtn}
               title={activeIndex < slides.length - 1 ? I18n.t('Next').toUpperCase() : 'Continue to app'}

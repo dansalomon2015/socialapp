@@ -18,7 +18,6 @@ const KeyboardView = props => {
       style={style}
       contentContainerStyle={contentContainerStyle}
       scrollEnabled={scrollEnabled}
-      alwaysBounceVertical={false}
       extraHeight={keyboardVerticalOffset}
       behavior="position">
       {children}

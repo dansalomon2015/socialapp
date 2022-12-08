@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, StyleSheet, Image, Text, Platform } from 'react-native'
 import { TextInput } from 'react-native-paper'
 
-import { themes } from '../constants/colors'
+import { COLOR_BORDER, themes } from '../constants/colors'
 import images from '../assets/images'
 
 const styles = StyleSheet.create({
@@ -21,16 +21,17 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   error: {
-    fontSize: 9,
-    fontWeight: '300',
-    color: '#DD2E2E',
+    fontFamily: 'Raleway',
+    fontSize: 14,
+    lineHeight: 16,
+    color: '#E2665E',
   },
   container: {
     marginBottom: 14,
   },
   labelText: {
-    fontFamily: 'Raleway'
-  }
+    fontFamily: 'Raleway',
+  },
 })
 
 const FloatingTextInput = props => {
@@ -97,7 +98,7 @@ const FloatingTextInput = props => {
     }
   }
 
-  const tooglePassword = () => {
+  const togglePassword = () => {
     setShowPassword(!showPassword)
   }
 
@@ -111,26 +112,26 @@ const FloatingTextInput = props => {
         style={[
           styles.textInput,
           {
-            backgroundColor: backgroundColor ?? themes[theme].backgroundColor,
+            backgroundColor: backgroundColor ?? 'transparent',
             height: multiline ? 123 : 50,
             fontSize: Platform.OS === 'ios' ? 14 : 13,
             lineHeight: Platform.OS === 'ios' ? 14 : 14,
           },
         ]}
-        outlineColor={error ? '#DD2E2E' : outlineColor || '#888888'}
-        activeOutlineColor={error ? '#DD2E2E' : themes[theme].infoText}
+        outlineColor={error ? '#E2665E' : outlineColor || COLOR_BORDER}
+        activeOutlineColor={error ? '#E2665E' : themes[theme].infoText}
         theme={{
           roundness: 8,
           borderWidth: 1,
           colors: {
-            text: themes[theme].activeTintColor,
-            placeholder: themes[theme].infoText,
+            text: error ? '#E2665E' : themes[theme].activeTintColor,
+            placeholder: themes[theme].placeholderColor,
           },
         }}
         multiline={multiline}
         secureTextEntry={!showPassword}
         placeholder={placeholder}
-        placeholderTextColor='#858585'
+        placeholderTextColor="#858585"
         {...inputProps}
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}

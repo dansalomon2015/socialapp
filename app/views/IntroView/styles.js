@@ -13,8 +13,8 @@ export default StyleSheet.create({
     marginTop: -30,
   },
   image: {
-    maxWidth: '90%',
-    height: 400,
+    maxWidth: '80%',
+    height: 300,
     resizeMode: 'contain',
     alignItems: 'center',
     justifyContent: 'center',
@@ -49,10 +49,10 @@ export default StyleSheet.create({
   },
   paginationDots: {
     height: 16,
-    margin: 16,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 48,
   },
   activatedDot: {
     width: 7,
