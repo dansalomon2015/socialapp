@@ -24,7 +24,7 @@ export default StyleSheet.create({
   },
   forgotText: {
     textAlign: 'right',
-    textDecorationLine: 'none',
+    textDecorationLine: 'underline',
     color: '#C4C4C4',
     fontFamily: 'Raleway',
     fontSize: 14,

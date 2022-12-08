@@ -282,6 +282,7 @@ export default {
   Sent_message_to_you: '{{name}} からあなたにメッセージ「{{message}}」',
   user_not_found: 'ユーザーが見当たりません',
   follow_you: 'あなたをフォローしました',
+  please_complete_these_steps_to_confirm: 'これらの手順を完了して確認してください',
 
   agree_with: '同意する',
   terms_and_conditions: '規約・条件',

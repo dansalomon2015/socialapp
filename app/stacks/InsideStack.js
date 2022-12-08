@@ -30,6 +30,7 @@ import ProductDetailView from '../views/ProductDetailView'
 import EditPostView from '../views/EditPostView'
 import ProductWebView from '../views/ProductWebView'
 import PickLibraryView from '../views/PickLibraryView'
+import UpdateProfileAndBasicInfo from '../views/UpdateProfileAndBasicInfo'
 import { MainTabBar } from '../containers/MainScreen'
 
 const Tab = createBottomTabNavigator()
@@ -88,6 +89,7 @@ const InsideStack = () => {
 
   return (
     <Inside.Navigator
+      initialRouteName="UpdateProfileAndBasicInfo"
       screenOptions={{
         ...outsideHeader,
         ...themedHeader(theme),
@@ -96,7 +98,7 @@ const InsideStack = () => {
       <Inside.Screen
         name="Home"
         component={TabStack}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Inside.Screen
         name="Recent"
@@ -117,12 +119,12 @@ const InsideStack = () => {
       <Inside.Screen
         name="FindFriend"
         component={FindFriendView}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Inside.Screen
         name="OtherProfile"
         component={OtherProfileView}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Inside.Screen name="Follow" component={FollowView} />
       <Inside.Screen name="CreatePost" component={CreatePostView} />
@@ -130,7 +132,7 @@ const InsideStack = () => {
       <Inside.Screen
         name="PostDetail"
         component={PostDetailView}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Inside.Screen name="Chat" component={ChatView} />
       <Inside.Screen name="Setting" component={SettingView} />
@@ -150,8 +152,13 @@ const InsideStack = () => {
       />
       <Inside.Screen name="ProductDetail" component={ProductDetailView} />
       <Inside.Screen name="PickLibrary" component={PickLibraryView} />
+      <Inside.Screen
+        name="UpdateProfileAndBasicInfo"
+        component={UpdateProfileAndBasicInfo}
+        options={{headerShown: false}}
+      />
     </Inside.Navigator>
-  )
+  );
 }
 
 const Drawer = createDrawerNavigator()

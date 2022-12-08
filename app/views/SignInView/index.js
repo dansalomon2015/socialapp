@@ -136,7 +136,7 @@ const SignInView = (props) => {
             />
             <View style={styles.forgotContainer}>
               <Text
-                style={[sharedStyles.link, styles.forgotText]}
+                style={styles.forgotText}
                 onPress={forgotPassword}>
                 {I18n.t('Forgot_Password')}
               </Text>

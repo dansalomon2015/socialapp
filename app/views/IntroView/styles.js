@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 import { COLOR_YELLOW } from '../../constants/colors'
+
+const { height } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
@@ -21,7 +23,7 @@ export default StyleSheet.create({
   },
   description: {
     paddingVertical: 32,
-    paddingHorizontal: 64,
+    paddingHorizontal: 42,
   },
   title: {
     fontFamily: 'Inter',
@@ -43,9 +45,10 @@ export default StyleSheet.create({
   },
   paginationContainer: {
     position: 'absolute',
-    bottom: 16,
+    bottom: height * 0.05,
     left: 16,
     right: 16,
+    height: height * 0.2
   },
   paginationDots: {
     height: 16,

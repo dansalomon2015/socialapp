@@ -282,6 +282,7 @@ export default {
   Recent: 'RECENT',
   No_files_in_device: 'There are no files on your phone',
   Sent_message_to_you: '{{name}} sent you "{{message}}"',
+  please_complete_these_steps_to_confirm: 'Please complete these steps to confirm',
 
   user_not_found: 'User not found',
   follow_you: 'follows you',
