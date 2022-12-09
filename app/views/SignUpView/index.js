@@ -229,7 +229,7 @@ const SignUpView = props => {
               keyboardType="email-address"
               textContentType="oneTimeCode"
               label={I18n.t('Email')}
-              placeholder={'Enter your email'}
+              placeholder={'Enter Your email'}
               onChangeText={email => setState({ ...state, email })}
               theme={theme}
               onSubmitEditing={() => {

@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   gradientButtonContainer: {
     width: '100%',
     borderRadius: 7,
+    alignSelf: 'center'
   },
   gradientButtonText: {
     borderRadius: 7,
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
   },
   text: {
     ...sharedStyles.textMedium,
-    fontSize: 16,
+    fontSize: 14,
     letterSpacing: 1.6,
     textAlign: 'center',
     fontFamily: 'Raleway',

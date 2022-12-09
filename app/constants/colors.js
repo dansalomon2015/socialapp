@@ -111,7 +111,7 @@ export const themes = {
     headerBackground: '#1B202D',
     headerSecondaryBackground: '#080808',
     headerTintColor: '#ffffff',
-    headerTitleColor: '#ffffff',
+    headerTitleColor: '#2F3131',
     headerColor: '#858585',
     headerSecondaryText: '#1d74f5',
     toastBackground: '#414852',
