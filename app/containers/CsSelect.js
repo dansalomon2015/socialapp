@@ -1,25 +1,36 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import RNPickerSelect from 'react-native-picker-select'
+import { Dimensions, StyleSheet, Text, View, TouchableOpacity, ScrollView, Pressable } from 'react-native'
+import Modal from 'react-native-modal'
 
 import sharedStyles from '../views/Styles'
 import { themes } from '../constants/colors'
 import { isIOS } from '../utils/deviceInfo'
 import { VectorIcon } from './VectorIcon'
 
+const {width, height} = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
+    width: width * 0.92,
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'center',
+    paddingLeft: 10,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    justifyContent: 'space-between',
+    height: 56,
+    borderColor: '#4A4A4A'
   },
   label: {
-    paddingHorizontal: 3,
-    backgroundColor: 'white',
-    position: 'absolute',
-    left: 10,
-    zIndex: 1,
-    fontSize: 11,
-    top: -7,
-    color: '#ffffffbb',
+    marginLeft: 15,
+    fontFamily: 'Raleway',
+    fontWeight: '400',
+    color: '#4A4A4A',
+    marginBottom: 5,
+    fontSize: 14
   },
   iosPadding: {
     height: 50,
@@ -49,85 +60,93 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   iconStyle: {
-    position: 'absolute',
-    right: 12,
-    paddingTop: 14,
+   
   },
+  modalItems:{
+    width: width * 0.9,
+    backgroundColor: '#ffffff',
+    paddingVertical: 10,
+    maxHeight: height * 0.6,
+    paddingTop: 40,
+    borderRadius: 8
+  },
+  closeIcon: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    zIndex: 9999
+  },
+  itemContainer:{
+      borderWidth: 1,
+      width: '80%',
+      alignSelf: 'center',
+      marginVertical: 10,
+      height: 40,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 6
+  }
 })
 
 export const CsSelect = React.memo(
   ({
      label,
-     containerStyle,
      options = [],
      placeholder,
-     onChange,
-     disabled,
-     value: initialValue,
+     value,
      theme,
+     onSelect
    }) => {
-    const [selected, setSelected] = useState(
-      !Array.isArray(initialValue) && (initialValue === 0 ? -1 : initialValue),
-    )
+
+    const [selected, setSelected] = useState(false)
+
     const items = options.map(option => ({
-      label: option.text,
-      value: option.value === 0 ? -1 : option.value,
+      label: option,
+      value: option,
     }))
-    const pickerStyle = {
-      ...styles.viewContainer,
-      ...(isIOS ? styles.iosPadding : {}),
-      borderColor: '#999999',
-      backgroundColor: themes[theme].backgroundColor,
+   
+    const [showItems, setShowItems] = useState(false);
+
+    const onSelectItem = (value) => {
+      onSelect(value)
+      setSelected(true)
+      setShowItems(false)
     }
 
     return (
-      <View style={[styles.container, containerStyle]}>
-        {label ? (
-          <Text
-            contentDescription={null}
-            accessibilityLabel={null}
-            style={[
-              styles.label,
-              {
-                backgroundColor: themes[theme].backgroundColor,
-              },
-            ]}>
-            {label}
-          </Text>
-        ) : null}
-        <View style={styles.wrap}>
-          <RNPickerSelect
-            items={items}
-            placeholder={placeholder ? { label: placeholder, value: null } : {}}
-            useNativeAndroidPickerStyle={false}
-            value={selected}
-            disabled={disabled}
-            onValueChange={value => {
-              setSelected(value)
-              onChange(value === -1 ? 0 : value)
-            }}
-            style={{
-              viewContainer: pickerStyle,
-              inputAndroidContainer: pickerStyle,
-            }}
-            textInputProps={{
-              style: {
-                ...styles.pickerText,
-                color: selected
-                  ? themes[theme].titleText
-                  : themes[theme].auxiliaryText,
-              },
-            }}
-          />
+      <>
+        {label && <Text style={styles.label}>{label}</Text>}
+        <TouchableOpacity
+          style={[styles.container]}
+          onPress={() => setShowItems(!showItems)}>
+          <Text style={[ { color: selected ? '#000000' : '#C4C4C4' } ]}>{!selected ? placeholder : value}</Text>
           <VectorIcon
             type={'Entypo'}
-            name={!selected ? 'chevron-thin-up' : 'chevron-thin-down'}
+            name={selected ? 'chevron-thin-right' : 'chevron-thin-down'}
             color={themes[theme].activeTintColor}
             size={20}
             style={styles.iconStyle}
           />
-        </View>
-      </View>
-    )
+        </TouchableOpacity>
+        <Modal isVisible={showItems} onBackdropPress={() => setShowItems(false)}>
+          <View style={styles.modalItems}>
+            <VectorIcon
+              type="AntDesign"
+              name="close"
+              size={20}
+              style={styles.closeIcon}
+              onPress={() => setShowItems(false)}
+            />
+            <ScrollView>
+              {items.map(item => (
+                <TouchableOpacity style={styles.itemContainer} onPress={()=>onSelectItem(item.value)}>
+                  <Text>{item.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+        </Modal>
+      </>
+    );
   },
 )

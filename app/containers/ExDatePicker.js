@@ -1,16 +1,25 @@
 import React, { useMemo, useRef, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { Dimensions, StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-native'
 import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker'
-import { TextInput } from 'react-native-paper'
 import { date_str_format, DATE_STRING_DISPLAY_FORMAT } from '../utils/datetime'
 import { COLOR_BLUE, COLOR_YELLOW, themes } from '../constants/colors'
 import sharedStyles from '../views/Styles'
 import { VectorIcon } from './VectorIcon'
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     marginBottom: 10,
+    width: width * 0.92,
+    alignSelf: 'center',
+    borderWidth: 1,
+    height: 56,
+    borderRadius: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    justifyContent: 'space-between'
   },
   label: {
     marginBottom: 4,
@@ -19,7 +28,7 @@ const styles = StyleSheet.create({
   },
   content: {},
   selectContainer: {
-    flex: 1,
+    // flex: 1,
     borderRadius: 8,
     paddingBottom: 8,
     width: '100%',
@@ -29,6 +38,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
     marginTop: 8,
+    alignSelf: 'center',
+    position: 'absolute',
+    top: -height * 0.4,
+    zIndex: 99999,
+    width: width * 0.9
   },
   valueContainer: {
     flexDirection: 'row',
@@ -93,13 +107,18 @@ const styles = StyleSheet.create({
     right: 12,
   },
   textInput: {
-    flex: 1,
-    height: 50,
+    height: '100%',
     marginBottom: 3,
   },
   iconWrap: {
     flex: 1,
     justifyContent: 'center',
+  },
+  labelText: {
+    fontFamily: 'Raleway',
+    marginBottom: 5,
+    marginLeft: 16,
+    color: '#4A4A4A'
   },
 })
 
@@ -121,16 +140,14 @@ const ExDatePicker = props => {
   const { label, containerStyle, theme, error, value: currentDate, placeholder } = props
   const inputBox = useRef(null)
 
-  const rightIcon = () => {
+  const RightIcon = () => {
     return (
-      <View style={styles.iconWrap}>
         <VectorIcon
           type={'Entypo'}
           name={show ? 'chevron-thin-up' : 'chevron-thin-right'}
           color={themes[theme].activeTintColor}
           size={18}
         />
-      </View>
     )
   }
 
@@ -144,77 +161,54 @@ const ExDatePicker = props => {
   }, [currentDate])
 
   return (
-    <View style={[styles.container, containerStyle]}>
-      <View style={styles.content}>
-        <TextInput
-          ref={ref => {inputBox.current = ref}}
-          placeholder={placeholder}
-          onFocus={() => setShow(true)}
-          onBlur={() => setShow(false)}
-          onChangeText={() => setShow(true)}
-          value={
-            currentDate
-              ? date_str_format(currentDate, DATE_STRING_DISPLAY_FORMAT)
-              : null
-          }
-          mode='outlined'
+    <>
+    {label && <Text style={styles.labelText}>{label}</Text>}
+      <TouchableOpacity
+        style={[styles.container, containerStyle]}
+        onPress={() => setShow(true)}>
+        <Text
           style={[
-            styles.textInput,
-            {
-              fontSize: Platform.OS === 'ios' ? 14 : 13,
-              lineHeight: Platform.OS === 'ios' ? 14 : 14,
-              backgroundColor: themes[theme].backgroundColor,
-            },
-          ]}
-          outlineColor={error ? '#DD2E2E' : '#888888'}
-          activeOutlineColor={error ? '#DD2E2E' : themes[theme].infoText}
-          theme={{
-            roundness: 8,
-            borderWidth: 1,
-            colors: {
-              text: themes[theme].activeTintColor,
-              placeholder: themes[theme].infoText,
-            },
-          }}
-          right={
-            <TextInput.Icon
-              name={rightIcon}
-              style={{ marginTop: 15 }}
-              onPress={() => setShow(!show)}
-            />
-          }
-          showSoftInputOnFocus={false}
-        />
-        {show ? (
+            styles.date,
+            {color: currentDate ? '#000000' : '#C4C4C4'},
+          ]}>
+          {currentDate
+            ? date_str_format(currentDate, DATE_STRING_DISPLAY_FORMAT)
+            : 'Select date'}
+        </Text>
+        {show && (
           <View style={styles.selectContainer}>
             <DatePicker
               mode="calendar"
               style={[
-                { borderRadius: 10 },
-                theme === 'dark' && { borderWidth: 1, borderColor: 'white' },
+                {borderRadius: 10},
+                theme === 'dark' && {borderWidth: 1, borderColor: 'white'},
               ]}
-              options={theme === 'dark' ? calendarDarkOption : calendarLightOption}
+              options={
+                theme === 'dark' ? calendarDarkOption : calendarLightOption
+              }
               current={selectedDate}
               selected={selectedDate}
               onSelectedChange={date => {
-                console.log('MMM - ' + date)
-                let units = date.split('/')
-                const newDate = `${units[1]}/${units[2]}/${units[0]}`
-                units = selectedDate.split(/-|\//)
-                const selDate = `${units[1]}/${units[2]}/${units[0]}`
+                console.log('MMM - ' + date);
+                let units = date.split('/');
+                const newDate = `${units[1]}/${units[2]}/${units[0]}`;
+                units = selectedDate.split(/-|\//);
+                const selDate = `${units[1]}/${units[2]}/${units[0]}`;
                 if (newDate !== selDate) {
                   if (inputBox.current) {
-                    inputBox.current.blur()
+                    inputBox.current.blur();
                   }
-                  props.action({ value: newDate })
+                  props.action({value: newDate});
+                  setShow(false);
                 }
               }}
             />
           </View>
-        ) : null}
-      </View>
-    </View>
-  )
+        )}
+        {<RightIcon />}
+      </TouchableOpacity>
+    </>
+  );
 }
 
 export default ExDatePicker

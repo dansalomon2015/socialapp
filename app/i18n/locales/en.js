@@ -283,6 +283,7 @@ export default {
   No_files_in_device: 'There are no files on your phone',
   Sent_message_to_you: '{{name}} sent you "{{message}}"',
   please_complete_these_steps_to_confirm: 'Please complete these steps to confirm',
+  Phone_number: 'Phone number',
 
   user_not_found: 'User not found',
   follow_you: 'follows you',
@@ -310,4 +311,5 @@ export default {
   text: 'Text',
   placeholder_reply: 'Send your reply',
   media: 'Media',
+  update: 'UPDATE'
 };

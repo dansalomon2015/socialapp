@@ -139,7 +139,7 @@ export const themes = {
     chatInput: '#ffffff',
     sendButton: '#000000',
     chatInputPlaceholder: 'rgba(65, 65, 65, 0.45)',
-    placeholderColor: '#858585',
+    placeholderColor: '#C4C4C4',
     vipColor: 'rgba(255, 255, 255, 0.6)',
     popupBackColor: '#FFFFFF',
     profileBackground: '#ffffff',
@@ -148,6 +148,7 @@ export const themes = {
     profileHandle: '#8E8E8E',
     profileMore: '#898989',
     messageButton: '#ffffff',
+    inputLabel: '#4A4A4A'
   },
   dark: {
     activeTintColor: '#FFFFFF',
@@ -223,5 +224,6 @@ export const themes = {
     profileHandle: '#A2A8B8',
     profileMore: '#A2A8B8',
     messageButton: '#21242C',
+    inputLabel: '#ffffff'
   },
 }
