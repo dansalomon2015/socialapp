@@ -61,6 +61,7 @@ const TabStack = () => {
   return (
     <Tab.Navigator
       tabBar={props => <MainTabBar theme={theme} {...props} />}
+      initialRouteName='Message'
       // tabBar={props => <View style={{ height: 60 }}></View>}
       screenOptions={{
         ...outsideHeader,
@@ -78,7 +79,10 @@ const TabStack = () => {
         component={ProfileView}
         options={{ headerShown: false }}
       />
-      <Tab.Screen name="Message" component={MessageView} />
+      <Tab.Screen
+        name="Message"
+        component={MessageView}
+        options={{ headerShown: false }} />
       <Tab.Screen name="Activity" component={ActivityView} />
     </Tab.Navigator>
   )
@@ -89,7 +93,7 @@ const InsideStack = () => {
 
   return (
     <Inside.Navigator
-      initialRouteName="UpdateProfileAndBasicInfo"
+      // initialRouteName="UpdateProfileAndBasicInfo"
       screenOptions={{
         ...outsideHeader,
         ...themedHeader(theme),
@@ -98,7 +102,7 @@ const InsideStack = () => {
       <Inside.Screen
         name="Home"
         component={TabStack}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Inside.Screen
         name="Recent"
@@ -119,12 +123,12 @@ const InsideStack = () => {
       <Inside.Screen
         name="FindFriend"
         component={FindFriendView}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Inside.Screen
         name="OtherProfile"
         component={OtherProfileView}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Inside.Screen name="Follow" component={FollowView} />
       <Inside.Screen name="CreatePost" component={CreatePostView} />
@@ -132,7 +136,7 @@ const InsideStack = () => {
       <Inside.Screen
         name="PostDetail"
         component={PostDetailView}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Inside.Screen name="Chat" component={ChatView} />
       <Inside.Screen name="Setting" component={SettingView} />
@@ -155,17 +159,17 @@ const InsideStack = () => {
       <Inside.Screen
         name="UpdateProfileAndBasicInfo"
         component={UpdateProfileAndBasicInfo}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Inside.Navigator>
-  );
+  )
 }
 
 const Drawer = createDrawerNavigator()
 const DrawerNavigator = () => (
   <Drawer.Navigator
     drawerContent={({ navigation, state }) => (
-      <SidebarView navigation={navigation} state={state}/>
+      <SidebarView navigation={navigation} state={state} />
     )}
     screenOptions={{ swipeEnabled: true }}
     drawerType="back">

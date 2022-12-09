@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   FlatList,
   Image,
-  RefreshControl, SafeAreaView,
+  RefreshControl,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -13,7 +13,7 @@ import firestore from '@react-native-firebase/firestore'
 import Feather from 'react-native-vector-icons/Feather'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
-import { COLOR_BORDER, themes } from '../../constants/colors'
+import { themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import images from '../../assets/images'
@@ -27,12 +27,9 @@ import * as HeaderButton from '../../containers/HeaderButton'
 import debounce from '../../utils/debounce'
 import { navigateToProfile } from '../../utils/const'
 import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
-import FloatingTextInput from '../../containers/FloatingTextInput'
-import sharedStyles from '../Styles'
-import { SearchBox } from '../../containers/SearchBox'
 
 const MessageView = props => {
-  const tabBarHeight = useBottomTabBarHeight()
+  const tabbarHeight = useBottomTabBarHeight()
   const [state, setState] = useState({
     text: '',
     data: [],
@@ -42,7 +39,7 @@ const MessageView = props => {
     unReads: 0,
     users: [],
   })
-  const {  navigation, user } = props
+  const { theme, navigation, user } = props
   const { searchData, data, refreshing, loading, users } = state
 
   const unSubscribeRoom = useRef(null)
@@ -171,7 +168,7 @@ const MessageView = props => {
   }
 
   const onSearchChangeText = text => {
-    console.log(text)
+    // console.log(text);
     // setState({
     //   ...state,
     //   text: text.trim(),
@@ -207,12 +204,10 @@ const MessageView = props => {
     navigation.navigate('Chat', { room: item })
   }
 
-  const theme = 'light'
-  // const theme = 'dark'
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
       onPress={() => onPressItem(item)}
-      style={[styles.itemContainer, { marginBottom: index === data.length - 1 ? tabBarHeight : undefined }]}>
+      style={[styles.itemContainer, { marginBottom: index === data.length - 1 ? tabbarHeight : undefined }]}>
       <View style={styles.avatarContainer}>
         <Image
           source={
@@ -249,113 +244,78 @@ const MessageView = props => {
       </View>
     </TouchableOpacity>
   )
-  return (
-    <View style={[sharedStyles.container, { backgroundColor: themes[theme].backgroundColor }]}>
-      <SafeAreaView>
-        <View style={styles.searchForm}>
-          <SearchBox
-            onChangeText={onSearchChangeText}
-            onSubmitEditing={onSearch}
-            theme={theme}
-            clearTextType
-            placeholder={I18n.t('Search')}
-          />
-        </View>
-      </SafeAreaView>
-      {/*<View style={[styles.container, style]}>*/}
-      {/*  {hasSearch && (*/}
 
-      {/*  )}*/}
-      {/*  {children}*/}
-      {/*</View>*/}
-    </View>
-    //
-    // <MainScreen
-    //   navigation={navigation}
-    //   // hasSearch
-    //   onSearchChangeText={onSearchChangeText}
-    //   onSearch={onSearch}>
-    //   <StatusBar />
-    //
-    //   <View style={styles.formContainer}>
-    //     <FloatingTextInput
-    //       // inputRef={emailInput}
-    //       // iconLeft={images.mail}
-    //       // returnKeyType="next"
-    //       // keyboardType="email-address"
-    //       textContentType="oneTimeCode"
-    //       label={I18n.t('Email')}
-    //       placeholder={'Enter your email'}
-    //       // onChangeText={val => setEmail(val)}
-    //       theme={theme}
-    //       outlineColor={COLOR_BORDER}
-    //       // error={errEmail}
-    //     />
-    //   </View>
-    //
-    //   {/*<View style={{ backgroundColor: themes[theme].messageHeader }}>*/}
-    //   {/*  {users.length > 0 || !loading ? (*/}
-    //   {/*    <ScrollView*/}
-    //   {/*      horizontal*/}
-    //   {/*      contentContainerStyle={{*/}
-    //   {/*        paddingVertical: 20,*/}
-    //   {/*        paddingLeft: 15,*/}
-    //   {/*      }}>*/}
-    //   {/*      {users.map((user, i) => (*/}
-    //   {/*        <TouchableOpacity*/}
-    //   {/*          key={i}*/}
-    //   {/*          onPress={() =>*/}
-    //   {/*            navigateToProfile(navigation, props.user, user)*/}
-    //   {/*          }*/}
-    //   {/*          style={styles.postUser}>*/}
-    //   {/*          <Image*/}
-    //   {/*            source={*/}
-    //   {/*              user?.avatar ? { uri: user.avatar } : images.default_avatar*/}
-    //   {/*            }*/}
-    //   {/*            style={styles.postUserAvatar}*/}
-    //   {/*          />*/}
-    //   {/*          <Text*/}
-    //   {/*            numberOfLines={2}*/}
-    //   {/*            style={[*/}
-    //   {/*              styles.postUserName,*/}
-    //   {/*              { color: themes[theme].activeTintColor },*/}
-    //   {/*            ]}>*/}
-    //   {/*            {user?.displayName}*/}
-    //   {/*          </Text>*/}
-    //   {/*        </TouchableOpacity>*/}
-    //   {/*      ))}*/}
-    //   {/*    </ScrollView>*/}
-    //   {/*  ) : null}*/}
-    //   {/*</View>*/}
-    //   {/*<View style={{ flex: 1, backgroundColor: themes[theme].messageHeader }}>*/}
-    //   {/*  <View*/}
-    //   {/*    style={{*/}
-    //   {/*      flex: 1,*/}
-    //   {/*      borderTopLeftRadius: 50,*/}
-    //   {/*      borderTopRightRadius: 50,*/}
-    //   {/*      backgroundColor: themes[theme].messageList,*/}
-    //   {/*    }}>*/}
-    //   {/*    {loading && (*/}
-    //   {/*      <ActivityIndicator absolute theme={theme} size={'large'} />*/}
-    //   {/*    )}*/}
-    //   {/*    {data.length > 0 ? (*/}
-    //   {/*      <FlatList*/}
-    //   {/*        data={data}*/}
-    //   {/*        renderItem={renderItem}*/}
-    //   {/*        keyExtractor={item => item.id}*/}
-    //   {/*        refreshControl={*/}
-    //   {/*          <RefreshControl*/}
-    //   {/*            refreshing={refreshing}*/}
-    //   {/*            onRefresh={onRefresh}*/}
-    //   {/*            tintColor={themes[theme].actionColor}*/}
-    //   {/*          />*/}
-    //   {/*        }*/}
-    //   {/*        contentContainerStyle={{ paddingVertical: 30 }}*/}
-    //   {/*      />*/}
-    //   {/*    ) : null}*/}
-    //   {/*  </View>*/}
-    //   {/*</View>*/}
-    // </MainScreen>
+  return (
+    <MainScreen
+      navigation={navigation}
+      // hasSearch
+      onSearchChangeText={onSearchChangeText}
+      onSearch={onSearch}>
+      <StatusBar />
+
+      <View style={{ backgroundColor: themes[theme].messageHeader }}>
+        {users.length > 0 || !loading ? (
+          <ScrollView
+            horizontal
+            contentContainerStyle={{
+              paddingVertical: 20,
+              paddingLeft: 15,
+            }}>
+            {users.map((user, i) => (
+              <TouchableOpacity
+                key={i}
+                onPress={() =>
+                  navigateToProfile(navigation, props.user, user)
+                }
+                style={styles.postUser}>
+                <Image
+                  source={
+                    user?.avatar ? { uri: user.avatar } : images.default_avatar
+                  }
+                  style={styles.postUserAvatar}
+                />
+                <Text
+                  numberOfLines={2}
+                  style={[
+                    styles.postUserName,
+                    { color: themes[theme].activeTintColor },
+                  ]}>
+                  {user?.displayName}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        ) : null}
+      </View>
+      <View style={{ flex: 1, backgroundColor: themes[theme].messageHeader }}>
+        <View
+          style={{
+            flex: 1,
+            borderTopLeftRadius: 50,
+            borderTopRightRadius: 50,
+            backgroundColor: themes[theme].messageList,
+          }}>
+          {loading && (
+            <ActivityIndicator absolute theme={theme} size={'large'} />
+          )}
+          {data.length > 0 ? (
+            <FlatList
+              data={data}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={onRefresh}
+                  tintColor={themes[theme].actionColor}
+                />
+              }
+              contentContainerStyle={{ paddingVertical: 30 }}
+            />
+          ) : null}
+        </View>
+      </View>
+    </MainScreen>
   )
 }
 const mapStateToProps = state => ({

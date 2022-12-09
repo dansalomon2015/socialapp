@@ -154,11 +154,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: height * 0.18,
     borderTopLeftRadius: 8,
-    borderTopLeftRadius: 8,
     alignItems: 'center',
     paddingHorizontal: 24,
     paddingTop: 5,
-    alignItems: 'center',
   },
   termsAndConditions: {
     color: '#DBAA2E',

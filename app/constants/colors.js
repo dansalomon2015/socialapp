@@ -13,7 +13,6 @@ export const COLOR_BUTTON_GOOGLE = '#ce011b'
 export const COLOR_BUTTON_APPLE_LIGHT = '#000000'
 export const COLOR_BUTTON_APPLE_DARK = '#FFFFFF'
 export const COLOR_BUTTON_APPLE_BLACK = '#FFFFFF'
-
 export const COLOR_BUTTON_TEXT_PRIMARY = '#FFFFFF'
 export const COLOR_BUTTON_TEXT_SECONDARY = '#FFFFFF'
 export const COLOR_BUTTON_TEXT_DEFAULT = '#000000'
@@ -43,7 +42,7 @@ export const COLOR_BLUE = '#5790DF'
 export const COLOR_BLUE_DARK = '#00387f'
 export const COLOR_GREEN = '#21b632'
 export const COLOR_GRAY = '#e3e3e3'
-export const COLOR_GRAY_LIGHT = '#fdf8f8'
+export const COLOR_GRAY_DARK = '#858585'
 export const COLOR_YELLOW = '#E6BF5C'
 
 export const STATUS_COLORS = {
@@ -61,6 +60,8 @@ export const NAV_BAR_END = '#222222'
 export const HEADER_BAR_START = '#DCB042'
 export const HEADER_BAR_END = '#faeac4'
 export const DARK_WEAK = '#808080'
+
+export const COLOR_TRANSPARENT = 'transparent'
 
 export const SWITCH_TRACK_COLOR = {
   false: '#f5455c',

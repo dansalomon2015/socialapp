@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Text, TextInput, Image } from 'react-native'
 import sharedStyles from '../views/Styles'
-import { COLOR_DANGER, COLOR_TEXT, themes } from '../constants/colors'
+import { COLOR_DANGER, themes } from '../constants/colors'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { isIOS } from '../utils/deviceInfo'
 

@@ -493,7 +493,4 @@ const mapDispatchToProps = dispatch => ({
   fetchUnread: params => dispatch(fetchUnreadAction(params)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withSafeAreaInsets(withTheme(ChatView)))
+export default connect(mapStateToProps, mapDispatchToProps)(withSafeAreaInsets(withTheme(ChatView)))

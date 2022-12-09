@@ -1,12 +1,17 @@
-import React from 'react'
-import { View, StyleSheet, TextInput } from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native'
 import sharedStyles from '../views/Styles'
 import { withTheme } from '../theme'
-import { themes, COLOR_BLACK } from '../constants/colors'
+import { themes, COLOR_TRANSPARENT, COLOR_GRAY_DARK } from '../constants/colors'
 import { VectorIcon } from './VectorIcon'
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    borderStyle: 'solid',
+    borderColor: COLOR_GRAY_DARK,
+    borderWidth: 0.5,
+    borderRadius: 14,
+  },
   searchBox: {
     alignItems: 'center',
     borderRadius: 24,
@@ -17,9 +22,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   input: {
+    fontFamily: 'Hind Vadodara',
     height: 40,
     flex: 1,
-    fontSize: 17,
+    fontSize: 16,
     marginLeft: 8,
     paddingTop: 0,
     paddingBottom: 0,
@@ -31,51 +37,75 @@ const styles = StyleSheet.create({
   cancelText: {
     ...sharedStyles.textRegular,
     fontSize: 17,
+    backgroundColor: 'red',
   },
 })
 
 export const SearchBox = ({
-                            onChangeText,
-                            onSubmitEditing,
-                            testID,
-                            hasCancel,
-                            onCancelPress,
-                            inputRef,
-                            placeholder,
-                            theme,
-                            ...props
-                          }) => (
-  <View
-    style={[
-      styles.container,
-      { backgroundColor: themes[theme].backgroundColor },
-    ]}>
-    <View style={[styles.searchBox, { backgroundColor: themes[theme].searchboxBackground }]}>
-      <VectorIcon
-        name="search"
-        type="Ionicons"
-        size={18}
-        color={themes[theme].auxiliaryText}
-      />
-      <TextInput
-        ref={inputRef}
-        autoCapitalize="none"
-        autoCorrect={false}
-        blurOnSubmit
-        clearButtonMode="while-editing"
-        placeholder={placeholder ?? 'Search'}
-        returnKeyType="search"
-        style={[styles.input, { color: themes[theme].activeTintColor }]}
-        testID={testID}
-        underlineColorAndroid="transparent"
-        onChangeText={onChangeText}
-        onSubmitEditing={onSubmitEditing}
-        placeholderTextColor={themes[theme].auxiliaryText}
-        theme={theme}
-        {...props}
-      />
+  onChangeText,
+  onSubmitEditing,
+  testID,
+  hasCancel,
+  onCancelPress,
+  inputRef,
+  placeholder,
+  theme,
+  clearTextType,
+  ...props
+}) => {
+  const [isShowClear, setShowClear] = useState(false)
+  const [text, setText] = useState('')
+  const onChangeTextInput = (_text) => {
+    setText(_text)
+    setShowClear(_text && _text.length > 0)
+    onChangeText(_text)
+  }
+  const clear = () => {
+    setText('')
+    setShowClear(false)
+    onChangeText('')
+  }
+
+  return (
+    <View style={styles.container}>
+      <View style={[styles.searchBox, { backgroundColor: COLOR_TRANSPARENT }]}>
+        <VectorIcon
+          name="search"
+          type="Ionicons"
+          size={18}
+          color={themes[theme].auxiliaryText}
+        />
+        <TextInput
+          ref={inputRef}
+          value={text}
+          autoCapitalize="none"
+          autoCorrect={false}
+          blurOnSubmit
+          placeholder={placeholder ?? 'Search'}
+          returnKeyType="search"
+          style={[styles.input, { color: themes[theme].activeTintColor }]}
+          testID={testID}
+          underlineColorAndroid="transparent"
+          onChangeText={onChangeTextInput}
+          onSubmitEditing={onSubmitEditing}
+          placeholderTextColor={themes[theme].auxiliaryText}
+          theme={theme}
+          {...props}
+        />
+        {
+          isShowClear
+            ? (<TouchableOpacity onPress={clear}>
+                {
+                  clearTextType
+                    ? (<Text style={{ color: themes[theme].auxiliaryText }}>Clear</Text>)
+                    : (<VectorIcon name="close" type="Ionicons" size={18} color={themes[theme].auxiliaryText} />)
+                }
+              </TouchableOpacity>
+            ) : (<></>)
+        }
+      </View>
     </View>
-  </View>
-)
+  )
+}
 
 export default withTheme(SearchBox)
