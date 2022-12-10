@@ -89,7 +89,6 @@ const InsideStack = () => {
 
   return (
     <Inside.Navigator
-      initialRouteName="UpdateProfileAndBasicInfo"
       screenOptions={{
         ...outsideHeader,
         ...themedHeader(theme),

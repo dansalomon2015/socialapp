@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, ScrollView, Text, View } from 'react-native'
+import { Image, ScrollView, Text, View, SafeAreaView } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux'
 import StatusBar from '../../containers/StatusBar'
@@ -7,7 +7,9 @@ import { withTheme } from '../../theme'
 import styles from './styles'
 import images from '../../assets/images'
 import sharedStyles from '../../views/Styles'
+
 import {
+  COLOR_WHITE,
   NAV_BAR_END,
   NAV_BAR_START,
   themes,
@@ -15,58 +17,60 @@ import {
 import I18n from '../../i18n'
 import scrollPersistTaps from '../../utils/scrollPersistTaps'
 
+import { Avatar } from 'react-native-paper'
+import BasicInfoUploaded from '../../containers/BasicInfoUploaded'
+import ExperienceUploaded from '../../containers/ExperienceUploaded'
+
 const theme = 'light'
 
-const ThankYouView = props => {
+const ThankYouView = ({ user }) => {
+
+  const { displayName, gender, location, city, phone, birthday, salary, job, company, years_of_service } = user
+
   return (
-    <View
+    <SafeAreaView
       style={[
         sharedStyles.container,
-        { backgroundColor: themes[theme].navbarBackground },
+        { flexDirection: 'column', backgroundColor: themes[theme].backgroundColor }
       ]}>
-      <StatusBar />
       <ScrollView
         {...scrollPersistTaps}
-        style={{ flex: 1 }}
+        style={{flex: 1}}
         contentContainerStyle={{
           flexGrow: 1,
-          backgroundColor: themes[theme].navbarBackground,
+          backgroundColor: themes[theme].backgroundColor,
         }}>
-        <LinearGradient style={styles.logoContainer} colors={[NAV_BAR_START, NAV_BAR_END]}>
-          <View
-            style={styles.logoInnerContainer}
-            colors={[NAV_BAR_START, NAV_BAR_END]}>
-            <Image style={styles.logo} source={images.logo} />
-            <Image style={styles.logoText} source={images.logo_text} />
-          </View>
-        </LinearGradient>
-        <View
+        <Text style={styles.logoutText}>Logout</Text>
+        <Image style={styles.logo} source={images.logo} />
+        <Text
           style={[
-            styles.contentContainer,
-            { backgroundColor: themes[theme].backgroundColor, borderTopLeftRadius: 30, borderTopRightRadius: 30 },
+            styles.mainText,
+            {marginTop: 40, color: themes[theme].activeTintColor},
           ]}>
-          <Text style={[styles.mainText, { marginTop: 40, color: themes[theme].activeTintColor }]}>
-            {I18n.t('Thank_you_title_1')}
-          </Text>
-          <Text style={[styles.subText, { color: themes[theme].activeTintColor }]}>
-            Your application will be examined and within a few hours you will
-            be notified of the result.
-          </Text>
-          <Text style={[styles.subText, { color: themes[theme].activeTintColor }]}>
-            * There might be cases your application might not be approved. In
-            that case, the payment will be fully refunded.
-          </Text>
-          <Text style={[styles.subText, { color: themes[theme].activeTintColor }]}>
-            このたびは入会のご申請をいただきありがとうございます。これより入会審査の後数時間で結果をお知らせさせていただきます。
-          </Text>
-          <Text style={[styles.subText, { color: themes[theme].activeTintColor }]}>
-            ※審査の結果、入会のご希望に添えない場合もございます。
-            その場合にはいただいた代金は返金させていただきます。
-          </Text>
-        </View>
+          {I18n.t('Thank_you_title_1')}
+        </Text>
+        <Text style={[styles.subText, {color: themes[theme].activeTintColor}]}>
+          Your application will be examined and within a few hours you will be
+          notified of the result.
+        </Text>
+        <Text style={[styles.subText, {color: themes[theme].activeTintColor}]}>
+          * There might be cases your application might not be approved. In that
+          case, the payment will be fully refunded.
+        </Text>
+        <Text style={[styles.subText, {color: themes[theme].activeTintColor}]}>
+          このたびは入会のご申請をいただきありがとうございます。これより入会審査の後数時間で結果をお知らせさせていただきます。
+        </Text>
+        <Text style={[styles.subText, {color: themes[theme].activeTintColor}]}>
+          ※審査の結果、入会のご希望に添えない場合もございます。
+          その場合にはいただいた代金は返金させていただきます。
+        </Text>
+        <Text style={styles.submittedApplicationText}>Your submitted applicationn</Text>
+        <Avatar.Image size={56} source={images.default_avatar} style={styles.avatar} />
+        <BasicInfoUploaded name={displayName} gender={gender} dob={birthday} phone={phone} location={location.length > 0 ? location : city} />
+        <ExperienceUploaded salary={salary} jobTitle={job} companyName={company} numberOfYears={years_of_service} />
       </ScrollView>
-    </View>
-  )
+    </SafeAreaView>
+  );
 }
 
 const mapStateToProps = state => ({
