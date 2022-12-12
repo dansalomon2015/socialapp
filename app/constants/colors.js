@@ -151,7 +151,10 @@ export const themes = {
     inputLabel: '#4A4A4A',
     optionButtonBackground: 'rgba(177, 177, 177, 0.1)',
     languageTextColor: '#C4C4C4',
-    chevronIcon: '#D2C6A8'
+    chevronIcon: '#D2C6A8',
+    tabBar_background: '#FFFFFF',
+    active_tabBar_icon_color: '#605E5E',
+    inactive_tabBar_icon_color: '#C4C4C4'
   },
   dark: {
     activeTintColor: '#FFFFFF',
@@ -229,7 +232,9 @@ export const themes = {
     messageButton: '#21242C',
     inputLabel: '#ffffff',
     languageTextColor: '#ffffff',
-    chevronIcon: '#D2C6A8'
-
+    chevronIcon: '#D2C6A8',
+    tabBar_background: '#2B2D2E',
+    active_tabBar_icon_color: '#C4C4C4',
+    inactive_tabBar_icon_color: '#605E5E'
   },
 }

@@ -98,7 +98,14 @@ const images = {
   stars: require('./images/stars.png'),
   user_friends: require('./images/user_friends.png'),
   logout_icon: require('./images/logout_icon.png'),
-  en_language: require('./images/en_language.png')
+  en_language: require('./images/en_language.png'),
+  
+  // TabBar Images
+  home: require('./images/home.png'),
+  user: require('./images/User.png'),
+  message_outlined: require('./images/message_outlined.png'),
+  notification: require('./images/notification.png')
+
 };
 
 export default images;
