@@ -7,7 +7,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
 
-export const VectorIcon = React.memo(({ type, name, size, color, style }) => {
+export const VectorIcon = React.memo(({ type, name, size, color, style, onPress }) => {
   switch (type) {
     case 'MaterialCommunityIcons':
       return (
@@ -16,23 +16,24 @@ export const VectorIcon = React.memo(({ type, name, size, color, style }) => {
           size={size}
           color={color}
           style={style}
+          onPress={onPress}
         />
       )
     case 'MaterialIcons':
       return (
-        <MaterialIcons name={name} size={size} color={color} style={style} />
+        <MaterialIcons name={name} size={size} color={color} style={style} onPress={onPress} />
       )
     case 'Ionicons':
-      return <Ionicons name={name} size={size} color={color} style={style} />
+      return <Ionicons name={name} size={size} color={color} style={style} onPress={onPress} />
     case 'AntDesign':
-      return <AntDesign name={name} size={size} color={color} style={style} />
+      return <AntDesign name={name} size={size} color={color} style={style} onPress={onPress} />
     case 'FontAwesome':
-      return <FontAwesome name={name} size={size} color={color} style={style} />
+      return <FontAwesome name={name} size={size} color={color} style={style} onPress={onPress} />
     case 'Entypo':
-      return <Entypo name={name} size={size} color={color} style={style} />
+      return <Entypo name={name} size={size} color={color} style={style} onPress={onPress} />
     default:
       return (
-        <FontAwesome5 name={name} size={size} color={color} style={style} />
+        <FontAwesome5 name={name} size={size} color={color} style={style} onPress={onPress} />
       )
   }
 })

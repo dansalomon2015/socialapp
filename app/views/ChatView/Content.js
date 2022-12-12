@@ -40,13 +40,11 @@ const Content = React.memo(({ msg, photo, isOwn, onPressMedia, theme }) => {
     <View
       style={[
         styles.messageInnerContent,
-        isOwn
-          ? {
-            backgroundColor: themes[theme].messageOwnBackground,
-          }
-          : {
-            backgroundColor: themes[theme].messageOtherBackground,
-          },
+        {
+          backgroundColor: isOwn ? themes[theme].messageOwnBackground : themes[theme].messageOtherBackground,
+          borderTopRightRadius: isOwn ? 0 : 30,
+          borderBottomLeftRadius: isOwn ? 30 : 0,
+        },
       ]}>
       {/* <Image
         source={images.chat_background_regular}

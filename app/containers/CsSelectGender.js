@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, Pressable } from 'react-native'
+import { View, StyleSheet, Text, Pressable, Dimensions } from 'react-native'
 
 import sharedStyles from '../views/Styles'
 import {
@@ -9,14 +9,19 @@ import {
 import { Genders } from '../constants/app'
 import { VectorIcon } from './VectorIcon'
 
+const { width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 10,
+    width: width * 0.92,
+    alignSelf: 'center'
   },
   label: {
     marginBottom: 4,
     fontSize: 14,
-    ...sharedStyles.textSemibold,
+    fontFamily: 'Raleway'
+
   },
   required: {
     marginBottom: 10,
@@ -32,18 +37,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
+    width: '100%',
   },
   optionContainer: {
     borderWidth: 1,
     borderColor: '#4A4A4A',
-    flex: 1,
     flexDirection: 'row',
     height: 48,
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 11,
     borderRadius: 8,
-    marginHorizontal: 3
+    // marginHorizontal: 3
+    width: '49%'
   },
   optionText: {
     fontFamily: 'Raleway'
@@ -69,7 +75,7 @@ const CsSelectGender = (props) => {
         <Text
           contentDescription={null}
           accessibilityLabel={null}
-          style={[styles.label, {color: themes[theme].titleText}]}>
+          style={[styles.label, {color: themes[theme].inputLabel}]}>
           {label}
           {required ? (
             <Text

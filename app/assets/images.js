@@ -90,7 +90,8 @@ const images = {
   profile_search: require('./images/profile_search.png'),
   profile_more: require('./images/profile_more.png'),
   reward_badge: require('./images/reward_badge.png'),
-  fast_email_sending: require('./images/fast_email_sending.png')
+  fast_email_sending: require('./images/fast_email_sending.png'),
+  location_home: require('./images/location_home.png')
 };
 
 export default images;

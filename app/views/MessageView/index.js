@@ -45,7 +45,7 @@ const MessageView = props => {
     unReads: 0,
     users: [],
   })
-  const { navigation, user } = props
+  const { theme, navigation, user } = props
   const { searchData, data, refreshing, loading, users } = state
 
   const unSubscribeRoom = useRef(null)
@@ -210,10 +210,7 @@ const MessageView = props => {
     navigation.navigate('Chat', { room: item })
   }
 
-  const theme = 'light'
-  // const theme = 'dark'
   const isOnline = true
-  console.log(data)
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
       onPress={() => onPressItem(item)}
@@ -248,7 +245,7 @@ const MessageView = props => {
           {item.lastMessage}
         </Text>
       </View>
-      <View style={{ alignItems: 'flex-end' }}>
+      <View style={{ alignItems: 'flex-end', marginHorizontal: 2 }}>
         <Text style={[styles.itemMessage, { color: '#C7C7C7' }]}>
           {dateStringFromNowShort(item.date)}
         </Text>

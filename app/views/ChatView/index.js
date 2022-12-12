@@ -158,7 +158,7 @@ const ChatView = props => {
         />
       ),
       headerStyle: {
-        backgroundColor: themes[theme].chatBackground,
+        backgroundColor: themes[theme].chatPrimaryColor,
         elevation: 0,
         shadowOpacity: 0,
         borderBottomWidth: 0,
@@ -413,7 +413,7 @@ const ChatView = props => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: themes[theme].chatBackground }}>
+    <SafeAreaView style={{ backgroundColor: themes[theme].chatPrimaryColor }}>
       <StatusBar />
       {sending && <ActivityIndicator absolute theme={theme} size={'large'} />}
       <FlatList
@@ -438,12 +438,11 @@ const ChatView = props => {
       />
 
       <Animated.View style={{ transform: [{ translateY: heightReplica }] }}>
-        <RNSafeAreaView>
+        <RNSafeAreaView style={{backgroundColor: themes[theme].chatFocusedColor, paddingHorizontal: 16}}>
           <View
             style={[
               styles.inputContainer,
               {
-                backgroundColor: themes[theme].chatInput,
                 marginBottom: Platform.OS === 'android' ? 10 : 0,
               },
             ]}>
@@ -454,7 +453,7 @@ const ChatView = props => {
               keyboardType="default"
               multiline
               blurOnSubmit={true}
-              placeholder={I18n.t('enter_message')}
+              placeholder={'Type Something'}
               placeholderTextColor={themes[theme].chatInputPlaceholder}
               onChangeText={onChangeText}
               onSubmitEditing={sendMessage}

@@ -61,7 +61,7 @@ const TabStack = () => {
   return (
     <Tab.Navigator
       tabBar={props => <MainTabBar theme={theme} {...props} />}
-      initialRouteName='Message'
+      initialRouteName="Message"
       // tabBar={props => <View style={{ height: 60 }}></View>}
       screenOptions={{
         ...outsideHeader,

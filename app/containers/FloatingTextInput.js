@@ -1,9 +1,19 @@
-import React, { useState } from 'react'
-import { View, StyleSheet, Image, Text, Platform } from 'react-native'
-import { TextInput } from 'react-native-paper'
+import React, {useState} from 'react';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  Platform,
+  Dimensions,
+} from 'react-native';
+import {TextInput} from 'react-native';
 
-import { COLOR_BORDER, themes } from '../constants/colors'
-import images from '../assets/images'
+import {COLOR_BORDER, themes} from '../constants/colors';
+import images from '../assets/images';
+import Styles from '../views/Styles';
+
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   iconWrap: {
@@ -17,8 +27,9 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    height: 50,
-    marginBottom: 3,
+    height: '100%',
+    width: '100%',
+    paddingHorizontal: 10,
   },
   error: {
     fontFamily: 'Raleway',
@@ -28,11 +39,19 @@ const styles = StyleSheet.create({
   },
   container: {
     marginBottom: 14,
+    width: width * 0.92,
+    alignSelf: 'center',
+    borderRadius: 7,
+    borderColor: '#4A4A4A',
+    borderWidth: 1,
   },
   labelText: {
     fontFamily: 'Raleway',
+    marginBottom: 5,
+    marginLeft: 16,
+    color: '#4A4A4A',
   },
-})
+});
 
 const FloatingTextInput = props => {
   const {
@@ -55,11 +74,11 @@ const FloatingTextInput = props => {
     multiline,
     value,
     ...inputProps
-  } = props
+  } = props;
 
-  const [showPassword, setShowPassword] = useState(!secureTextEntry)
+  const [showPassword, setShowPassword] = useState(!secureTextEntry);
 
-  const { dangerColor } = themes[theme]
+  const {dangerColor} = themes[theme];
 
   const leftIcon = () => {
     return (
@@ -67,11 +86,11 @@ const FloatingTextInput = props => {
         <Image
           source={iconLeft}
           testID={testID ? `${testID}-icon-left` : null}
-          style={[styles.icon, { tintColor: themes[theme].infoText }]}
+          style={[styles.icon, {tintColor: themes[theme].infoText}]}
         />
       </View>
-    )
-  }
+    );
+  };
 
   const rightIcon = () => {
     if (error) {
@@ -83,7 +102,7 @@ const FloatingTextInput = props => {
             style={[styles.icon]}
           />
         </View>
-      )
+      );
     }
     if (secureTextEntry) {
       return (
@@ -91,56 +110,54 @@ const FloatingTextInput = props => {
           <Image
             source={showPassword ? images.eye_show : images.eye_hidden}
             testID={testID ? `${testID}-icon-right` : null}
-            style={[styles.icon, { tintColor: themes[theme].infoText }]}
+            style={[styles.icon, {tintColor: themes[theme].infoText}]}
           />
         </View>
-      )
+      );
     }
-  }
+  };
 
   const togglePassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   return (
-    <View style={styles.container}>
+    <>
       <Text style={styles.labelText}>{label}</Text>
-      <TextInput
-        ref={inputRef}
-        value={value}
-        mode="outlined"
-        style={[
-          styles.textInput,
-          {
-            backgroundColor: backgroundColor ?? 'transparent',
-            height: multiline ? 123 : 50,
-            fontSize: Platform.OS === 'ios' ? 14 : 13,
-            lineHeight: Platform.OS === 'ios' ? 14 : 14,
-          },
-        ]}
-        outlineColor={error ? '#E2665E' : outlineColor || COLOR_BORDER}
-        activeOutlineColor={error ? '#E2665E' : themes[theme].infoText}
-        theme={{
-          roundness: 8,
-          borderWidth: 1,
-          colors: {
-            text: error ? '#E2665E' : themes[theme].activeTintColor,
-            placeholder: themes[theme].placeholderColor,
-          },
-        }}
-        multiline={multiline}
-        secureTextEntry={!showPassword}
-        placeholder={placeholder}
-        placeholderTextColor="#858585"
-        {...inputProps}
-      />
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-    </View>
-  )
-}
+      <View style={[styles.container, {height: multiline ? 123 : 56}]}>
+        <TextInput
+          ref={inputRef}
+          value={value}
+          mode="outlined"
+          style={[
+            styles.textInput,
+            {
+              backgroundColor: backgroundColor ?? 'transparent',
+              fontSize: Platform.OS === 'ios' ? 14 : 13,
+              lineHeight: Platform.OS === 'ios' ? 14 : 14,
+            },
+          ]}
+          outlineColor={error ? '#E2665E' : outlineColor || COLOR_BORDER}
+          activeOutlineColor={error ? '#E2665E' : themes[theme].infoText}
+          theme={{
+            colors: {
+              text: error ? '#E2665E' : themes[theme].activeTintColor,
+              placeholder: themes[theme].placeholderColor,
+            },
+          }}
+          secureTextEntry={!showPassword}
+          placeholder={placeholder}
+          placeholderTextColor={themes[theme].placeholderColor}
+          {...inputProps}
+        />
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+      </View>
+    </>
+  );
+};
 
 FloatingTextInput.defaultProps = {
   error: '',
-}
+};
 
-export default FloatingTextInput
+export default FloatingTextInput;

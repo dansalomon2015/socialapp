@@ -12,7 +12,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 4,
     maxHeight: 100,
-    borderRadius: 25,
     marginHorizontal: 16,
   },
   input: {
@@ -62,11 +61,12 @@ export default StyleSheet.create({
     marginHorizontal: 4,
     minHeight: 42,
     minWidth: 50,
-    borderRadius: 20,
+    borderTopLeftRadius: 30,
+    borderBottomRightRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 15,
-    paddingVertical: 6,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
   },
   photoInnerContent: {
     marginHorizontal: 8,
@@ -86,12 +86,16 @@ export default StyleSheet.create({
     position: 'absolute',
   },
   messageOwnText: {
+    fontFamily: 'Raleway',
+    fontWeight: '500',
     fontSize: 14,
-    lineHeight: 21,
+    lineHeight: 22,
   },
   messageOtherText: {
+    fontFamily: 'Raleway',
+    fontWeight: '500',
     fontSize: 14,
-    lineHeight: 21,
+    lineHeight: 22,
   },
   imageMsg: {
     width: 200,
@@ -123,6 +127,7 @@ export default StyleSheet.create({
     marginVertical: 8,
   },
   dateSepText: {
+    fontFamily: 'Hind Vadodara',
     textAlign: 'center',
     fontSize: 12,
   },
