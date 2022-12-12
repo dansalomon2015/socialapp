@@ -148,7 +148,10 @@ export const themes = {
     profileHandle: '#8E8E8E',
     profileMore: '#898989',
     messageButton: '#ffffff',
-    inputLabel: '#4A4A4A'
+    inputLabel: '#4A4A4A',
+    optionButtonBackground: 'rgba(177, 177, 177, 0.1)',
+    languageTextColor: '#C4C4C4',
+    chevronIcon: '#D2C6A8'
   },
   dark: {
     activeTintColor: '#FFFFFF',
@@ -224,6 +227,9 @@ export const themes = {
     profileHandle: '#A2A8B8',
     profileMore: '#A2A8B8',
     messageButton: '#21242C',
-    inputLabel: '#ffffff'
+    inputLabel: '#ffffff',
+    languageTextColor: '#ffffff',
+    chevronIcon: '#D2C6A8'
+
   },
 }

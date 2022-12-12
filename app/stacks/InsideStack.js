@@ -1,4 +1,5 @@
 import React from 'react'
+import { Dimensions } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { ThemeContext } from '../theme'
 import { outsideHeader, themedHeader, StackAnimation } from '../utils/navigation'
@@ -35,6 +36,8 @@ import { MainTabBar } from '../containers/MainScreen'
 
 const Tab = createBottomTabNavigator()
 const Inside = createStackNavigator()
+
+const { width } = Dimensions.get('window');
 
 const HomeStack = () => {
   const { theme } = React.useContext(ThemeContext)
@@ -89,7 +92,6 @@ const InsideStack = () => {
 
   return (
     <Inside.Navigator
-      initialRouteName="UpdateProfileAndBasicInfo"
       screenOptions={{
         ...outsideHeader,
         ...themedHeader(theme),
@@ -167,8 +169,14 @@ const DrawerNavigator = () => (
     drawerContent={({ navigation, state }) => (
       <SidebarView navigation={navigation} state={state}/>
     )}
-    screenOptions={{ swipeEnabled: true }}
-    drawerType="back">
+    screenOptions={{ 
+      swipeEnabled: true,
+      drawerStyle: {
+        width: Dimensions.get('window').width
+      }
+     }}
+    drawerType="back"
+    >
     <Drawer.Screen
       name="InsideStack"
       component={InsideStack}
