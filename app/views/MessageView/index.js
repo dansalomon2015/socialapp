@@ -13,13 +13,13 @@ import firestore from '@react-native-firebase/firestore'
 import Feather from 'react-native-vector-icons/Feather'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
-import { COLOR_BORDER, themes } from '../../constants/colors'
+import { COLOR_BORDER, COLOR_GRAY_DARK, COLOR_WHITE, themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import images from '../../assets/images'
 import styles from './styles'
 import firebaseSdk from '../../lib/firebaseSdk'
-import { dateStringFromNow } from '../../utils/datetime'
+import { dateStringFromNow, dateStringFromNowShort } from '../../utils/datetime'
 import ActivityIndicator from '../../containers/ActivityIndicator'
 import I18n from '../../i18n'
 import MainScreen from '../../containers/MainScreen'
@@ -30,6 +30,9 @@ import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
 import FloatingTextInput from '../../containers/FloatingTextInput'
 import sharedStyles from '../Styles'
 import { SearchBox } from '../../containers/SearchBox'
+import scrollPersistTaps from '../../utils/scrollPersistTaps'
+import { Badge } from 'react-native-paper'
+import moment from 'moment'
 
 const MessageView = props => {
   const tabBarHeight = useBottomTabBarHeight()
@@ -42,7 +45,7 @@ const MessageView = props => {
     unReads: 0,
     users: [],
   })
-  const {  navigation, user } = props
+  const { navigation, user } = props
   const { searchData, data, refreshing, loading, users } = state
 
   const unSubscribeRoom = useRef(null)
@@ -171,7 +174,7 @@ const MessageView = props => {
   }
 
   const onSearchChangeText = text => {
-    console.log(text)
+    // console.log(text)
     // setState({
     //   ...state,
     //   text: text.trim(),
@@ -209,10 +212,15 @@ const MessageView = props => {
 
   const theme = 'light'
   // const theme = 'dark'
+  const isOnline = true
+  console.log(data)
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
       onPress={() => onPressItem(item)}
-      style={[styles.itemContainer, { marginBottom: index === data.length - 1 ? tabBarHeight : undefined }]}>
+      style={[styles.itemContainer, {
+        backgroundColor: themes[theme].chatSecondaryColor,
+        marginBottom: index === data.length - 1 ? tabBarHeight : undefined,
+      }]}>
       <View style={styles.avatarContainer}>
         <Image
           source={
@@ -222,140 +230,70 @@ const MessageView = props => {
           }
           style={styles.itemImage}
         />
-        {item.unReads > 0 && (
-          <View style={styles.unreadContainer}>
-            <Text style={styles.unread}>{item.unReads}</Text>
-          </View>
-        )}
+        <Badge
+          visible={true}
+          size={12}
+          style={[styles.badge, { backgroundColor: isOnline ? '#32D674' : '#2B2A2A' }, { borderColor: themes[theme].chatBadgeBorderColor }]}>
+        </Badge>
       </View>
       <View style={styles.itemContent}>
-        <View style={styles.itemHeader}>
-          <Text
-            style={[styles.itemTitle, { color: themes[theme].activeTintColor }]}>
-            {item.account?.displayName}
-          </Text>
-          <Text style={[styles.itemTime, { color: themes[theme].message }]}>
-            {dateStringFromNow(item.date)}
-          </Text>
-        </View>
-        <View style={styles.itemFooter}>
-          <Text
-            style={[styles.itemMessage, { color: themes[theme].message }]}
-            ellipsizeMode="tail"
-            numberOfLines={2}>
-            {item.lastMessage}
-          </Text>
-        </View>
+        <Text
+          style={[styles.itemTitle, { color: themes[theme].activeTintColor }]}>
+          {item.account?.displayName}
+        </Text>
+        <Text
+          style={styles.itemMessage}
+          ellipsizeMode="tail"
+          numberOfLines={1}>
+          {item.lastMessage}
+        </Text>
+      </View>
+      <View style={{ alignItems: 'flex-end' }}>
+        <Text style={[styles.itemMessage, { color: '#C7C7C7' }]}>
+          {dateStringFromNowShort(item.date)}
+        </Text>
+        <Text style={[styles.itemMessage, { color: '#C7C7C7' }]}>
+          {item.unReads > 0 ? item.unReads : ''}
+        </Text>
       </View>
     </TouchableOpacity>
   )
   return (
-    <View style={[sharedStyles.container, { backgroundColor: themes[theme].backgroundColor }]}>
-      <SafeAreaView>
-        <View style={styles.searchForm}>
-          <SearchBox
-            onChangeText={onSearchChangeText}
-            onSubmitEditing={onSearch}
-            theme={theme}
-            clearTextType
-            placeholder={I18n.t('Search')}
-          />
+    <View style={[sharedStyles.container, { backgroundColor: themes[theme].chatPrimaryColor, paddingHorizontal: 16 }]}>
+      {loading && (
+        <ActivityIndicator absolute theme={theme} size={'large'} />
+      )}
+      <SafeAreaView style={sharedStyles.container}>
+        <SearchBox
+          onChangeText={onSearchChangeText}
+          onSubmitEditing={onSearch}
+          theme={theme}
+          clearTextType
+          placeholder={I18n.t('Search')}
+        />
+        <View style={styles.chatRoomCounter}>
+          <Text style={[styles.chatRoomText, { color: themes[theme].titleColor }]}>Chat</Text>
+          <Badge style={{ backgroundColor: COLOR_GRAY_DARK, color: COLOR_WHITE }}>3</Badge>
+        </View>
+
+        <View style={{ flex: 1 }}>
+          {data.length > 0 ? (
+            <FlatList
+              data={data}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={onRefresh}
+                  tintColor={themes[theme].actionColor}
+                />
+              }
+            />
+          ) : null}
         </View>
       </SafeAreaView>
-      {/*<View style={[styles.container, style]}>*/}
-      {/*  {hasSearch && (*/}
-
-      {/*  )}*/}
-      {/*  {children}*/}
-      {/*</View>*/}
     </View>
-    //
-    // <MainScreen
-    //   navigation={navigation}
-    //   // hasSearch
-    //   onSearchChangeText={onSearchChangeText}
-    //   onSearch={onSearch}>
-    //   <StatusBar />
-    //
-    //   <View style={styles.formContainer}>
-    //     <FloatingTextInput
-    //       // inputRef={emailInput}
-    //       // iconLeft={images.mail}
-    //       // returnKeyType="next"
-    //       // keyboardType="email-address"
-    //       textContentType="oneTimeCode"
-    //       label={I18n.t('Email')}
-    //       placeholder={'Enter your email'}
-    //       // onChangeText={val => setEmail(val)}
-    //       theme={theme}
-    //       outlineColor={COLOR_BORDER}
-    //       // error={errEmail}
-    //     />
-    //   </View>
-    //
-    //   {/*<View style={{ backgroundColor: themes[theme].messageHeader }}>*/}
-    //   {/*  {users.length > 0 || !loading ? (*/}
-    //   {/*    <ScrollView*/}
-    //   {/*      horizontal*/}
-    //   {/*      contentContainerStyle={{*/}
-    //   {/*        paddingVertical: 20,*/}
-    //   {/*        paddingLeft: 15,*/}
-    //   {/*      }}>*/}
-    //   {/*      {users.map((user, i) => (*/}
-    //   {/*        <TouchableOpacity*/}
-    //   {/*          key={i}*/}
-    //   {/*          onPress={() =>*/}
-    //   {/*            navigateToProfile(navigation, props.user, user)*/}
-    //   {/*          }*/}
-    //   {/*          style={styles.postUser}>*/}
-    //   {/*          <Image*/}
-    //   {/*            source={*/}
-    //   {/*              user?.avatar ? { uri: user.avatar } : images.default_avatar*/}
-    //   {/*            }*/}
-    //   {/*            style={styles.postUserAvatar}*/}
-    //   {/*          />*/}
-    //   {/*          <Text*/}
-    //   {/*            numberOfLines={2}*/}
-    //   {/*            style={[*/}
-    //   {/*              styles.postUserName,*/}
-    //   {/*              { color: themes[theme].activeTintColor },*/}
-    //   {/*            ]}>*/}
-    //   {/*            {user?.displayName}*/}
-    //   {/*          </Text>*/}
-    //   {/*        </TouchableOpacity>*/}
-    //   {/*      ))}*/}
-    //   {/*    </ScrollView>*/}
-    //   {/*  ) : null}*/}
-    //   {/*</View>*/}
-    //   {/*<View style={{ flex: 1, backgroundColor: themes[theme].messageHeader }}>*/}
-    //   {/*  <View*/}
-    //   {/*    style={{*/}
-    //   {/*      flex: 1,*/}
-    //   {/*      borderTopLeftRadius: 50,*/}
-    //   {/*      borderTopRightRadius: 50,*/}
-    //   {/*      backgroundColor: themes[theme].messageList,*/}
-    //   {/*    }}>*/}
-    //   {/*    {loading && (*/}
-    //   {/*      <ActivityIndicator absolute theme={theme} size={'large'} />*/}
-    //   {/*    )}*/}
-    //   {/*    {data.length > 0 ? (*/}
-    //   {/*      <FlatList*/}
-    //   {/*        data={data}*/}
-    //   {/*        renderItem={renderItem}*/}
-    //   {/*        keyExtractor={item => item.id}*/}
-    //   {/*        refreshControl={*/}
-    //   {/*          <RefreshControl*/}
-    //   {/*            refreshing={refreshing}*/}
-    //   {/*            onRefresh={onRefresh}*/}
-    //   {/*            tintColor={themes[theme].actionColor}*/}
-    //   {/*          />*/}
-    //   {/*        }*/}
-    //   {/*        contentContainerStyle={{ paddingVertical: 30 }}*/}
-    //   {/*      />*/}
-    //   {/*    ) : null}*/}
-    //   {/*  </View>*/}
-    //   {/*</View>*/}
-    // </MainScreen>
   )
 }
 const mapStateToProps = state => ({

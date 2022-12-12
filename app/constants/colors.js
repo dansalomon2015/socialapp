@@ -84,7 +84,7 @@ export const themes = {
     auxiliaryBackground: '#efeff4',
     avatarBackground: '#caced1',
     bannerBackground: '#f1f2f4',
-    titleColor: '#1D1C1C',
+    titleColor: '#2F3131',
     textColor: '#2F3131',
     titleText: '#000000',
     ownMsgText: '#000000',
@@ -149,6 +149,11 @@ export const themes = {
     profileHandle: '#8E8E8E',
     profileMore: '#898989',
     messageButton: '#ffffff',
+
+    chatPrimaryColor: '#FFFFFF',
+    chatSecondaryColor: '#FBFBFB',
+    chatFocusedColor: '#F2F2F2',
+    chatBadgeBorderColor: '#F3F3F3',
   },
   dark: {
     activeTintColor: '#FFFFFF',
@@ -224,5 +229,10 @@ export const themes = {
     profileHandle: '#A2A8B8',
     profileMore: '#A2A8B8',
     messageButton: '#21242C',
+
+    chatPrimaryColor: '#2F3131',
+    chatSecondaryColor: '#3C3E3E',
+    chatFocusedColor: '#2B2A2A',
+    chatBadgeBorderColor: '#1D1C1C',
   },
 }
