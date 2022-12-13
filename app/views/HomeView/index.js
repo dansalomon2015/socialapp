@@ -19,6 +19,7 @@ import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import NoFriends from './NoFriends'
 import ActivityIndicator from '../../containers/ActivityIndicator'
+import MainHeader from '../../containers/MainHeader'
 import * as HeaderButton from '../../containers/HeaderButton'
 import MainScreen from '../../containers/MainScreen'
 import firebaseSdk, {
@@ -276,22 +277,7 @@ const HomeView = props => {
   return (
     <MainScreen navigation={navigation}>
       <StatusBar />
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 5 }}>
-        <HeaderButton.Drawer
-          navigation={navigation}
-          testID="rooms-list-view-sidebar"
-          theme={theme}
-        />
-        <View style={{ flex: 1, alignItems: 'center' }}>
-          <Image source={images.home_logo} style={styles.homeLogo} />
-        </View>
-        <HeaderButton.Search
-          title="menu"
-          navigation={navigation}
-          testID="rooms-list-view-create-channel"
-          theme={theme}
-        />
-      </View>
+      <MainHeader avatarImage='' />
       {isUpdating && (
         <ActivityIndicator absolute theme={theme} size={'large'} />
       )}

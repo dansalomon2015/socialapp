@@ -105,7 +105,9 @@ const images = {
   home_icon_white: require('./images/home_icon_white.png'),
   user: require('./images/User.png'),
   message_outlined: require('./images/message_outlined.png'),
-  notification: require('./images/notification.png')
+  notification: require('./images/notification.png'),
+  menu_icon_dark: require('./images/menu_icon_dark.png'),
+  menu_icon_light: require('./images/menu_icon_light.png')
 
 };
 
