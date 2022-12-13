@@ -135,11 +135,7 @@ const MessageView = props => {
       querySnapShot.forEach(doc => {
         const room = doc.data()
         if (room.sender === user.userId || room.receiver === user.userId) {
-          const receiver = users.find(
-            u =>
-              u.userId ===
-              (room.sender === user.userId ? room.receiver : room.sender),
-          )
+          const receiver = users.find(u => u.userId === (room.sender === user.userId ? room.receiver : room.sender))
           let unReads = 0
           if (room.confirmUser === user.userId) {
             unReads = room.unReads
@@ -175,36 +171,56 @@ const MessageView = props => {
   }
 
   const onSearchChangeText = text => {
-    // console.log(text)
-    // setState({
-    //   ...state,
-    //   text: text.trim(),
-    //   loading: false,
-    // });
+    setState({
+      ...state,
+      text: text.trim(),
+      loading: false,
+    })
+  }
+
+  const onSearchMessage = async (roomID, text) => {
+    const messagesRef = await firestore().collection(firebaseSdk.TBL_MESSAGE)
+    const snapshot = await messagesRef.where('roomId', '==', roomID).get()
+    if (snapshot.empty) {
+      return false
+    }
+
+    let isExistCounter = 0
+    snapshot.forEach(doc => {
+      if (doc.data().message.toLowerCase().indexOf(text.toLowerCase()) >= 0) {
+        isExistCounter++
+      }
+    })
+
+    return isExistCounter > 0
+
   }
 
   const onSearch = () => {
-    // const {text, data} = state;
-    // // Search
-    // if (text.length > 0) {
-    //   let searchData = data.filter(d => {
-    //     const key = d.account.displayName;
-    //     return key.toLowerCase().indexOf(text.toLowerCase()) >= 0;
-    //   });
-    //   setState({
-    //     ...state,
-    //     searchData,
-    //     loading: false,
-    //     refreshing: false,
-    //   });
-    // } else {
-    //   setState({
-    //     ...state,
-    //     searchData: data,
-    //     loading: false,
-    //     refreshing: false,
-    //   });
-    // }
+    const { text, data } = state
+    if (text.length > 0) {
+      let searchData = []
+      data.map(async d => {
+        if (d.account.displayName.toLowerCase().indexOf(text.toLowerCase()) >= 0) {
+          searchData.push(d)
+        } else {
+          await onSearchMessage(d.id, text) ? searchData.push(d) : null
+        }
+      })
+      setState({
+        ...state,
+        searchData,
+        loading: false,
+        refreshing: false,
+      })
+    } else {
+      setState({
+        ...state,
+        searchData: data,
+        loading: false,
+        refreshing: false,
+      })
+    }
   }
 
   const onPressItem = item => {
@@ -271,11 +287,27 @@ const MessageView = props => {
         />
         <View style={styles.chatRoomCounter}>
           <Text style={[styles.chatRoomText, { color: themes[theme].titleColor }]}>Chat</Text>
-          <Badge style={{ backgroundColor: COLOR_GRAY_DARK, color: COLOR_WHITE }}>3</Badge>
+          <Badge style={{ backgroundColor: COLOR_GRAY_DARK, color: COLOR_WHITE }}>
+            {searchData && searchData.length > 0 ? searchData.length : data.length}
+          </Badge>
         </View>
 
         <View style={{ flex: 1 }}>
-          {data.length > 0 ? (
+          {state.text.length > 0 && (
+            <FlatList
+              data={searchData}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={onRefresh}
+                  tintColor={themes[theme].actionColor}
+                />
+              }
+            />
+          )}
+          {state.text.length < 1 && data.length > 0 ? (
             <FlatList
               data={data}
               renderItem={renderItem}
