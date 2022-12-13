@@ -102,6 +102,7 @@ const images = {
   
   // TabBar Images
   home: require('./images/home.png'),
+  home_icon_white: require('./images/home_icon_white.png'),
   user: require('./images/User.png'),
   message_outlined: require('./images/message_outlined.png'),
   notification: require('./images/notification.png')

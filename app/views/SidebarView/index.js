@@ -184,7 +184,7 @@ const SidebarView = (props) => {
             color={themes[theme].activeTintColor}
             style={styles.closeIcon}
           />
-          <Text>Clear</Text>
+          <Text style={[ { color: themes[theme].activeTintColor } ]}>Clear</Text>
         </Pressable>
       </View>
       <ScrollView
@@ -206,7 +206,7 @@ const SidebarView = (props) => {
           rightIcon
           rightIconName="share"
         />
-        <Text style={styles.menuText}>Menu</Text>
+        <Text style={[styles.menuText, { color: themes[theme].activeTintColor }]}>Menu</Text>
         {menus.map(m => (
           <SidebarItem
             key={m.id}
@@ -244,11 +244,11 @@ const SidebarView = (props) => {
       </TouchableOpacity>
       <View style={styles.bottomView}>
         <View style={styles.privacyTermsEulaContainer}>
-          <Text style={styles.text} onPress={()=>{}}>Privacy policy</Text>
-          <Text>.</Text>
-          <Text style={styles.text} onPress={()=>{}}>Terms of services</Text>
-          <Text>.</Text>
-          <Text style={styles.text} onPress={()=>{}}>Eula</Text>
+          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={()=>{}}>Privacy policy</Text>
+          <Text style={[{ color: themes[theme].activeTintColor }]}>.</Text>
+          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={()=>{}}>Terms of services</Text>
+          <Text style={[{ color: themes[theme].activeTintColor }]}>.</Text>
+          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={()=>{}}>Eula</Text>
         </View>
         <View style={styles.languageContainer}>
           <Image source={images.en_language} />

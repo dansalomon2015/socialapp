@@ -176,19 +176,42 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
 
   return (
     <>
-      <View
-        style={styles.mainTabContainer}>
+      <View style={styles.mainTabContainer}>
         <TabBarSvg />
         <View style={styles.tabBarContainer}>
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Home')}>
-            <Image source={images.home} style={[styles.tabImage, { opacity: state.index === 0 ? 1 : 0.4, borderColor: state.index === 0 ? themes[theme].active_tabBar_icon_color: themes[theme].inactive_tabBar_icon_color }]} />
+            <Image
+              source={theme == 'dark' ? images.home : images.home_icon_white}
+              style={[
+                styles.tabImage,
+                {
+                  opacity: state.index === 0 ? 1 : 0.4,
+                  borderColor:
+                    state.index === 0
+                      ? themes[theme].active_tabBar_icon_color
+                      : themes[theme].inactive_tabBar_icon_color,
+                  backgroundColor: 'none',
+                },
+              ]}
+            />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Profile')}>
-            <Image source={images.user} style={[styles.tabImage2, { tintColor: state.index === 1 ? themes[theme].active_tabBar_icon_color: themes[theme].inactive_tabBar_icon_color }]} />
+            <Image
+              source={images.user}
+              style={[
+                styles.tabImage2,
+                {
+                  tintColor:
+                    state.index === 1
+                      ? themes[theme].active_tabBar_icon_color
+                      : themes[theme].inactive_tabBar_icon_color,
+                },
+              ]}
+            />
           </TouchableOpacity>
           <View style={styles.vipTabContainer}>
             <Button style={styles.vipTab} onPress={onVip} theme={theme}>
@@ -200,9 +223,7 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
                   },
                 ]}>
                 <Image
-                  source={
-                    theme === 'dark' ? images.logo : images.bk_vip_light
-                  }
+                  source={images.logo}
                   style={styles.logo}
                   blurRadius={0}
                 />
@@ -212,7 +233,18 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Message')}>
-            <Image source={images.message_outlined} style={[styles.tabImage, { tintColor: state.index === 2 ? themes[theme].active_tabBar_icon_color: themes[theme].inactive_tabBar_icon_color }]} />
+            <Image
+              source={images.message_outlined}
+              style={[
+                styles.tabImage,
+                {
+                  tintColor:
+                    state.index === 2
+                      ? themes[theme].active_tabBar_icon_color
+                      : themes[theme].inactive_tabBar_icon_color,
+                },
+              ]}
+            />
             {unread > 0 && (
               <View style={styles.unread}>
                 <Text style={styles.unreadText}>{unread}</Text>
@@ -222,7 +254,18 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Activity')}>
-            <Image source={images.notification} style={[styles.tabImage, { tintColor: state.index === 3 ? themes[theme].active_tabBar_icon_color: themes[theme].inactive_tabBar_icon_color }]} />
+            <Image
+              source={images.notification}
+              style={[
+                styles.tabImage,
+                {
+                  tintColor:
+                    state.index === 3
+                      ? themes[theme].active_tabBar_icon_color
+                      : themes[theme].inactive_tabBar_icon_color,
+                },
+              ]}
+            />
           </TouchableOpacity>
         </View>
       </View>
