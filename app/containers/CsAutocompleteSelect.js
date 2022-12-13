@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import {Dimensions, StyleSheet, View, Text} from 'react-native';
-import {AutocompleteDropdown} from 'react-native-autocomplete-dropdown';
-import {themes} from '../constants/colors';
-import {VectorIcon} from './VectorIcon';
+import React, { useState } from 'react'
+import { Dimensions, StyleSheet, View, Text } from 'react-native'
+import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
+import { themes } from '../constants/colors'
+import { VectorIcon } from './VectorIcon'
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     height: 56,
     borderColor: '#4A4A4A',
-    marginBottom: 15
+    marginBottom: 15,
   },
   label: {
     marginLeft: 15,
@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#4A4A4A',
     marginBottom: 5,
-    fontSize: 14
-  }
-});
+    fontSize: 14,
+  },
+})
 
 const CsAutocompleteSelect = ({
   leftIcon,
@@ -40,16 +40,16 @@ const CsAutocompleteSelect = ({
   label,
 }) => {
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
   const RightIcon = () => {
     return (
-        <VectorIcon
-          type={'Entypo'}
-          name={show ? 'chevron-thin-up' : 'chevron-thin-right'}
-          color={themes[theme].activeTintColor}
-          size={18}
-        />
+      <VectorIcon
+        type={'Entypo'}
+        name={show ? 'chevron-thin-up' : 'chevron-thin-right'}
+        color={themes[theme].activeTintColor}
+        size={18}
+      />
     )
   }
 
@@ -82,13 +82,13 @@ const CsAutocompleteSelect = ({
             marginLeft: -40,
             backgroundColor: themes[theme].backgroundColor,
           }}
-          containerStyle={{width: '95%',}}
+          containerStyle={{ width: '95%' }}
           showChevron={false}
         />
         <RightIcon />
       </View>
     </>
-  );
-};
+  )
+}
 
-export default CsAutocompleteSelect;
+export default CsAutocompleteSelect

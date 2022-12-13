@@ -13,7 +13,6 @@ export const COLOR_BUTTON_GOOGLE = '#ce011b'
 export const COLOR_BUTTON_APPLE_LIGHT = '#000000'
 export const COLOR_BUTTON_APPLE_DARK = '#FFFFFF'
 export const COLOR_BUTTON_APPLE_BLACK = '#FFFFFF'
-
 export const COLOR_BUTTON_TEXT_PRIMARY = '#FFFFFF'
 export const COLOR_BUTTON_TEXT_SECONDARY = '#FFFFFF'
 export const COLOR_BUTTON_TEXT_DEFAULT = '#000000'
@@ -43,7 +42,7 @@ export const COLOR_BLUE = '#5790DF'
 export const COLOR_BLUE_DARK = '#00387f'
 export const COLOR_GREEN = '#21b632'
 export const COLOR_GRAY = '#e3e3e3'
-export const COLOR_GRAY_LIGHT = '#fdf8f8'
+export const COLOR_GRAY_DARK = '#858585'
 export const COLOR_YELLOW = '#E6BF5C'
 
 export const STATUS_COLORS = {
@@ -61,6 +60,8 @@ export const NAV_BAR_END = '#222222'
 export const HEADER_BAR_START = '#DCB042'
 export const HEADER_BAR_END = '#faeac4'
 export const DARK_WEAK = '#808080'
+
+export const COLOR_TRANSPARENT = 'transparent'
 
 export const SWITCH_TRACK_COLOR = {
   false: '#f5455c',
@@ -83,10 +84,10 @@ export const themes = {
     auxiliaryBackground: '#efeff4',
     avatarBackground: '#caced1',
     bannerBackground: '#f1f2f4',
-    titleColor: '#1D1C1C',
+    titleColor: '#2F3131',
     textColor: '#2F3131',
     titleText: '#000000',
-    ownMsgText: '#000000',
+    ownMsgText: '#2F3131',
     otherMsgText: '#ffffff',
     ownAuxiliaryText: '#e3e2e2',
     otherAuxiliaryText: '#51555f',
@@ -122,8 +123,6 @@ export const themes = {
     searchboxBackground: '#E5EEF1',
     buttonBackground: '#414852',
     buttonText: '#000000',
-    messageOwnBackground: '#ffffff',
-    messageOtherBackground: '#5790DF',
     modalBackground: '#E6E6E7',
     menuText: '#999999',
     sidemenuBackColor: '#FFFFFF',
@@ -134,7 +133,6 @@ export const themes = {
     messageList: '#E6EEFA',
     message: '#B3B9C9',
     messageHeader: '#ffffff',
-    chatBackground: '#5790DF30',
     dateText: '#333333',
     chatInput: '#ffffff',
     sendButton: '#000000',
@@ -148,7 +146,16 @@ export const themes = {
     profileHandle: '#8E8E8E',
     profileMore: '#898989',
     messageButton: '#ffffff',
-    inputLabel: '#4A4A4A'
+
+    // Chat/Message Theme
+    chatBackground: '#FFFFFF',
+    chatSecondaryColor: '#FBFBFB',
+    chatBadgeBorderColor: '#F3F3F3',
+    chatHeaderBorder: '#F0F0F0',
+    messageOwnBackground: '#FBFBFB',
+    messageOtherBackground: '#C4C4C4',
+
+    inputLabel: '#4A4A4A',
   },
   dark: {
     activeTintColor: '#FFFFFF',
@@ -198,8 +205,6 @@ export const themes = {
     searchboxBackground: '#2F3034',
     buttonBackground: '#414852',
     buttonText: '#000000',
-    messageOwnBackground: '#7A8194',
-    messageOtherBackground: '#373E4E',
     modalBackground: '#2F3034',
     menuText: '#999999',
     sidemenuBackColor: '#21242C',
@@ -210,10 +215,9 @@ export const themes = {
     messageList: '#131517', // '#292F3F',
     message: '#888888',
     messageHeader: '#21242C', // '#1B202D',
-    chatBackground: '#21242C', // '#1B202D',
     dateText: '#ffffff',
     chatInput: '#3D4354',
-    sendButton: 'rgba(255, 255, 255, 0.45)',
+    sendButton: '#ffffff',
     chatInputPlaceholder: 'rgba(255, 255, 255, 0.45)',
     placeholderColor: '#858585',
     vipColor: 'rgba(0, 0, 0, 0.6)',
@@ -224,6 +228,15 @@ export const themes = {
     profileHandle: '#A2A8B8',
     profileMore: '#A2A8B8',
     messageButton: '#21242C',
-    inputLabel: '#ffffff'
+
+    // Chat/Message Theme
+    chatBackground: '#2F3131',
+    chatSecondaryColor: '#3C3E3E',
+    chatBadgeBorderColor: '#1D1C1C',
+    chatHeaderBorder: '#4A4A4A',
+    messageOwnBackground: '#2B2A2A',
+    messageOtherBackground: '#3C3E3E',
+
+    inputLabel: '#ffffff',
   },
 }

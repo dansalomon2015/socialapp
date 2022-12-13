@@ -1,82 +1,57 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
+  chatRoomCounter: {
+    flexDirection: 'row',
+    padding: 14,
+  },
+  chatRoomText: {
+    fontFamily: 'Raleway',
+    fontWeight: '500',
+    fontSize: 14,
+    lineHeight: 18,
+    textDecorationLine: 'underline',
+    marginRight: 6,
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    padding: 8,
+    marginVertical: 4,
+    alignItems: 'center',
+    borderRadius: 8,
+  },
   avatarContainer: {
     flexDirection: 'row',
     position: 'relative',
   },
-  itemContainer: {
-    flexDirection: 'row',
-    paddingVertical: 8,
-    marginHorizontal: 20,
-    alignItems: 'center',
+  badge: {
+    bottom: 0,
+    right: 0,
+    borderWidth: 2,
+    position: 'absolute',
   },
   itemContent: {
     flexGrow: 1,
     flex: 1,
-    marginLeft: 8,
-  },
-  itemHeader: {
-    marginTop: 4,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-  },
-  itemFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  unreadContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'red',
-    borderRadius: 8,
-    minWidth: 16,
-    minHeight: 16,
-  },
-  unread: {
-    color: 'white',
-    fontSize: 12,
+    marginHorizontal: 12,
   },
   itemImage: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
   },
   itemTitle: {
-    fontWeight: 'bold',
+    fontFamily: 'Hind Vadodara',
+    fontWeight: '500',
+    fontSize: 14,
+    lineHeight: 22,
     marginBottom: 4,
   },
-  itemMessage: {},
-  itemTime: {
-    fontSize: 10,
+  itemMessage: {
+    fontFamily: 'Hind Vadodara',
+    fontWeight: '500',
+    fontSize: 14,
+    lineHeight: 22,
+    color: '#C4C4C4',
   },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  emptyText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  postUser: {
-    width: 70,
-    marginRight: 20,
-  },
-  postUserAvatar: {
-    width: 65,
-    height: 65,
-    borderRadius: 33,
-  },
-  postUserName: {
-    fontWeight: '600',
-    fontSize: 13,
-    marginTop: 10,
-    textAlign: 'center',
-    color: 'white',
-  },
-});
+})
