@@ -36,9 +36,9 @@ export default StyleSheet.create({
     marginHorizontal: 12,
   },
   itemImage: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
   },
   itemTitle: {
     fontFamily: 'Hind Vadodara',

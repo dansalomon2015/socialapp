@@ -87,7 +87,7 @@ export const themes = {
     titleColor: '#2F3131',
     textColor: '#2F3131',
     titleText: '#000000',
-    ownMsgText: '#000000',
+    ownMsgText: '#2F3131',
     otherMsgText: '#ffffff',
     ownAuxiliaryText: '#e3e2e2',
     otherAuxiliaryText: '#51555f',
@@ -123,8 +123,6 @@ export const themes = {
     searchboxBackground: '#E5EEF1',
     buttonBackground: '#414852',
     buttonText: '#000000',
-    messageOwnBackground: '#FBFBFB',
-    messageOtherBackground: '#F2F2F2',
     modalBackground: '#E6E6E7',
     menuText: '#999999',
     sidemenuBackColor: '#FFFFFF',
@@ -149,12 +147,15 @@ export const themes = {
     profileMore: '#898989',
     messageButton: '#ffffff',
 
-    chatBackground: '#5790DF30',
-    chatPrimaryColor: '#FFFFFF',
+    // Chat/Message Theme
+    chatBackground: '#FFFFFF',
     chatSecondaryColor: '#FBFBFB',
-    chatFocusedColor: '#F2F2F2',
     chatBadgeBorderColor: '#F3F3F3',
-    inputLabel: '#4A4A4A'
+    chatHeaderBorder: '#F0F0F0',
+    messageOwnBackground: '#FBFBFB',
+    messageOtherBackground: '#C4C4C4',
+
+    inputLabel: '#4A4A4A',
   },
   dark: {
     activeTintColor: '#FFFFFF',
@@ -204,8 +205,6 @@ export const themes = {
     searchboxBackground: '#2F3034',
     buttonBackground: '#414852',
     buttonText: '#000000',
-    messageOwnBackground: '#2B2A2A',
-    messageOtherBackground: '#3C3E3E',
     modalBackground: '#2F3034',
     menuText: '#999999',
     sidemenuBackColor: '#21242C',
@@ -216,7 +215,6 @@ export const themes = {
     messageList: '#131517', // '#292F3F',
     message: '#888888',
     messageHeader: '#21242C', // '#1B202D',
-    chatBackground: '#21242C', // '#1B202D',
     dateText: '#ffffff',
     chatInput: '#3D4354',
     sendButton: '#ffffff',
@@ -230,10 +228,15 @@ export const themes = {
     profileHandle: '#A2A8B8',
     profileMore: '#A2A8B8',
     messageButton: '#21242C',
-    chatPrimaryColor: '#2F3131',
+
+    // Chat/Message Theme
+    chatBackground: '#2F3131',
     chatSecondaryColor: '#3C3E3E',
-    chatFocusedColor: '#2B2A2A',
     chatBadgeBorderColor: '#1D1C1C',
-    inputLabel: '#ffffff'
+    chatHeaderBorder: '#4A4A4A',
+    messageOwnBackground: '#2B2A2A',
+    messageOtherBackground: '#3C3E3E',
+
+    inputLabel: '#ffffff',
   },
 }

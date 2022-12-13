@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { COLOR_GRAY_DARK } from '../../constants/colors'
 
 export default StyleSheet.create({
   mainContainer: {
@@ -85,16 +86,15 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     position: 'absolute',
   },
-  messageOwnText: {
+  messageText: {
     fontFamily: 'Raleway',
     fontWeight: '500',
     fontSize: 14,
     lineHeight: 22,
   },
-  messageOtherText: {
-    fontFamily: 'Raleway',
-    fontWeight: '500',
-    fontSize: 14,
+  messageTimeText: {
+    fontFamily: 'Hind Vadodara',
+    fontSize: 12,
     lineHeight: 22,
   },
   imageMsg: {
@@ -124,12 +124,15 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   dateSeparator: {
-    marginVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 100,
+    alignSelf: 'center',
   },
   dateSepText: {
     fontFamily: 'Hind Vadodara',
     textAlign: 'center',
     fontSize: 12,
+    color: '#BABABA',
   },
   activeImageContainer: {
     position: 'absolute',
@@ -147,12 +150,6 @@ export default StyleSheet.create({
     height: '100%',
     resizeMode: 'contain',
   },
-  itemImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 27,
-  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -165,5 +162,33 @@ export default StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
+  },
+  avatarContainer: {
+    flexDirection: 'row',
+    position: 'relative',
+  },
+  itemImage: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.2)',
+  },
+  badge: {
+    bottom: 0,
+    right: 0,
+    borderWidth: 2,
+    position: 'absolute',
+  },
+  displayName: {
+    color: COLOR_GRAY_DARK,
+    fontFamily: 'Hind Vadodara',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  status: {
+    fontFamily: 'Hind Vadodara',
+    fontSize: 12,
+    lineHeight: 14,
   },
 })

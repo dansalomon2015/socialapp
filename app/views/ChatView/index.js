@@ -42,6 +42,8 @@ import debounce from '../../utils/debounce'
 import I18n from '../../i18n'
 import StatusBar from '../../containers/StatusBar'
 import { useKeyboardAnimationReplica } from 'react-native-keyboard-controller'
+import { VectorIcon } from '../../containers/VectorIcon'
+import { Badge } from 'react-native-paper'
 
 const scrollPersistTaps = {
   keyboardShouldPersistTaps: 'always',
@@ -129,43 +131,47 @@ const ChatView = props => {
     })
   }, [])
 
+  const isOnline = true
+
   useEffect(() => {
     navigation.setOptions({
-      title: `${room.account?.displayName}`,
+      title: '',
       headerLeft: () => (
-        <TouchableOpacity
-          style={{
-            width: 40,
-            alignItems: 'flex-start',
-            marginLeft: 27,
-          }}
-          onPress={() => navigation.goBack()}>
-          <Entypo
-            name="chevron-thin-left"
-            size={22}
-            color={themes[theme].activeTintColor}
-          />
-        </TouchableOpacity>
+        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+          <TouchableOpacity
+            style={{ width: 40, alignItems: 'center' }}
+            onPress={() => navigation.goBack()}>
+            <Entypo name="chevron-thin-left" size={22} color={themes[theme].activeTintColor} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ flexGrow: 1, flexDirection: 'row', alignItems: 'center' }}
+          >
+            <View style={styles.avatarContainer}>
+              <Image
+                source={room.account?.avatar ? { uri: room.account?.avatar } : images.default_avatar}
+                style={styles.itemImage}
+              />
+              <Badge
+                visible={true}
+                size={12}
+                style={[styles.badge, { backgroundColor: isOnline ? '#32D674' : '#2B2A2A' }, { borderColor: themes[theme].chatBadgeBorderColor }]}>
+              </Badge>
+            </View>
+            <View style={{ flex: 1, alignSelf: 'center', marginLeft: 8 }}>
+              <Text style={styles.displayName}>{room.account.displayName}</Text>
+              <Text
+                style={[styles.status, { color: isOnline ? '#32D674' : '#2B2A2A' }]}>{isOnline ? 'Online Now' : 'Offline Now'}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       ),
-      headerRight: () => (
-        <Image
-          source={
-            room.account?.avatar
-              ? { uri: room.account?.avatar }
-              : images.default_avatar
-          }
-          style={styles.itemImage}
-        />
-      ),
+      headerRight: () => (<></>),
       headerStyle: {
-        backgroundColor: themes[theme].chatPrimaryColor,
+        backgroundColor: themes[theme].chatBackground,
         elevation: 0,
         shadowOpacity: 0,
-        borderBottomWidth: 0,
-      },
-      headerTitleStyle: {
-        color: themes[theme].activeTintColor,
-        alignSelf: 'flex-start',
+        borderBottomWidth: 0.5,
+        borderBottomColor: themes[theme].chatHeaderBorder,
       },
     })
   }, [theme])
@@ -394,8 +400,8 @@ const ChatView = props => {
       return (
         <>
           {message}
-          <View style={styles.dateSeparator}>
-            <Text style={[styles.dateSepText, { color: themes[theme].dateText }]}>
+          <View style={[styles.dateSeparator, { backgroundColor: themes[theme].messageOwnBackground }]}>
+            <Text style={styles.dateSepText}>
               {moment(dateSeparator).format('DD MMM hh:mm').toUpperCase()}
             </Text>
           </View>
@@ -413,7 +419,7 @@ const ChatView = props => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: themes[theme].chatPrimaryColor }}>
+    <SafeAreaView style={{ backgroundColor: themes[theme].chatBackground }}>
       <StatusBar />
       {sending && <ActivityIndicator absolute theme={theme} size={'large'} />}
       <FlatList
@@ -438,7 +444,7 @@ const ChatView = props => {
       />
 
       <Animated.View style={{ transform: [{ translateY: heightReplica }] }}>
-        <RNSafeAreaView style={{backgroundColor: themes[theme].chatFocusedColor, paddingHorizontal: 16}}>
+        <RNSafeAreaView style={{ backgroundColor: themes[theme].messageOwnBackground, paddingHorizontal: 16 }}>
           <View
             style={[
               styles.inputContainer,

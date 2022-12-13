@@ -33,6 +33,7 @@ import { SearchBox } from '../../containers/SearchBox'
 import scrollPersistTaps from '../../utils/scrollPersistTaps'
 import { Badge } from 'react-native-paper'
 import moment from 'moment'
+import CsAutocompleteSelect from '../../containers/CsAutocompleteSelect'
 
 const MessageView = props => {
   const tabBarHeight = useBottomTabBarHeight()
@@ -256,7 +257,7 @@ const MessageView = props => {
     </TouchableOpacity>
   )
   return (
-    <View style={[sharedStyles.container, { backgroundColor: themes[theme].chatPrimaryColor, paddingHorizontal: 16 }]}>
+    <View style={[sharedStyles.container, { backgroundColor: themes[theme].chatBackground, paddingHorizontal: 16 }]}>
       {loading && (
         <ActivityIndicator absolute theme={theme} size={'large'} />
       )}
