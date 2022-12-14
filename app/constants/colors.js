@@ -146,6 +146,7 @@ export const themes = {
     profileHandle: '#8E8E8E',
     profileMore: '#898989',
     messageButton: '#ffffff',
+    view_profile_text_color: '#4A4A4A',
 
     // Chat/Message Theme
     chatBackground: '#FFFFFF',
@@ -164,6 +165,8 @@ export const themes = {
     inactive_tabBar_icon_color: '#C4C4C4',
     heartColor_liked: '#1D1C1C',
     heartColor_not_liked: '#C4C4C4',
+    post_image_border_color: '#C4C4C4',
+    post_background_color: '#FFFFFF'
   },
   dark: {
     activeTintColor: '#FFFFFF',
@@ -253,5 +256,8 @@ export const themes = {
     inactive_tabBar_icon_color: '#605E5E',
     heartColor_liked: '#ffff',
     heartColor_not_liked: '#C4C4C4',
+    post_image_border_color: '#2B2D2E',
+    post_background_color: '#1D1C1C',
+    view_profile_text_color: '#efc455',
   },
 }

@@ -359,7 +359,8 @@ const HomeView = props => {
       width: interpolate(
         scrollOffset.value,
         [0,width],
-        [40, 66]
+        [40, 66],
+        Extrapolate.CLAMP,
       ),
       transform: [
         {
@@ -374,6 +375,28 @@ const HomeView = props => {
     };
   });
 
+  const forYoucolorTextAnimatedStyle = useAnimatedStyle(()=>{
+    return {
+      color: themes[theme].titleColor,
+      opacity: interpolate(
+        scrollOffset.value,
+        [0, width],
+        [1, 0.3],
+      ),
+    }
+  })
+
+  const followingsColorTextAnimatedStyle = useAnimatedStyle(()=>{
+    return {
+      color: themes[theme].titleColor,
+      opacity: interpolate(
+        scrollOffset.value,
+        [0, width],
+        [0.3, 1],
+      ),
+    }
+  })
+
   return (
     <MainScreen navigation={navigation}>
       <StatusBar />
@@ -385,14 +408,23 @@ const HomeView = props => {
         <Pressable
           onPress={() => scrollToEndOrBeginning(0)}
           style={styles.textContainer}>
-          <Text style={styles.followingAndForYouText}>ForYou</Text>
+          <Animated.Text
+            style={[styles.followingAndForYouText, forYoucolorTextAnimatedStyle]}>
+            ForYou
+          </Animated.Text>
         </Pressable>
         <Pressable
           onPress={() => mainFlatListRef?.current?.scrollToEnd()}
           style={styles.textContainer}>
-          <Text style={styles.followingAndForYouText}>Followings</Text>
+          <Animated.Text style={[styles.followingAndForYouText, followingsColorTextAnimatedStyle]}>Followings</Animated.Text>
         </Pressable>
-        <Animated.View style={[styles.belowLine, belowLineAnimatedStyles, { backgroundColor: themes[theme].activeTintColor }]} />
+        <Animated.View
+          style={[
+            styles.belowLine,
+            belowLineAnimatedStyles,
+            {backgroundColor: themes[theme].activeTintColor},
+          ]}
+        />
       </View>
       <ReanimatedFlatList
         ref={mainFlatListRef}

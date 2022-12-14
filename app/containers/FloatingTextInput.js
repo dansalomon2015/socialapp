@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   labelText: {
     fontFamily: 'Raleway',
     marginBottom: 5,
-    marginLeft: 16,
+    marginLeft: 0,
     color: '#4A4A4A',
   },
 });

@@ -68,7 +68,6 @@ export default StyleSheet.create({
   },
   followingAndForYouText: {
     fontWeight: '500',
-    color: '#2F3131',
     fontSize: 14,
     fontFamily: 'Raleway',
   },

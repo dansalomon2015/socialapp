@@ -16,16 +16,33 @@ import {
 } from '../../constants/colors'
 import I18n from '../../i18n'
 import scrollPersistTaps from '../../utils/scrollPersistTaps'
+import { logout as logoutAction } from '../../actions/login'
 
 import { Avatar } from 'react-native-paper'
 import BasicInfoUploaded from '../../containers/BasicInfoUploaded'
 import ExperienceUploaded from '../../containers/ExperienceUploaded'
+import { showConfirmationAlert } from '../../lib/info'
 
 const theme = 'light'
 
-const ThankYouView = ({ user }) => {
+const ThankYouView = ({ user, logout, navigation }) => {
 
   const { displayName, gender, location, city, phone, birthday, salary, job, company, years_of_service } = user
+
+  const onLogout = () => {
+    showConfirmationAlert({
+      title: I18n.t('Logout'),
+      message: I18n.t('are_you_sure_to_log_out'),
+      callToAction: I18n.t('Confirm'),
+      onPress: () => {
+        if (global.unSubscribeRoom) {
+          global.unSubscribeRoom()
+          global.unSubscribeRoom = undefined
+        }
+        logout()
+      },
+    })
+  }
 
   return (
     <SafeAreaView
@@ -40,7 +57,7 @@ const ThankYouView = ({ user }) => {
           flexGrow: 1,
           backgroundColor: themes[theme].backgroundColor,
         }}>
-        <Text style={styles.logoutText}>Logout</Text>
+        <Text onPress={onLogout} style={styles.logoutText}>Logout</Text>
         <Image style={styles.logo} source={images.logo} />
         <Text
           style={[
@@ -65,8 +82,8 @@ const ThankYouView = ({ user }) => {
           その場合にはいただいた代金は返金させていただきます。
         </Text>
         <Text style={styles.submittedApplicationText}>Your submitted applicationn</Text>
-        <Avatar.Image size={56} source={images.default_avatar} style={styles.avatar} />
-        <BasicInfoUploaded name={displayName} gender={gender} dob={birthday} phone={phone} location={location.length > 0 ? location : city} />
+        <Avatar.Image size={56} source={user.avatar ? user.avatar:images.default_avatar} style={styles.avatar} />
+        <BasicInfoUploaded name={displayName} gender={gender} dob={birthday} phone={phone} location={ location && location.length > 0 ? location : city} />
         <ExperienceUploaded salary={salary} jobTitle={job} companyName={company} numberOfYears={years_of_service} />
       </ScrollView>
     </SafeAreaView>
@@ -77,4 +94,8 @@ const mapStateToProps = state => ({
   user: state.login.user,
 })
 
-export default connect(mapStateToProps, null)(withTheme(ThankYouView))
+const mapDispatchToProps = dispatch => ({
+  logout: params => dispatch(logoutAction(params)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(ThankYouView))

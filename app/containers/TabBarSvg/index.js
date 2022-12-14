@@ -1,9 +1,11 @@
 import React from "react"
+import { Dimensions } from "react-native"
 import Svg, { G, Path, Defs } from "react-native-svg"
 import { themes } from "../../constants/colors"
 import { useTheme } from "../../theme"
 /* SVGR has dropped some elements not supported by react-native-svg: filter */
 
+const { width } = Dimensions.get('window');
 
 const TabBarSvg = (props) => {
 
@@ -12,7 +14,7 @@ const TabBarSvg = (props) => {
     return (
       <Svg
         xmlns="http://www.w3.org/2000/svg"
-        width={393}
+        width={width}
         height={97}
         fill="none"
         {...props}

@@ -171,7 +171,7 @@ const SidebarView = (props) => {
               ]}>
               {user.displayName}
             </Text>
-            <Text style={[styles.roleName, {color: themes[theme].infoText}]}>
+            <Text style={[styles.roleName, {color: themes[theme].view_profile_text_color}]}>
               {user.role}
             </Text>
           </View>

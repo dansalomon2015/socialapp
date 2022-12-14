@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 10,
-    borderColor: '#C4C4C4',
     borderWidth: 5,
     overflow: 'hidden'
   },
@@ -198,12 +197,12 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
       key={key}
       style={[
         styles.container,
-        {...style, backgroundColor: themes[theme].backgroundColor},
+        {...style, backgroundColor: themes[theme].post_background_color},
       ]}
       onPress={onPress}>
       <View style={styles.topView}>
         <TouchableOpacity style={styles.avatarWrap} onPress={onPressUser}>
-          <View style={styles.avatarContainer}>
+          <View style={[styles.avatarContainer, { borderColor: themes[theme].post_image_border_color, }]}>
             <Image
               source={
                 item?.owner?.avatar
@@ -230,9 +229,9 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
               ]}>
               {item?.date ? dateStringFromNowShort(item?.date) : null}
             </Text>
-            <Text style={[styles.captionText, {color: themes[theme].infoText}]}>
+            {/* <Text style={[styles.captionText, {color: themes[theme].infoText}]}>
               {getUserRepresentString(item?.owner)}
-            </Text>
+            </Text> */}
           </View>
         </TouchableOpacity>
         <PopupMenu

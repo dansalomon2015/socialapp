@@ -12,7 +12,7 @@ export default StyleSheet.create({
   formContainer: {
     flex: 1,
     paddingVertical: 16,
-    paddingHorizontal: 24,
+    paddingHorizontal: 16,
   },
   submitBtn: {
     marginTop: 8,
