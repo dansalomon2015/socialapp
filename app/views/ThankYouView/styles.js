@@ -11,14 +11,16 @@ export default StyleSheet.create({
   logoInnerContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
     paddingTop: 40,
     height: 300,
+    backgroundColor: 'red'
   },
   logo: {
     maxHeight: 180,
     resizeMode: 'contain',
+    width: 175,
+    height: 105,
+    alignSelf: 'center'
   },
   logoText: {
     maxWidth: '60%',
@@ -26,24 +28,20 @@ export default StyleSheet.create({
     alignSelf: 'center',
     tintColor: 'white',
   },
-  contentContainer: {
-    position: 'absolute',
-    top: 300,
-    bottom: 0,
-    alignItems: 'center',
-    paddingBottom: 40,
-    flexGrow: 16,
-  },
   mainText: {
     textAlign: 'center',
     marginHorizontal: 32,
     textTransform: 'uppercase',
-    fontSize: 20,
+    fontSize: 16,
+    fontFamily: 'Hind Vadodara',
+    fontWeight: '600',
   },
   subText: {
     textAlign: 'center',
     marginHorizontal: 32,
     marginTop: 20,
+    fontFamily: 'Raleway',
+    fontSize: 14
   },
   actionBtn: {
     marginTop: 20,
@@ -64,4 +62,19 @@ export default StyleSheet.create({
     fontSize: 20,
     color: 'white',
   },
+  avatar: {
+    alignSelf: 'center',
+    marginBottom: 10
+  },
+  submittedApplicationText: {
+    fontFamily: 'Raleway',
+    fontWeight: '500',
+    fontSize: 12,
+    margin: 24
+  },
+  logoutText: {
+    alignSelf: 'flex-end',
+    marginRight: 33,
+    marginVertical: 11
+  }
 });

@@ -163,7 +163,7 @@ export const themes = {
     active_tabBar_icon_color: '#605E5E',
     inactive_tabBar_icon_color: '#C4C4C4',
     heartColor_liked: '#1D1C1C',
-    heartColor_not_liked: '#C4C4C4'
+    heartColor_not_liked: '#C4C4C4',
   },
   dark: {
     activeTintColor: '#FFFFFF',
@@ -252,6 +252,6 @@ export const themes = {
     active_tabBar_icon_color: '#C4C4C4',
     inactive_tabBar_icon_color: '#605E5E',
     heartColor_liked: '#ffff',
-    heartColor_not_liked: '#C4C4C4'
+    heartColor_not_liked: '#C4C4C4',
   },
 }

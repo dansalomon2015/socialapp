@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 97,
     paddingLeft: 17,
-    marginTop: 5,
+    marginVertical: 5,
   },
   jobTitle: {
     marginBottom: 3,
