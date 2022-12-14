@@ -34,15 +34,15 @@ const Root = () => {
   }, [])
 
   useEffect(() => {
-    // let timer = setInterval(() => {
-    //   const hour = new Date().getHours()
-    //   if (theme === 'dark' && hour >= 6 && hour <= 17) {
-    //     setTheme('light')
-    //   } else if (theme === 'light' && (hour < 6 || hour >= 18)) {
-    //     setTheme('dark')
-    //   }
-    //   // setTheme('dark')
-    // }, 1000)
+    let timer = setInterval(() => {
+      const hour = new Date().getHours()
+      if (theme === 'dark' && hour >= 6 && hour <= 17) {
+        setTheme('light')
+      } else if (theme === 'light' && (hour < 6 || hour >= 18)) {
+        setTheme('dark')
+      }
+      // setTheme('dark')
+    }, 1000)
     init()
     return () => {
       if (timer) {
