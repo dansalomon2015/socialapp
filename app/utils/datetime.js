@@ -80,7 +80,7 @@ export const dateStringFromNowShort = date => {
     const value = Math.floor(interval);
     return (
       Math.floor(interval) +
-      'y'
+      ' years ago'
     );
   }
   interval = seconds / 2592000;
@@ -88,7 +88,7 @@ export const dateStringFromNowShort = date => {
     const value = Math.floor(interval);
     return (
       Math.floor(interval) +
-      'm'
+      ' months ago'
     );
   }
   interval = seconds / 86400;
@@ -96,7 +96,7 @@ export const dateStringFromNowShort = date => {
     const value = Math.floor(interval);
     return (
       Math.floor(interval) +
-      'd'
+      ' days ago'
     );
   }
   interval = seconds / 3600;
@@ -104,7 +104,7 @@ export const dateStringFromNowShort = date => {
     const value = Math.floor(interval);
     return (
       Math.floor(interval) +
-      'h'
+      ' hours ago'
     );
   }
   interval = seconds / 60;
@@ -112,12 +112,12 @@ export const dateStringFromNowShort = date => {
     const value = Math.floor(interval);
     return (
       Math.floor(interval) +
-      'm'
+      ' mins ago'
     );
   }
   return (
     Math.floor(seconds) +
-    's'
+    'just now'
   );
 };
 

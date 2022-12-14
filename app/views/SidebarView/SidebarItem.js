@@ -6,6 +6,7 @@ import {
   NAV_BAR_START,
   themes,
 } from '../../constants/colors'
+import { VectorIcon } from '../../containers/VectorIcon'
 
 const Item = React.memo(
   ({ id, left, text, onPress, current, containerStyle, textStyle, theme }) => (
@@ -16,10 +17,12 @@ const Item = React.memo(
       activeOpacity={0.3}
       style={[containerStyle, {
         paddingRight: 24,
-        marginHorizontal: 10,
-        marginBottom: 5,
+        marginBottom: 10,
         borderRadius: 5,
-        backgroundColor: current ? themes[theme].tintActive : undefined
+        alignSelf: 'center',
+        width: '100%',
+        height: 50,
+        backgroundColor: current ? themes[theme].tintActive : themes[theme].optionButtonBackground
       }]}>
       {current ? (
         <View
@@ -50,6 +53,7 @@ const Item = React.memo(
           </View>
         </View>
       )}
+      <VectorIcon type='Entypo' name='chevron-small-right' size={28} color={themes[theme].chevronIcon} style={styles.chevronIcon}/>
     </TouchableOpacity>
   ),
 )

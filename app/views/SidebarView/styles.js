@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { isIOS } from '../../utils/deviceInfo';
+
+const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
   profileContainer: {
@@ -8,16 +10,16 @@ export default StyleSheet.create({
   profileInnerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomLeftRadius: 12,
-    borderBottomRightRadius: 12,
-    paddingHorizontal: 24,
-    paddingTop: isIOS ? 60 : 20,
-    height: isIOS ? 135 : 95,
+    paddingHorizontal: 16,
+    width: width * 0.5,
+    height: 55,
+    alignSelf: 'flex-start',
   },
   headerContainer: {
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    height: 160,
+    marginVertical: 20,
   },
   logo: {
     width: 220,
@@ -54,12 +56,12 @@ export default StyleSheet.create({
     borderBottomRightRadius: 32,
   },
   itemLeft: {
-    marginRight: 20,
+    marginRight: 10,
     width: 30,
     alignItems: 'center',
   },
   itemCenter: {
-    marginRight: 8,
+    marginRight: 0,
   },
   itemText: {
     marginVertical: 12,
@@ -84,19 +86,84 @@ export default StyleSheet.create({
     textAlign: 'center',
     height: 65,
   },
-  logoutMenu: {
+  logoutBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 12,
+    width: '92%',
+    height: 50,
+    justifyContent: 'center',
+    marginHorizontal: 16,
+    alignSelf: 'center',
+    borderRadius: 6,
+    position: 'absolute',
+    bottom: 75
   },
   logoutText: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 14,
     marginLeft: 10,
   },
   logoutIcon: {
-    width: 20,
-    height: 20,
+    width: 26,
+    height: 26,
+    marginRight: 8,
+    tintColor: '#C4C4C4'
+  },
+  closeIconAndText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    position: 'absolute',
+    top: 10,
+    right: 26,
+  },
+  closeIcon: {
     marginRight: 8,
   },
+  menuText: {
+    fontFamily: 'Raleway',
+    fontWeight: '400',
+    fontSize: 16,
+    marginTop: 22,
+    marginBottom: 13
+  },
+  bottomView: {
+    width: '100%',
+    height: 22,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    position: 'absolute',
+    bottom: 40
+  },
+  privacyTermsEulaContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: '100%',
+    width: '65%',
+    justifyContent: 'space-between',
+  },
+  languageContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: '100%',
+    width: '30%',
+    justifyContent: 'space-around'
+  },
+  text: {
+    fontSize: 12
+  },
+  languageText:{
+    fontFamily: 'Hind Vadodara',
+    fontWeight: '600',
+    fontSize: 12,
+  },
+  chevronIcon: {
+    position: 'absolute',
+    right: 10,
+    top: 10
+  }
 });

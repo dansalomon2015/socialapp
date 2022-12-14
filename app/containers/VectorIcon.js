@@ -6,6 +6,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
+import Feather from 'react-native-vector-icons/Feather'
 
 export const VectorIcon = React.memo(({ type, name, size, color, style, onPress }) => {
   switch (type) {
@@ -31,6 +32,8 @@ export const VectorIcon = React.memo(({ type, name, size, color, style, onPress 
       return <FontAwesome name={name} size={size} color={color} style={style} onPress={onPress} />
     case 'Entypo':
       return <Entypo name={name} size={size} color={color} style={style} onPress={onPress} />
+    case 'Feather':
+      return <Feather name={name} size={size} color={color} style={style} onPress={onPress}/>
     default:
       return (
         <FontAwesome5 name={name} size={size} color={color} style={style} onPress={onPress} />

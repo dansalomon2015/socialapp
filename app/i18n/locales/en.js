@@ -113,6 +113,9 @@ export default {
   Vip_members: 'VIP Members',
   Privacy_policy: 'Privacy Policy',
   Terms_of_use: 'Terms of Use',
+  Privacy_and_settings: 'Privacy and settings',
+  Help_and_support: 'Help and support',
+  My_connections: 'My connections',
   Eula: 'EULA',
   Posts: 'Posts',
   Followers: 'Followers',
@@ -284,6 +287,7 @@ export default {
   Sent_message_to_you: '{{name}} sent you "{{message}}"',
   please_complete_these_steps_to_confirm: 'Please complete these steps to confirm',
   Phone_number: 'Phone number',
+
 
   user_not_found: 'User not found',
   follow_you: 'follows you',

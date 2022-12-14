@@ -33,6 +33,7 @@ import {
 } from '../constants/app'
 import SearchBox from './SearchBox'
 import I18n from '../i18n'
+import TabBarSvg from './TabBarSvg'
 
 export const Button = isAndroid ? Touch : TouchableOpacity
 
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     paddingTop: 19,
-    paddingBottom: 30,
+    paddingBottom: 20,
   },
   tabContainer: {
     flexDirection: 'column',
@@ -102,12 +103,14 @@ const styles = StyleSheet.create({
   },
   vipTab: {
     position: 'absolute',
-    top: -52,
+    top: -62,
     left: 6,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 10,
     borderRadius: 50,
+    borderWidth: 1.5,
+    borderColor: 'gold',
   },
   vipTabImage: {
     width: 72,
@@ -155,7 +158,12 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#5790DF',
   },
-})
+  logo: {
+    resizeMode: 'contain',
+    width: 61.2,
+    height: 37.46
+  },
+});
 
 export const MainTabBar = React.memo(({ theme, navigation, state }) => {
   const { unread } = useSelector(state => state.chat)
@@ -168,30 +176,45 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
 
   return (
     <>
-      <ImageBackground
-        source={images.tab_background}
-        style={styles.mainTabContainer}>
+      <View style={styles.mainTabContainer}>
+        <TabBarSvg />
         <View style={styles.tabBarContainer}>
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Home')}>
-            <Image source={images.home_icon} style={styles.tabImage} />
             <Image
-              source={images.under_line}
-              style={[styles.underLine, { opacity: state.index === 0 ? 1 : 0 }]}
+              source={theme == 'dark' ? images.home : images.home_icon_white}
+              style={[
+                styles.tabImage,
+                {
+                  opacity: state.index === 0 ? 1 : 0.4,
+                  borderColor:
+                    state.index === 0
+                      ? themes[theme].active_tabBar_icon_color
+                      : themes[theme].inactive_tabBar_icon_color,
+                  backgroundColor: 'none',
+                },
+              ]}
             />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Profile')}>
-            <Image source={images.profile_icon} style={styles.tabImage2} />
             <Image
-              source={images.under_line}
-              style={[styles.underLine, { opacity: state.index === 1 ? 1 : 0 }]}
+              source={images.user}
+              style={[
+                styles.tabImage2,
+                {
+                  tintColor:
+                    state.index === 1
+                      ? themes[theme].active_tabBar_icon_color
+                      : themes[theme].inactive_tabBar_icon_color,
+                },
+              ]}
             />
           </TouchableOpacity>
-          <View style={styles.vipTabContainer}>
-            <Button style={styles.vipTab} onPress={onVip} theme={theme}>
+          <View style={[styles.vipTabContainer, ]}>
+            <Button style={[styles.vipTab, {  backgroundColor: themes[theme].backgroundColor}]} onPress={onVip} theme={theme}>
               <View
                 style={[
                   styles.vipButton,
@@ -199,18 +222,28 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
                     overflow: 'hidden',
                   },
                 ]}>
-                <Image source={theme === 'dark' ? images.bk_vip_dark : images.bk_vip_light} blurRadius={0} />
-                <Text style={[styles.vipButtonText, { position: 'absolute' }]}>VIP</Text>
+                <Image
+                  source={images.logo}
+                  style={styles.logo}
+                  blurRadius={0}
+                />
               </View>
             </Button>
           </View>
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Message')}>
-            <Image source={images.message_icon} style={styles.tabImage} />
             <Image
-              source={images.under_line}
-              style={[styles.underLine, { opacity: state.index === 2 ? 1 : 0 }]}
+              source={images.message_outlined}
+              style={[
+                styles.tabImage,
+                {
+                  tintColor:
+                    state.index === 2
+                      ? themes[theme].active_tabBar_icon_color
+                      : themes[theme].inactive_tabBar_icon_color,
+                },
+              ]}
             />
             {unread > 0 && (
               <View style={styles.unread}>
@@ -221,14 +254,21 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Activity')}>
-            <Image source={images.activity_icon} style={styles.tabImage} />
             <Image
-              source={images.under_line}
-              style={[styles.underLine, { opacity: state.index === 3 ? 1 : 0 }]}
+              source={images.notification}
+              style={[
+                styles.tabImage,
+                {
+                  tintColor:
+                    state.index === 3
+                      ? themes[theme].active_tabBar_icon_color
+                      : themes[theme].inactive_tabBar_icon_color,
+                },
+              ]}
             />
           </TouchableOpacity>
         </View>
-      </ImageBackground>
+      </View>
       {showVipScreen && (
         <VipScreen
           theme={theme}
@@ -238,7 +278,7 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
         />
       )}
     </>
-  )
+  );
 })
 
 const VipScreen = React.memo(({ onClose, theme, width, navigation }) => {
