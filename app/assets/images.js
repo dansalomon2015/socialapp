@@ -99,6 +99,8 @@ const images = {
   user_friends: require('./images/user_friends.png'),
   logout_icon: require('./images/logout_icon.png'),
   en_language: require('./images/en_language.png'),
+  chat_light: require('./images/chat_light.png'),
+  chat_dark: require('./images/chat_dark.png'),
   
   // TabBar Images
   home: require('./images/home.png'),

@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     zIndex: 10,
     borderRadius: 50,
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: 'gold',
   },
   vipTabImage: {
@@ -213,8 +213,8 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
               ]}
             />
           </TouchableOpacity>
-          <View style={styles.vipTabContainer}>
-            <Button style={styles.vipTab} onPress={onVip} theme={theme}>
+          <View style={[styles.vipTabContainer, ]}>
+            <Button style={[styles.vipTab, {  backgroundColor: themes[theme].backgroundColor}]} onPress={onVip} theme={theme}>
               <View
                 style={[
                   styles.vipButton,

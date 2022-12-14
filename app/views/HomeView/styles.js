@@ -53,4 +53,31 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: 'white',
   },
+  followingAndForYouContainer: {
+    width: '100%',
+    height: 30,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    paddingHorizontal: 90,
+    borderBottomWidth: 0.2,
+    borderColor: '#ccc',
+    marginTop: 10,
+    marginBottom: 20
+  },
+  followingAndForYouText: {
+    fontWeight: '500',
+    color: '#2F3131',
+    fontSize: 14,
+    fontFamily: 'Raleway',
+  },
+  belowLine: {
+    position: 'absolute',
+    bottom: 0,
+    height: 1.5,
+  },
+  textContainer: {
+    justifyContent: 'center',
+  }
 });

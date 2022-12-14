@@ -64,7 +64,6 @@ const TabStack = () => {
   return (
     <Tab.Navigator
       tabBar={props => <MainTabBar theme={theme} {...props} />}
-      // tabBar={props => <View style={{ height: 60 }}></View>}
       screenOptions={{
         ...outsideHeader,
         ...themedHeader(theme),

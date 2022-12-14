@@ -79,7 +79,7 @@ export const themes = {
     backgroundColor: '#F5F5F5',
     focusedBackground: '#ffffff',
     chatComponentBackground: '#f3f4f5',
-    postBackground: '#E6EEFA',
+    postBackground: '#FFFFFF',
     auxiliaryBackground: '#efeff4',
     avatarBackground: '#caced1',
     bannerBackground: '#f1f2f4',
@@ -154,7 +154,9 @@ export const themes = {
     chevronIcon: '#D2C6A8',
     tabBar_background: '#FFFFFF',
     active_tabBar_icon_color: '#605E5E',
-    inactive_tabBar_icon_color: '#C4C4C4'
+    inactive_tabBar_icon_color: '#C4C4C4',
+    heartColor_liked: '#1D1C1C',
+    heartColor_not_liked: '#C4C4C4'
   },
   dark: {
     activeTintColor: '#FFFFFF',
@@ -235,6 +237,8 @@ export const themes = {
     chevronIcon: '#D2C6A8',
     tabBar_background: '#2B2D2E',
     active_tabBar_icon_color: '#C4C4C4',
-    inactive_tabBar_icon_color: '#605E5E'
+    inactive_tabBar_icon_color: '#605E5E',
+    heartColor_liked: '#ffff',
+    heartColor_not_liked: '#C4C4C4'
   },
 }

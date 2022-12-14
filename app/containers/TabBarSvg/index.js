@@ -16,7 +16,7 @@ const TabBarSvg = (props) => {
         height={97}
         fill="none"
         {...props}
-        style={{ position: 'absolute', bottom: 1 }}
+        style={{ position: 'absolute', bottom: 0 }}
         >
         <G filter="url(#a)">
           <Path

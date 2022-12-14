@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import {
   FlatList,
   Image,
   RefreshControl,
-  ScrollView,
   Share,
   View,
   Text,
-  TouchableOpacity,
+  Dimensions,
+  Pressable
 } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
 import { useNavigation } from '@react-navigation/native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  useAnimatedScrollHandler,
+  interpolate,
+  Extrapolate,
+} from "react-native-reanimated";
 
 import { themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
@@ -38,6 +45,8 @@ import styles from './styles'
 import { navigateToProfile, onSharePost } from '../../utils/const'
 import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
 
+const { width } = Dimensions.get("screen");
+
 const HomeView = props => {
   const navigation = useNavigation()
   const tabbarHeight = useBottomTabBarHeight()
@@ -54,9 +63,24 @@ const HomeView = props => {
     notifying: false,
     isUpdating: false,
   })
+  
+  const mainFlatListRef = useRef();
 
   const { user, theme, setUser } = props
-  const { data, loading, isUpdating, refreshing, postUsers } = state
+  const { data, loading, isUpdating, refreshing, postUsers, forYouShowing } = state
+
+  const flatLists = [
+    {
+      id: 1,
+      name: "Following",
+      data: data,
+    },
+    {
+      id: 2,
+      name: "ForYou",
+      data: data,
+    },
+  ];
 
   useEffect(() => {
     if (!global.unSubscribeRoom) {
@@ -274,80 +298,116 @@ const HomeView = props => {
     init()
   }
 
+  const renderItem = ({ item, index }) => {
+    return (
+      <Post
+        item={item}
+        onPress={() => onOpenPost(item)}
+        onPressUser={() => onOpenProfile(item)}
+        onPressShare={() => onSharePost(item)}
+        onLike={isLiking => onToggleLike(item, isLiking)}
+        isLiking={item.likes && item.likes.includes(user.userId)}
+        onActions={onActionPost(item)}
+        theme={theme}
+        style={{
+          marginBottom: index === data.length - 1 ? tabbarHeight : undefined,
+        }}
+      />
+    );
+  };
+
+  const renderFlatListItem = ({ item, index }) => {
+    return (
+      <FlatList
+        style={{width}}
+        data={item.data}
+        renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={item => item.id}
+        ListFooterComponent={renderFooter}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={themes[theme].actionColor}
+          />
+        }
+        contentContainerStyle={{paddingBottom: 20}}
+        ListEmptyComponent={<NoFriends onPress={() => {}} />}
+      />
+    );
+  };
+
+  const scrollToEndOrBeginning = (xOffset) => {
+    mainFlatListRef.current && mainFlatListRef?.current?.scrollToOffset({ x: xOffset, animated: true })
+  }
+
+  // Animation
+
+  const ReanimatedFlatList = Animated.createAnimatedComponent(FlatList);
+
+  const scrollOffset = useSharedValue(0);
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollOffset.value = event.contentOffset.x;
+    },
+  });
+
+  const belowLineAnimatedStyles = useAnimatedStyle(() => {
+    return {
+      width: interpolate(
+        scrollOffset.value,
+        [0,width],
+        [40, 66]
+      ),
+      transform: [
+        {
+          translateX: interpolate(
+            scrollOffset.value,
+            [0, width],
+            [width * 0.23, width * 0.47],
+            Extrapolate.CLAMP,
+          ),
+        },
+      ],
+    };
+  });
+
   return (
     <MainScreen navigation={navigation}>
       <StatusBar />
-      <MainHeader avatarImage='' />
+      <MainHeader avatarImage="" onChangeText={() => {}} />
       {isUpdating && (
         <ActivityIndicator absolute theme={theme} size={'large'} />
       )}
-      <View>
-        {postUsers.length > 0 || !loading ? (
-          <ScrollView
-            horizontal
-            contentContainerStyle={styles.postUserList}>
-            {postUsers.map((user, i) => (
-              <TouchableOpacity
-                key={i}
-                onPress={() =>
-                  onOpenProfile(user)
-                }
-                style={{ width: 70, marginRight: 20 }}>
-                <View style={styles.postUser}>
-                  <Image
-                    source={
-                      user?.avatar
-                        ? { uri: user.avatar }
-                        : images.default_avatar
-                    }
-                    style={styles.postUserAvatar}
-                  />
-                </View>
-                <Text
-                  numberOfLines={2}
-                  style={[
-                    styles.postUserName,
-                    { color: themes[theme].activeTintColor },
-                  ]}>
-                  {user?.displayName}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        ) : null}
+      <View style={styles.followingAndForYouContainer}>
+        <Pressable
+          onPress={() => scrollToEndOrBeginning(0)}
+          style={styles.textContainer}>
+          <Text style={styles.followingAndForYouText}>ForYou</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => mainFlatListRef?.current?.scrollToEnd()}
+          style={styles.textContainer}>
+          <Text style={styles.followingAndForYouText}>Followings</Text>
+        </Pressable>
+        <Animated.View style={[styles.belowLine, belowLineAnimatedStyles, { backgroundColor: themes[theme].activeTintColor }]} />
       </View>
-      {data.length > 0 || loading ? (
-        <FlatList
-          data={data}
-          renderItem={({ item, index }) => (
-            <Post
-              item={item}
-              onPress={() => onOpenPost(item)}
-              onPressUser={() => onOpenProfile(item)}
-              onPressShare={() => onSharePost(item)}
-              onLike={isLiking => onToggleLike(item, isLiking)}
-              isLiking={item.likes && item.likes.includes(user.userId)}
-              onActions={onActionPost(item)}
-              theme={theme}
-              style={{ marginBottom: index === data.length - 1 ? tabbarHeight : undefined }}
-            />
-          )}
-          keyExtractor={item => item.id}
-          ListFooterComponent={renderFooter}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              tintColor={themes[theme].actionColor}
-            />
-          }
-          contentContainerStyle={{ paddingBottom: 20 }}
-        />
-      ) : (
-        <NoFriends onPress={() => {}} />
-      )}
+      <ReanimatedFlatList
+        ref={mainFlatListRef}
+        data={flatLists}
+        renderItem={renderFlatListItem}
+        horizontal
+        style={{width}}
+        snapToInterval={width}
+        snapToAlignment="start"
+        decelerationRate={'fast'}
+        onScroll={scrollHandler}
+        showsHorizontalScrollIndicator={false}
+      />
     </MainScreen>
-  )
+  );
 }
 
 const mapStateToProps = state => ({
