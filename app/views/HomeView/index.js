@@ -8,17 +8,14 @@ import {
   View,
   Text,
   Dimensions,
-  Pressable,
+  Pressable, useWindowDimensions, TouchableOpacity,
 } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
 import { useNavigation } from '@react-navigation/native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import Animated, {
   useSharedValue,
-  useAnimatedStyle,
   useAnimatedScrollHandler,
-  interpolate,
-  Extrapolate,
 } from 'react-native-reanimated'
 
 import { themes } from '../../constants/colors'
@@ -44,6 +41,7 @@ import images from '../../assets/images'
 import styles from './styles'
 import { navigateToProfile, onSharePost } from '../../utils/const'
 import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
+import { TabView, SceneMap } from 'react-native-tab-view'
 
 const { width } = Dimensions.get('screen')
 
@@ -69,18 +67,18 @@ const HomeView = props => {
   const { user, theme, setUser } = props
   const { data, loading, isUpdating, refreshing, postUsers, forYouShowing } = state
 
-  const flatLists = [
-    {
-      id: 1,
-      name: 'Following',
-      data: data,
-    },
-    {
-      id: 2,
-      name: 'ForYou',
-      data: data,
-    },
-  ]
+  // const flatLists = [
+  //   {
+  //     id: 1,
+  //     name: 'Following',
+  //     data: data,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'ForYou',
+  //     data: data,
+  //   },
+  // ]
 
   useEffect(() => {
     if (!global.unSubscribeRoom) {
@@ -299,6 +297,7 @@ const HomeView = props => {
   }
 
   const renderItem = ({ item, index }) => {
+    console.log(item)
     return (
       <Post
         item={item}
@@ -317,6 +316,7 @@ const HomeView = props => {
   }
 
   const renderFlatListItem = ({ item, index }) => {
+    console.log(item)
     return (
       <FlatList
         style={{ width }}
@@ -338,12 +338,6 @@ const HomeView = props => {
     )
   }
 
-  const scrollToEndOrBeginning = (xOffset) => {
-    mainFlatListRef.current && mainFlatListRef?.current?.scrollToOffset({ x: xOffset, animated: true })
-  }
-
-  // Animation
-
   const ReanimatedFlatList = Animated.createAnimatedComponent(FlatList)
 
   const scrollOffset = useSharedValue(0)
@@ -354,49 +348,89 @@ const HomeView = props => {
     },
   })
 
-  const belowLineAnimatedStyles = useAnimatedStyle(() => {
-    return {
-      width: interpolate(
-        scrollOffset.value,
-        [0, width],
-        [40, 66],
-        Extrapolate.CLAMP,
-      ),
-      transform: [
-        {
-          translateX: interpolate(
-            scrollOffset.value,
-            [0, width],
-            [width * 0.23, width * 0.47],
-            Extrapolate.CLAMP,
-          ),
-        },
-      ],
-    }
-  })
+  const ForYouRoute = () => {
 
-  const forYoucolorTextAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      color: themes[theme].titleColor,
-      opacity: interpolate(
-        scrollOffset.value,
-        [0, width],
-        [1, 0.3],
-      ),
-    }
-  })
+    console.log(data)
+    return (<Text>asdfasdf</Text>)
+    // <FlatList
+    //   data={data}
+    //   renderItem={renderItem}
+    //   showsVerticalScrollIndicator={false}
+    //   keyExtractor={item => item.id}
+    //   ListFooterComponent={renderFooter}
+    //   refreshControl={
+    //     <RefreshControl
+    //       refreshing={refreshing}
+    //       onRefresh={onRefresh}
+    //       tintColor={themes[theme].actionColor}
+    //     />
+    //   }
+    //   contentContainerStyle={{ paddingBottom: 20 }}
+    //   ListEmptyComponent={<NoFriends onPress={() => {}} />}
+    // />
+    // <ReanimatedFlatList
+    //   ref={mainFlatListRef}
+    //   data={data}
+    //   renderItem={renderFlatListItem}
+    //   horizontal
+    //   style={{ width }}
+    //   snapToInterval={width}
+    //   snapToAlignment="start"
+    //   decelerationRate={'fast'}
+    //   onScroll={scrollHandler}
+    //   showsHorizontalScrollIndicator={false}
+    // />
+  }
 
-  const followingsColorTextAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      color: themes[theme].titleColor,
-      opacity: interpolate(
-        scrollOffset.value,
-        [0, width],
-        [0.3, 1],
-      ),
-    }
-  })
+  const FollowingsRoute = () => (
+    <></>
+    // <ReanimatedFlatList
+    //   ref={mainFlatListRef}
+    //   data={data}
+    //   renderItem={renderFlatListItem}
+    //   horizontal
+    //   style={{ width }}
+    //   snapToInterval={width}
+    //   snapToAlignment="start"
+    //   decelerationRate={'fast'}
+    //   onScroll={scrollHandler}
+    //   showsHorizontalScrollIndicator={false}
+    // />
+  )
 
+  const layout = useWindowDimensions()
+
+  const [index, setIndex] = React.useState(0)
+  const [routes] = React.useState([
+    { key: 'first', title: 'For You' },
+    { key: 'second', title: 'Followings' },
+  ])
+
+  const renderScene = SceneMap({
+    first: ForYouRoute,
+    second: FollowingsRoute,
+  })
+  const renderTabBar = (props) => {
+    return (
+      <View style={styles.tabBar}>
+        {props.navigationState.routes.map((route, i) => {
+          return (
+            <TouchableOpacity
+              key={i}
+              style={[styles.tabItem, index === i ? styles.activeTab : '', {
+                // borderBottomColor: index === i ? themes[theme].titleColor : themes[theme].titleColor,
+                borderBottomColor: index === i ? '#FFFFFF' : '#4B4B4B',
+              }]}
+              onPress={() => setIndex(i)}>
+              <Text style={[styles.tabText, { color: themes[theme].titleColor }]}>{route.title}</Text>
+            </TouchableOpacity>
+          )
+        })}
+      </View>
+    )
+  }
+
+  console.log('main page')
   return (
     <MainScreen navigation={navigation}>
       <StatusBar />
@@ -404,41 +438,13 @@ const HomeView = props => {
       {isUpdating && (
         <ActivityIndicator absolute theme={theme} size={'large'} />
       )}
-      <View style={styles.followingAndForYouContainer}>
-        <Pressable
-          onPress={() => scrollToEndOrBeginning(0)}
-          style={styles.textContainer}>
-          <Animated.Text
-            style={[styles.followingAndForYouText, forYoucolorTextAnimatedStyle]}>
-            ForYou
-          </Animated.Text>
-        </Pressable>
-        <Pressable
-          onPress={() => mainFlatListRef?.current?.scrollToEnd()}
-          style={styles.textContainer}>
-          <Animated.Text
-            style={[styles.followingAndForYouText, followingsColorTextAnimatedStyle]}>Followings</Animated.Text>
-        </Pressable>
-        <Animated.View
-          style={[
-            styles.belowLine,
-            belowLineAnimatedStyles,
-            { backgroundColor: themes[theme].activeTintColor },
-          ]}
-        />
-      </View>
-      <ReanimatedFlatList
-        ref={mainFlatListRef}
-        data={flatLists}
-        renderItem={renderFlatListItem}
-        horizontal
-        style={{ width }}
-        snapToInterval={width}
-        snapToAlignment="start"
-        decelerationRate={'fast'}
-        onScroll={scrollHandler}
-        showsHorizontalScrollIndicator={false}
-      />
+      {/*<TabView*/}
+      {/*  navigationState={{ index, routes }}*/}
+      {/*  renderScene={renderScene}*/}
+      {/*  // renderTabBar={renderTabBar}*/}
+      {/*  initialLayout={{ width: layout.width }}*/}
+      {/*  onIndexChange={setIndex}*/}
+      {/*/>*/}
     </MainScreen>
   )
 }

@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   tabBar: {
@@ -64,7 +64,7 @@ export default StyleSheet.create({
     borderBottomWidth: 0.2,
     borderColor: '#ccc',
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   followingAndForYouText: {
     fontWeight: '500',
@@ -78,5 +78,22 @@ export default StyleSheet.create({
   },
   textContainer: {
     justifyContent: 'center',
-  }
-});
+  },
+  tabItem: {
+    flex: 1,
+    alignItems: 'center',
+    padding: 16,
+    borderBottomWidth: 0.5,
+  },
+  activeTab: {
+    borderBottomWidth: 1,
+    flex: 1,
+    alignItems: 'center',
+    padding: 16,
+  },
+  tabText: {
+    fontFamily: 'Raleway',
+    fontWeight: '500',
+    fontSize: 14,
+  },
+})
