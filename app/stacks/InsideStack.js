@@ -37,24 +37,20 @@ import { MainTabBar } from '../containers/MainScreen'
 const Tab = createBottomTabNavigator()
 const Inside = createStackNavigator()
 
-const HomeStack = () => {
-  const { theme } = React.useContext(ThemeContext)
-
-  return (
-    <Inside.Navigator>
-      <Inside.Screen
-        name="Feed"
-        component={HomeView}
-        options={{ headerShown: false }}
-      />
-      <Inside.Screen
-        name="Posts"
-        component={PostsView}
-        options={{ headerShown: false }}
-      />
-    </Inside.Navigator>
-  )
-}
+const HomeStack = () => (
+  <Inside.Navigator>
+    <Inside.Screen
+      name="Feed"
+      component={HomeView}
+      options={{ headerShown: false }}
+    />
+    <Inside.Screen
+      name="Posts"
+      component={PostsView}
+      options={{ headerShown: false }}
+    />
+  </Inside.Navigator>
+)
 
 const TabStack = () => {
   const { theme } = React.useContext(ThemeContext)
@@ -67,7 +63,8 @@ const TabStack = () => {
         ...themedHeader(theme),
         ...StackAnimation,
       }}
-      sceneContainerStyle={{ backgroundColor: 'transparent' }}>
+      sceneContainerStyle={{ backgroundColor: 'transparent' }}
+    >
       <Tab.Screen
         name="Home"
         component={HomeStack}

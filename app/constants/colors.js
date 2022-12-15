@@ -77,7 +77,7 @@ const mentions = {
 export const themes = {
   light: {
     activeTintColor: '#000000',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#FFFFFF',
     focusedBackground: '#ffffff',
     chatComponentBackground: '#f3f4f5',
     postBackground: '#FFFFFF',
@@ -99,7 +99,7 @@ export const themes = {
     controlText: '#54585e',
     auxiliaryText: '#9ca2a8',
     inactiveTintColor: '#898989',
-    infoText: '#787878',
+    infoText: '#858585',
     readText: '#404040',
     tintColor: '#1d74f5',
     tintActive: '#549df9',
@@ -191,7 +191,7 @@ export const themes = {
     controlText: '#54585e',
     auxiliaryText: '#AFAFAF',
     inactiveTintColor: '#A2A8B8',
-    infoText: '#B2B2B2',
+    infoText: '#C4C4C4',
     readText: '#404040',
     tintColor: '#1d74f5',
     tintActive: '#549df9',

@@ -8,7 +8,7 @@ import {
   View,
   Text,
   Dimensions,
-  Pressable
+  Pressable,
 } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
 import { useNavigation } from '@react-navigation/native'
@@ -19,7 +19,7 @@ import Animated, {
   useAnimatedScrollHandler,
   interpolate,
   Extrapolate,
-} from "react-native-reanimated";
+} from 'react-native-reanimated'
 
 import { themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
@@ -45,7 +45,7 @@ import styles from './styles'
 import { navigateToProfile, onSharePost } from '../../utils/const'
 import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
 
-const { width } = Dimensions.get("screen");
+const { width } = Dimensions.get('screen')
 
 const HomeView = props => {
   const navigation = useNavigation()
@@ -63,8 +63,8 @@ const HomeView = props => {
     notifying: false,
     isUpdating: false,
   })
-  
-  const mainFlatListRef = useRef();
+
+  const mainFlatListRef = useRef()
 
   const { user, theme, setUser } = props
   const { data, loading, isUpdating, refreshing, postUsers, forYouShowing } = state
@@ -72,15 +72,15 @@ const HomeView = props => {
   const flatLists = [
     {
       id: 1,
-      name: "Following",
+      name: 'Following',
       data: data,
     },
     {
       id: 2,
-      name: "ForYou",
+      name: 'ForYou',
       data: data,
     },
-  ];
+  ]
 
   useEffect(() => {
     if (!global.unSubscribeRoom) {
@@ -237,7 +237,7 @@ const HomeView = props => {
           setState({ ...state, isUpdating: false })
           init()
         })
-        .catch(err => {
+        .catch(() => {
           showErrorAlert(I18n.t('Block_user_failed'), I18n.t('Oops'))
           setState({ ...state, isUpdating: false })
         })
@@ -313,13 +313,13 @@ const HomeView = props => {
           marginBottom: index === data.length - 1 ? tabbarHeight : undefined,
         }}
       />
-    );
-  };
+    )
+  }
 
   const renderFlatListItem = ({ item, index }) => {
     return (
       <FlatList
-        style={{width}}
+        style={{ width }}
         data={item.data}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
@@ -332,11 +332,11 @@ const HomeView = props => {
             tintColor={themes[theme].actionColor}
           />
         }
-        contentContainerStyle={{paddingBottom: 20}}
+        contentContainerStyle={{ paddingBottom: 20 }}
         ListEmptyComponent={<NoFriends onPress={() => {}} />}
       />
-    );
-  };
+    )
+  }
 
   const scrollToEndOrBeginning = (xOffset) => {
     mainFlatListRef.current && mainFlatListRef?.current?.scrollToOffset({ x: xOffset, animated: true })
@@ -344,21 +344,21 @@ const HomeView = props => {
 
   // Animation
 
-  const ReanimatedFlatList = Animated.createAnimatedComponent(FlatList);
+  const ReanimatedFlatList = Animated.createAnimatedComponent(FlatList)
 
-  const scrollOffset = useSharedValue(0);
+  const scrollOffset = useSharedValue(0)
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
-      scrollOffset.value = event.contentOffset.x;
+      scrollOffset.value = event.contentOffset.x
     },
-  });
+  })
 
   const belowLineAnimatedStyles = useAnimatedStyle(() => {
     return {
       width: interpolate(
         scrollOffset.value,
-        [0,width],
+        [0, width],
         [40, 66],
         Extrapolate.CLAMP,
       ),
@@ -372,10 +372,10 @@ const HomeView = props => {
           ),
         },
       ],
-    };
-  });
+    }
+  })
 
-  const forYoucolorTextAnimatedStyle = useAnimatedStyle(()=>{
+  const forYoucolorTextAnimatedStyle = useAnimatedStyle(() => {
     return {
       color: themes[theme].titleColor,
       opacity: interpolate(
@@ -386,7 +386,7 @@ const HomeView = props => {
     }
   })
 
-  const followingsColorTextAnimatedStyle = useAnimatedStyle(()=>{
+  const followingsColorTextAnimatedStyle = useAnimatedStyle(() => {
     return {
       color: themes[theme].titleColor,
       opacity: interpolate(
@@ -416,13 +416,14 @@ const HomeView = props => {
         <Pressable
           onPress={() => mainFlatListRef?.current?.scrollToEnd()}
           style={styles.textContainer}>
-          <Animated.Text style={[styles.followingAndForYouText, followingsColorTextAnimatedStyle]}>Followings</Animated.Text>
+          <Animated.Text
+            style={[styles.followingAndForYouText, followingsColorTextAnimatedStyle]}>Followings</Animated.Text>
         </Pressable>
         <Animated.View
           style={[
             styles.belowLine,
             belowLineAnimatedStyles,
-            {backgroundColor: themes[theme].activeTintColor},
+            { backgroundColor: themes[theme].activeTintColor },
           ]}
         />
       </View>
@@ -431,7 +432,7 @@ const HomeView = props => {
         data={flatLists}
         renderItem={renderFlatListItem}
         horizontal
-        style={{width}}
+        style={{ width }}
         snapToInterval={width}
         snapToAlignment="start"
         decelerationRate={'fast'}
@@ -439,7 +440,7 @@ const HomeView = props => {
         showsHorizontalScrollIndicator={false}
       />
     </MainScreen>
-  );
+  )
 }
 
 const mapStateToProps = state => ({

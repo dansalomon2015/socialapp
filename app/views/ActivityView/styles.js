@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   container: {
@@ -8,35 +8,44 @@ export default StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
   },
+  headerText: {
+    fontFamily: 'Raleway',
+    fontSize: 24,
+    lineHeight: 26,
+    paddingHorizontal: 16,
+  },
   itemContainer: {
     flexDirection: 'row',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingVertical: 12,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  border: {
+    borderBottomWidth: 0.5,
   },
   itemContent: {
     flexGrow: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 8,
-    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginLeft: 12,
     paddingRight: 20,
   },
   itemImage: {
     width: 48,
     height: 48,
-    borderRadius: 24,
+    borderRadius: 10,
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   itemTitle: {
-    fontSize: 16,
-    color: 'black',
-    fontWeight: 'bold',
+    fontFamily: 'Hind Vadodara',
+    fontSize: 14,
+    lineHeight: 21,
   },
   itemText: {
-    flex: 1,
     marginVertical: 4,
-    fontSize: 16,
-    color: 'black',
+    fontSize: 14,
+    lineHeight: 21,
   },
   postImageContainer: {
     position: 'relative',
@@ -57,6 +66,8 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   captionText: {
+    fontFamily: 'Raleway',
     fontSize: 12,
+    lineHeight: 14
   },
-});
+})

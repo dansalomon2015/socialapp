@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { HEADER_BAR_END, HEADER_BAR_START, themes } from '../../constants/colors';
-import StatusBar from '../../containers/StatusBar';
-import { withTheme } from '../../theme';
+import React, { useState, useEffect } from 'react'
+import { HEADER_BAR_END, HEADER_BAR_START, themes } from '../../constants/colors'
+import StatusBar from '../../containers/StatusBar'
+import { withTheme } from '../../theme'
 import {
   Image,
   SafeAreaView,
@@ -11,41 +11,41 @@ import {
   TouchableOpacity,
   View,
   Share,
-} from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-import { connect } from 'react-redux';
-import Feather from 'react-native-vector-icons/Feather';
-import { chunk } from 'lodash';
+} from 'react-native'
+import firestore from '@react-native-firebase/firestore'
+import { connect } from 'react-redux'
+import Feather from 'react-native-vector-icons/Feather'
+import { chunk } from 'lodash'
 
-import images from '../../assets/images';
-import styles from './styles';
-import { setUser as setUserAction } from '../../actions/login';
-import ActivityIndicator from '../../containers/ActivityIndicator';
-import { isValidURL } from '../../utils/validators';
+import images from '../../assets/images'
+import styles from './styles'
+import { setUser as setUserAction } from '../../actions/login'
+import ActivityIndicator from '../../containers/ActivityIndicator'
+import { isValidURL } from '../../utils/validators'
 import firebaseSdk, {
   DB_ACTION_ADD,
   DB_ACTION_DELETE,
   DB_ACTION_UPDATE,
   NOTIFICATION_TYPE_FOLLOW,
   NOTIFICATION_TYPE_LIKE,
-} from '../../lib/firebaseSdk';
-import { showErrorAlert, showToast } from '../../lib/info';
-import { withActionSheet } from '../../containers/ActionSheet';
-import { VectorIcon } from '../../containers/VectorIcon';
-import scrollPersistTaps from '../../utils/scrollPersistTaps';
-import I18n from '../../i18n';
-import PostText from '../ProfileView/PostText';
+} from '../../lib/firebaseSdk'
+import { showErrorAlert, showToast } from '../../lib/info'
+import { withActionSheet } from '../../containers/ActionSheet'
+import { VectorIcon } from '../../containers/VectorIcon'
+import scrollPersistTaps from '../../utils/scrollPersistTaps'
+import I18n from '../../i18n'
+import PostText from '../ProfileView/PostText'
 import {
   POST_TYPE_PHOTO,
   POST_TYPE_TEXT,
   POST_TYPE_VIDEO,
-} from '../../constants/app';
-import PopupMenu from '../../containers/PopupMenu';
-import { getUserRepresentString, onSharePost } from '../../utils/const';
+} from '../../constants/app'
+import PopupMenu from '../../containers/PopupMenu'
+import { getUserRepresentString, onSharePost } from '../../utils/const'
 
 const OtherProfileView = props => {
-  const { navigation, user, theme } = props;
-  const userId = props.route.params?.userId;
+  const { navigation, user, theme } = props
+  const userId = props.route.params?.userId
   const [state, setState] = useState({
     account: {
       userId: userId,
@@ -54,56 +54,56 @@ const OtherProfileView = props => {
     isLoading: true,
     updating: false,
     refreshing: false,
-  });
-  const [isPostTab, setIsPostTab] = useState(true);
+  })
+  const [isPostTab, setIsPostTab] = useState(true)
 
-  const { account, posts, image_path, isLoading } = state;
-  let unSubscribePost = '';
+  const { account, posts, image_path, isLoading } = state
+  let unSubscribePost = ''
 
   useEffect(() => {
-    init();
-  }, []);
+    init()
+  }, [])
 
   const setSafeState = states => {
-    setState({ ...state, ...states });
-  };
+    setState({ ...state, ...states })
+  }
 
   const init = () => {
-    const { navigation } = props;
+    const { navigation } = props
     firebaseSdk
       .getUser(state.account.userId)
       .then(user => {
         const userPostSubscribe = firestore()
           .collection(firebaseSdk.TBL_POST)
-          .where('userId', '==', state.account.userId);
+          .where('userId', '==', state.account.userId)
         unSubscribePost = userPostSubscribe.onSnapshot(querySnap => {
-          let posts = [];
+          let posts = []
           if (querySnap) {
             querySnap.forEach(doc => {
-              posts.push({ id: doc.id, ...doc.data(), owner: user });
-            });
-            posts.sort((a, b) => b.date - a.date);
-            setSafeState({ account: user, isLoading: false, posts });
+              posts.push({ id: doc.id, ...doc.data(), owner: user })
+            })
+            posts.sort((a, b) => b.date - a.date)
+            setSafeState({ account: user, isLoading: false, posts })
           }
-        });
+        })
       })
       .catch(err => {
-        setSafeState({ isLoading: false });
-        showErrorAlert(I18n.t('user_not_found'), '', () => navigation.pop());
-      });
-  };
+        setSafeState({ isLoading: false })
+        showErrorAlert(I18n.t('user_not_found'), '', () => navigation.pop())
+      })
+  }
 
   const openLink = url => {
     if (url && url.length > 0 && isValidURL(url)) {
-      Linking.openURL(url);
+      Linking.openURL(url)
     }
-  };
+  }
 
   const onToggleFollow = following => {
-    const { user, setUser } = props;
-    const { account } = state;
+    const { user, setUser } = props
+    const { account } = state
 
-    setState({ ...state, loading: true });
+    setState({ ...state, loading: true })
     firebaseSdk
       .updateFollows(
         user.id,
@@ -121,34 +121,36 @@ const OtherProfileView = props => {
             title: account.displayName,
             message: `${user.displayName} ${I18n.t('follow_you')}.`,
             date: new Date(),
-          };
-          firebaseSdk.addActivity(activity, account.token).then(r => {});
+          }
+          firebaseSdk.addActivity(activity, account.token).then(r => {
+            console.log(r)
+          })
         }
-        setUser({ followings: myFollowings });
-        const newAccount = { ...account, followers: userFollowers };
-        setState({ ...state, loading: false, account: newAccount });
+        setUser({ followings: myFollowings })
+        const newAccount = { ...account, followers: userFollowers }
+        setState({ ...state, loading: false, account: newAccount })
       })
       .catch(err => {
-        setState({ ...state, loading: false });
-      });
-  };
+        setState({ ...state, loading: false })
+      })
+  }
 
   const sendMessage = async () => {
-    const { user, navigation } = props;
-    const { account } = state;
-    const roomSnaps = await firestore().collection(firebaseSdk.TBL_ROOM).get();
-    let room = null;
+    const { user, navigation } = props
+    const { account } = state
+    const roomSnaps = await firestore().collection(firebaseSdk.TBL_ROOM).get()
+    let room = null
     roomSnaps.forEach(doc => {
-      const roomInfo = doc.data();
+      const roomInfo = doc.data()
       if (
         (user.userId === roomInfo.sender &&
           account.userId === roomInfo.receiver) ||
         (user.userId === roomInfo.receiver &&
           account.userId === roomInfo.sender)
       ) {
-        room = { id: doc.id, ...roomInfo, account };
+        room = { id: doc.id, ...roomInfo, account }
       }
-    });
+    })
 
     if (!room) {
       room = {
@@ -158,49 +160,49 @@ const OtherProfileView = props => {
         lastMessage: '',
         confirmUser: '',
         unReads: 0,
-      };
+      }
       const roomDocRef = await firestore()
         .collection(firebaseSdk.TBL_ROOM)
-        .add(room);
-      const roomDoc = await roomDocRef.get();
+        .add(room)
+      const roomDoc = await roomDocRef.get()
       return navigation.navigate('Chat', {
         room: { id: roomDoc.id, ...roomDoc.data(), account },
-      });
+      })
     }
-    navigation.navigate('Chat', { room });
-  };
+    navigation.navigate('Chat', { room })
+  }
 
   const goToFollowers = async () => {
-    const { navigation } = props;
+    const { navigation } = props
     navigation.push('Follow', {
       type: 'followers',
       account: state.account,
-    });
-  };
+    })
+  }
 
   const goToFollowings = async () => {
-    const { navigation } = props;
+    const { navigation } = props
     navigation.push('Follow', {
       type: 'followings',
       account: state.account,
-    });
-  };
+    })
+  }
 
   const onOpenPost = item => {
-    props.navigation.push('PostDetail', { post: item });
-  };
+    props.navigation.push('PostDetail', { post: item })
+  }
 
   const onToggleLike = (item, isLiking) => {
-    const { user } = props;
+    const { user } = props
 
-    let update = {};
+    let update = {}
     if (isLiking) {
-      update = { id: item.id, likes: item.likes.filter(l => l !== user.userId) };
+      update = { id: item.id, likes: item.likes.filter(l => l !== user.userId) }
     } else {
-      update = { id: item.id, likes: [...item.likes, user.userId] };
+      update = { id: item.id, likes: [...item.likes, user.userId] }
     }
 
-    setState({ ...state, isLoading: true });
+    setState({ ...state, isLoading: true })
     firebaseSdk
       .setData(firebaseSdk.TBL_POST, DB_ACTION_UPDATE, update)
       .then(() => {
@@ -210,7 +212,7 @@ const OtherProfileView = props => {
               ? item.thumbnail
               : item.type === 'photo'
                 ? item.photo
-                : '';
+                : ''
           const activity = {
             type: NOTIFICATION_TYPE_LIKE,
             sender: user.userId,
@@ -223,27 +225,27 @@ const OtherProfileView = props => {
             title: item.owner.displayName,
             message: `${user.displayName} likes your post.`,
             date: new Date(),
-          };
-          firebaseSdk.addActivity(activity, item.owner.token).then(r => {});
+          }
+          firebaseSdk.addActivity(activity, item.owner.token).then(r => {})
         }
       })
       .catch(() => {
-        setState({ ...state, isLoading: false });
-      });
-  };
+        setState({ ...state, isLoading: false })
+      })
+  }
 
   const onActionPost = item => {
     const onReport = () => {
-      const { user } = props;
-      const { account } = state;
+      const { user } = props
+      const { account } = state
       const report = {
         userId: user.userId,
         postId: item ? item.id : null,
         ownerId: account.userId,
         createdAt: new Date(),
-      };
+      }
 
-      setState({ ...state, isLoading: true });
+      setState({ ...state, isLoading: true })
       firebaseSdk
         .setData(firebaseSdk.TBL_REPORTS, DB_ACTION_ADD, report)
         .then(() => {
@@ -251,38 +253,38 @@ const OtherProfileView = props => {
             item
               ? I18n.t('Report_post_complete')
               : I18n.t('Report_user_complete'),
-          );
-          setState({ ...state, isLoading: false });
+          )
+          setState({ ...state, isLoading: false })
         })
         .catch(err => {
           showErrorAlert(
             item ? I18n.t('Report_post_failed') : I18n.t('Report_user_failed'),
             I18n.t('Oops'),
-          );
-          setState({ ...state, isLoading: false });
-        });
-    };
+          )
+          setState({ ...state, isLoading: false })
+        })
+    }
 
     const onBlock = () => {
-      const { account } = state;
-      const { user, setUser } = props;
-      let blocked = user.blocked ?? [];
-      let update = { id: user.id, blocked: [...blocked, account.userId] };
+      const { account } = state
+      const { user, setUser } = props
+      let blocked = user.blocked ?? []
+      let update = { id: user.id, blocked: [...blocked, account.userId] }
 
-      setState({ ...state, isLoading: true });
+      setState({ ...state, isLoading: true })
       firebaseSdk
         .setData(firebaseSdk.TBL_USER, DB_ACTION_UPDATE, update)
         .then(() => {
-          setUser({ blocked: update.blocked });
-          showToast(I18n.t('Block_user_complete'));
-          setState({ ...state, isLoading: false });
-          props.navigation.pop();
+          setUser({ blocked: update.blocked })
+          showToast(I18n.t('Block_user_complete'))
+          setState({ ...state, isLoading: false })
+          props.navigation.pop()
         })
         .catch(err => {
-          showErrorAlert(I18n.t('Block_user_failed'), I18n.t('Oops'));
-          setState({ ...state, isLoading: false });
-        });
-    };
+          showErrorAlert(I18n.t('Block_user_failed'), I18n.t('Oops'))
+          setState({ ...state, isLoading: false })
+        })
+    }
 
     const options = [
       {
@@ -294,11 +296,11 @@ const OtherProfileView = props => {
         // danger: true,
         onPress: onBlock,
       },
-    ];
-    return { options };
-  };
+    ]
+    return { options }
+  }
 
-  const following = user && user.followings.includes(account.userId);
+  const following = user && user.followings.includes(account.userId)
 
   return (
     <View style={{ flex: 1 }}>
@@ -506,7 +508,7 @@ const OtherProfileView = props => {
                     onActions={onActionPost(p)}
                     theme={theme}
                   />
-                );
+                )
             })
           ) : (
             <View
@@ -556,7 +558,7 @@ const OtherProfileView = props => {
                         </TouchableOpacity>
                       </View>
                     </View>
-                  );
+                  )
                 if (index % 4 === 1 || index % 4 === 3)
                   return (
                     <View style={{ flexDirection: 'row' }}>
@@ -579,7 +581,7 @@ const OtherProfileView = props => {
                         />
                       </TouchableOpacity>
                     </View>
-                  );
+                  )
                 if (index % 4 === 2)
                   return (
                     <View style={{ flexDirection: 'row' }}>
@@ -604,7 +606,7 @@ const OtherProfileView = props => {
                         />
                       </TouchableOpacity>
                     </View>
-                  );
+                  )
               })}
             </View>
           )}
@@ -614,18 +616,18 @@ const OtherProfileView = props => {
         <ActivityIndicator absolute size="large" theme={theme} />
       ) : null}
     </View>
-  );
-};
+  )
+}
 
 const mapStateToProps = state => ({
   user: state.login.user,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
-});
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withActionSheet(withTheme(OtherProfileView)));
+)(withActionSheet(withTheme(OtherProfileView)))

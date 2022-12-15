@@ -30,9 +30,11 @@ import NoActivity from './NoActivity'
 import I18n from '../../i18n'
 import { dateStringFromNowShort } from '../../utils/datetime'
 import { navigateToProfile } from '../../utils/const'
+import { Badge } from 'react-native-paper'
+import Button from '../../containers/Button'
 
 const ActivityView = props => {
-  const tabbarHeight = useBottomTabBarHeight()
+  const tabBarHeight = useBottomTabBarHeight()
   const { theme, navigation } = props
   const [data, setData] = useState([])
   const [refreshing, setRefreshing] = useState(false)
@@ -41,28 +43,13 @@ const ActivityView = props => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <TouchableOpacity
-          onPress={navigation.toggleDrawer}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingHorizontal: 25,
-          }}>
-          <Feather name="menu" size={22} color={'white'} />
-        </TouchableOpacity>
+        <Text style={[styles.headerText, { color: themes[theme].titleText }]}>Notifications</Text>
       ),
-      title: I18n.t('Activity'),
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate('FindFriend')}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingHorizontal: 25,
-          }}>
-          <Feather name="search" size={22} color={'white'} />
-        </TouchableOpacity>
-      ),
+      title: null,
+      headerRight: () => (<></>),
+      headerStyle: {
+        backgroundColor: themes[theme].backgroundColor,
+      },
     })
   }, [])
 
@@ -118,48 +105,39 @@ const ActivityView = props => {
         message = I18n.t('likes_your_post', { name: '' })
         break
       case NOTIFICATION_TYPE_FOLLOW:
-        message = I18n.t('follows_you', { name: '' })
+        message = ' Just Followed You.'
         break
     }
 
     return (
       <TouchableOpacity
+        key={index}
         onPress={() => onPressItem(item)}
         style={[
           styles.itemContainer,
-          { marginBottom: index === data.length - 1 ? tabbarHeight : undefined },
+          index < data.length - 1 ? styles.border : null,
+          { marginBottom: index === data.length - 1 ? tabBarHeight : undefined },
+          { borderBottomColor: themes[theme].chatHeaderBorder },
         ]}>
         <Image
-          source={
-            item.sender.avatar
-              ? { uri: item.sender.avatar }
-              : images.default_avatar
-          }
+          source={item.sender.avatar ? { uri: item.sender.avatar } : images.default_avatar}
           style={styles.itemImage}
         />
         <View style={styles.itemContent}>
-          <Text
-            style={[styles.itemText, { color: themes[theme].activeTintColor }]}
-            ellipsizeMode={'tail'}>
-            <Text
-              style={[
-                styles.itemTitle,
-                { color: themes[theme].activeTintColor },
-              ]}>
+          <Text style={[styles.itemText, { color: themes[theme].activeTintColor }]}>
+            <Text style={[styles.itemTitle, { color: themes[theme].titleColor }]}>
               {item.sender.displayName}
             </Text>
             {`${message} `}
-            <Text
-              numberOfLines={4}
-              style={[
-                styles.captionText,
-                {
-                  color: themes[theme].infoText,
-                },
-              ]}>
-              {item?.date ? dateStringFromNowShort(item?.date) : null}
-              {item.text ? `\n${item.text}` : ''}
-            </Text>
+          </Text>
+
+          {item.text && (
+            <Text numberOfLines={2} style={[styles.captionText, { color: themes[theme].infoText }]}>
+              {item.text}
+            </Text>)
+          }
+          <Text style={[styles.captionText, { color: themes[theme].infoText, lineHeight: 21 }]}>
+            {item?.date ? dateStringFromNowShort(item?.date) : null}
           </Text>
         </View>
         {item.postImage ? (
@@ -197,34 +175,26 @@ const ActivityView = props => {
     <MainScreen navigation={navigation}>
       <StatusBar />
       <View
-        style={{
-          flex: 1,
-          paddingTop: 10,
-          backgroundColor: themes[theme].headerBackground,
-        }}>
-        <View
-          style={[
-            styles.container,
-            { backgroundColor: themes[theme].backgroundColor },
-          ]}>
-          {data.length > 0 ? (
-            <FlatList
-              data={data}
-              renderItem={renderItem}
-              keyExtractor={item => item.userId}
-              ListFooterComponent={renderFooter}
-              refreshControl={
-                <RefreshControl
-                  refreshing={refreshing}
-                  onRefresh={onRefresh}
-                  tintColor={themes[theme].actionColor}
-                />
-              }
-            />
-          ) : (
-            <NoActivity onPress={() => {}} />
-          )}
-        </View>
+        style={[
+          styles.container,
+          { backgroundColor: themes[theme].backgroundColor },
+        ]}>
+        {data.length > 0 ? (
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            ListFooterComponent={renderFooter}
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+                tintColor={themes[theme].actionColor}
+              />
+            }
+          />
+        ) : (
+          <NoActivity onPress={() => {}} />
+        )}
       </View>
     </MainScreen>
   )
@@ -237,7 +207,4 @@ const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withTheme(ActivityView))
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(ActivityView))
