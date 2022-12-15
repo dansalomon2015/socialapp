@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   vipTabContainer: {
-    width: '20%',
+    width: 75,
     position: 'relative',
   },
   tabText: {
@@ -104,13 +104,10 @@ const styles = StyleSheet.create({
   vipTab: {
     position: 'absolute',
     top: -72,
-    left: 6,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 10,
-    borderRadius: 50,
-    borderWidth: 1.5,
-    borderColor: 'gold',
+    borderRadius: 36,
   },
   vipTabImage: {
     width: 72,
@@ -146,7 +143,11 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: 3,
   },
-  vipButton: {},
+  vipButton: {
+    borderColor: 'gold',
+    borderWidth: 1.5,
+    borderRadius: 50,
+  },
   vipButtonText: {
     fontWeight: '700',
     fontSize: 22,

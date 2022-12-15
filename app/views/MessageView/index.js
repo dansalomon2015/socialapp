@@ -4,7 +4,6 @@ import {
   FlatList,
   Image,
   RefreshControl, SafeAreaView,
-  ScrollView,
   Text,
   TouchableOpacity,
   View,
@@ -14,7 +13,6 @@ import Feather from 'react-native-vector-icons/Feather'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
 import { COLOR_BORDER, COLOR_GRAY_DARK, COLOR_WHITE, themes } from '../../constants/colors'
-import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import images from '../../assets/images'
 import styles from './styles'
@@ -22,18 +20,10 @@ import firebaseSdk from '../../lib/firebaseSdk'
 import { dateStringFromNow, dateStringFromNowShort } from '../../utils/datetime'
 import ActivityIndicator from '../../containers/ActivityIndicator'
 import I18n from '../../i18n'
-import MainScreen from '../../containers/MainScreen'
-import * as HeaderButton from '../../containers/HeaderButton'
-import debounce from '../../utils/debounce'
-import { navigateToProfile } from '../../utils/const'
 import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
-import FloatingTextInput from '../../containers/FloatingTextInput'
 import sharedStyles from '../Styles'
 import { SearchBox } from '../../containers/SearchBox'
-import scrollPersistTaps from '../../utils/scrollPersistTaps'
 import { Badge } from 'react-native-paper'
-import moment from 'moment'
-import CsAutocompleteSelect from '../../containers/CsAutocompleteSelect'
 
 const MessageView = props => {
   const tabBarHeight = useBottomTabBarHeight()

@@ -443,7 +443,7 @@ const ChatView = props => {
         {...scrollPersistTaps}
       />
 
-      <Animated.View style={{ transform: [{ translateY: heightReplica }] }}>
+      <Animated.View>
         <RNSafeAreaView style={{ backgroundColor: themes[theme].messageOwnBackground, paddingHorizontal: 16 }}>
           <View
             style={[

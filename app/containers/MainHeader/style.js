@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   input: {
+    padding: 0,
     flex: 1,
     paddingHorizontal: 8,
     color: 'white',

@@ -9,11 +9,7 @@ import { VectorIcon } from '../VectorIcon'
 import { useNavigation } from '@react-navigation/native'
 import { themes } from '../../constants/colors'
 
-const MainHeader = ({
-  avatarImage,
-  onChangeText,
-  ...otherInputProps
-}) => {
+const MainHeader = ({ avatarImage, onChangeText, ...otherInputProps }) => {
   const { theme } = useTheme()
 
   const [showSearchIcon, setShowSearchIcon] = useState(true)
