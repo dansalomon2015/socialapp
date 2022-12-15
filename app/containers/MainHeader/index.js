@@ -38,7 +38,7 @@ const MainHeader = ({
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-        <VectorIcon type="MaterialCommunityIcons" name="menu" color="#828282" size={24} />
+        <VectorIcon type="MaterialCommunityIcons" name="menu" color={themes[theme].titleColor} size={24} />
       </TouchableOpacity>
       {showSearchIcon ? (
         <Pressable style={styles.searchAndInput} onPress={focusInput}>

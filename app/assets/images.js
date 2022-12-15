@@ -54,7 +54,6 @@ const images = {
   ic_menu_credit_card: require('./images/credit-card.png'),
   vip_menu: require('./images/vip.png'),
   message_btn: require('./images/message_btn.png'),
-  share: require('./images/share.png'),
   menu_feed: require('./images/menu_feed.png'),
   menu_open_post: require('./images/menu_open_post.png'),
   menu_shop: require('./images/menu_shop.png'),
@@ -78,9 +77,6 @@ const images = {
   side_menu_dark: require('./images/side_icon_dark.png'),
   search_light: require('./images/search_light.png'),
   search_dark: require('./images/search_dark.png'),
-  heart: require('./images/heart.png'),
-  chat: require('./images/chat.png'),
-  heart_red: require('./images/heart_red.png'),
   under_line: require('./images/under_line.png'),
   tab_background: require('./images/tab_background.png'),
   gray_circle: require('./images/graycircle.png'),
@@ -93,8 +89,6 @@ const images = {
   fast_email_sending: require('./img/fast_email_sending.png'),
   location_home: require('./images/location_home.png'),
   en_language: require('./images/en_language.png'),
-  chat_light: require('./images/chat_light.png'),
-  chat_dark: require('./images/chat_dark.png'),
 
   // TabBar Images
   home: require('./images/home.png'),
@@ -103,8 +97,7 @@ const images = {
   message_outlined: require('./images/message_outlined.png'),
   notification: require('./images/notification.png'),
   menu_icon_dark: require('./images/menu_icon_dark.png'),
-  menu_icon_light: require('./images/menu_icon_light.png')
+  menu_icon_light: require('./images/menu_icon_light.png'),
+}
 
-};
-
-export default images;
+export default images

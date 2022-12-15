@@ -16,7 +16,6 @@ import AppContainer from './AppContainer'
 import InAppNotification from './containers/InAppNotification'
 import Toast from './containers/Toast'
 import debounce from './utils/debounce'
-import { APP_THEME } from './constants/keys'
 
 const Root = () => {
   const [state, setState] = useState({
@@ -36,27 +35,21 @@ const Root = () => {
   useEffect(() => {
     let timer = setInterval(() => {
       const hour = new Date().getHours()
-      if (theme === 'dark' && hour >= 6 && hour <= 17) {
+      if (!theme) {
+        setTheme('light')
+      } else if (theme === 'dark' && hour >= 6 && hour <= 17) {
         setTheme('light')
       } else if (theme === 'light' && (hour < 6 || hour >= 18)) {
         setTheme('dark')
       }
-      // setTheme('dark')
+      // setTheme('light')
     }, 1000)
-    init()
     return () => {
       if (timer) {
         clearInterval(timer)
       }
     }
-  }, [])
-
-  const init = async () => {
-    const theme = await AsyncStorage.getItem(APP_THEME)
-    if (theme) {
-      setTheme(theme)
-    }
-  }
+  }, [theme])
 
   const onDimensionsChange = debounce(
     ({ window: { width, height, scale, fontScale } }) => {

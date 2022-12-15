@@ -11,11 +11,10 @@ import { getUserRepresentString } from '../../utils/const'
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 4,
-    marginBottom: 20,
-    marginHorizontal: 10,
+    marginHorizontal: 16,
     borderRadius: 14,
     overflow: 'hidden',
+    borderWidth: 0.5,
   },
   topView: {
     flexDirection: 'row',
@@ -146,9 +145,9 @@ const styles = StyleSheet.create({
   },
   count: {
     fontSize: 12,
-    color: '#0D0D0D',
     fontFamily: 'Hind Vadodara',
-    marginLeft: 3,
+    marginHorizontal: 6,
+    marginRight: 12,
   },
   avatarWrap: {
     flex: 1,
@@ -195,12 +194,12 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
       key={key}
       style={[
         styles.container,
-        { ...style, backgroundColor: themes[theme].post_background_color },
+        { ...style, backgroundColor: themes[theme].postBackground, borderColor: themes[theme].postBorderColor },
       ]}
       onPress={onPress}>
       <View style={styles.topView}>
         <TouchableOpacity style={styles.avatarWrap} onPress={onPressUser}>
-          <View style={[styles.avatarContainer, { borderColor: themes[theme].post_image_border_color }]}>
+          <View style={[styles.avatarContainer, { borderColor: themes[theme].profileBorderColor }]}>
             <Image
               source={
                 item?.owner?.avatar
@@ -242,8 +241,8 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
           )}
         />
       </View>
-      {item.type === POST_TYPE_TEXT && (
-        <>
+      <>
+        {item.type === POST_TYPE_TEXT && (
           <TouchableOpacity
             onPress={onPress}
             style={[styles.content, { paddingHorizontal: 20, marginBottom: 16 }]}>
@@ -260,172 +259,134 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
               {item?.text}
             </Text>
           </TouchableOpacity>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              height: 40,
-              paddingHorizontal: 22,
-            }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <TouchableOpacity
-                onPress={() => onLike(isLiking)}
-                style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-                  source={isLiking ? images.heart_red : images.heart}
-                  style={styles.toolIcon}
-                />
-                <Text style={styles.count}>{item.likes?.length ?? 0}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={onPress}
-                style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image source={images.chat} style={styles.toolIcon} />
-                <Text style={styles.count}>{item.comments?.length ?? 0}</Text>
-              </TouchableOpacity>
-            </View>
-            <TouchableOpacity onPress={onPressShare}>
-              <Image source={images.share} style={styles.toolIcon} />
-            </TouchableOpacity>
-          </View>
-        </>
-      )}
-      {item.type === POST_TYPE_PHOTO && (
-        <TouchableOpacity
-          onPress={onPress}
-          style={[styles.content, { paddingHorizontal: 11 }]}>
-          {item.text && (
-            <Text
-              style={[
-                styles.titleText,
-                {
-                  color: themes[theme].titleText,
-                  paddingHorizontal: 10,
-                  fontWeight: 'normal',
-                  fontSize: 14,
-                  lineHeight: 20,
-                },
-              ]}>
-              {item?.text}
-            </Text>
-          )}
-          <Image source={{ uri: item?.photo }} style={styles.photoImage} />
-          <View style={styles.bottomView}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <TouchableOpacity
-                onPress={() => onLike(isLiking)}
-                style={{ flexDirection: 'row', alignItems: 'center', marginRight: 10 }}>
-                <VectorIcon
-                  type="MaterialCommunityIcons"
-                  name="heart"
-                  size={25}
-                  color={
-                    isLiking
-                      ? themes[theme].heartColor_liked
-                      : themes[theme].heartColor_not_liked
-                  }
-                />
-                <Text style={styles.count}>{item.likes?.length ?? 0}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={onPress}
-                style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-                  source={
-                    theme == 'light' ? images.chat_light : images.chat_dark
-                  }
-                  style={styles.toolIcon}
-                />
-                <Text style={styles.count}>{item.comments?.length ?? 0}</Text>
-              </TouchableOpacity>
-            </View>
-            <VectorIcon
-              name="share"
-              color="#898989"
-              size={18}
-            />
-          </View>
-        </TouchableOpacity>
-      )}
-      {item.type === POST_TYPE_VIDEO && (
-        <TouchableOpacity
-          onPress={onPress}
-          style={[styles.content, { paddingHorizontal: 11 }]}>
-          {item.text && (
-            <Text
-              style={[
-                styles.titleText,
-                {
-                  color: themes[theme].titleText,
-                  paddingHorizontal: 10,
-                  fontWeight: 'normal',
-                  fontSize: 14,
-                  lineHeight: 20,
-                },
-              ]}>
-              {item.text}
-            </Text>
-          )}
-          <View style={styles.imageWrap}>
-            {playing ? (
-              <Video
-                source={{ uri: item.video }}
-                style={styles.video}
-                controls
-                onEnd={() => setPlaying(false)}
-                resizeMode={'contain'}
-              />
-            ) : (
-              <View style={styles.thumbnailContainer}>
-                <Image
-                  source={{ uri: item.thumbnail }}
-                  style={styles.thumbnail}
+        )}
+
+        {item.type === POST_TYPE_PHOTO && (
+          <TouchableOpacity
+            onPress={onPress}
+            style={[styles.content, { paddingHorizontal: 11 }]}>
+            {item.text && (
+              <Text
+                style={[
+                  styles.titleText,
+                  {
+                    color: themes[theme].titleText,
+                    paddingHorizontal: 10,
+                    fontWeight: 'normal',
+                    fontSize: 14,
+                    lineHeight: 20,
+                  },
+                ]}>
+                {item?.text}
+              </Text>
+            )}
+            <Image source={{ uri: item?.photo }} style={styles.photoImage} />
+          </TouchableOpacity>
+        )}
+
+        {item.type === POST_TYPE_VIDEO && (
+          <TouchableOpacity
+            onPress={onPress}
+            style={[styles.content, { paddingHorizontal: 11 }]}>
+            {item.text && (
+              <Text
+                style={[
+                  styles.titleText,
+                  {
+                    color: themes[theme].titleText,
+                    paddingHorizontal: 10,
+                    fontWeight: 'normal',
+                    fontSize: 14,
+                    lineHeight: 20,
+                  },
+                ]}>
+                {item.text}
+              </Text>
+            )}
+            <View style={styles.imageWrap}>
+              {playing ? (
+                <Video
+                  source={{ uri: item.video }}
+                  style={styles.video}
+                  controls
+                  onEnd={() => setPlaying(false)}
                   resizeMode={'contain'}
                 />
-                <TouchableOpacity
-                  onPress={() => {
-                    if (playing) {
-                      onPress()
-                    } else {
-                      setPlaying(true)
-                    }
-                  }}
-                  style={[styles.playIcon, { position: 'absolute' }]}>
-                  <VectorIcon
-                    name="playcircleo"
-                    type={'AntDesign'}
-                    size={72}
-                    color={'white'}
-                  />
-                </TouchableOpacity>
-              </View>
-            )}
-            <View style={styles.mediaWrap}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TouchableOpacity
-                  onPress={() => onLike(isLiking)}
-                  style={{ flexDirection: 'row', alignItems: 'center' }}>
+              ) : (
+                <View style={styles.thumbnailContainer}>
                   <Image
-                    source={isLiking ? images.heart_red : images.heart}
-                    style={styles.toolIcon}
+                    source={{ uri: item.thumbnail }}
+                    style={styles.thumbnail}
+                    resizeMode={'contain'}
                   />
-                  <Text style={styles.count}>{item.likes?.length ?? 0}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={onPress}
-                  style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Image source={images.chat} style={styles.toolIcon} />
-                  <Text style={styles.count}>{item.comments?.length ?? 0}</Text>
-                </TouchableOpacity>
-              </View>
-              <TouchableOpacity onPress={onPressShare}>
-                <Image source={images.share} style={styles.toolIcon} />
-              </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      if (playing) {
+                        onPress()
+                      } else {
+                        setPlaying(true)
+                      }
+                    }}
+                    style={[styles.playIcon, { position: 'absolute' }]}>
+                    <VectorIcon
+                      name="playcircleo"
+                      type={'AntDesign'}
+                      size={72}
+                      color={'white'}
+                    />
+                  </TouchableOpacity>
+                </View>
+              )}
             </View>
+          </TouchableOpacity>
+        )}
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            height: 40,
+            paddingHorizontal: 22,
+          }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TouchableOpacity
+              onPress={() => onLike(isLiking)}
+              style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <VectorIcon
+                type="MaterialCommunityIcons"
+                name="heart"
+                size={20}
+                color={isLiking ? themes[theme].activatedIcon : themes[theme].unActivatedIcon}
+              />
+              <Text style={[styles.count, { color: themes[theme].titleColor }]}>
+                {item.likes && item.likes.length > 0 ? item.likes.length : null}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={onPress}
+              style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <VectorIcon
+                type="MaterialCommunityIcons"
+                name="chat"
+                size={20}
+                color={themes[theme].unActivatedIcon}
+              />
+              <Text style={[styles.count, { color: themes[theme].titleColor }]}>
+                {item.comments && item.comments.length > 0 ? item.comments.length : null}
+              </Text>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-      )}
+          <TouchableOpacity onPress={onPressShare}>
+            <VectorIcon
+              type="MaterialCommunityIcons"
+              name="share"
+              size={24}
+              color={themes[theme].activatedIcon}
+            />
+          </TouchableOpacity>
+        </View>
+      </>
     </View>
   )
 }

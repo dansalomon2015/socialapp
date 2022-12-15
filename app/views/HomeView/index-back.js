@@ -124,7 +124,6 @@ const HomeView = props => {
     }
 
     setState({ ...state, isUpdating: true })
-    init()
     firebaseSdk
       .setData(firebaseSdk.TBL_POST, DB_ACTION_UPDATE, update)
       .then(() => {
