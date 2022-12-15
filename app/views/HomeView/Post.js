@@ -357,7 +357,7 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
                 type="MaterialCommunityIcons"
                 name="heart"
                 size={20}
-                color={isLiking ? themes[theme].activatedIcon : themes[theme].unActivatedIcon}
+                color={isLiking ? themes[theme].activatedIcon : themes[theme].inActivatedIcon}
               />
               <Text style={[styles.count, { color: themes[theme].titleColor }]}>
                 {item.likes && item.likes.length > 0 ? item.likes.length : null}
@@ -370,7 +370,7 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
                 type="MaterialCommunityIcons"
                 name="chat"
                 size={20}
-                color={themes[theme].unActivatedIcon}
+                color={themes[theme].inActivatedIcon}
               />
               <Text style={[styles.count, { color: themes[theme].titleColor }]}>
                 {item.comments && item.comments.length > 0 ? item.comments.length : null}

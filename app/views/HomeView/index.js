@@ -68,6 +68,7 @@ const HomeView = props => {
   }, [])
 
   useEffect(() => {
+    console.log(tabBarHeight)
     init()
   }, [user])
 
@@ -242,7 +243,7 @@ const HomeView = props => {
     if (loading) {
       return <ActivityIndicator theme={theme} size={'large'} />
     }
-    return null
+    return <View style={{ height: tabBarHeight + 24 }} />
   }
 
   const onRefresh = () => {
@@ -261,10 +262,7 @@ const HomeView = props => {
         isLiking={item.likes && item.likes.includes(user.userId)}
         onActions={onActionPost(item)}
         theme={theme}
-        style={{
-          marginBottom: index === item.length - 1 ? tabBarHeight : undefined,
-          marginTop: index === 0 ? 16 : 8,
-        }}
+        style={{ marginTop: index === 0 ? 16 : 8 }}
       />
     )
   }

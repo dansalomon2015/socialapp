@@ -33,7 +33,7 @@ import {
 } from '../constants/app'
 import SearchBox from './SearchBox'
 import I18n from '../i18n'
-import TabBarSvg from './TabBarSvg'
+import { VectorIcon } from './VectorIcon'
 
 export const Button = isAndroid ? Touch : TouchableOpacity
 
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   vipTab: {
     position: 'absolute',
-    top: -62,
+    top: -72,
     left: 6,
     justifyContent: 'center',
     alignItems: 'center',
@@ -146,13 +146,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: 3,
   },
-  vipButton: {
-    width: 68,
-    height: 68,
-    borderRadius: 68,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  vipButton: {},
   vipButtonText: {
     fontWeight: '700',
     fontSize: 22,
@@ -160,15 +154,17 @@ const styles = StyleSheet.create({
   },
   logo: {
     resizeMode: 'contain',
-    width: 61.2,
-    height: 37.46
+    width: 72,
+    height: 72,
   },
-});
+})
 
 export const MainTabBar = React.memo(({ theme, navigation, state }) => {
   const { unread } = useSelector(state => state.chat)
   const [showVipScreen, setShowVipScreen] = useState(false)
+  const [imageBG, setIamgeBG] = useState(false)
   const { width } = Dimensions.get('window')
+
 
   const onVip = () => {
     setShowVipScreen({ showVipScreen: true })
@@ -176,74 +172,51 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
 
   return (
     <>
-      <View style={styles.mainTabContainer}>
-        <TabBarSvg />
+      <ImageBackground
+        source={theme === 'light' ? images.light_tab_background : images.dark_tab_background}
+        imageStyle={{ top: -24, resizeMode: 'cover' }}
+        style={styles.mainTabContainer}
+      >
         <View style={styles.tabBarContainer}>
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Home')}>
-            <Image
-              source={theme == 'dark' ? images.home : images.home_icon_white}
-              style={[
-                styles.tabImage,
-                {
-                  opacity: state.index === 0 ? 1 : 0.4,
-                  borderColor:
-                    state.index === 0
-                      ? themes[theme].active_tabBar_icon_color
-                      : themes[theme].inactive_tabBar_icon_color,
-                  backgroundColor: 'none',
-                },
-              ]}
+            <VectorIcon
+              type="MaterialCommunityIcons"
+              name="home-outline" size={28}
+              color={state.index === 0
+                ? themes[theme].activatedBottomTabBarIconColor
+                : themes[theme].inActivatedBottomTabBarIconColor}
             />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Profile')}>
-            <Image
-              source={images.user}
-              style={[
-                styles.tabImage2,
-                {
-                  tintColor:
-                    state.index === 1
-                      ? themes[theme].active_tabBar_icon_color
-                      : themes[theme].inactive_tabBar_icon_color,
-                },
-              ]}
+            <VectorIcon
+              type="MaterialCommunityIcons"
+              name="account-outline" size={28}
+              color={state.index === 1
+                ? themes[theme].activatedBottomTabBarIconColor
+                : themes[theme].inActivatedBottomTabBarIconColor}
             />
           </TouchableOpacity>
-          <View style={[styles.vipTabContainer, ]}>
-            <Button style={[styles.vipTab, {  backgroundColor: themes[theme].backgroundColor}]} onPress={onVip} theme={theme}>
-              <View
-                style={[
-                  styles.vipButton,
-                  {
-                    overflow: 'hidden',
-                  },
-                ]}>
-                <Image
-                  source={images.logo}
-                  style={styles.logo}
-                  blurRadius={0}
-                />
+          <View style={[styles.vipTabContainer]}>
+            <Button style={[styles.vipTab, { backgroundColor: themes[theme].backgroundColor }]} onPress={onVip}
+                    theme={theme}>
+              <View style={styles.vipButton}>
+                <Image source={images.logo} style={styles.logo} />
               </View>
             </Button>
           </View>
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Message')}>
-            <Image
-              source={images.message_outlined}
-              style={[
-                styles.tabImage,
-                {
-                  tintColor:
-                    state.index === 2
-                      ? themes[theme].active_tabBar_icon_color
-                      : themes[theme].inactive_tabBar_icon_color,
-                },
-              ]}
+            <VectorIcon
+              type="MaterialCommunityIcons"
+              name="chat-outline" size={28}
+              color={state.index === 2
+                ? themes[theme].activatedBottomTabBarIconColor
+                : themes[theme].inActivatedBottomTabBarIconColor}
             />
             {unread > 0 && (
               <View style={styles.unread}>
@@ -254,21 +227,16 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
           <TouchableOpacity
             style={styles.tabContainer}
             onPress={() => navigation.navigate('Activity')}>
-            <Image
-              source={images.notification}
-              style={[
-                styles.tabImage,
-                {
-                  tintColor:
-                    state.index === 3
-                      ? themes[theme].active_tabBar_icon_color
-                      : themes[theme].inactive_tabBar_icon_color,
-                },
-              ]}
+            <VectorIcon
+              type="MaterialCommunityIcons"
+              name="bell-outline" size={28}
+              color={state.index === 3
+                ? themes[theme].activatedBottomTabBarIconColor
+                : themes[theme].inActivatedBottomTabBarIconColor}
             />
           </TouchableOpacity>
         </View>
-      </View>
+      </ImageBackground>
       {showVipScreen && (
         <VipScreen
           theme={theme}
@@ -278,7 +246,7 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
         />
       )}
     </>
-  );
+  )
 })
 
 const VipScreen = React.memo(({ onClose, theme, width, navigation }) => {

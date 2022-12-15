@@ -20,8 +20,6 @@ const images = {
   ic_menu_settings: require('./images/settings.png'),
   btn_activity_blank: require('./images/btn_activity_blank.png'),
   btn_activity_blank_dark: require('./images/btn_activity_blank_dark.png'),
-  home_icon: require('./images/home_disabled.png'),
-  home_icon_en: require('./images/home_enabled.png'),
   profile_icon: require('./images/profile_disabled.png'),
   profile_icon_en: require('./images/profile_enabled.png'),
   message_icon: require('./images/message_disabled.png'),
@@ -72,13 +70,13 @@ const images = {
   error: require('./images/error.png'),
   logo_new: require('./images/logo_new.png'),
   email_verified: require('./img/email_verified.png'),
-  home_logo: require('./images/home_logo.png'),
   side_menu: require('./images/side_icon.png'),
   side_menu_dark: require('./images/side_icon_dark.png'),
   search_light: require('./images/search_light.png'),
   search_dark: require('./images/search_dark.png'),
   under_line: require('./images/under_line.png'),
-  tab_background: require('./images/tab_background.png'),
+  dark_tab_background: require('./img/dark_tab_background.png'),
+  light_tab_background: require('./img/light_tab_background.png'),
   gray_circle: require('./images/graycircle.png'),
   bk_vip_dark: require('./images/bk_vip_dark.png'),
   bk_vip_light: require('./images/bk_vip_light.png'),
@@ -89,15 +87,6 @@ const images = {
   fast_email_sending: require('./img/fast_email_sending.png'),
   location_home: require('./images/location_home.png'),
   en_language: require('./images/en_language.png'),
-
-  // TabBar Images
-  home: require('./images/home.png'),
-  home_icon_white: require('./images/home_icon_white.png'),
-  user: require('./images/User.png'),
-  message_outlined: require('./images/message_outlined.png'),
-  notification: require('./images/notification.png'),
-  menu_icon_dark: require('./images/menu_icon_dark.png'),
-  menu_icon_light: require('./images/menu_icon_light.png'),
 }
 
 export default images
