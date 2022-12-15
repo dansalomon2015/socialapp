@@ -1,34 +1,29 @@
 import React from "react"
-import { Dimensions } from "react-native"
-import Svg, { G, Path, Defs } from "react-native-svg"
+import { Dimensions,Image } from "react-native"
 import { themes } from "../../constants/colors"
 import { useTheme } from "../../theme"
-/* SVGR has dropped some elements not supported by react-native-svg: filter */
 
-const { width } = Dimensions.get('window');
+import images from '../../assets/images'
+import styles from "./style"
 
-const TabBarSvg = (props) => {
+const TabBarImage = (props) => {
+  
+    const { width, height } = Dimensions.get('window');
+    // const aspectRatio = 700/500;
 
     const { theme } = useTheme()
 
+    const originalWidth = 319;
+    const originalHeight = 120;
+    const windowWidth = Dimensions.get("window").width;
+    const aspectRatio = windowWidth / originalHeight;
+
     return (
-      <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={width}
-        height={97}
-        fill="none"
-        {...props}
-        style={{ position: 'absolute', bottom: 0 }}
-        >
-        <G filter="url(#a)">
-          <Path
-            fill={themes[theme].tabBar_background}
-            d="M0 25.206h114.368a41.999 41.999 0 0 1 35.321 19.274l11.91 18.51c16.692 25.945 54.725 25.641 71-.567l10.791-17.375a41.998 41.998 0 0 1 35.679-19.842H393v78.458H0V25.206z"
-          />
-        </G>
-        <Defs></Defs>
-      </Svg>
+      <Image
+        source={theme == 'light' ? images.tabBar_light : images.tabBar_dark}
+        style={styles.tabBarImage}
+      />
     );
 }
 
-export default TabBarSvg
+export default TabBarImage

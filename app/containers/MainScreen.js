@@ -33,7 +33,7 @@ import {
 } from '../constants/app'
 import SearchBox from './SearchBox'
 import I18n from '../i18n'
-import TabBarSvg from './TabBarSvg'
+import TabBarImage from './TabBarSvg'
 
 export const Button = isAndroid ? Touch : TouchableOpacity
 
@@ -177,7 +177,7 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
   return (
     <>
       <View style={styles.mainTabContainer}>
-        <TabBarSvg />
+        <TabBarImage />
         <View style={styles.tabBarContainer}>
           <TouchableOpacity
             style={styles.tabContainer}

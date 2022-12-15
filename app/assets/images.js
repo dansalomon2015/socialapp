@@ -103,6 +103,8 @@ const images = {
   chat_dark: require('./images/chat_dark.png'),
   
   // TabBar Images
+  tabBar_light: require('./img/tabBar_light.png'),
+  tabBar_dark: require('./img/tabBar_dark.png'),
   home: require('./images/home.png'),
   home_icon_white: require('./images/home_icon_white.png'),
   user: require('./images/User.png'),

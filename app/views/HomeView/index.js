@@ -358,20 +358,16 @@ const HomeView = props => {
     return {
       width: interpolate(
         scrollOffset.value,
-        [0,width],
-        [40, 66],
+        [0, width],
+        [45, 67],
         Extrapolate.CLAMP,
       ),
-      transform: [
-        {
-          translateX: interpolate(
-            scrollOffset.value,
-            [0, width],
-            [width * 0.23, width * 0.47],
-            Extrapolate.CLAMP,
-          ),
-        },
-      ],
+      left: interpolate(
+        scrollOffset.value,
+        [0, width],
+        [0, width * 0.4 - 70],
+        Extrapolate.CLAMP,
+      ),
     };
   });
 
@@ -409,14 +405,23 @@ const HomeView = props => {
           onPress={() => scrollToEndOrBeginning(0)}
           style={styles.textContainer}>
           <Animated.Text
-            style={[styles.followingAndForYouText, forYoucolorTextAnimatedStyle]}>
+            style={[
+              styles.followingAndForYouText,
+              forYoucolorTextAnimatedStyle,
+            ]}>
             ForYou
           </Animated.Text>
         </Pressable>
         <Pressable
           onPress={() => mainFlatListRef?.current?.scrollToEnd()}
           style={styles.textContainer}>
-          <Animated.Text style={[styles.followingAndForYouText, followingsColorTextAnimatedStyle]}>Followings</Animated.Text>
+          <Animated.Text
+            style={[
+              styles.followingAndForYouText,
+              followingsColorTextAnimatedStyle,
+            ]}>
+            Followings
+          </Animated.Text>
         </Pressable>
         <Animated.View
           style={[
@@ -426,6 +431,7 @@ const HomeView = props => {
           ]}
         />
       </View>
+      <View style={[styles.topLineLine, { borderColor: '#ccc' }]} />
       <ReanimatedFlatList
         ref={mainFlatListRef}
         data={flatLists}

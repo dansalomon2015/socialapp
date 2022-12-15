@@ -1156,8 +1156,6 @@ PODS:
     - React-RCTImage
   - RNSoundPlayer (0.13.2):
     - React-Core
-  - RNSVG (13.6.0):
-    - React-Core
   - RNVectorIcons (9.2.0):
     - React-Core
   - TOCropViewController (2.6.1)
@@ -1226,7 +1224,6 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSoundPlayer (from `../node_modules/react-native-sound-player`)
-  - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -1381,8 +1378,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSoundPlayer:
     :path: "../node_modules/react-native-sound-player"
-  RNSVG:
-    :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -1474,7 +1469,6 @@ SPEC CHECKSUMS:
   RNReanimated: ce445c233a6ff5600223484a88ad5704945d972a
   RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
   RNSoundPlayer: 369105c565b8fe6ea0a43fc882dc81eba444e842
-  RNSVG: 3a79c0c4992213e4f06c08e62730c5e7b9e4dc17
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc

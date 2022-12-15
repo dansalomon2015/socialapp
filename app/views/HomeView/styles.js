@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
   tabBar: {
@@ -53,18 +55,24 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: 'white',
   },
-  followingAndForYouContainer: {
+
+  topLineLine: {
     width: '100%',
+    height: 0.2,
+    marginTop: 0,
+    marginBottom: 20,
+    borderWidth: 0.3,
+    borderColor: 'red'
+  },
+
+  followingAndForYouContainer: {
+    width: width * 0.4,
     height: 30,
     alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     flexDirection: 'row',
-    paddingHorizontal: 90,
     borderBottomWidth: 0.2,
     borderColor: '#ccc',
-    marginTop: 10,
-    marginBottom: 20
   },
   followingAndForYouText: {
     fontWeight: '500',
