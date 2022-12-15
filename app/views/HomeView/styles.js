@@ -53,37 +53,6 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: 'white',
   },
-
-  topLineLine: {
-    width: '100%',
-    height: 0.2,
-    marginTop: 0,
-    marginBottom: 20,
-    borderWidth: 0.3,
-    borderColor: 'red'
-  },
-
-  followingAndForYouContainer: {
-    width: width * 0.4,
-    height: 30,
-    alignSelf: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    borderBottomWidth: 0.2,
-    borderColor: '#ccc',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  followingAndForYouText: {
-    fontWeight: '500',
-    fontSize: 14,
-    fontFamily: 'Raleway',
-  },
-  belowLine: {
-    position: 'absolute',
-    bottom: 0,
-    height: 1.5,
-  },
   textContainer: {
     justifyContent: 'center',
   },
