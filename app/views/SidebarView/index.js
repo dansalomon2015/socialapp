@@ -6,14 +6,13 @@ import {
   TouchableOpacity,
   View,
   Linking,
-  Dimensions,
   SafeAreaView,
-  Pressable
+  Pressable,
 } from 'react-native'
 import { connect } from 'react-redux'
 
 import {
-  COLOR_WHITE,
+  COLOR_WHITE, COLOR_YELLOW,
   HEADER_BAR_START,
   NAV_BAR_END,
   NAV_BAR_START,
@@ -42,54 +41,38 @@ const SidebarView = (props) => {
     {
       id: 'shop',
       name: I18n.t('Shop'),
-      icon: images.briefcase,
+      icon: 'shopping',
       route: 'Shop',
       routes: ['Shop'],
     },
     {
       id: 'vip_members',
       name: I18n.t('Vip_members'),
-      icon: images.stars,
+      icon: 'star-circle',
       route: 'VipMembers',
       routes: ['VipMembers'],
     },
     {
       id: 'connections',
       name: 'My connections',
-      icon: images.user_friends,
+      icon: 'account-multiple',
       route: 'VipMembers',
       routes: ['MyConnetions'],
     },
-    // {
-    //   id: 'feed',
-    //   name: I18n.t('Feed'),
-    //   icon: images.briefcase,
-    //   route: 'Home',
-    //   routes: ['Feed'],
-    //   init: 'Feed',
-    // },
-    // {
-    //   id: 'open_post',
-    //   name: I18n.t('Open_posts'),
-    //   icon: images.menu_open_post,
-    //   route: 'Home',
-    //   routes: ['Posts'],
-    //   init: 'Posts',
-    // },
     {
       id: 'privacy_and_settings',
       name: I18n.t('Privacy_and_settings'),
-      icon: images.shield_lock,
+      icon: 'shield-lock',
       route: 'Privacy',
       routes: ['Privacy'],
     },
     {
       id: 'help_and_support',
       name: I18n.t('Help_and_support'),
-      icon: images.help,
+      icon: 'comment-question',
       route: 'Privacy',
       routes: ['HelpAndSupport'],
-    }
+    },
   ]
 
   useEffect(() => {
@@ -160,23 +143,23 @@ const SidebarView = (props) => {
           style={styles.profileInnerContainer}
           colors={[NAV_BAR_END, NAV_BAR_START]}>
           <Image
-            source={user.avatar ? {uri: user.avatar} : images.default_avatar}
+            source={user.avatar ? { uri: user.avatar } : images.default_avatar}
             style={styles.avatar}
           />
-          <View>
+          <View style={{ marginLeft: 12 }}>
             <Text
               style={[
                 styles.profileName,
-                {color: themes[theme].activeTintColor},
+                { color: themes[theme].activeTintColor },
               ]}>
               {user.displayName}
             </Text>
-            <Text style={[styles.roleName, {color: themes[theme].view_profile_text_color}]}>
-              {user.role}
+            <Text style={[styles.roleName, { color: COLOR_YELLOW }]}>
+              View Profile
             </Text>
           </View>
         </View>
-        <Pressable onPress={()=>navigation.toggleDrawer()} style={styles.closeIconAndText}>
+        <Pressable onPress={() => navigation.toggleDrawer()} style={styles.closeIconAndText}>
           <VectorIcon
             type="AntDesign"
             name="close"
@@ -184,7 +167,7 @@ const SidebarView = (props) => {
             color={themes[theme].activeTintColor}
             style={styles.closeIcon}
           />
-          <Text style={[ { color: themes[theme].activeTintColor } ]}>Clear</Text>
+          <Text style={[{ color: themes[theme].activeTintColor }]}>Clear</Text>
         </Pressable>
       </View>
       <ScrollView
@@ -201,8 +184,8 @@ const SidebarView = (props) => {
         />
         <OptionCardBtn
           image={images.fast_email_sending}
-          title="Premium Subscription"
-          smallText="Upgrade plan"
+          title="Invite to engage more people"
+          smallText="Invite now"
           rightIcon
           rightIconName="share"
         />
@@ -213,19 +196,14 @@ const SidebarView = (props) => {
             id={`sidebar-view-key-${m.id}`}
             text={m.name}
             left={
-              <Image
-                source={m.icon}
-                style={[
-                  styles.menuIcon,
-                  {
-                    tintColor:
-                      theme === 'light' && m.routes.includes(routeName)
-                        ? 'red'
-                        : themes[theme].sidemenuTintColor,
-                  },
-                ]}
+              <VectorIcon
+                name={m.icon}
+                type={'MaterialCommunityIcons'}
+                size={24}
+                style={{color: themes[theme].titleColor}}
               />
             }
+            containerStyle={styles.menu}
             onPress={() => onClick(m)}
             current={
               m.routes.includes(routeName) &&
@@ -235,20 +213,27 @@ const SidebarView = (props) => {
           />
         ))}
       </ScrollView>
-      <TouchableOpacity onPress={onLogOut} style={[styles.logoutBtn, { backgroundColor: themes[theme].optionButtonBackground }]}>
-        <Image source={images.logout_icon} style={styles.logoutIcon} />
+      <TouchableOpacity onPress={onLogOut}
+                        style={[styles.logoutBtn, { backgroundColor: themes[theme].focusedBackground }]}>
+        <VectorIcon
+          name={'logout-variant'}
+          type={'MaterialCommunityIcons'}
+          size={24}
+          style={{color: themes[theme].titleColor}}
+        />
         <Text
-          style={[styles.logoutText, {color: themes[theme].sidemenuTintColor}]}>
+          style={[styles.logoutText, { color: themes[theme].sidemenuTintColor }]}>
           {I18n.t('Logout').toUpperCase()}
         </Text>
       </TouchableOpacity>
       <View style={styles.bottomView}>
         <View style={styles.privacyTermsEulaContainer}>
-          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={()=>{}}>Privacy policy</Text>
+          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={() => {}}>Privacy policy</Text>
           <Text style={[{ color: themes[theme].activeTintColor }]}>.</Text>
-          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={()=>{}}>Terms of services</Text>
+          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={() => {}}>Terms of
+            services</Text>
           <Text style={[{ color: themes[theme].activeTintColor }]}>.</Text>
-          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={()=>{}}>Eula</Text>
+          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={() => {}}>Eula</Text>
         </View>
         <View style={styles.languageContainer}>
           <Image source={images.en_language} />
@@ -256,7 +241,7 @@ const SidebarView = (props) => {
         </View>
       </View>
     </SafeAreaView>
-  );
+  )
 }
 
 const mapStateToProps = state => ({

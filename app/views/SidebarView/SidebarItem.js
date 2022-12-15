@@ -15,14 +15,8 @@ const Item = React.memo(
       onPress={onPress}
       underlayColor="#292E35"
       activeOpacity={0.3}
-      style={[containerStyle, {
-        paddingRight: 24,
-        marginBottom: 10,
-        borderRadius: 5,
-        alignSelf: 'center',
-        width: '100%',
-        height: 50,
-        backgroundColor: current ? themes[theme].tintActive : themes[theme].optionButtonBackground
+      style={[styles.container, {
+        backgroundColor: current ? themes[theme].tintActive : themes[theme].focusedBackground,
       }]}>
       {current ? (
         <View
@@ -53,7 +47,9 @@ const Item = React.memo(
           </View>
         </View>
       )}
-      <VectorIcon type='Entypo' name='chevron-small-right' size={28} color={themes[theme].chevronIcon} style={styles.chevronIcon}/>
+      <VectorIcon
+        type="Entypo" name="chevron-small-right" size={28} color={themes[theme].chevronIcon}
+        style={styles.chevronIcon} />
     </TouchableOpacity>
   ),
 )

@@ -1,19 +1,24 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { isIOS } from '../../utils/deviceInfo';
+import { StyleSheet, Dimensions } from 'react-native'
+import { isIOS } from '../../utils/deviceInfo'
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get('window')
 
 export default StyleSheet.create({
   profileContainer: {
     height: isIOS ? 140 : 100,
   },
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    marginVertical: 4,
+    borderRadius: 6,
+    paddingVertical: 12,
+    paddingHorizontal: 8,
+  },
   profileInnerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
-    width: width * 0.5,
-    height: 55,
-    alignSelf: 'flex-start',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -27,20 +32,22 @@ export default StyleSheet.create({
     resizeMode: 'contain',
   },
   avatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    borderWidth: StyleSheet.hairlineWidth,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    borderWidth: 1,
     borderColor: 'white',
   },
   profileName: {
-    marginLeft: 12,
-    fontSize: 16,
+    fontFamily: 'Raleway',
+    fontWeight: '600',
+    fontSize: 18,
+    lineHeight: 20,
   },
   roleName: {
-    marginLeft: 12,
-    fontSize: 10,
-    marginTop: 3,
+    fontFamily: 'Raleway',
+    fontSize: 12,
+    lineHeight: 20,
   },
   menuIcon: {
     width: 24,
@@ -50,23 +57,20 @@ export default StyleSheet.create({
   item: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: 12,
-    paddingRight: 24,
-    borderTopRightRadius: 32,
-    borderBottomRightRadius: 32,
+    flexGrow: 1,
   },
   itemLeft: {
-    marginRight: 10,
-    width: 30,
     alignItems: 'center',
+    marginHorizontal: 8,
   },
   itemCenter: {
-    marginRight: 0,
+    marginHorizontal: 10,
   },
   itemText: {
-    marginVertical: 12,
+    fontFamily: 'Hind Vadodara',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 14,
+    lineHeight: 20,
   },
   itemsRight: {
     flex: 1,
@@ -96,25 +100,26 @@ export default StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 6,
     position: 'absolute',
-    bottom: 75
+    bottom: 75,
   },
   logoutText: {
+    fontFamily: 'Hind Vadodara',
     fontWeight: 'bold',
     fontSize: 14,
-    marginLeft: 10,
+    lineHeight: 20,
+    marginLeft: 12,
   },
   logoutIcon: {
     width: 26,
     height: 26,
     marginRight: 8,
-    tintColor: '#C4C4C4'
+    tintColor: '#C4C4C4',
   },
   closeIconAndText: {
     flexDirection: 'row',
     alignItems: 'center',
     width: 60,
     justifyContent: 'center',
-    alignItems: 'center',
     alignSelf: 'flex-start',
     position: 'absolute',
     top: 10,
@@ -125,10 +130,9 @@ export default StyleSheet.create({
   },
   menuText: {
     fontFamily: 'Raleway',
-    fontWeight: '400',
     fontSize: 16,
-    marginTop: 22,
-    marginBottom: 13
+    lineHeight: 26,
+    marginTop: 16,
   },
   bottomView: {
     width: '100%',
@@ -137,7 +141,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     position: 'absolute',
-    bottom: 40
+    bottom: 40,
   },
   privacyTermsEulaContainer: {
     flexDirection: 'row',
@@ -151,19 +155,17 @@ export default StyleSheet.create({
     alignItems: 'center',
     height: '100%',
     width: '30%',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   text: {
-    fontSize: 12
+    fontSize: 12,
   },
-  languageText:{
+  languageText: {
     fontFamily: 'Hind Vadodara',
     fontWeight: '600',
     fontSize: 12,
   },
   chevronIcon: {
-    position: 'absolute',
-    right: 10,
-    top: 10
-  }
-});
+    alignSelf: 'center',
+  },
+})

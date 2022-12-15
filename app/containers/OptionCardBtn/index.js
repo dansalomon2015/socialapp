@@ -8,36 +8,37 @@ import { useTheme } from '../../theme'
 
 
 const OptionCardBtn = ({ image, title, smallText, rightIcon, rightIconName }) => {
-
-  const {theme} = useTheme();
+  const { theme } = useTheme()
 
   return (
     <TouchableOpacity
       style={[
         styles.container,
-        {backgroundColor: themes[theme].optionButtonBackground},
+        { backgroundColor: themes[theme].focusedBackground },
       ]}>
-      <Image source={image} style={styles.image} />
+      <View style={styles.imageView}>
+        <Image source={image} style={styles.image} />
+      </View>
       <View style={styles.textsContainer}>
-        <Text style={[styles.title, {color: themes[theme].activeTintColor}]}>
+        <Text style={[styles.title, { color: themes[theme].activeTintColor }]}>
           {title}
         </Text>
         <Text
-          style={[styles.smallText, {color: themes[theme].activeTintColor}]}>
+          style={[styles.smallText, { color: themes[theme].activeTintColor }]}>
           {smallText}
         </Text>
       </View>
       {rightIcon && (
         <VectorIcon
           type="Entypo"
-          size={16}
+          size={20}
           style={styles.rightIcon}
           name={rightIconName}
           color={themes[theme].activeTintColor}
         />
       )}
     </TouchableOpacity>
-  );
+  )
 }
 
 export default OptionCardBtn

@@ -89,19 +89,13 @@ const images = {
   close: require('./images/close.png'),
   profile_search: require('./images/profile_search.png'),
   profile_more: require('./images/profile_more.png'),
-  reward_badge: require('./images/reward_badge.png'),
-  fast_email_sending: require('./images/fast_email_sending.png'),
+  reward_badge: require('./img/reward_badge.png'),
+  fast_email_sending: require('./img/fast_email_sending.png'),
   location_home: require('./images/location_home.png'),
-  briefcase: require('./images/briefcase.png'),
-  help: require('./images/help.png'),
-  shield_lock: require('./images/shield_lock.png'),
-  stars: require('./images/stars.png'),
-  user_friends: require('./images/user_friends.png'),
-  logout_icon: require('./images/logout_icon.png'),
   en_language: require('./images/en_language.png'),
   chat_light: require('./images/chat_light.png'),
   chat_dark: require('./images/chat_dark.png'),
-  
+
   // TabBar Images
   home: require('./images/home.png'),
   home_icon_white: require('./images/home_icon_white.png'),

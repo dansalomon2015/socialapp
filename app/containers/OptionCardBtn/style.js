@@ -1,40 +1,43 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from 'react-native'
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
-    width: '99%',
-    height: 66,
     borderRadius: 6,
     flexDirection: 'row',
-    paddingLeft: 10,
-    marginVertical: 5,
-    alignSelf: 'center',
+    padding: 10,
+    marginVertical: 4,
     alignItems: 'center',
   },
+  imageView: {
+    width: 48,
+    height: 48,
+  },
   image: {
+    width: '100%',
+    height: '100%',
     resizeMode: 'contain',
-    width: 40,
-    height: 43.22,
   },
   textsContainer: {
     marginLeft: 14,
   },
   title: {
-    fontFamily: 'Hind Vadodara',
     fontWeight: '600',
     fontSize: 16,
+    lineHeight: 24,
   },
   smallText: {
     fontFamily: 'Raleway',
     fontSize: 10,
+    fontWeight: '700',
+    marginBottom: 4,
   },
   rightIcon: {
     position: 'absolute',
     right: 14,
-    alignSelf: 'center'
-  }
-});
+    alignSelf: 'center',
+  },
+})
 
-export default styles;
+export default styles
