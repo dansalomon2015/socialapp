@@ -41,7 +41,7 @@ const Root = () => {
       } else if (theme === 'light' && (hour < 6 || hour >= 18)) {
         setTheme('dark')
       }
-      // setTheme('dark')
+      setTheme('dark')
     }, 1000)
     init()
     return () => {

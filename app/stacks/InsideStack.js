@@ -37,8 +37,6 @@ import { MainTabBar } from '../containers/MainScreen'
 const Tab = createBottomTabNavigator()
 const Inside = createStackNavigator()
 
-const { width } = Dimensions.get('window');
-
 const HomeStack = () => {
   const { theme } = React.useContext(ThemeContext)
 
@@ -174,11 +172,11 @@ const DrawerNavigator = () => (
     screenOptions={{
       swipeEnabled: true,
       drawerStyle: {
-        width: Dimensions.get('window').width
-      }
-     }}
+        width: Dimensions.get('window').width,
+      },
+    }}
     drawerType="back"
-    >
+  >
     <Drawer.Screen
       name="InsideStack"
       component={InsideStack}
