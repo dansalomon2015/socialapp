@@ -17,7 +17,7 @@ const OutsideStack = () => {
 
   return (
     <Outside.Navigator
-    initialRouteName='SignIn'
+      initialRouteName="SignIn"
       screenOptions={{
         ...outsideHeader,
         ...themedHeader(theme),

@@ -68,7 +68,7 @@ export default StyleSheet.create({
   },
   itemText: {
     fontFamily: 'Hind Vadodara',
-    fontWeight: 'bold',
+    fontWeight: '600',
     fontSize: 14,
     lineHeight: 20,
   },

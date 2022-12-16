@@ -33,22 +33,22 @@ const Root = () => {
   }, [])
 
   useEffect(() => {
-    let timer = setInterval(() => {
-      const hour = new Date().getHours()
-      if (!theme) {
-        setTheme('light')
-      } else if (theme === 'dark' && hour >= 6 && hour <= 17) {
-        setTheme('light')
-      } else if (theme === 'light' && (hour < 6 || hour >= 18)) {
-        setTheme('dark')
-      }
-      // setTheme('light')
-    }, 1000)
-    return () => {
-      if (timer) {
-        clearInterval(timer)
-      }
-    }
+    setTheme('dark')
+    // let timer = setInterval(() => {
+    //   const hour = new Date().getHours()
+    //   if (!theme) {
+    //     setTheme('light')
+    //   } else if (theme === 'dark' && hour >= 6 && hour <= 17) {
+    //     setTheme('light')
+    //   } else if (theme === 'light' && (hour < 6 || hour >= 18)) {
+    //     setTheme('dark')
+    //   }
+    // }, 1000)
+    // return () => {
+    //   if (timer) {
+    //     clearInterval(timer)
+    //   }
+    // }
   }, [theme])
 
   const onDimensionsChange = debounce(

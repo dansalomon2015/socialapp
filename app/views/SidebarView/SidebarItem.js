@@ -9,49 +9,30 @@ import {
 import { VectorIcon } from '../../containers/VectorIcon'
 
 const Item = React.memo(
-  ({ id, left, text, onPress, current, containerStyle, textStyle, theme }) => (
-    <TouchableOpacity
-      key={id}
-      onPress={onPress}
-      underlayColor="#292E35"
-      activeOpacity={0.3}
-      style={[styles.container, {
-        backgroundColor: current ? themes[theme].tintActive : themes[theme].focusedBackground,
-      }]}>
-      {current ? (
-        <View
-          colors={[NAV_BAR_END, NAV_BAR_START]}
-          style={styles.item}
-          angle={90}
-          useAngle>
-          <View style={styles.itemLeft}>{left}</View>
-          <View style={styles.itemCenter}>
-            <Text
-              style={[styles.itemText, textStyle, { color: 'white' }]}
-              numberOfLines={2}
-              ellipsizeMode={'tail'}>
-              {text}
-            </Text>
-          </View>
-        </View>
-      ) : (
+  ({ id, left, text, onPress, current, textStyle, theme }) => {
+    return (
+      <TouchableOpacity
+        key={id}
+        onPress={onPress}
+        underlayColor="#292E35"
+        activeOpacity={0.3}
+        style={[styles.container, {
+          backgroundColor: current ? 'red' : themes[theme].focusedBackground,
+        }]}>
         <View style={styles.item}>
           <View style={styles.itemLeft}>{left}</View>
           <View style={styles.itemCenter}>
-            <Text
-              style={[styles.itemText, textStyle, { color: themes[theme].sidemenuTintColor }]}
-              numberOfLines={2}
-              ellipsizeMode={'tail'}>
+            <Text style={[styles.itemText, textStyle, { color: themes[theme].sidemenuTintColor }]}>
               {text}
             </Text>
           </View>
         </View>
-      )}
-      <VectorIcon
-        type="Entypo" name="chevron-small-right" size={28} color={themes[theme].chevronIcon}
-        style={styles.chevronIcon} />
-    </TouchableOpacity>
-  ),
+        <VectorIcon
+          type="Entypo" name="chevron-small-right" size={28} color={themes[theme].chevronIcon}
+          style={styles.chevronIcon} />
+      </TouchableOpacity>
+    )
+  },
 )
 
 export default Item

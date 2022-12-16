@@ -51,7 +51,7 @@ const ActivityView = props => {
         backgroundColor: themes[theme].backgroundColor,
       },
     })
-  }, [])
+  }, [theme])
 
   useEffect(() => {
     init()

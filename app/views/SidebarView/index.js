@@ -27,7 +27,6 @@ import scrollPersistTaps from '../../utils/scrollPersistTaps'
 import { logout as logoutAction } from '../../actions/login'
 import { showConfirmationAlert } from '../../lib/info'
 import { GradientHeader } from '../../containers/GradientHeader'
-import Navigation from '../../lib/Navigation'
 import I18n from '../../i18n'
 import { SITE_SHOP_URL } from '../../constants/app'
 import { VectorIcon } from '../../containers/VectorIcon'
@@ -35,8 +34,6 @@ import OptionCardBtn from '../../containers/OptionCardBtn'
 
 const SidebarView = (props) => {
   const { user, theme, navigation } = props
-  const home = useRef('Feed')
-  const routeName = Navigation.getCurrentRoute()
   const menus = [
     {
       id: 'shop',
@@ -84,12 +81,12 @@ const SidebarView = (props) => {
 
   const onClick = item => {
     switch (item.id) {
-      case 'terms_of_use':
-        return onNavigate('About', { type: 0 })
+      // case 'terms_of_use':
+      //   return onNavigate('About', { type: 0 })
       case 'privacy_and_settings':
-        return onNavigate('About', { type: 1 })
-      case 'eula':
-        return onNavigate('About', { type: 2 })
+        return onNavigate('MenuStack')
+      // case 'eula':
+      //   return onNavigate('About', { type: 2 })
       case 'shop':
         return Linking.openURL(SITE_SHOP_URL)
       case 'help_and_support':
@@ -105,13 +102,7 @@ const SidebarView = (props) => {
 
   const onNavigate = (routeName, params) => {
     const { navigation } = props
-    const route = Navigation.getCurrentRoute()
-    if (routeName === 'Home') {
-      home.current = params.type
-      navigation.navigate(routeName, { screen: 'Home', params: { screen: params.type } })
-    } else {
-      navigation.navigate(routeName, params)
-    }
+    navigation.navigate(routeName, params)
   }
 
   const onLogOut = () => {
@@ -159,7 +150,7 @@ const SidebarView = (props) => {
             </Text>
           </View>
         </View>
-        <Pressable onPress={() => navigation.toggleDrawer()} style={styles.closeIconAndText}>
+        <Pressable onPress={() => navigation.closeDrawer()} style={styles.closeIconAndText}>
           <VectorIcon
             type="AntDesign"
             name="close"
@@ -199,16 +190,12 @@ const SidebarView = (props) => {
               <VectorIcon
                 name={m.icon}
                 type={'MaterialCommunityIcons'}
-                size={24}
-                style={{color: themes[theme].titleColor}}
+                size={20}
+                style={{ color: themes[theme].titleColor }}
               />
             }
             containerStyle={styles.menu}
             onPress={() => onClick(m)}
-            current={
-              m.routes.includes(routeName) &&
-              (!m.init || home.current === m.init)
-            }
             theme={theme}
           />
         ))}
@@ -219,7 +206,7 @@ const SidebarView = (props) => {
           name={'logout-variant'}
           type={'MaterialCommunityIcons'}
           size={24}
-          style={{color: themes[theme].titleColor}}
+          style={{ color: themes[theme].titleColor }}
         />
         <Text
           style={[styles.logoutText, { color: themes[theme].sidemenuTintColor }]}>

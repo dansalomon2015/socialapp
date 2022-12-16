@@ -33,6 +33,7 @@ import ProductWebView from '../views/ProductWebView'
 import PickLibraryView from '../views/PickLibraryView'
 import UpdateProfileAndBasicInfo from '../views/UpdateProfileAndBasicInfo'
 import { MainTabBar } from '../containers/MainScreen'
+import MenuStack from './MenuStack'
 
 const Tab = createBottomTabNavigator()
 const Inside = createStackNavigator()
@@ -40,7 +41,7 @@ const Inside = createStackNavigator()
 const HomeStack = () => (
   <Inside.Navigator>
     <Inside.Screen
-      name="Feed"
+      name="Home"
       component={HomeView}
       options={{ headerShown: false }}
     />
@@ -135,7 +136,7 @@ const InsideStack = () => {
       />
       <Inside.Screen name="Chat" component={ChatView} />
       <Inside.Screen name="Setting" component={SettingView} />
-      <Inside.Screen name="About" component={AboutView} />
+      {/*<Inside.Screen name="About" component={AboutView} />*/}
       <Inside.Screen name="Security" component={SecurityView} />
       <Inside.Screen name="Block" component={BlockView} />
       <Inside.Screen name="ProductWeb" component={ProductWebView} />
@@ -159,27 +160,40 @@ const InsideStack = () => {
     </Inside.Navigator>
   )
 }
-
 const Drawer = createDrawerNavigator()
-const DrawerNavigator = () => (
-  <Drawer.Navigator
-    drawerContent={({ navigation, state }) => (
-      <SidebarView navigation={navigation} state={state} />
-    )}
-    screenOptions={{
-      swipeEnabled: true,
-      drawerStyle: {
-        width: Dimensions.get('window').width,
-      },
-    }}
-    drawerType="back"
-  >
-    <Drawer.Screen
-      name="InsideStack"
-      component={InsideStack}
-      options={{ headerShown: false }}
-    />
-  </Drawer.Navigator>
-)
+const DrawerNavigator = () => {
+
+  return (
+    <Drawer.Navigator
+      drawerContent={({ navigation, state }) => (
+        <SidebarView navigation={navigation} state={state} />
+      )}
+      initialRouteName="InsideStack"
+      screenListeners={({ navigation }) => {
+        const state = navigation.getState()
+        if (state.history.length > 2 && state.history.filter((i) => i.type === 'drawer').length > 0) {
+          navigation.navigate('InsideStack')
+          navigation.toggleDrawer()
+        }
+      }}
+      screenOptions={{
+        swipeEnabled: true,
+        drawerStyle: {
+          width: Dimensions.get('window').width,
+        },
+      }}
+    >
+      <Drawer.Screen
+        name="InsideStack"
+        component={InsideStack}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="MenuStack" component={MenuStack}
+        options={{ headerShown: true }}
+      />
+    </Drawer.Navigator>
+  )
+}
 
 export default DrawerNavigator

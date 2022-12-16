@@ -68,7 +68,6 @@ const HomeView = props => {
   }, [])
 
   useEffect(() => {
-    console.log(tabBarHeight)
     init()
   }, [user])
 
