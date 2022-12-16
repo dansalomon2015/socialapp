@@ -311,11 +311,11 @@ const HomeView = props => {
             <TouchableOpacity
               key={i}
               style={[styles.tabItem, index === i ? styles.activeTab : '', {
-                borderBottomColor: index === i ? themes[theme].tabActivatedBorderColor : themes[theme].tabBorderColor,
+                borderBottomColor: index === i ? themes[theme].titleColor : themes[theme].tabBorderColor,
               }]}
               onPress={() => setIndex(i)}>
               <Text style={[styles.tabText, {
-                color: index === i ? themes[theme].titleColor : themes[theme].subTitleColor,
+                color: index === i ? themes[theme].titleColor : themes[theme].textColor,
               }]}
               >
                 {route.title}

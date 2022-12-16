@@ -221,7 +221,7 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
               style={[
                 styles.captionText,
                 {
-                  color: themes[theme].infoText,
+                  color: themes[theme].textColor,
                 },
               ]}>
               {item?.date ? dateStringFromNowShort(item?.date) : null}
@@ -253,7 +253,7 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
                   fontWeight: 'normal',
                   fontSize: 14,
                   lineHeight: 20,
-                  color: themes[theme].titleText,
+                  color: themes[theme].textColor,
                 },
               ]}>
               {item?.text}
@@ -270,7 +270,7 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
                 style={[
                   styles.titleText,
                   {
-                    color: themes[theme].titleText,
+                    color: themes[theme].textColor,
                     paddingHorizontal: 10,
                     fontWeight: 'normal',
                     fontSize: 14,
@@ -293,7 +293,7 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
                 style={[
                   styles.titleText,
                   {
-                    color: themes[theme].titleText,
+                    color: themes[theme].textColor,
                     paddingHorizontal: 10,
                     fontWeight: 'normal',
                     fontSize: 14,

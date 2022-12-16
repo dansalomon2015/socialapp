@@ -54,8 +54,8 @@ const App = React.memo(({ root, isMasterDetail }) => {
       }}>
       <Stack.Navigator
         screenOptions={{ headerShown: false, animationEnabled: false }}
-        initialRouteName='OutsideStack'
-        >
+        initialRouteName="OutsideStack"
+      >
         <>
           {root === ROOT_SPLASH ? <Stack.Screen name="Splash" component={SplashView} /> : null}
           {root === ROOT_INTRO ? <Stack.Screen name="Splash" component={IntroView} /> : null}

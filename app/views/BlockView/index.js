@@ -24,6 +24,7 @@ import sharedStyles from '../Styles'
 import * as HeaderButton from '../../containers/HeaderButton'
 import { GradientHeader } from '../../containers/GradientHeader'
 import I18n from '../../i18n'
+import { VectorIcon } from '../../containers/VectorIcon'
 
 const BlockView = (props) => {
   const { user, theme, navigation } = props
@@ -33,6 +34,22 @@ const BlockView = (props) => {
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(true)
   const [updating, setUpdating] = useState(false)
+
+  // useEffect(() => {
+  //   navigation.setOptions({
+  //     headerLeft: () => (
+  //       <TouchableOpacity style={styles.header} onPress={() => navigation.toggleDrawer()}>
+  //         <VectorIcon type="MaterialCommunityIcons" name="arrow-left" color={themes[theme].titleColor} size={24} />
+  //       </TouchableOpacity>
+  //     ),
+  //     title: null,
+  //     headerRight: () => (<></>),
+  //     headerStyle: {
+  //       backgroundColor: themes[theme].backgroundColor,
+  //       shadowOpacity: 0,
+  //     },
+  //   })
+  // }, [theme])
 
   useEffect(() => {
     navigation.setOptions({

@@ -13,7 +13,7 @@ const images = {
   mail: require('./images/mail.png'),
   password: require('./images/password.png'),
   ic_menu_logout: require('./images/logout.png'),
-  default_avatar: require('./images/AvatarPlaceholder.png'),
+  default_avatar: require('./img/AvatarPlaceholder.png'),
   ic_menu_popular: require('./images/popular.png'),
   ic_menu_recent: require('./images/recent.png'),
   ic_menu_profile: require('./images/findfriends.png'),

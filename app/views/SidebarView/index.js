@@ -141,7 +141,7 @@ const SidebarView = (props) => {
             <Text
               style={[
                 styles.profileName,
-                { color: themes[theme].activeTintColor },
+                { color: themes[theme].titleColor },
               ]}>
               {user.displayName}
             </Text>
@@ -155,10 +155,10 @@ const SidebarView = (props) => {
             type="AntDesign"
             name="close"
             size={11}
-            color={themes[theme].activeTintColor}
+            color={themes[theme].titleColor}
             style={styles.closeIcon}
           />
-          <Text style={[{ color: themes[theme].activeTintColor }]}>Clear</Text>
+          <Text style={[{ color: themes[theme].titleColor }]}>Clear</Text>
         </Pressable>
       </View>
       <ScrollView
@@ -180,7 +180,7 @@ const SidebarView = (props) => {
           rightIcon
           rightIconName="share"
         />
-        <Text style={[styles.menuText, { color: themes[theme].activeTintColor }]}>Menu</Text>
+        <Text style={[styles.menuText, { color: themes[theme].titleColor }]}>Menu</Text>
         {menus.map(m => (
           <SidebarItem
             key={m.id}
@@ -194,6 +194,7 @@ const SidebarView = (props) => {
                 style={{ color: themes[theme].titleColor }}
               />
             }
+            hasRight
             containerStyle={styles.menu}
             onPress={() => onClick(m)}
             theme={theme}
@@ -209,7 +210,7 @@ const SidebarView = (props) => {
           style={{ color: themes[theme].titleColor }}
         />
         <Text
-          style={[styles.logoutText, { color: themes[theme].sidemenuTintColor }]}>
+          style={[styles.logoutText, { color: themes[theme].activeTintColor }]}>
           {I18n.t('Logout').toUpperCase()}
         </Text>
       </TouchableOpacity>
@@ -224,7 +225,7 @@ const SidebarView = (props) => {
         </View>
         <View style={styles.languageContainer}>
           <Image source={images.en_language} />
-          <Text style={[styles.languageText, { color: themes[theme].languageTextColor }]}>English (US)</Text>
+          <Text style={[styles.languageText, { color: themes[theme].activeTintColor }]}>English (US)</Text>
         </View>
       </View>
     </SafeAreaView>

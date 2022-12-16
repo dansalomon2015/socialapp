@@ -9,27 +9,27 @@ import {
 import { VectorIcon } from '../../containers/VectorIcon'
 
 const Item = React.memo(
-  ({ id, left, text, onPress, current, textStyle, theme }) => {
+  ({ id, left, text, onPress, textStyle, theme, hasRight }) => {
     return (
       <TouchableOpacity
         key={id}
         onPress={onPress}
-        underlayColor="#292E35"
-        activeOpacity={0.3}
         style={[styles.container, {
-          backgroundColor: current ? 'red' : themes[theme].focusedBackground,
+          backgroundColor: themes[theme].focusedBackground,
         }]}>
         <View style={styles.item}>
-          <View style={styles.itemLeft}>{left}</View>
+          {left && (<View style={styles.itemLeft}>{left}</View>)}
           <View style={styles.itemCenter}>
-            <Text style={[styles.itemText, textStyle, { color: themes[theme].sidemenuTintColor }]}>
+            <Text style={[styles.itemText, textStyle, { color: themes[theme].titleColor }]}>
               {text}
             </Text>
           </View>
         </View>
-        <VectorIcon
-          type="Entypo" name="chevron-small-right" size={28} color={themes[theme].chevronIcon}
-          style={styles.chevronIcon} />
+        {hasRight && (<VectorIcon
+          type="Entypo" name="chevron-small-right" size={28} color={themes[theme].titleColor}
+          style={styles.chevronIcon} />)
+        }
+
       </TouchableOpacity>
     )
   },

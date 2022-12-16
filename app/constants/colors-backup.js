@@ -1,3 +1,5 @@
+import { isIOS, isAndroid } from '../utils/deviceInfo'
+
 export const COLOR_DANGER = '#f5455c'
 export const COLOR_BUTTON_PRIMARY = '#ffffff'
 export const COLOR_BUTTON_SECONDARY = '#C4CFD5'
@@ -22,16 +24,33 @@ export const COLOR_BUTTON_TEXT_GOOGLE = '#FFFFFF'
 export const COLOR_BUTTON_TEXT_APPLE_LIGHT = '#FFFFFF'
 export const COLOR_BUTTON_TEXT_APPLE_DARK = '#000000'
 
+export const COLOR_TEXT = '#292E35'
 export const COLOR_SEPARATOR = '#CBCED1'
+export const COLOR_SUCCESS = '#2de0a5'
+export const COLOR_PRIMARY = '#1d74f5'
 export const COLOR_WHITE = '#ffffff'
 export const COLOR_BLACK = '#000000'
 export const COLOR_BLACK_LIGHT = '#888888'
+export const COLOR_TITLE = '#0C0D0F'
 export const COLOR_BORDER = '#605E5E'
+export const COLOR_UNREAD = '#e1e5e8'
+export const COLOR_TOAST = '#0C0D0F'
 export const COLOR_ORANGE = '#f26522'
+export const COLOR_ORANGE_DARK = '#d6591e'
+export const COLOR_ORANGE_LIGHT = '#fa8e5b'
 export const COLOR_BLUE = '#5790DF'
 export const COLOR_BLUE_DARK = '#00387f'
+export const COLOR_GREEN = '#21b632'
+export const COLOR_GRAY = '#e3e3e3'
 export const COLOR_GRAY_DARK = '#858585'
 export const COLOR_YELLOW = '#E6BF5C'
+
+export const STATUS_COLORS = {
+  online: '#2de0a5',
+  busy: '#f5455c',
+  away: '#ffd21f',
+  offline: '#cbced1',
+}
 
 export const HEADER_BACKGROUND = '#000'
 export const HEADER_TITLE = '#efc455'
@@ -44,26 +63,34 @@ export const DARK_WEAK = '#808080'
 
 export const COLOR_TRANSPARENT = 'transparent'
 
+export const SWITCH_TRACK_COLOR = {
+  false: '#f5455c',
+  true: '#2de0a5',
+}
+
+const mentions = {
+  unreadColor: '#0bb203',
+  tunreadColor: '#1d74f5',
+  mentionGroupColor: '#F38C39',
+}
+
 export const themes = {
   light: {
-    backgroundColor: '#FFFFFF',
-    focusedBackground: '#F6F5F2',
-    postBackground: '#F6F5F2',
-    postBorderColor: '#C4C4C4',
-    titleColor: '#2F3131',
-    textColor: '#858585',
-    subTextColor: '#858585',
     activeTintColor: '#000000',
-    tabActivatedColor: '#605E5E',
-    tabInActivatedColor: '#C4C4C4',
-
+    backgroundColor: '#FFFFFF',
+    focusedBackground: 'rgba(177, 177, 177, 0.1)',
     chatComponentBackground: '#f3f4f5',
+    postBackground: '#FFFFFF',
+    postBorderColor: '#C4C4C4',
     tabBorderColor: '#FBF6E7',
     tabActivatedBorderColor: '#2F3131',
+
     auxiliaryBackground: '#efeff4',
     avatarBackground: '#caced1',
     bannerBackground: '#f1f2f4',
+    titleColor: '#2F3131',
     subTitleColor: '#858585',
+    textColor: '#2F3131',
     titleText: '#000000',
     ownMsgText: '#2F3131',
     otherMsgText: '#ffffff',
@@ -144,24 +171,21 @@ export const themes = {
     profileBorderColor: '#C4C4C4',
   },
   dark: {
+    activeTintColor: '#FFFFFF',
     backgroundColor: '#2F3131',
     focusedBackground: '#3C3E3E',
-    postBackground: '#1D1C1C',
-    postBorderColor: '#555555',
-    titleColor: '#FFFFFF',
-    textColor: '#C4C4C4',
-    subTextColor: '#858585',
-    activeTintColor: '#FFFFFF',
-    tabActivatedColor: '#3C3E3E',
-    tabInActivatedColor: '#3C3E3E',
-
     chatComponentBackground: '#f3f4f5',
+    postBackground: '#1D1C1C',
+    postBorderColor: '#1D1C1C',
     tabBorderColor: '#4B4B4B',
     tabActivatedBorderColor: '#FFFFFF',
+
     auxiliaryBackground: '#efeff4',
     avatarBackground: '#caced1',
     bannerBackground: '#f1f2f4',
+    titleColor: '#ffffff',
     subTitleColor: '#C4C4C4',
+    textColor: '#C4C4C4',
     titleText: '#ffffff',
     ownMsgText: '#ffffff',
     otherMsgText: '#ffffff',
