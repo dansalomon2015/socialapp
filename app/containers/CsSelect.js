@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import { Dimensions, StyleSheet, Text, View, TouchableOpacity, ScrollView, Pressable } from 'react-native'
+import { Dimensions, StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import Modal from 'react-native-modal'
-
 import sharedStyles from '../views/Styles'
 import { themes } from '../constants/colors'
-import { isIOS } from '../utils/deviceInfo'
 import { VectorIcon } from './VectorIcon'
 
 const {width, height} = Dimensions.get('window');
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   iconStyle: {
-   
+
   },
   modalItems:{
     width: width * 0.9,
@@ -104,7 +102,7 @@ export const CsSelect = React.memo(
       label: option,
       value: option,
     }))
-   
+
     const [showItems, setShowItems] = useState(false);
 
     const onSelectItem = (value) => {

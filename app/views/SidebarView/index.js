@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import { COLOR_LIGHT_DARK, COLOR_YELLOW, themes } from '../../constants/colors'
+import { COLOR_YELLOW, themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import styles from './styles'
@@ -184,7 +184,7 @@ const SidebarView = (props) => {
                 name={m.icon}
                 type={'MaterialCommunityIcons'}
                 size={20}
-                style={{ color: COLOR_LIGHT_DARK }}
+                style={{ color: themes[theme].textColor }}
               />
             }
             hasRight
@@ -201,7 +201,7 @@ const SidebarView = (props) => {
           name={'logout-variant'}
           type={'MaterialCommunityIcons'}
           size={24}
-          style={{ color: COLOR_LIGHT_DARK }}
+          style={{ color: themes[theme].textColor }}
         />
         <Text
           style={[styles.logoutText, { color: themes[theme].activeTintColor }]}>
@@ -210,17 +210,17 @@ const SidebarView = (props) => {
       </TouchableOpacity>
       <View style={styles.bottomView}>
         <View style={styles.privacyTermsEulaContainer}>
-          <Text style={[styles.text, { color: COLOR_LIGHT_DARK }]} onPress={() => {}}>Privacy policy</Text>
-          <Text style={[{ color: COLOR_LIGHT_DARK }]}>.</Text>
-          <Text style={[styles.text, { color: COLOR_LIGHT_DARK }]} onPress={() => {}}>
+          <Text style={[styles.text, { color: themes[theme].textColor }]} onPress={() => {}}>Privacy policy</Text>
+          <Text style={[{ color: themes[theme].textColor }]}>.</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]} onPress={() => {}}>
             Terms of services
           </Text>
-          <Text style={[{ color: COLOR_LIGHT_DARK }]}>.</Text>
-          <Text style={[styles.text, { color: COLOR_LIGHT_DARK }]} onPress={() => {}}>Eula</Text>
+          <Text style={[{ color: themes[theme].textColor }]}>.</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]} onPress={() => {}}>Eula</Text>
         </View>
         <View style={styles.languageContainer}>
           <Image source={images.en_language} />
-          <Text style={[styles.languageText, { color: COLOR_LIGHT_DARK }]}>English (US)</Text>
+          <Text style={[styles.languageText, { color: themes[theme].textColor }]}>English (US)</Text>
         </View>
       </View>
     </SafeAreaView>

@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 const RCActivityIndicator = ({ theme, absolute, ...props }) => (
   <ActivityIndicator
     style={[styles.indicator, absolute && styles.absolute]}
-    color={themes[theme].actionColor}
+    color={themes[theme].activeTintColor}
     {...props}
   />
 )

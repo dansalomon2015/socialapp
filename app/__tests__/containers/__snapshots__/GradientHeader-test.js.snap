@@ -4,8 +4,8 @@ exports[`renders correctly 1`] = `
 <BVLinearGradient
   colors={
     Array [
-      4284308826,
-      4280427042,
+      undefined,
+      undefined,
     ]
   }
   endPoint={

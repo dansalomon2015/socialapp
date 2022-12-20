@@ -10,7 +10,7 @@ exports[`renders correctly 1`] = `
         "padding": 8,
       },
       Object {
-        "borderColor": "#6d6d6d",
+        "borderColor": undefined,
       },
     ]
   }

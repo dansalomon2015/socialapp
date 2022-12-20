@@ -11,7 +11,7 @@ exports[`renders correctly 1`] = `
         "padding": 8,
       },
       Object {
-        "borderColor": "#6d6d6d",
+        "borderColor": undefined,
       },
     ]
   }
@@ -39,7 +39,7 @@ exports[`renders correctly 1`] = `
             "fontSize": 12,
           },
           Object {
-            "color": "#efc455",
+            "color": undefined,
           },
         ]
       }
@@ -288,7 +288,7 @@ exports[`renders correctly 1`] = `
             "fontSize": 12,
           },
           Object {
-            "color": "#efc455",
+            "color": undefined,
           },
         ]
       }

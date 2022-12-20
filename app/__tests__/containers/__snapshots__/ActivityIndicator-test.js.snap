@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <ActivityIndicator
-  color="#efc455"
+  color="#FFFFFF"
   style={
     Array [
       Object {

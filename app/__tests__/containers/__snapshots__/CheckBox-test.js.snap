@@ -15,7 +15,7 @@ exports[`renders correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "borderColor": "#888888",
+      "borderColor": undefined,
       "borderRadius": 11,
       "borderWidth": 1,
       "flexDirection": "row",

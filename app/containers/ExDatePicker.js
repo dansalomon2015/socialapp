@@ -1,8 +1,8 @@
 import React, { useMemo, useRef, useState } from 'react'
-import { Dimensions, StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-native'
+import { Dimensions, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker'
 import { date_str_format, DATE_STRING_DISPLAY_FORMAT } from '../utils/datetime'
-import { COLOR_BLUE, COLOR_YELLOW, themes } from '../constants/colors'
+import { COLOR_YELLOW, themes } from '../constants/colors'
 import sharedStyles from '../views/Styles'
 import { VectorIcon } from './VectorIcon'
 
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -height * 0.4,
     zIndex: 99999,
-    width: width * 0.9
   },
   valueContainer: {
     flexDirection: 'row',
@@ -123,15 +122,12 @@ const styles = StyleSheet.create({
 })
 
 const calendarLightOption = {
-  mainColor: COLOR_BLUE,
   borderColor: 'transparent',
 }
 
 const calendarDarkOption = {
-  mainColor: COLOR_BLUE,
   borderColor: 'transparent',
   backgroundColor: 'transparent',
-  textHeaderColor: COLOR_BLUE,
   textDefaultColor: 'white',
 }
 

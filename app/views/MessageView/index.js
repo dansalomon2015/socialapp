@@ -221,7 +221,7 @@ const MessageView = props => {
     <TouchableOpacity
       onPress={() => onPressItem(item)}
       style={[styles.itemContainer, {
-        backgroundColor: themes[theme].focusedBackground,
+        backgroundColor: themes[theme].buttonBackground,
         marginBottom: index === data.length - 1 ? tabBarHeight : undefined,
       }]}>
       <View style={styles.avatarContainer}>
@@ -236,7 +236,10 @@ const MessageView = props => {
         <Badge
           visible={true}
           size={12}
-          style={[styles.badge, { backgroundColor: isOnline ? '#32D674' : '#2B2A2A' }, { borderColor: themes[theme].chatBadgeBorderColor }]}>
+          style={[styles.badge, {
+            backgroundColor: isOnline ? themes[theme].onlineStatusColor : themes[theme].focusedBackground,
+            borderColor: themes[theme].borderColor,
+          }]}>
         </Badge>
       </View>
       <View style={styles.itemContent}>
@@ -252,17 +255,17 @@ const MessageView = props => {
         </Text>
       </View>
       <View style={{ alignItems: 'flex-end', marginHorizontal: 2 }}>
-        <Text style={[styles.itemMessage, { color: '#C7C7C7' }]}>
+        <Text style={[styles.itemMessage, { color: themes[theme].subTextColor }]}>
           {dateStringFromNowShort(item.date)}
         </Text>
-        <Text style={[styles.itemMessage, { color: '#C7C7C7' }]}>
+        <Text style={[styles.itemMessage, { color: themes[theme].subTextColor }]}>
           {item.unReads > 0 ? item.unReads : ''}
         </Text>
       </View>
     </TouchableOpacity>
   )
   return (
-    <View style={[sharedStyles.container, { backgroundColor: themes[theme].chatBackground, paddingHorizontal: 16 }]}>
+    <View style={[sharedStyles.container, { backgroundColor: themes[theme].backgroundColor, paddingHorizontal: 16 }]}>
       {loading && (
         <ActivityIndicator absolute theme={theme} size={'large'} />
       )}
