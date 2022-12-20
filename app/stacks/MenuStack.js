@@ -11,8 +11,8 @@ const MenuStack = () => {
   return (
     <Menu.Navigator initialRouteName={'PrivacyAndSettings'}>
       <Menu.Screen name="PrivacyAndSettings" component={PrivacyAndSettingsView} />
-      <Menu.Screen name="PrivacySettings" component={PrivacySettingsView} />
       <Menu.Screen name="Block" component={BlockView} />
+      <Menu.Screen name="PrivacySettings" component={PrivacySettingsView} />
     </Menu.Navigator>
   )
 }

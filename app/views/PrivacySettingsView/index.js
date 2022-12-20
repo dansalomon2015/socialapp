@@ -47,11 +47,7 @@ const PrivacySettingsView = (props) => {
   }
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: themes[theme].backgroundColor,
-      }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: themes[theme].backgroundColor }}>
       <StatusBar />
       <ScrollView
         style={{

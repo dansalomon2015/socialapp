@@ -1,31 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import firestore from '@react-native-firebase/firestore'
 import {
-  FlatList,
-  Image,
-  ImageBackground,
-  RefreshControl,
   Text,
   TouchableOpacity,
   View,
+  SafeAreaView, Image, FlatList, RefreshControl,
 } from 'react-native'
-
-import styles from './styles'
-import { HEADER_BAR_END, HEADER_BAR_START, themes } from '../../constants/colors'
+import { connect } from 'react-redux'
+import { themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
-import SafeAreaView from '../../containers/SafeAreaView'
 import { withTheme } from '../../theme'
-import { setUser as setUserAction } from '../../actions/login'
-import images from '../../assets/images'
-import firebaseSdk, { DB_ACTION_UPDATE } from '../../lib/firebaseSdk'
-import ActivityIndicator from '../../containers/ActivityIndicator'
-import sharedStyles from '../Styles'
-import * as HeaderButton from '../../containers/HeaderButton'
-import { GradientHeader } from '../../containers/GradientHeader'
-import I18n from '../../i18n'
 import { VectorIcon } from '../../containers/VectorIcon'
-
+import styles from './styles'
+import ActivityIndicator from '../../containers/ActivityIndicator'
+import firestore from '@react-native-firebase/firestore'
+import firebaseSdk, { DB_ACTION_UPDATE } from '../../lib/firebaseSdk'
+import images from '../../assets/images'
+import I18n from '../../i18n'
 const BlockView = (props) => {
   const { user, theme, navigation } = props
 
@@ -35,34 +25,21 @@ const BlockView = (props) => {
   const [loading, setLoading] = useState(true)
   const [updating, setUpdating] = useState(false)
 
-  // useEffect(() => {
-  //   navigation.setOptions({
-  //     headerLeft: () => (
-  //       <TouchableOpacity style={styles.header} onPress={() => navigation.toggleDrawer()}>
-  //         <VectorIcon type="MaterialCommunityIcons" name="arrow-left" color={themes[theme].titleColor} size={24} />
-  //       </TouchableOpacity>
-  //     ),
-  //     title: null,
-  //     headerRight: () => (<></>),
-  //     headerStyle: {
-  //       backgroundColor: themes[theme].backgroundColor,
-  //       shadowOpacity: 0,
-  //     },
-  //   })
-  // }, [theme])
-
   useEffect(() => {
     navigation.setOptions({
-      title: I18n.t('Blocked'),
-      headerRight: () => (
-        <HeaderButton.Complete
-          navigation={navigation}
-          onPress={onUnBlock}
-          testID="rooms-list-view-create-channel"
-        />
+      headerLeft: () => (
+        <TouchableOpacity style={styles.header} onPress={() => navigation.goBack()}>
+          <VectorIcon type="MaterialCommunityIcons" name="arrow-left" color={themes[theme].titleColor} size={24} />
+        </TouchableOpacity>
       ),
+      title: null,
+      headerRight: () => (<></>),
+      headerStyle: {
+        backgroundColor: themes[theme].backgroundColor,
+        shadowOpacity: 0,
+      },
     })
-  }, [unBlocked])
+  }, [theme])
 
   useEffect(() => {
     init()
@@ -126,14 +103,17 @@ const BlockView = (props) => {
             style={styles.itemImage}
           />
           <View style={styles.itemContent}>
-            <Text style={[styles.itemText, { color: themes[theme].activeTintColor }]}>{item.displayName}</Text>
-            <Text
-              style={[styles.itemPost, { color: themes[theme].infoText }]}>{`0 ${I18n.t('Posts').toLowerCase()}`}</Text>
+            <Text style={[styles.itemText, { color: themes[theme].activeTintColor }]}>
+              {item.displayName}
+            </Text>
+            <Text style={[styles.itemPost, { color: themes[theme].textColor }]}>
+              {`0 ${I18n.t('Posts').toLowerCase()}`}
+            </Text>
           </View>
         </View>
         <TouchableOpacity onPress={() => toggleUnBlock(item)}>
-          <Text style={fUnBlocked ? styles.blockText : styles.unBlockText}>
-            {fUnBlocked ? I18n.t('Block') : `✓ ${I18n.t('Unblock')}`}
+          <Text style={[fUnBlocked ? styles.blockText : styles.unBlockText, { color: themes[theme].textColor }]}>
+            {fUnBlocked ? I18n.t('Block') : `${I18n.t('Unblock')}`}
           </Text>
         </TouchableOpacity>
       </View>
@@ -153,39 +133,35 @@ const BlockView = (props) => {
   }
 
   return (
-    <View
-      style={[sharedStyles.container, { backgroundColor: themes[theme].navbarBackground }]}
-      source={images.bg_splash_onboard}>
-      <SafeAreaView style={[sharedStyles.contentContainer, {
-        flex: 1,
-        overflow: 'hidden',
-        paddingTop: 20,
-        paddingHorizontal: 10,
-        backgroundColor: themes[theme].backgroundColor
-      }]}>
-        <StatusBar />
-        {updating && (
-          <ActivityIndicator absolute theme={theme} size={'large'} />
+    <SafeAreaView style={{ flex: 1, backgroundColor: themes[theme].backgroundColor }}>
+      <StatusBar />
+      {updating && (
+        <ActivityIndicator absolute theme={theme} size={'large'} />
+      )}
+      <View style={{ flexDirection: 'column', marginBottom: 8, padding: 16 }}>
+        <Text style={[styles.title, { color: themes[theme].titleColor }]}>Blocked Users</Text>
+        <Text style={[styles.subtitle, { color: themes[theme].titleColor }]}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum vel egestas egestas cras.
+        </Text>
+      </View>
+      <View style={styles.container}>
+        {data.length > 0 && (
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.userId}
+            ListFooterComponent={renderFooter}
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+                tintColor={themes[theme].activeTintColor}
+              />
+            }
+          />
         )}
-        <View style={styles.container}>
-          {data.length > 0 && (
-            <FlatList
-              data={data}
-              renderItem={renderItem}
-              keyExtractor={item => item.userId}
-              ListFooterComponent={renderFooter}
-              refreshControl={
-                <RefreshControl
-                  refreshing={refreshing}
-                  onRefresh={onRefresh}
-                  tintColor={themes[theme].actionColor}
-                />
-              }
-            />
-          )}
-        </View>
-      </SafeAreaView>
-    </View>
+      </View>
+    </SafeAreaView>
   )
 }
 
@@ -193,11 +169,6 @@ const mapStateToProps = state => ({
   user: state.login.user,
 })
 
-const mapDispatchToProps = dispatch => ({
-  setUser: params => dispatch(setUserAction(params)),
-})
+const mapDispatchToProps = () => ({})
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withTheme(BlockView))
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(BlockView))

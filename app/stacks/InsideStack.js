@@ -2,7 +2,6 @@ import React from 'react'
 import { Dimensions } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { ThemeContext } from '../theme'
-import { outsideHeader, themedHeader, StackAnimation } from '../utils/navigation'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import SidebarView from '../views/SidebarView'
@@ -136,9 +135,7 @@ const InsideStack = () => {
       />
       <Inside.Screen name="Chat" component={ChatView} />
       <Inside.Screen name="Setting" component={SettingView} />
-      {/*<Inside.Screen name="About" component={AboutView} />*/}
       <Inside.Screen name="Security" component={SecurityView} />
-      {/*<Inside.Screen name="Block" component={BlockView} />*/}
       <Inside.Screen name="ProductWeb" component={ProductWebView} />
       <Inside.Screen
         name="Category"

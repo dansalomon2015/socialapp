@@ -1,7 +1,27 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  container: {},
+  container: {
+    flexGrow: 1,
+  },
+  header: {
+    fontFamily: 'Raleway',
+    fontSize: 24,
+    lineHeight: 26,
+    paddingHorizontal: 12,
+    justifyContent: 'center',
+  },
+  title: {
+    fontFamily: 'Hind Vadodara',
+    fontWeight: '600',
+    fontSize: 16,
+    lineHeight: 24,
+  },
+  subtitle: {
+    fontFamily: 'Raleway',
+    fontSize: 12,
+    lineHeight: 16,
+  },
   itemContainer: {
     flexDirection: 'row',
     paddingVertical: 8,
@@ -20,42 +40,25 @@ export default StyleSheet.create({
   itemImage: {
     width: 48,
     height: 48,
-    borderRadius: 24,
+    borderRadius: 8,
   },
   itemText: {
-    fontSize: 16,
-    marginBottom: 5,
+    fontFamily: 'Raleway',
+    fontWeight: '600',
+    fontSize: 14,
+    lineHeight: 20,
   },
-  itemAction: {
-    width: 100,
-    height: 24,
-    resizeMode: 'contain',
-    alignItems: 'center',
-    justifyContent: 'center',
+  itemPost: {
+    fontFamily: 'Raleway',
+    fontSize: 12,
+    lineHeight: 20,
   },
   unBlockText: {
-    color: '#efc455',
     paddingVertical: 4,
-    width: 100,
-    borderColor: '#efc455',
-    borderWidth: 1,
     textAlign: 'center',
   },
   blockText: {
-    width: 100,
     paddingVertical: 4,
-    paddingHorizontal: 12,
-    color: 'black',
-    backgroundColor: '#efc455',
     textAlign: 'center',
   },
-  emptyContainer: {
-    flexGrow: 1,
-    alignItems: 'center',
-    marginTop: 40,
-  },
-  emptyText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
+})

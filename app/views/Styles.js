@@ -6,14 +6,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  contentContainer: {
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    paddingTop: 10,
-  },
-  topLinearGradient: {
-    height: 4,
-  },
   containerScrollView: {
     padding: 15,
   },

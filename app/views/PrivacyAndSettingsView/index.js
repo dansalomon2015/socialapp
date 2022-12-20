@@ -75,7 +75,7 @@ const PrivacyAndSettingsView = (props) => {
         />
         <SidebarItem
           text={'Privacy Setting'}
-          onPress={() => {goToPrivacySettings()}}
+          onPress={() => navigation.navigate('PrivacySettings')}
           theme={theme}
           hasRight
         />
