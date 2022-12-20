@@ -21,7 +21,6 @@ import MessageView from '../views/MessageView'
 import ChatView from '../views/ChatView'
 import SettingView from '../views/SettingView'
 import SecurityView from '../views/SecurityView'
-import BlockView from '../views/BlockView'
 import OtherProfileView from '../views/OtherProfileView'
 import ActivityView from '../views/ActivityView'
 import CategoryView from '../views/CategoryView'
@@ -33,8 +32,6 @@ import PickLibraryView from '../views/PickLibraryView'
 import UpdateProfileAndBasicInfo from '../views/UpdateProfileAndBasicInfo'
 import { MainTabBar } from '../containers/MainScreen'
 import MenuStack from './MenuStack'
-import store from '../lib/createStore'
-import { setRoute } from '../actions/app'
 
 const Tab = createBottomTabNavigator()
 const Inside = createStackNavigator()

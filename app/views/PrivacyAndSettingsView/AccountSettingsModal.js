@@ -8,11 +8,12 @@ import { themes } from '../../constants/colors'
 import FloatingTextInput from '../../containers/FloatingTextInput'
 import Button from '../../containers/Button'
 
-const AccountSettingsModal = ({ isShow, onClose, theme }) => {
-  const [name, setName] = useState('')
+const AccountSettingsModal = ({ isShow, onClose, theme, user }) => {
+  const [name, setName] = useState(user.displayName)
   const [username, setUsername] = useState('')
   const nameInput = useRef(null)
   const usernameInput = useRef(null)
+
   const onClick = item => {
 
   }
@@ -31,9 +32,10 @@ const AccountSettingsModal = ({ isShow, onClose, theme }) => {
         <FloatingTextInput
           returnKeyType="next"
           textContentType="oneTimeCode"
+          // value={user.displayName}
           label={'Name'}
           placeholder={'Enter Your Name'}
-          onChangeText={name => setName({name})}
+          // onChangeText={name => setName({ name })}
           theme={theme}
           onSubmitEditing={() => {
             usernameInput.current.focus()
@@ -43,26 +45,25 @@ const AccountSettingsModal = ({ isShow, onClose, theme }) => {
           inputRef={usernameInput}
           textContentType="oneTimeCode"
           label={'username'}
+          // value={user.handle}
           placeholder={'Enter Your Username'}
-          onChangeText={username => setUsername({username})}
+          onChangeText={username => setUsername({ username })}
           theme={theme}
         />
         <Button
           style={styles.submitBtn}
-          title={'Save'}
+          title={'SAVE'}
           size="W"
           // onPress={onSubmit}
-          testID="login-submit"
           // loading={isLoading}
           theme={theme}
-          pressingHighlight
         />
       </View>
     </Modal>
   )
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = () => ({})
 
 const mapDispatchToProps = () => ({})
 

@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { CURRENT_USER } from '../constants/keys'
 import firebaseSdk from '../lib/firebaseSdk'
 import { loginSuccess } from '../actions/login'
+import firebase from '@react-native-firebase/app'
 
 export const restore = function* restore() {
   const user = yield AsyncStorage.getItem(CURRENT_USER)

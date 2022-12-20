@@ -5,13 +5,14 @@ import {
   Image,
   Text,
   Platform,
-  Dimensions,
+  Dimensions, Pressable,
 } from 'react-native'
 import { TextInput } from 'react-native'
 
 import { COLOR_BORDER, COLOR_GRAY_DARK, COLOR_LIGHT_DARK, COLOR_RED, themes } from '../constants/colors'
 import images from '../assets/images'
 import Styles from '../views/Styles'
+import { VectorIcon } from './VectorIcon'
 
 const { width } = Dimensions.get('window')
 
@@ -73,6 +74,7 @@ const FloatingTextInput = props => {
     backgroundColor,
     multiline,
     value,
+    isEditable,
     ...inputProps
   } = props
 
@@ -80,7 +82,7 @@ const FloatingTextInput = props => {
 
   return (
     <View style={{ marginBottom: 16 }}>
-      <Text style={[styles.labelText, { color: themes[theme].textColor }]}>{label}</Text>
+      {label && (<Text style={[styles.labelText, { color: themes[theme].textColor }]}>{label}</Text>)}
       <View style={[styles.container, {
         borderColor: error ? COLOR_RED : themes[theme].borderColor,
         height: multiline ? 123 : 56,
@@ -91,6 +93,7 @@ const FloatingTextInput = props => {
           style={[styles.textInput,
             {
               backgroundColor: backgroundColor ?? 'transparent',
+              color: error ? COLOR_RED : themes[theme].activeTintColor,
             },
           ]}
           outlineColor={error ? COLOR_RED : outlineColor || COLOR_BORDER}

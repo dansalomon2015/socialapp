@@ -8,8 +8,7 @@ import { VectorIcon } from '../VectorIcon'
 /* eslint-disable react-native/no-unused-styles */
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 13,
-    backgroundColor: COLOR_WHITE,
+    borderRadius: 8,
   },
   oauthButtonContainer: {
     margin: 8,
@@ -40,6 +39,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Raleway',
     lineHeight: 18,
+    fontWeight: '600'
   },
 
   button_size_Z: {
