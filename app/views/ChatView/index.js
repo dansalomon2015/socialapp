@@ -20,7 +20,6 @@ import { withSafeAreaInsets } from 'react-native-safe-area-context'
 import { BorderlessButton } from 'react-native-gesture-handler'
 import SoundPlayer from 'react-native-sound-player'
 import { useNavigation } from '@react-navigation/native'
-import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { themes } from '../../constants/colors'
 import SafeAreaView from '../../containers/SafeAreaView'
@@ -53,7 +52,6 @@ const scrollPersistTaps = {
 let typingTimeout = null
 
 const ChatView = props => {
-  const { height: heightReplica } = useKeyboardAnimationReplica()
   const navigation = useNavigation()
   const [state, setState] = useState({
     loading: false,
@@ -138,10 +136,9 @@ const ChatView = props => {
       title: '',
       headerLeft: () => (
         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-          <TouchableOpacity
-            style={{ width: 40, alignItems: 'center' }}
-            onPress={() => navigation.goBack()}>
-            <Entypo name="chevron-thin-left" size={22} color={themes[theme].activeTintColor} />
+          <TouchableOpacity style={{ paddingHorizontal: 16 }} onPress={() => navigation.goBack()}>
+            <VectorIcon type="MaterialCommunityIcons" name="arrow-left" color={themes[theme].activeTintColor}
+                        size={24} />
           </TouchableOpacity>
           <TouchableOpacity
             style={{ flexGrow: 1, flexDirection: 'row', alignItems: 'center' }}
@@ -154,24 +151,22 @@ const ChatView = props => {
               <Badge
                 visible={true}
                 size={12}
-                style={[styles.badge, { backgroundColor: isOnline ? '#32D674' : '#2B2A2A' }, { borderColor: themes[theme].chatBadgeBorderColor }]}>
+                style={[styles.badge, { backgroundColor: isOnline ? themes[theme].onlineStatusColor : themes[theme].focusedBackground }, { borderColor: themes[theme].backgroundColor }]}>
               </Badge>
             </View>
             <View style={{ flex: 1, alignSelf: 'center', marginLeft: 8 }}>
-              <Text style={styles.displayName}>{room.account.displayName}</Text>
+              <Text style={[styles.displayName, { color: themes[theme].titleColor }]}>
+                {room.account.displayName}
+              </Text>
               <Text
-                style={[styles.status, { color: isOnline ? '#32D674' : '#2B2A2A' }]}>{isOnline ? 'Online Now' : 'Offline Now'}</Text>
+                style={[styles.status, { color: isOnline ? themes[theme].onlineStatusColor : themes[theme].focusedBackground }]}>{isOnline ? 'Online Now' : 'Offline Now'}</Text>
             </View>
           </TouchableOpacity>
         </View>
       ),
       headerRight: () => (<></>),
       headerStyle: {
-        backgroundColor: themes[theme].chatBackground,
-        elevation: 0,
-        shadowOpacity: 0,
-        borderBottomWidth: 0.5,
-        borderBottomColor: themes[theme].chatHeaderBorder,
+        backgroundColor: themes[theme].backgroundColor,
       },
     })
   }, [theme])
@@ -444,7 +439,7 @@ const ChatView = props => {
       />
 
       <Animated.View>
-        <RNSafeAreaView style={{ backgroundColor: themes[theme].messageOwnBackground, paddingHorizontal: 16 }}>
+        <RNSafeAreaView style={{ backgroundColor: themes[theme].focusedBackground, paddingHorizontal: 16 }}>
           <View
             style={[
               styles.inputContainer,
@@ -460,7 +455,7 @@ const ChatView = props => {
               multiline
               blurOnSubmit={true}
               placeholder={'Type Something'}
-              placeholderTextColor={themes[theme].chatInputPlaceholder}
+              placeholderTextColor={themes[theme].subTextColor}
               onChangeText={onChangeText}
               onSubmitEditing={sendMessage}
               style={[styles.input, { color: themes[theme].activeTintColor }]}
@@ -471,7 +466,7 @@ const ChatView = props => {
                 style={[
                   styles.sendBtn,
                   {
-                    tintColor: themes[theme].sendButton,
+                    tintColor: themes[theme].activeTintColor,
                   },
                 ]}
               />

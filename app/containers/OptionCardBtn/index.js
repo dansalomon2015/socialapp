@@ -7,14 +7,14 @@ import { VectorIcon } from '../VectorIcon'
 import { useTheme } from '../../theme'
 
 
-const OptionCardBtn = ({ image, title, smallText, rightIcon, rightIconName }) => {
+const OptionCardBtn = ({ image, title, subTextColor, smallText, rightIcon, rightIconName }) => {
   const { theme } = useTheme()
 
   return (
     <TouchableOpacity
       style={[
         styles.container,
-        { backgroundColor: themes[theme].focusedBackground },
+        { backgroundColor: themes[theme].buttonBackground },
       ]}>
       <View style={styles.imageView}>
         <Image source={image} style={styles.image} />
@@ -24,7 +24,7 @@ const OptionCardBtn = ({ image, title, smallText, rightIcon, rightIconName }) =>
           {title}
         </Text>
         <Text
-          style={[styles.smallText, { color: themes[theme].activeTintColor }]}>
+          style={[styles.smallText, { color: themes[theme].activeTintColor, ...subTextColor }]}>
           {smallText}
         </Text>
       </View>

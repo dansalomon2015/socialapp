@@ -11,13 +11,12 @@ import {
 import firestore from '@react-native-firebase/firestore'
 import Feather from 'react-native-vector-icons/Feather'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
-
-import { COLOR_BORDER, COLOR_GRAY_DARK, COLOR_WHITE, themes } from '../../constants/colors'
+import { themes } from '../../constants/colors'
 import { withTheme } from '../../theme'
 import images from '../../assets/images'
 import styles from './styles'
 import firebaseSdk from '../../lib/firebaseSdk'
-import { dateStringFromNow, dateStringFromNowShort } from '../../utils/datetime'
+import { dateStringFromNowShort } from '../../utils/datetime'
 import ActivityIndicator from '../../containers/ActivityIndicator'
 import I18n from '../../i18n'
 import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
@@ -222,7 +221,7 @@ const MessageView = props => {
     <TouchableOpacity
       onPress={() => onPressItem(item)}
       style={[styles.itemContainer, {
-        backgroundColor: themes[theme].chatSecondaryColor,
+        backgroundColor: themes[theme].focusedBackground,
         marginBottom: index === data.length - 1 ? tabBarHeight : undefined,
       }]}>
       <View style={styles.avatarContainer}>
@@ -277,7 +276,7 @@ const MessageView = props => {
         />
         <View style={styles.chatRoomCounter}>
           <Text style={[styles.chatRoomText, { color: themes[theme].titleColor }]}>Chat</Text>
-          <Badge style={{ backgroundColor: COLOR_GRAY_DARK, color: COLOR_WHITE }}>
+          <Badge style={{ backgroundColor: themes[theme].borderColor, color: themes[theme].titleColor }}>
             {searchData && searchData.length > 0 ? searchData.length : data.length}
           </Badge>
         </View>

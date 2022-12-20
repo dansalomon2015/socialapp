@@ -111,7 +111,6 @@ const UpdatePasswordView = (props) => {
             <Button
               style={styles.submitBtn}
               title="Submit"
-              type="gradient"
               size="W"
               onPress={onSubmit}
               loading={isLoading}

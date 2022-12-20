@@ -163,9 +163,7 @@ const styles = StyleSheet.create({
 export const MainTabBar = React.memo(({ theme, navigation, state }) => {
   const { unread } = useSelector(state => state.chat)
   const [showVipScreen, setShowVipScreen] = useState(false)
-  const [imageBG, setIamgeBG] = useState(false)
   const { width } = Dimensions.get('window')
-
 
   const onVip = () => {
     setShowVipScreen({ showVipScreen: true })
@@ -186,8 +184,8 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
               type="MaterialCommunityIcons"
               name="home-outline" size={28}
               color={state.index === 0
-                ? themes[theme].activatedBottomTabBarIconColor
-                : themes[theme].inActivatedBottomTabBarIconColor}
+                ? themes[theme].tabActivatedColor
+                : themes[theme].tabInActivatedColor}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -197,8 +195,8 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
               type="MaterialCommunityIcons"
               name="account-outline" size={28}
               color={state.index === 1
-                ? themes[theme].activatedBottomTabBarIconColor
-                : themes[theme].inActivatedBottomTabBarIconColor}
+                ? themes[theme].tabActivatedColor
+                : themes[theme].tabInActivatedColor}
             />
           </TouchableOpacity>
           <View style={[styles.vipTabContainer]}>
@@ -216,8 +214,8 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
               type="MaterialCommunityIcons"
               name="chat-outline" size={28}
               color={state.index === 2
-                ? themes[theme].activatedBottomTabBarIconColor
-                : themes[theme].inActivatedBottomTabBarIconColor}
+                ? themes[theme].tabActivatedColor
+                : themes[theme].tabInActivatedColor}
             />
             {unread > 0 && (
               <View style={styles.unread}>
@@ -232,8 +230,8 @@ export const MainTabBar = React.memo(({ theme, navigation, state }) => {
               type="MaterialCommunityIcons"
               name="bell-outline" size={28}
               color={state.index === 3
-                ? themes[theme].activatedBottomTabBarIconColor
-                : themes[theme].inActivatedBottomTabBarIconColor}
+                ? themes[theme].tabActivatedColor
+                : themes[theme].tabInActivatedColor}
             />
           </TouchableOpacity>
         </View>

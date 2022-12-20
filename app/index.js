@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Dimensions, LogBox } from 'react-native'
+import { Dimensions } from 'react-native'
 import { Provider } from 'react-redux'
 import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from 'react-native-safe-area-context'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { MenuProvider } from 'react-native-popup-menu'
 import { defaultTheme, subscribeTheme } from './utils/theme'
 import store from './lib/createStore'
@@ -34,6 +33,7 @@ const Root = () => {
 
   useEffect(() => {
     setTheme('dark')
+    // setTheme('light')
     // let timer = setInterval(() => {
     //   const hour = new Date().getHours()
     //   if (!theme) {

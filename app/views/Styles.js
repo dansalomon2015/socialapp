@@ -242,7 +242,7 @@ export default StyleSheet.create({
     ...Platform.select({
       ios: {
         fontFamily: 'System',
-        fontWeight: '500',
+        fontWeight: '600',
       },
       android: {
         includeFontPadding: false,

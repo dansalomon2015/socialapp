@@ -17,7 +17,7 @@ import firebaseSdk from '../../lib/firebaseSdk'
 import { CURRENT_USER } from '../../constants/keys'
 import { appStart as appStartAction } from '../../actions/app'
 import I18n from '../../i18n'
-import { COLOR_BORDER, COLOR_WHITE, COLOR_YELLOW } from '../../constants/colors'
+import { COLOR_WHITE, COLOR_YELLOW, themes } from '../../constants/colors'
 import FloatingTextInput from '../../containers/FloatingTextInput'
 import KeyboardView from '../../containers/KeyboardView'
 
@@ -118,7 +118,6 @@ const SignInView = (props) => {
               onSubmitEditing={() => {
                 passwordInput.current.focus()
               }}
-              outlineColor={COLOR_BORDER}
               error={errEmail}
             />
             <FloatingTextInput
@@ -130,13 +129,12 @@ const SignInView = (props) => {
               textContentType="oneTimeCode"
               onChangeText={value => setPassword(value)}
               theme={theme}
-              outlineColor={COLOR_BORDER}
               secureTextEntry
               error={errPassword}
             />
             <View style={styles.forgotContainer}>
               <Text
-                style={styles.forgotText}
+                style={[styles.forgotText, { color: themes[theme].titleColor }]}
                 onPress={forgotPassword}>
                 {I18n.t('Forgot_Password')}
               </Text>
@@ -144,13 +142,11 @@ const SignInView = (props) => {
             <Button
               style={styles.submitBtn}
               title={I18n.t('Login')}
-              type="gradient"
               size="W"
               onPress={onSubmit}
               testID="login-submit"
               loading={isLoading}
               theme={theme}
-              pressingHighlight
             />
           </View>
         </ScrollView>

@@ -3,10 +3,7 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 10,
-    paddingHorizontal: 10,
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
+    paddingHorizontal: 16,
   },
   headerText: {
     fontFamily: 'Raleway',

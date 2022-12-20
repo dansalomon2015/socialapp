@@ -35,7 +35,7 @@ const PopupMenu = React.memo(
       </MenuTrigger>
       <MenuOptions customStyles={{
         optionsContainer: {
-          backgroundColor: themes[theme].popupBackColor,
+          backgroundColor: themes[theme].popupBackground,
           width: 100,
           padding: 5,
         },

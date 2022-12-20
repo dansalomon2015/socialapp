@@ -1,47 +1,9 @@
 import React from 'react'
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  ActivityIndicator,
-  TouchableHighlight,
-} from 'react-native'
+import { StyleSheet, View, Text, Image, ActivityIndicator, TouchableOpacity } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
-import LinearGradient from 'react-native-linear-gradient'
-
-import {
-  COLOR_BUTTON_PRIMARY,
-  COLOR_BUTTON_SECONDARY,
-  COLOR_BUTTON_DEFAULT,
-  COLOR_BUTTON_DANGER,
-  COLOR_BUTTON_WHITE,
-  COLOR_BUTTON_GRAY,
-  COLOR_BUTTON_DONE,
-  COLOR_BUTTON_FACEBOOK,
-  COLOR_BUTTON_GOOGLE,
-  COLOR_BUTTON_TEXT_PRIMARY,
-  COLOR_BUTTON_TEXT_SECONDARY,
-  COLOR_BUTTON_TEXT_DEFAULT,
-  COLOR_BUTTON_TEXT_DANGER,
-  COLOR_BUTTON_TEXT_WHITE,
-  COLOR_BUTTON_TEXT_DONE,
-  COLOR_BUTTON_TEXT_FACEBOOK,
-  COLOR_BUTTON_TEXT_GOOGLE,
-  themes,
-  COLOR_BUTTON_APPLE_LIGHT,
-  COLOR_BUTTON_APPLE_DARK,
-  COLOR_BUTTON_APPLE_BLACK,
-  COLOR_BUTTON_TEXT_APPLE_LIGHT,
-  COLOR_BUTTON_TEXT_APPLE_DARK,
-  COLOR_ORANGE,
-  COLOR_WHITE,
-  NAV_BAR_START,
-  NAV_BAR_END,
-} from '../../constants/colors'
-import sharedStyles from '../../views/Styles'
+import { COLOR_BLACK, COLOR_BTN_BACKGROUND, COLOR_BTN_BORDER, COLOR_WHITE, themes } from '../../constants/colors'
 import images from '../../assets/images'
+import { VectorIcon } from '../VectorIcon'
 
 /* eslint-disable react-native/no-unused-styles */
 const styles = StyleSheet.create({
@@ -56,19 +18,6 @@ const styles = StyleSheet.create({
     height: 40,
     resizeMode: 'contain',
   },
-  gradientButtonContainer: {
-    width: '100%',
-    borderRadius: 7,
-    alignSelf: 'center'
-  },
-  gradientButtonText: {
-    borderRadius: 7,
-    height: 45,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 16,
-  },
   buttonContainer: {
     borderRadius: 7,
     height: 45,
@@ -76,13 +25,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
-    borderWidth: 1.5,
-  },
-  oauthIcon: {
-    width: 19,
-    height: 19,
-    marginRight: 4,
-    resizeMode: 'contain',
+    borderWidth: 0.25,
   },
   icon: {
     position: 'absolute',
@@ -93,91 +36,10 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   text: {
-    ...sharedStyles.textMedium,
-    fontSize: 14,
-    letterSpacing: 1.6,
+    fontSize: 16,
     textAlign: 'center',
     fontFamily: 'Raleway',
-  },
-  shadow: {
-    shadowColor: '#000',
-    shadowRadius: 2,
-    shadowOpacity: 0.4,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    elevation: 8,
-  },
-  background_primary: {
-    backgroundColor: COLOR_BUTTON_PRIMARY,
-  },
-  background_secondary: {
-    backgroundColor: COLOR_BUTTON_SECONDARY,
-  },
-  background_default: {
-    backgroundColor: COLOR_BUTTON_DEFAULT,
-  },
-  background_danger: {
-    backgroundColor: COLOR_BUTTON_DANGER,
-  },
-  background_white: {
-    backgroundColor: COLOR_BUTTON_WHITE,
-    borderWidth: 1,
-    borderColor: '#EBEBEB',
-  },
-  background_grey: {
-    backgroundColor: COLOR_BUTTON_GRAY,
-    borderWidth: 1,
-    borderColor: '#EBEBEB',
-  },
-  background_done: {
-    backgroundColor: COLOR_BUTTON_DONE,
-  },
-  background_facebook: {
-    backgroundColor: COLOR_BUTTON_FACEBOOK,
-  },
-  background_google: {
-    backgroundColor: COLOR_BUTTON_GOOGLE,
-  },
-  background_apple_light: {
-    backgroundColor: COLOR_BUTTON_APPLE_LIGHT,
-  },
-  background_apple_dark: {
-    backgroundColor: COLOR_BUTTON_APPLE_DARK,
-  },
-  background_apple_black: {
-    backgroundColor: COLOR_BUTTON_APPLE_BLACK,
-  },
-  text_color_primary: {
-    color: COLOR_BUTTON_TEXT_PRIMARY,
-  },
-  text_color_secondary: {
-    color: COLOR_BUTTON_TEXT_SECONDARY,
-  },
-  text_color_default: {
-    color: COLOR_BUTTON_TEXT_DEFAULT,
-  },
-  text_color_danger: {
-    color: COLOR_BUTTON_TEXT_DANGER,
-  },
-  text_color_white: {
-    color: COLOR_BUTTON_TEXT_WHITE,
-  },
-  text_color_done: {
-    color: COLOR_BUTTON_TEXT_DONE,
-  },
-  text_color_facebook: {
-    color: COLOR_BUTTON_TEXT_FACEBOOK,
-  },
-  text_color_google: {
-    color: COLOR_BUTTON_TEXT_GOOGLE,
-  },
-  text_color_apple_light: {
-    color: COLOR_BUTTON_TEXT_APPLE_LIGHT,
-  },
-  text_color_apple_dark: {
-    color: COLOR_BUTTON_TEXT_APPLE_DARK,
+    lineHeight: 18,
   },
 
   button_size_Z: {
@@ -204,19 +66,6 @@ const styles = StyleSheet.create({
   button_size_S: {
     width: 345,
   },
-
-  font_weight_regular: {
-    ...sharedStyles.textRegular,
-  },
-  font_weight_medium: {
-    ...sharedStyles.textMedium,
-  },
-  font_weight_semibold: {
-    ...sharedStyles.textSemibold,
-  },
-  font_weight_bold: {
-    ...sharedStyles.textBold,
-  },
 })
 
 const Button = props => {
@@ -238,11 +87,9 @@ const Button = props => {
     textColor: color,
     fontWeight,
     theme,
-    pressingHighlight,
+    iconColor,
     ...otherProps
   } = props
-
-  const [isPress, setIsPress] = React.useState(false)
 
   if (hidden) {
     return null
@@ -256,54 +103,52 @@ const Button = props => {
     )
   }
 
-  if (type === 'gradient') {
+  if (type === 'secondary') {
     return (
-      <TouchableHighlight
+      <TouchableOpacity
         onPress={onPress}
-        underlayColor="white"
-        onHideUnderlay={_ => setIsPress(false)}
-        onShowUnderlay={_ => {if (pressingHighlight) setIsPress(true)}}
-        style={[styles.gradientButtonContainer, style]}
-        disabled={(disabled || loading)}>
-        <LinearGradient
-          colors={!isPress ? [themes[theme].bodyText, themes[theme].bodyText] : [themes[theme].backgroundColor, themes[theme].backgroundColor]}
+        disabled={(disabled || loading)}
+        style={[
+          styles.container,
+          size ? styles[`button_size_${size}`] : {},
+          style,
+        ]}
+        {...otherProps}>
+        <View
           style={[
-            styles.gradientButtonText,
+            styles.buttonContainer,
             size ? styles[`button_size_${size}`] : {},
+            width ? { width } : {},
+            height ? { height } : {},
             {
-              borderColor: themes[theme].bodyText,
-              borderWidth: 2,
-              backgroundColor: !isPress ? themes[theme].bodyText : themes[theme].backgroundColor,
+              opacity: disabled ? 0.5 : 1,
+              borderWidth: 0.5,
+              backgroundColor: COLOR_WHITE,
+              borderColor: COLOR_BTN_BORDER,
             },
           ]}>
+          {icon ? (
+            <VectorIcon
+              type="MaterialCommunityIcons" name={icon}
+              size={24} style={{ marginRight: 8, ...iconColor }} />
+          ) : null}
           {loading ? (
-            <ActivityIndicator color={'white'} />
+            <ActivityIndicator color={COLOR_BLACK} />
           ) : (
             <>
-              {iconCenter ? iconCenter(isPress ? { tintColor: themes[theme].bodyText } : undefined) : null}
-              <Text
-                style={{
-                  ...styles.text,
-                  color: disabled ? themes[theme].auxiliaryText : isPress ? themes[theme].bodyText : 'white',
-                  fontWeight: fontWeight
-                    ? styles[`font_weight_${fontWeight}`]
-                    : 'normal',
-                }}>
+              <Text style={[styles.text, { color: disabled ? themes[theme].textColor : COLOR_BLACK }]}>
                 {text || title}
               </Text>
             </>
           )}
-        </LinearGradient>
-      </TouchableHighlight>
+        </View>
+      </TouchableOpacity>
     )
   }
 
   return (
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={onPress}
-      underlayColor={themes[theme].bodyText}
-      onHideUnderlay={_ => setIsPress(false)}
-      onShowUnderlay={_ => {if (pressingHighlight) setIsPress(true)}}
       disabled={(disabled || loading)}
       style={[
         styles.container,
@@ -317,34 +162,27 @@ const Button = props => {
           size ? styles[`button_size_${size}`] : {},
           width ? { width } : {},
           height ? { height } : {},
-          { backgroundColor: isPress ? themes[theme].bodyText : 'white' },
+          {
+            backgroundColor: COLOR_BTN_BACKGROUND,
+            borderColor: COLOR_BTN_BORDER,
+          },
         ]}>
         {icon ? (
-          <FontAwesomeIcon
-            name={icon}
-            size={24}
-            style={{ marginRight: 8, color: 'black' }}
-          />
+          <VectorIcon
+            type="MaterialCommunityIcons" name={icon}
+            size={24} style={{ marginRight: 8, ...iconColor }} />
         ) : null}
         {loading ? (
-          <ActivityIndicator color={color ?? themes[theme].buttonText} />
+          <ActivityIndicator color={COLOR_WHITE} />
         ) : (
           <>
-            {iconCenter ? iconCenter(isPress ? { tintColor: 'white' } : undefined) : null}
-            <Text
-              style={{
-                ...styles.text,
-                color: disabled ? themes[theme].auxiliaryText : !isPress ? themes[theme].bodyText : 'white',
-                fontWeight: fontWeight
-                  ? styles[`font_weight_${fontWeight}`]
-                  : 'normal',
-              }}>
+            <Text style={[styles.text, { color: disabled ? themes[theme].textColor : COLOR_WHITE }]}>
               {text || title}
             </Text>
           </>
         )}
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   )
 }
 

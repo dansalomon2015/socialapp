@@ -29,7 +29,7 @@ const OnBoardingView = () => {
           </View>
           <View style={styles.welcome}>
             <Text style={{textAlign: 'center'}}>
-              <Text style={[styles.welcomeTitle, { color: themes[theme].textColor }]}>
+              <Text style={[styles.welcomeTitle, { color: themes[theme].titleColor }]}>
                 Welcome to &nbsp;
               </Text>
               <Text style={[styles.welcomeTitle, { color: COLOR_YELLOW }]}>
@@ -42,22 +42,19 @@ const OnBoardingView = () => {
             <Button
               style={styles.submitBtn}
               title={I18n.t('SignIn').toUpperCase()}
-              type="gradient"
               size="W"
               onPress={() => navigation.replace('SignIn')}
               testID="login-view-submit"
               theme={theme}
-              pressingHighlight
             />
             <Button
               style={styles.submitBtn}
               title={I18n.t('Register')}
-              type="primary"
+              type="secondary"
               size="W"
               onPress={() => navigation.replace('SignUp')}
               testID="login-view-submit"
               theme={theme}
-              pressingHighlight
             />
           </View>
         </View>

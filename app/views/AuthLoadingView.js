@@ -47,7 +47,7 @@ const AuthLoadingView = React.memo(({ theme }) => (
         <Image source={images.logo} style={styles.logo} />
         <Image style={styles.logoText} source={images.logo_text} />
       </View>
-      <ActivityIndicator color={themes[theme].actionColor} size="large" />
+      <ActivityIndicator color={themes[theme].activeTintColor} size="large" />
     </View>
   </ImageBackground>
 ))

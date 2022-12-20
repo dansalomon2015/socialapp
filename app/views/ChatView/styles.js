@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { COLOR_GRAY_DARK } from '../../constants/colors'
 
 export default StyleSheet.create({
   mainContainer: {
@@ -171,8 +170,6 @@ export default StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    borderWidth: 1,
-    borderColor: 'rgba(0, 0, 0, 0.2)',
   },
   badge: {
     bottom: 0,
@@ -181,7 +178,6 @@ export default StyleSheet.create({
     position: 'absolute',
   },
   displayName: {
-    color: COLOR_GRAY_DARK,
     fontFamily: 'Hind Vadodara',
     fontSize: 16,
     fontWeight: '600',

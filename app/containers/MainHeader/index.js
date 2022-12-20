@@ -48,7 +48,6 @@ const MainHeader = ({ avatarImage, onChangeText, ...otherInputProps }) => {
             style={[styles.input, { color: themes[theme].textColor }]}
             onChangeText={onChangeText}
             {...otherInputProps}
-            placeholderTextColor="#828282"
             onFocus={() => setShowSearchIcon(false)}
           />
           <VectorIcon

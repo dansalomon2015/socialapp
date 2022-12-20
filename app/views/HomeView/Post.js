@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
 import Video from 'react-native-video'
-import { themes } from '../../constants/colors'
+import { COLOR_TRANSPARENT, themes } from '../../constants/colors'
 import { dateStringFromNowShort } from '../../utils/datetime'
 import images from '../../assets/images'
 import { POST_TYPE_PHOTO, POST_TYPE_TEXT, POST_TYPE_VIDEO } from '../../constants/app'
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 10,
-    borderWidth: 5,
+    borderWidth: 4,
     overflow: 'hidden',
   },
   avatar: {
@@ -194,36 +194,22 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
       key={key}
       style={[
         styles.container,
-        { ...style, backgroundColor: themes[theme].postBackground, borderColor: themes[theme].postBorderColor },
+        { ...style, backgroundColor: COLOR_TRANSPARENT, borderColor: themes[theme].borderColor },
       ]}
       onPress={onPress}>
       <View style={styles.topView}>
         <TouchableOpacity style={styles.avatarWrap} onPress={onPressUser}>
-          <View style={[styles.avatarContainer, { borderColor: themes[theme].profileBorderColor }]}>
+          <View style={[styles.avatarContainer, { borderColor: themes[theme].borderColor }]}>
             <Image
-              source={
-                item?.owner?.avatar
-                  ? { uri: item?.owner?.avatar }
-                  : images.default_avatar
-              }
+              source={item?.owner?.avatar ? { uri: item?.owner?.avatar } : images.default_avatar}
               style={styles.avatar}
             />
           </View>
           <View style={styles.profileInfo}>
-            <Text
-              style={[
-                styles.profileName,
-                { color: themes[theme].activeTintColor },
-              ]}>
+            <Text style={[styles.profileName, { color: themes[theme].titleColor }]}>
               {item?.owner?.displayName}
             </Text>
-            <Text
-              style={[
-                styles.captionText,
-                {
-                  color: themes[theme].textColor,
-                },
-              ]}>
+            <Text style={[styles.captionText, { color: themes[theme].textColor }]}>
               {item?.date ? dateStringFromNowShort(item?.date) : null}
             </Text>
           </View>
@@ -246,16 +232,14 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
           <TouchableOpacity
             onPress={onPress}
             style={[styles.content, { paddingHorizontal: 20, marginBottom: 16 }]}>
-            <Text
-              style={[
-                styles.titleText,
-                {
-                  fontWeight: 'normal',
-                  fontSize: 14,
-                  lineHeight: 20,
-                  color: themes[theme].textColor,
-                },
-              ]}>
+            <Text style={[styles.titleText,
+              {
+                fontWeight: 'normal',
+                fontSize: 14,
+                lineHeight: 20,
+                color: themes[theme].textColor,
+              },
+            ]}>
               {item?.text}
             </Text>
           </TouchableOpacity>
@@ -266,17 +250,15 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
             onPress={onPress}
             style={[styles.content, { paddingHorizontal: 11 }]}>
             {item.text && (
-              <Text
-                style={[
-                  styles.titleText,
-                  {
-                    color: themes[theme].textColor,
-                    paddingHorizontal: 10,
-                    fontWeight: 'normal',
-                    fontSize: 14,
-                    lineHeight: 20,
-                  },
-                ]}>
+              <Text style={[styles.titleText,
+                {
+                  color: themes[theme].textColor,
+                  paddingHorizontal: 10,
+                  fontWeight: 'normal',
+                  fontSize: 14,
+                  lineHeight: 20,
+                },
+              ]}>
                 {item?.text}
               </Text>
             )}
@@ -357,7 +339,7 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
                 type="MaterialCommunityIcons"
                 name="heart"
                 size={20}
-                color={isLiking ? themes[theme].activatedIcon : themes[theme].inActivatedIcon}
+                color={isLiking ? themes[theme].titleColor : themes[theme].iconColor}
               />
               <Text style={[styles.count, { color: themes[theme].titleColor }]}>
                 {item.likes && item.likes.length > 0 ? item.likes.length : null}
@@ -370,7 +352,7 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
                 type="MaterialCommunityIcons"
                 name="chat"
                 size={20}
-                color={themes[theme].inActivatedIcon}
+                color={themes[theme].iconColor}
               />
               <Text style={[styles.count, { color: themes[theme].titleColor }]}>
                 {item.comments && item.comments.length > 0 ? item.comments.length : null}
@@ -382,7 +364,7 @@ const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActio
               type="MaterialCommunityIcons"
               name="share"
               size={24}
-              color={themes[theme].activatedIcon}
+              color={themes[theme].iconColor}
             />
           </TouchableOpacity>
         </View>

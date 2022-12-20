@@ -22,7 +22,8 @@ const OutsideStack = () => {
         ...outsideHeader,
         ...themedHeader(theme),
         ...StackAnimation,
-      }}>
+      }}
+    >
       <Outside.Screen
         name="OnBoard"
         component={OnBoardingView}

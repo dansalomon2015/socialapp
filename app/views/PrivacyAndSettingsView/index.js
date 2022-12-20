@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   Image,
   ScrollView,
@@ -7,11 +7,12 @@ import {
   View,
   Linking,
   SafeAreaView,
-  Pressable,
+  Pressable, TextInput,
 } from 'react-native'
 import { connect } from 'react-redux'
 
 import {
+  COLOR_LIGHT_DARK, COLOR_RED,
   COLOR_WHITE, COLOR_YELLOW,
   HEADER_BAR_START,
   NAV_BAR_END,
@@ -32,9 +33,13 @@ import { VectorIcon } from '../../containers/VectorIcon'
 import OptionCardBtn from '../../containers/OptionCardBtn'
 import { Icon } from '../../containers/List'
 import SidebarItem from '../SidebarView/SidebarItem'
+import Modal from 'react-native-modal'
+import AccountSettingModal from './AccountSettingsModal'
 
 const PrivacyAndSettingsView = (props) => {
   const { user, theme, navigation } = props
+  const [isShowAccountSettings, onShowAccountSettings] = useState(false)
+  const [isShowPasswordSettings, onShowPasswordSettings] = useState(false)
 
   useEffect(() => {
     navigation.setOptions({
@@ -61,7 +66,6 @@ const PrivacyAndSettingsView = (props) => {
       style={{
         flex: 1,
         backgroundColor: themes[theme].backgroundColor,
-        paddingHorizontal: 16,
       }}>
       <StatusBar />
       <ScrollView
@@ -71,19 +75,26 @@ const PrivacyAndSettingsView = (props) => {
           paddingHorizontal: 16,
         }}
         {...scrollPersistTaps}>
-        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-          <VectorIcon type="MaterialCommunityIcons" name="shield-lock" color={themes[theme].textColor} size={20} />
+        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
+          <VectorIcon style={{ marginRight: 16 }} type="MaterialCommunityIcons" name="shield-lock"
+                      color={COLOR_LIGHT_DARK} size={20} />
           <Text style={[styles.title, { color: themes[theme].titleColor }]}>Privacy and Settings</Text>
         </View>
-        <SidebarItem text={'Account Settings'} onPress={() => onClick()} theme={theme} hasRight />
+        <SidebarItem text={'Account Settings'} onPress={() => onClick(onShowAccountSettings(true))} theme={theme}
+                     hasRight />
         <SidebarItem text={'Privacy Setting'} onPress={() => onClick()} theme={theme} hasRight />
 
-        <View style={{ marginTop: 56, marginBottom: 16}}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Privacy and Settings</Text>
+        <View style={{ marginTop: 56, marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor, margin: 0 }]}>Other Settings</Text>
         </View>
         <SidebarItem text={'Blocked Users'} onPress={() => navigation.navigate('Block')} theme={theme} hasRight />
-        <SidebarItem text={'Delete Account'} onPress={() => onClick()} theme={theme} />
+        <SidebarItem text={'Delete Account'} textStyle={{ color: COLOR_RED }} onPress={() => onClick()} theme={theme} />
       </ScrollView>
+
+      <AccountSettingModal
+        isShow={isShowAccountSettings} theme={theme}
+        onClose={() => onShowAccountSettings(false)}
+      />
     </SafeAreaView>
   )
 }

@@ -85,7 +85,6 @@ const AddExperienceModal = ({isVisible, onBackdropPress}) => {
         <Button
           style={styles.submitBtn}
           title={I18n.t('update')}
-          type="gradient"
           size="W"
           onPress={onSubmit}
           testID="login-submit"

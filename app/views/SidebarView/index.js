@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import {
   Image,
   ScrollView,
@@ -11,13 +11,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import {
-  COLOR_WHITE, COLOR_YELLOW,
-  HEADER_BAR_START,
-  NAV_BAR_END,
-  NAV_BAR_START,
-  themes,
-} from '../../constants/colors'
+import { COLOR_LIGHT_DARK, COLOR_YELLOW, themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import styles from './styles'
@@ -130,9 +124,7 @@ const SidebarView = (props) => {
       }}>
       <StatusBar />
       <View style={styles.headerContainer}>
-        <View
-          style={styles.profileInnerContainer}
-          colors={[NAV_BAR_END, NAV_BAR_START]}>
+        <View style={styles.profileInnerContainer}>
           <Image
             source={user.avatar ? { uri: user.avatar } : images.default_avatar}
             style={styles.avatar}
@@ -155,10 +147,10 @@ const SidebarView = (props) => {
             type="AntDesign"
             name="close"
             size={11}
-            color={themes[theme].titleColor}
+            color={themes[theme].textColor}
             style={styles.closeIcon}
           />
-          <Text style={[{ color: themes[theme].titleColor }]}>Clear</Text>
+          <Text style={[{ color: themes[theme].textColor }]}>Clear</Text>
         </Pressable>
       </View>
       <ScrollView
@@ -169,6 +161,7 @@ const SidebarView = (props) => {
         }}
         {...scrollPersistTaps}>
         <OptionCardBtn
+          subTextColor={{ color: COLOR_YELLOW }}
           image={images.reward_badge}
           title="Premium Subscription"
           smallText="Upgrade plan"
@@ -191,7 +184,7 @@ const SidebarView = (props) => {
                 name={m.icon}
                 type={'MaterialCommunityIcons'}
                 size={20}
-                style={{ color: themes[theme].titleColor }}
+                style={{ color: COLOR_LIGHT_DARK }}
               />
             }
             hasRight
@@ -201,13 +194,14 @@ const SidebarView = (props) => {
           />
         ))}
       </ScrollView>
-      <TouchableOpacity onPress={onLogOut}
-                        style={[styles.logoutBtn, { backgroundColor: themes[theme].focusedBackground }]}>
+      <TouchableOpacity
+        onPress={onLogOut}
+        style={[styles.logoutBtn, { backgroundColor: themes[theme].buttonBackground }]}>
         <VectorIcon
           name={'logout-variant'}
           type={'MaterialCommunityIcons'}
           size={24}
-          style={{ color: themes[theme].titleColor }}
+          style={{ color: COLOR_LIGHT_DARK }}
         />
         <Text
           style={[styles.logoutText, { color: themes[theme].activeTintColor }]}>
@@ -216,16 +210,17 @@ const SidebarView = (props) => {
       </TouchableOpacity>
       <View style={styles.bottomView}>
         <View style={styles.privacyTermsEulaContainer}>
-          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={() => {}}>Privacy policy</Text>
-          <Text style={[{ color: themes[theme].activeTintColor }]}>.</Text>
-          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={() => {}}>Terms of
-            services</Text>
-          <Text style={[{ color: themes[theme].activeTintColor }]}>.</Text>
-          <Text style={[styles.text, { color: themes[theme].activeTintColor }]} onPress={() => {}}>Eula</Text>
+          <Text style={[styles.text, { color: COLOR_LIGHT_DARK }]} onPress={() => {}}>Privacy policy</Text>
+          <Text style={[{ color: COLOR_LIGHT_DARK }]}>.</Text>
+          <Text style={[styles.text, { color: COLOR_LIGHT_DARK }]} onPress={() => {}}>
+            Terms of services
+          </Text>
+          <Text style={[{ color: COLOR_LIGHT_DARK }]}>.</Text>
+          <Text style={[styles.text, { color: COLOR_LIGHT_DARK }]} onPress={() => {}}>Eula</Text>
         </View>
         <View style={styles.languageContainer}>
           <Image source={images.en_language} />
-          <Text style={[styles.languageText, { color: themes[theme].activeTintColor }]}>English (US)</Text>
+          <Text style={[styles.languageText, { color: COLOR_LIGHT_DARK }]}>English (US)</Text>
         </View>
       </View>
     </SafeAreaView>

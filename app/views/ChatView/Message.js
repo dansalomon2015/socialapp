@@ -6,9 +6,10 @@ import Content from './Content'
 import Time from './Time'
 
 const MessageInner = React.memo(props => {
+  const { isOwn } = props
   return (
     <>
-      {props.isOwn ? (
+      {isOwn ? (
         <View
           style={{
             flex: 1,
@@ -35,7 +36,7 @@ const MessageInner = React.memo(props => {
 MessageInner.displayName = 'MessageInner'
 
 const Message = React.memo(props => {
-  const { isOwn, style } = props
+  const { style } = props
 
   return (
     <View style={[styles.messageContainer, style]}>

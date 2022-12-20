@@ -9,9 +9,7 @@ import {
 } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
 import { connect } from 'react-redux'
-import Feather from 'react-native-vector-icons/Feather'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
-
 import { themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
@@ -30,8 +28,6 @@ import NoActivity from './NoActivity'
 import I18n from '../../i18n'
 import { dateStringFromNowShort } from '../../utils/datetime'
 import { navigateToProfile } from '../../utils/const'
-import { Badge } from 'react-native-paper'
-import Button from '../../containers/Button'
 
 const ActivityView = props => {
   const tabBarHeight = useBottomTabBarHeight()
@@ -43,12 +39,14 @@ const ActivityView = props => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <Text style={[styles.headerText, { color: themes[theme].titleText }]}>Notifications</Text>
+        <Text style={[styles.headerText, { color: themes[theme].titleColor }]}>Notifications</Text>
       ),
       title: null,
       headerRight: () => (<></>),
       headerStyle: {
         backgroundColor: themes[theme].backgroundColor,
+        elevation: 0,
+        shadowOpacity: 0,
       },
     })
   }, [theme])
@@ -117,7 +115,7 @@ const ActivityView = props => {
           styles.itemContainer,
           index < data.length - 1 ? styles.border : null,
           { marginBottom: index === data.length - 1 ? tabBarHeight : undefined },
-          { borderBottomColor: themes[theme].chatHeaderBorder },
+          { borderBottomColor: themes[theme].borderColor },
         ]}>
         <Image
           source={item.sender.avatar ? { uri: item.sender.avatar } : images.default_avatar}
@@ -132,11 +130,11 @@ const ActivityView = props => {
           </Text>
 
           {item.text && (
-            <Text numberOfLines={2} style={[styles.captionText, { color: themes[theme].infoText }]}>
+            <Text numberOfLines={2} style={[styles.captionText, { color: themes[theme].textColor }]}>
               {item.text}
             </Text>)
           }
-          <Text style={[styles.captionText, { color: themes[theme].infoText, lineHeight: 21 }]}>
+          <Text style={[styles.captionText, { color: themes[theme].textColor, lineHeight: 21 }]}>
             {item?.date ? dateStringFromNowShort(item?.date) : null}
           </Text>
         </View>
@@ -174,11 +172,7 @@ const ActivityView = props => {
   return (
     <MainScreen navigation={navigation}>
       <StatusBar />
-      <View
-        style={[
-          styles.container,
-          { backgroundColor: themes[theme].backgroundColor },
-        ]}>
+      <View style={[styles.container, { backgroundColor: themes[theme].backgroundColor }]}>
         {data.length > 0 ? (
           <FlatList
             data={data}
@@ -188,7 +182,7 @@ const ActivityView = props => {
               <RefreshControl
                 refreshing={refreshing}
                 onRefresh={onRefresh}
-                tintColor={themes[theme].actionColor}
+                tintColor={themes[theme].activeTintColor}
               />
             }
           />

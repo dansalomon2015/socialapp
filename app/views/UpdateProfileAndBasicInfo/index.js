@@ -206,7 +206,6 @@ const UpdateProfileAndBasicInfo = () => {
         <Button
           title="Confirm & Create an Account"
           theme={theme}
-          type="gradient"
           size="W"
           style={styles.confirmBtn}
           onPress={() => {}}

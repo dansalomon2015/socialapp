@@ -65,7 +65,6 @@ const IntroView = ({ appReady }) => {
             <Button
               style={styles.submitBtn}
               title={activeIndex < slides.length - 1 ? I18n.t('Next').toUpperCase() : 'Continue to app'}
-              type="gradient"
               size="W"
               onPress={() => _onDone(activeIndex)}
               theme={theme}

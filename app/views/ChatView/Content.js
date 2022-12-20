@@ -34,7 +34,7 @@ const Content = React.memo(({ msg, createdAt, photo, isOwn, onPressMedia, theme 
             style={styles.photoMessage}
           />
         </View>
-        <View style={{paddingHorizontal: 6}}>
+        <View style={{ paddingHorizontal: 6 }}>
           <Text style={[styles.messageTimeText, { color: COLOR_GRAY_DARK }]}>
             {moment(createdAt).format('DD MMM hh:mm').toUpperCase()}
           </Text>
@@ -55,11 +55,13 @@ const Content = React.memo(({ msg, createdAt, photo, isOwn, onPressMedia, theme 
           },
         ]}>
         <Text
-          style={[styles.messageText, { color: themes[theme].ownMsgText }]}>
+          style={[styles.messageText,
+            { color: isOwn ? themes[theme].textColor : themes[theme].activeTintColor },
+          ]}>
           {msg}
         </Text>
       </View>
-      <View style={{paddingHorizontal: 6}}>
+      <View style={{ paddingHorizontal: 6 }}>
         <Text style={[styles.messageTimeText, { color: COLOR_GRAY_DARK }]}>
           {moment(createdAt).format('DD MMM hh:mm').toUpperCase()}
         </Text>

@@ -166,7 +166,6 @@ const SecurityView = (props) => {
               <Button
                 style={styles.submitBtn}
                 title={I18n.t('Change_password')}
-                type="gradient"
                 size="W"
                 onPress={onSubmit}
                 testID="security-view-submit"

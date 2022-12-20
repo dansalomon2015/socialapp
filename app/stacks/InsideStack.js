@@ -34,7 +34,6 @@ import PickLibraryView from '../views/PickLibraryView'
 import UpdateProfileAndBasicInfo from '../views/UpdateProfileAndBasicInfo'
 import { MainTabBar } from '../containers/MainScreen'
 import MenuStack from './MenuStack'
-// import MenuStack from './MenuStack'
 
 const Tab = createBottomTabNavigator()
 const Inside = createStackNavigator()
@@ -95,7 +94,8 @@ const InsideStack = () => {
         ...outsideHeader,
         ...themedHeader(theme),
         ...StackAnimation,
-      }}>
+      }}
+    >
       <Inside.Screen
         name="Home"
         component={TabStack}
@@ -137,9 +137,9 @@ const InsideStack = () => {
       />
       <Inside.Screen name="Chat" component={ChatView} />
       <Inside.Screen name="Setting" component={SettingView} />
-      <Inside.Screen name="About" component={AboutView} />
+      {/*<Inside.Screen name="About" component={AboutView} />*/}
       <Inside.Screen name="Security" component={SecurityView} />
-      <Inside.Screen name="Block" component={BlockView} />
+      {/*<Inside.Screen name="Block" component={BlockView} />*/}
       <Inside.Screen name="ProductWeb" component={ProductWebView} />
       <Inside.Screen
         name="Category"
@@ -163,7 +163,6 @@ const InsideStack = () => {
 }
 const Drawer = createDrawerNavigator()
 const DrawerNavigator = () => {
-
   return (
     <Drawer.Navigator
       drawerContent={({ navigation, state }) => (

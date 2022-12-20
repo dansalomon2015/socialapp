@@ -73,7 +73,7 @@ export const SearchBox = ({
           name="search"
           type="Ionicons"
           size={18}
-          color={themes[theme].auxiliaryText}
+          color={themes[theme].subTextColor}
         />
         <TextInput
           ref={inputRef}
@@ -83,12 +83,12 @@ export const SearchBox = ({
           blurOnSubmit
           placeholder={placeholder ?? 'Search'}
           returnKeyType="search"
-          style={[styles.input, { color: themes[theme].activeTintColor }]}
+          style={[styles.input, { color: themes[theme].titleColor }]}
           testID={testID}
           underlineColorAndroid="transparent"
           onChangeText={onChangeTextInput}
           onSubmitEditing={onSubmitEditing}
-          placeholderTextColor={themes[theme].auxiliaryText}
+          placeholderTextColor={themes[theme].textColor}
           theme={theme}
           {...props}
         />
@@ -97,8 +97,8 @@ export const SearchBox = ({
             ? (<TouchableOpacity onPress={clear}>
                 {
                   clearTextType
-                    ? (<Text style={{ color: themes[theme].auxiliaryText }}>Clear</Text>)
-                    : (<VectorIcon name="close" type="Ionicons" size={18} color={themes[theme].auxiliaryText} />)
+                    ? (<Text style={{ color: themes[theme].activeTintColor }}>Clear</Text>)
+                    : (<VectorIcon name="close" type="Ionicons" size={18} color={themes[theme].activeTintColor} />)
                 }
               </TouchableOpacity>
             ) : (<></>)

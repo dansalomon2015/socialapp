@@ -91,7 +91,6 @@ const ForgotPasswordView = (props) => {
             <Button
               style={styles.submitBtn}
               title="Send Recover Link"
-              type="gradient"
               size="W"
               onPress={onSubmit}
               loading={isLoading}

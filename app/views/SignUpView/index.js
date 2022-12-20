@@ -262,12 +262,10 @@ const SignUpView = props => {
             <Button
               style={styles.submitBtn}
               title={'Submit'}
-              type="gradient"
               size="W"
               // onPress={onSubmit}
               loading={isLoading}
               theme={theme}
-              pressingHighlight
             />
           </View>
         </ScrollView>

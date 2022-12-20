@@ -1,11 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import styles from './styles'
-import {
-  NAV_BAR_END,
-  NAV_BAR_START,
-  themes,
-} from '../../constants/colors'
+import { themes } from '../../constants/colors'
 import { VectorIcon } from '../../containers/VectorIcon'
 
 const Item = React.memo(
@@ -15,21 +11,20 @@ const Item = React.memo(
         key={id}
         onPress={onPress}
         style={[styles.container, {
-          backgroundColor: themes[theme].focusedBackground,
+          backgroundColor: themes[theme].buttonBackground,
         }]}>
         <View style={styles.item}>
           {left && (<View style={styles.itemLeft}>{left}</View>)}
           <View style={styles.itemCenter}>
-            <Text style={[styles.itemText, textStyle, { color: themes[theme].titleColor }]}>
+            <Text style={[styles.itemText, { color: themes[theme].titleColor, ...textStyle }]}>
               {text}
             </Text>
           </View>
         </View>
-        {hasRight && (<VectorIcon
-          type="Entypo" name="chevron-small-right" size={28} color={themes[theme].titleColor}
-          style={styles.chevronIcon} />)
+        {hasRight && (
+          <VectorIcon type="MaterialCommunityIcons" name="chevron-right" color={themes[theme].textColor} size={24} />
+        )
         }
-
       </TouchableOpacity>
     )
   },

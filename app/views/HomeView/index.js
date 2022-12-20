@@ -280,7 +280,7 @@ const HomeView = props => {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
-              tintColor={themes[theme].actionColor}
+              tintColor={themes[theme].actionTintColor}
             />
           }
           contentContainerStyle={{ paddingBottom: 20 }}
@@ -311,7 +311,7 @@ const HomeView = props => {
             <TouchableOpacity
               key={i}
               style={[styles.tabItem, index === i ? styles.activeTab : '', {
-                borderBottomColor: index === i ? themes[theme].titleColor : themes[theme].tabBorderColor,
+                borderBottomColor: index === i ? themes[theme].titleColor : themes[theme].borderColor,
               }]}
               onPress={() => setIndex(i)}>
               <Text style={[styles.tabText, {
