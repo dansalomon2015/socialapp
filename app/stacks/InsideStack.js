@@ -32,6 +32,7 @@ import PickLibraryView from '../views/PickLibraryView'
 import UpdateProfileAndBasicInfo from '../views/UpdateProfileAndBasicInfo'
 import { MainTabBar } from '../containers/MainScreen'
 import MenuStack from './MenuStack'
+import AboutStack from './AboutStack'
 
 const Tab = createBottomTabNavigator()
 const Inside = createStackNavigator()
@@ -57,11 +58,11 @@ const TabStack = () => {
   return (
     <Tab.Navigator
       tabBar={props => <MainTabBar theme={theme} {...props} />}
-      screenOptions={{
-        ...outsideHeader,
-        ...themedHeader(theme),
-        ...StackAnimation,
-      }}
+      // screenOptions={{
+      //   ...outsideHeader,
+      //   ...themedHeader(theme),
+      //   ...StackAnimation,
+      // }}
       sceneContainerStyle={{ backgroundColor: 'transparent' }}
     >
       <Tab.Screen
@@ -88,11 +89,11 @@ const InsideStack = () => {
 
   return (
     <Inside.Navigator
-      screenOptions={{
-        ...outsideHeader,
-        ...themedHeader(theme),
-        ...StackAnimation,
-      }}
+      // screenOptions={{
+      //   ...outsideHeader,
+      //   ...themedHeader(theme),
+      //   ...StackAnimation,
+      // }}
     >
       <Inside.Screen
         name="Home"
@@ -188,6 +189,10 @@ const DrawerNavigator = () => {
       />
       <Drawer.Screen
         name="MenuStack" component={MenuStack}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="AboutStack" component={AboutStack}
         options={{ headerShown: false }}
       />
     </Drawer.Navigator>
