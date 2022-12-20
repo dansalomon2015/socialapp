@@ -75,30 +75,26 @@ const SidebarView = (props) => {
 
   const onClick = item => {
     switch (item.id) {
-      // case 'terms_of_use':
-      //   return onNavigate('About', { type: 0 })
       case 'privacy_and_settings':
-        return onNavigate('MenuStack')
-      // case 'eula':
-      //   return onNavigate('About', { type: 2 })
+        return navigation.navigate('MenuStack', { screen: 'PrivacyAndSettings' })
       case 'shop':
         return Linking.openURL(SITE_SHOP_URL)
       case 'help_and_support':
-        return onNavigate('HelpAndSupport')
+        return navigation.navigate('HelpAndSupport')
       case 'MyConnections':
-        return onNavigate('MyConnections')
+        return navigation.navigate('MyConnections')
       case 'vip_members':
-        return onNavigate('')
-      default:
-        onNavigate(item.route, { type: item.init })
+        return navigation.navigate('')
+      case 'privacy_policy':
+        return navigation.navigate('MenuStack', { screen: 'PrivacyPolicy' })
+      case 'terms_of_services':
+        return navigation.navigate('MenuStack', { screen: 'TermsOfServices' })
+      case 'eula':
+        return navigation.navigate('MenuStack', { screen: 'Eula' })
+      // default:
+      //   onNavigate(item.route, { type: item.init })
     }
   }
-
-  const onNavigate = (routeName, params) => {
-    const { navigation } = props
-    navigation.navigate(routeName, params)
-  }
-
   const onLogOut = () => {
     const { logout } = props
     showConfirmationAlert({
@@ -210,13 +206,21 @@ const SidebarView = (props) => {
       </TouchableOpacity>
       <View style={styles.bottomView}>
         <View style={styles.privacyTermsEulaContainer}>
-          <Text style={[styles.text, { color: themes[theme].textColor }]} onPress={() => {}}>Privacy policy</Text>
-          <Text style={[{ color: themes[theme].textColor }]}>.</Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]} onPress={() => {}}>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}
+                onPress={() => {navigation.navigate('MenuStack', { screen: 'PrivacyPolicy' })}}
+          >
+            Privacy policy
+          </Text>
+          <Text style={[{ color: themes[theme].titleColor }]}>|</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}
+                onPress={() => {navigation.navigate('MenuStack', { screen: 'TermsOfServices' })}}>
             Terms of services
           </Text>
-          <Text style={[{ color: themes[theme].textColor }]}>.</Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]} onPress={() => {}}>Eula</Text>
+          <Text style={[{ color: themes[theme].titleColor }]}>|</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}
+                onPress={() => {navigation.navigate('MenuStack', { screen: 'Eula' })}}>
+            Eula
+          </Text>
         </View>
         <View style={styles.languageContainer}>
           <Image source={images.en_language} />

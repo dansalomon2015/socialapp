@@ -20,7 +20,6 @@ import PostDetailView from '../views/PostDetailView'
 import MessageView from '../views/MessageView'
 import ChatView from '../views/ChatView'
 import SettingView from '../views/SettingView'
-import AboutView from '../views/AboutView'
 import SecurityView from '../views/SecurityView'
 import BlockView from '../views/BlockView'
 import OtherProfileView from '../views/OtherProfileView'
@@ -34,6 +33,8 @@ import PickLibraryView from '../views/PickLibraryView'
 import UpdateProfileAndBasicInfo from '../views/UpdateProfileAndBasicInfo'
 import { MainTabBar } from '../containers/MainScreen'
 import MenuStack from './MenuStack'
+import store from '../lib/createStore'
+import { setRoute } from '../actions/app'
 
 const Tab = createBottomTabNavigator()
 const Inside = createStackNavigator()
@@ -170,8 +171,8 @@ const DrawerNavigator = () => {
       )}
       initialRouteName="InsideStack"
       screenListeners={({ navigation }) => {
-        const state = navigation.getState()
-        if (state.history.length > 2 && state.history.filter((i) => i.type === 'drawer').length > 0) {
+        const { history } = navigation.getState()
+        if (history.length > 2 && history.filter((i) => i.type === 'drawer').length > 0) {
           navigation.navigate('InsideStack')
           navigation.toggleDrawer()
         }

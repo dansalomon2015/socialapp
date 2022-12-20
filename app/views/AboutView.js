@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { WebView } from 'react-native-webview'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { Text, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 import { themes } from '../constants/colors'
 import StatusBar from '../containers/StatusBar'
@@ -17,10 +17,14 @@ import {
 } from '../constants/app'
 import sharedStyles from './Styles'
 import I18n from '../i18n'
-import styles from './ActivityView/styles'
-import * as HeaderButton from '../containers/HeaderButton'
-import { GradientHeader } from '../containers/GradientHeader'
+// import styles from './ActivityView/styles'
+import { VectorIcon } from '../containers/VectorIcon'
 
+const styles = StyleSheet.create({
+  header: {
+    marginHorizontal: 16,
+  },
+})
 const AboutView = props => {
   const route = useRoute()
   const navigation = useNavigation()
@@ -32,12 +36,15 @@ const AboutView = props => {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <Text onPress={() => {navigation.toggleDrawer()}} style={[styles.headerText, { color: themes[theme].titleText }]}>Notifications</Text>
+        <TouchableOpacity style={styles.header} onPress={() => navigation.toggleDrawer()}>
+          <VectorIcon type="MaterialCommunityIcons" name="arrow-left" color={themes[theme].titleColor} size={24} />
+        </TouchableOpacity>
       ),
       title: null,
       headerRight: () => (<></>),
       headerStyle: {
         backgroundColor: themes[theme].backgroundColor,
+        shadowOpacity: 0,
       },
     })
   }, [theme])
@@ -88,7 +95,7 @@ const AboutView = props => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: themes[theme].navbarBackground }}>
+    <SafeAreaView style={{ backgroundColor: themes[theme].backgroundColor }}>
       <StatusBar />
       <View style={[sharedStyles.contentContainer, {
         flex: 1,

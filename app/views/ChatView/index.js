@@ -40,7 +40,6 @@ import { fetchUnread as fetchUnreadAction } from '../../actions/chat'
 import debounce from '../../utils/debounce'
 import I18n from '../../i18n'
 import StatusBar from '../../containers/StatusBar'
-import { useKeyboardAnimationReplica } from 'react-native-keyboard-controller'
 import { VectorIcon } from '../../containers/VectorIcon'
 import { Badge } from 'react-native-paper'
 
