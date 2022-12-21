@@ -15,7 +15,7 @@ import styles from './styles'
 import scrollPersistTaps from '../../utils/scrollPersistTaps'
 import { VectorIcon } from '../../containers/VectorIcon'
 import SidebarItem from '../SidebarView/SidebarItem'
-import AccountSettingModal from './AccountSettingsModal'
+import AccountSettingsModal from './AccountSettingsModal'
 import { useNavigation } from '@react-navigation/native'
 
 const PrivacyAndSettingsView = (props) => {
@@ -87,11 +87,7 @@ const PrivacyAndSettingsView = (props) => {
         <SidebarItem text={'Delete Account'} textStyle={{ color: COLOR_RED }} onPress={() => onClick()} theme={theme} />
       </ScrollView>
 
-      <AccountSettingModal
-        user={user}
-        isShow={isShowAccountSettings} theme={theme}
-        onClose={() => onShowAccountSettings(false)}
-      />
+      <AccountSettingsModal isShow={isShowAccountSettings} theme={theme} onClose={() => onShowAccountSettings(false)} />
     </SafeAreaView>
   )
 }

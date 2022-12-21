@@ -32,11 +32,6 @@ const Toast = (props) => {
     }
   }, [])
 
-  useEffect(() => {
-    // Geo
-    // return true
-  }, [props.theme])
-
   const showToast = ({ message }) => {
     if (toast.current && toast.current.show) {
       toast.current.show(message, 1000)
@@ -49,8 +44,8 @@ const Toast = (props) => {
         toast.current = e
       }}
       position="center"
-      style={[styles.toast, { backgroundColor: themes[theme].toastBackground }]}
-      textStyle={[styles.text, { color: themes[theme].actionColor }]}
+      style={[styles.toast, { backgroundColor: themes[theme].postBackground }]}
+      textStyle={[styles.text, { color: themes[theme].activeTintColor }]}
       opacity={0.9}
     />
   )

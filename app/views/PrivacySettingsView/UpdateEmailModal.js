@@ -1,14 +1,12 @@
 import React, { useRef, useState } from 'react'
-import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { withTheme } from '../../theme'
 import styles from './styles'
-import Modal from 'react-native-modal'
-import { themes } from '../../constants/colors'
 import FloatingTextInput from '../../containers/FloatingTextInput'
 import Button from '../../containers/Button'
 import I18n from '../../i18n'
 import { isValidEmail } from '../../utils/validators'
+import ModalView from '../../containers/ModalView'
 
 const UpdateEmailModal = ({ isShow, onClose, theme, user }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -37,35 +35,26 @@ const UpdateEmailModal = ({ isShow, onClose, theme, user }) => {
   }
 
   return (
-    <Modal
-      isVisible={isShow}
-      avoidKeyboard
-      onBackdropPress={onClose}
-      style={{ justifyContent: 'flex-end', margin: 0 }}
-    >
-      <View style={[styles.modalContent, { backgroundColor: themes[theme].backgroundColor }]}
-            onPressOut={onClose}>
-        <Text style={[styles.modalTitle, { color: themes[theme].titleColor }]}>Email Setting</Text>
-        <FloatingTextInput
-          inputRef={emailInput}
-          keyboardType="email-address"
-          textContentType="oneTimeCode"
-          label={I18n.t('Email')}
-          placeholder={'Enter your email'}
-          // onChangeText={val => setEmail(val)}
-          theme={theme}
-          error={errEmail}
-        />
-        <Button
-          style={styles.submitBtn}
-          title={'SAVE'}
-          size="W"
-          onPress={onSubmit}
-          loading={isLoading}
-          theme={theme}
-        />
-      </View>
-    </Modal>
+    <ModalView isShow={isShow} onClose={onClose} title={'Email Setting'} theme={theme}>
+      <FloatingTextInput
+        inputRef={emailInput}
+        keyboardType="email-address"
+        textContentType="oneTimeCode"
+        label={I18n.t('Email')}
+        placeholder={'Enter your email'}
+        // onChangeText={val => setEmail(val)}
+        theme={theme}
+        error={errEmail}
+      />
+      <Button
+        style={styles.submitBtn}
+        title={'SAVE'}
+        size="W"
+        onPress={onSubmit}
+        loading={isLoading}
+        theme={theme}
+      />
+    </ModalView>
   )
 }
 

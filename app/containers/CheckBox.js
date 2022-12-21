@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { COLOR_BLACK_LIGHT, COLOR_BLUE } from '../constants/colors'
 
 const CheckBox = React.memo(
   ({
@@ -24,7 +23,6 @@ const CheckBox = React.memo(
         paddingHorizontal: 12,
         borderWidth: 1,
         borderRadius: 11,
-        borderColor: checked ? COLOR_BLUE : COLOR_BLACK_LIGHT,
         marginBottom: 5,
       }}
       onPress={onPress}>

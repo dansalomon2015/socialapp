@@ -1,70 +1,119 @@
-import React, { useRef, useState } from 'react'
-import { Text, View } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { withTheme } from '../../theme'
 import styles from './styles'
-import Modal from 'react-native-modal'
-import { themes } from '../../constants/colors'
 import FloatingTextInput from '../../containers/FloatingTextInput'
 import Button from '../../containers/Button'
+import I18n from '../../i18n'
+import firebaseSdk, { DB_ACTION_UPDATE } from '../../lib/firebaseSdk'
+import { showErrorAlert, showToast } from '../../lib/info'
+import { setUser as setUserAction } from '../../actions/login'
+import ModalView from '../../containers/ModalView'
 
-const AccountSettingsModal = ({ isShow, onClose, theme, user }) => {
-  const [name, setName] = useState(user.displayName)
-  const [username, setUsername] = useState('')
+const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
+  const [userInfo, setUserInfo] = useState({ name: user.displayName, username: user.handle })
+  const [isLoading, setIsLoading] = useState(false)
+  const [errName, setErrName] = useState('')
+  const [errUserName, setErrUserName] = useState('')
+  const [isBtnDisable, setBtnDisable] = useState(false)
   const nameInput = useRef(null)
   const usernameInput = useRef(null)
 
-  const onClick = item => {
+  useEffect(() => {
+    setUserInfo({ name: user.displayName, username: user.handle })
+  }, [isShow, user])
 
+  useEffect(() => {
+    isValid()
+  }, [userInfo])
+
+  const isValid = () => {
+    setErrName('')
+    setErrUserName('')
+    if (!userInfo.name.length) {
+      setErrName(I18n.t('please_enter_name'))
+      nameInput.current.focus()
+      setBtnDisable(true)
+      return false
+    }
+    if (!userInfo.username.length) {
+      setErrUserName(I18n.t('please_enter_name'))
+      usernameInput.current.focus()
+      setBtnDisable(true)
+      return false
+    }
+    setBtnDisable(false)
+    return true
+  }
+
+  const onChangeText = (text, type) => {
+    if (type === 'name') {
+      setUserInfo({ ...userInfo, name: text })
+    } else {
+      setUserInfo({ ...userInfo, username: text })
+    }
+  }
+
+  const onSubmit = () => {
+    const update = { id: user.id, displayName: userInfo.name, handle: userInfo.username }
+    setIsLoading(true)
+    firebaseSdk
+      .setData(firebaseSdk.TBL_USER, DB_ACTION_UPDATE, update)
+      .then(() => {
+        setUser({ ...user, ...update })
+        setIsLoading(false)
+        onClose()
+        showToast('Account name and username has been successfully updated.')
+      })
+      .catch(() => {
+        showErrorAlert('Updating was failed', I18n.t('Oops'))
+        setIsLoading(false)
+      })
   }
 
   return (
-    <Modal
-      // transparent={true}
-      isVisible={isShow}
-      avoidKeyboard
-      onBackdropPress={onClose}
-      style={{ justifyContent: 'flex-end', margin: 0 }}
-    >
-      <View style={[styles.modalContent, { backgroundColor: themes[theme].backgroundColor }]}
-            onPressOut={onClose}>
-        <Text style={[styles.modalTitle, { color: themes[theme].titleColor }]}>Account Setting</Text>
-        <FloatingTextInput
-          returnKeyType="next"
-          textContentType="oneTimeCode"
-          // value={user.displayName}
-          label={'Name'}
-          placeholder={'Enter Your Name'}
-          // onChangeText={name => setName({ name })}
-          theme={theme}
-          onSubmitEditing={() => {
-            usernameInput.current.focus()
-          }}
-        />
-        <FloatingTextInput
-          inputRef={usernameInput}
-          textContentType="oneTimeCode"
-          label={'username'}
-          // value={user.handle}
-          placeholder={'Enter Your Username'}
-          onChangeText={username => setUsername({ username })}
-          theme={theme}
-        />
-        <Button
-          style={styles.submitBtn}
-          title={'SAVE'}
-          size="W"
-          // onPress={onSubmit}
-          // loading={isLoading}
-          theme={theme}
-        />
-      </View>
-    </Modal>
+    <ModalView isShow={isShow} onClose={onClose} title={'Account Setting'} theme={theme}>
+      <FloatingTextInput
+        inputRef={nameInput}
+        returnKeyType="next"
+        value={userInfo.name}
+        label={'Name'}
+        placeholder={'Enter Your Name'}
+        onChangeText={text => onChangeText(text, 'name')}
+        theme={theme}
+        onSubmitEditing={() => {
+          usernameInput.current.focus()
+        }}
+        error={errName}
+      />
+      <FloatingTextInput
+        inputRef={usernameInput}
+        label={'username'}
+        value={userInfo.username}
+        placeholder={'Enter Your Username'}
+        onChangeText={text => onChangeText(text, 'username')}
+        theme={theme}
+        error={errUserName}
+      />
+      <Button
+        style={styles.submitBtn}
+        title={'SAVE'}
+        size="W"
+        disabled={isBtnDisable}
+        onPress={onSubmit}
+        loading={isLoading}
+        theme={theme}
+      />
+    </ModalView>
   )
 }
 
-const mapStateToProps = () => ({})
+const mapStateToProps = state => ({
+  user: state.login.user,
+})
 
-const mapDispatchToProps = () => ({})
+const mapDispatchToProps = dispatch => ({
+  setUser: params => dispatch(setUserAction(params)),
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTheme(AccountSettingsModal))
