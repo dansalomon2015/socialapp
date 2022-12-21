@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { CURRENT_USER } from '../../constants/keys'
 import { appInit as appInitAction } from '../../actions/app'
 import { useNavigation } from '@react-navigation/native'
+import Navigation from '../../lib/Navigation'
 
 const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, logout }) => {
   const [email, setEmail] = useState(user.email)
@@ -27,6 +28,7 @@ const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, logout }) => 
   const [errPassword, setErrPassword] = useState('')
   const emailInput = useRef(null)
   const passwordInput = useRef(null)
+  const navigation = useNavigation()
 
   useEffect(() => {
     setEmail(user.email)
@@ -77,7 +79,7 @@ const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, logout }) => 
             setIsLoading(false)
             onClose()
             showToast('You successfully changed your email')
-            setTimeout(() => { logout() }, 1000)
+            // setTimeout(() => { logout() }, 1000)
           })
           .catch(err => {
             setIsLoading(false)
