@@ -7,6 +7,10 @@ import SafeAreaView from '../../containers/SafeAreaView'
 import { withTheme } from '../../theme'
 import styles from './styles'
 import { VectorIcon } from '../../containers/VectorIcon'
+import I18n from '../../i18n'
+import { CONTENT_PRIVACY_POLICY, CONTENT_PRIVACY_POLICY_JP } from '../../constants/app'
+import { WebView } from 'react-native-webview'
+import sharedStyles from '../Styles'
 
 const PrivacyPolicy = props => {
   const navigation = useNavigation()

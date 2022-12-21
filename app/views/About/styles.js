@@ -11,17 +11,25 @@ export default StyleSheet.create({
     paddingHorizontal: 12,
     justifyContent: 'center',
   },
-  title: {
+  headerTitle: {
     fontFamily: 'Raleway',
     fontWeight: '600',
     fontSize: 18,
     lineHeight: 22,
     marginBottom: 12,
   },
+  title: {
+    fontFamily: 'Raleway',
+    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 22,
+    marginBottom: 12,
+    marginTop: 32,
+  },
   text: {
     fontFamily: 'Raleway',
     fontWeight: '500',
-    fontSize: 12,
+    fontSize: 14,
     lineHeight: 22,
     marginBottom: 12,
   },
