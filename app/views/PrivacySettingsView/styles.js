@@ -1,7 +1,14 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    marginVertical: 4,
+    borderRadius: 6,
+    paddingVertical: 12,
+    paddingHorizontal: 8,
+  },
   header: {
     paddingHorizontal: 16,
     flex: 1,
@@ -25,5 +32,17 @@ export default StyleSheet.create({
     marginTop: 8,
     paddingVertical: 2,
     alignSelf: 'center',
+  },
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexGrow: 1,
+  },
+  itemLeft: {
+    alignItems: 'center',
+    marginHorizontal: 8,
+  },
+  itemCenter: {
+    marginHorizontal: 10,
   },
 })

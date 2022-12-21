@@ -6217,6 +6217,11 @@ react-native-easy-toast@^2.3.0:
     deprecated-react-native-prop-types "^2.3.0"
     prop-types "^15.6.0"
 
+react-native-email-link@^1.14.3:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/react-native-email-link/-/react-native-email-link-1.14.3.tgz#188d501ab9cbbee9c6aa5d1190149b071f7c51d2"
+  integrity sha512-3biiaDKjJft6/13cYQkh/CmVae+pU7j+ThX7lFDu7eR6iRrMf9mTXyjejSboWr/M+xE34Vm0bKy8R1tXKjC2zQ==
+
 react-native-gesture-handler@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.8.0.tgz#ef9857871c10663c95a51546225b6e00cd4740cf"

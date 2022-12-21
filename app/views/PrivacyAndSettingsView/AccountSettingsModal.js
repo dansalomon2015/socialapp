@@ -11,7 +11,7 @@ import { setUser as setUserAction } from '../../actions/login'
 import ModalView from '../../containers/ModalView'
 
 const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
-  const [userInfo, setUserInfo] = useState({ name: user.displayName || '', username: user.handle || '' })
+  const [userInfo, setUserInfo] = useState({ name: user && user.displayName || '', username: user && user.handle || '' })
   const [isLoading, setIsLoading] = useState(false)
   const [errName, setErrName] = useState('')
   const [errUserName, setErrUserName] = useState('')
@@ -19,7 +19,7 @@ const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
   const usernameInput = useRef(null)
 
   useEffect(() => {
-    setUserInfo({ name: user.displayName || '', username: user.handle || '' })
+    setUserInfo({ name: user && user.displayName || '', username: user && user.handle || '' })
     if (isShow) {
       isValid()
     }

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import { withTheme } from '../../theme'
 import styles from './styles'
@@ -8,25 +7,18 @@ import Button from '../../containers/Button'
 import I18n from '../../i18n'
 import { isValidEmail } from '../../utils/validators'
 import ModalView from '../../containers/ModalView'
-import { Divider } from 'react-native-paper'
-import { COLOR_RED, themes } from '../../constants/colors'
 import firebaseSdk from '../../lib/firebaseSdk'
 import { showErrorAlert, showToast } from '../../lib/info'
-import { logout as logoutAction, setUser as setUserAction } from '../../actions/login'
+import { loginReset as loginResetAction, logout as logoutAction, setUser as setUserAction } from '../../actions/login'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { CURRENT_USER } from '../../constants/keys'
 import { appInit as appInitAction } from '../../actions/app'
-import { useNavigation } from '@react-navigation/native'
-import Navigation from '../../lib/Navigation'
 
-const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, logout }) => {
+const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, password, logout, loginReset }) => {
   const [email, setEmail] = useState(user.email)
   const [isLoading, setIsLoading] = useState(false)
   const [errEmail, setErrEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [errPassword, setErrPassword] = useState('')
   const emailInput = useRef(null)
-  const passwordInput = useRef(null)
 
   useEffect(() => {
     setEmail(user.email)
@@ -36,7 +28,6 @@ const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, logout }) => 
   }, [isShow, user])
 
   const isValid = () => {
-    setErrPassword('')
     setErrEmail('')
     if (!email.length) {
       setErrEmail(I18n.t('please_enter_email'))
@@ -46,10 +37,6 @@ const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, logout }) => 
     if (!isValidEmail(email)) {
       setErrEmail(I18n.t('error-invalid-email-address'))
       emailInput.current.focus()
-      return false
-    }
-    if (!password.length) {
-      setErrPassword(I18n.t('please_enter_password'))
       return false
     }
     return true
@@ -64,14 +51,13 @@ const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, logout }) => 
           firebaseSdk
             .updateEmail(email)
             .then(async (data) => {
-              console.log(data)
               const newUser = { ...user, email: email }
               await AsyncStorage.setItem(CURRENT_USER, JSON.stringify(newUser))
               setUser(newUser)
               setIsLoading(false)
               onClose()
               showToast('You successfully changed your email')
-              // setTimeout(() => { logout() }, 1000)
+              loginReset()
             })
             .catch(err => {
               setIsLoading(false)
@@ -100,21 +86,6 @@ const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, logout }) => 
         error={errEmail}
       />
 
-      <Divider style={{ backgroundColor: themes[theme].borderColor, marginVertical: 16 }} />
-      <Text style={{ color: COLOR_RED, marginBottom: 16, textAlign: 'center' }}>
-        Are you sure to update your email? Please enter your password to confirm!
-      </Text>
-
-      <FloatingTextInput
-        inputRef={passwordInput}
-        label={'Password'}
-        placeholder={'Enter your password'}
-        onChangeText={value => setPassword(value)}
-        theme={theme}
-        secureTextEntry
-        error={errPassword}
-      />
-
       <Button
         style={styles.submitBtn}
         title={'SAVE'}
@@ -135,6 +106,7 @@ const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
   appInit: () => dispatch(appInitAction()),
   logout: params => dispatch(logoutAction(params)),
+  loginReset: params => dispatch(loginResetAction(params)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTheme(UpdateEmailModal))
