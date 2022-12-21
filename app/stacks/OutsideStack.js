@@ -1,19 +1,21 @@
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
-import { outsideHeader, themedHeader, StackAnimation } from '../utils/navigation'
-import SignInView from '../views/SignInView'
-import ForgotPasswordView from '../views/ForgotPasswordView'
-import UpdatePasswordView from '../views/UpdatePasswordView'
-import SignUpView from '../views/SignUpView'
-import OnBoardingView from '../views/OnBoardingView'
-import AboutView from '../views/AboutView'
-import { COLOR_WHITE, themes } from '../constants/colors'
-import HeaderLeft from '../containers/HeaderLeft'
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {outsideHeader, themedHeader, StackAnimation} from '../utils/navigation';
+import SignInView from '../views/SignInView';
+import ForgotPasswordView from '../views/ForgotPasswordView';
+import UpdatePasswordView from '../views/UpdatePasswordView';
+import SignUpView from '../views/SignUpView';
+import OnBoardingView from '../views/OnBoardingView';
+import AboutView from '../views/AboutView';
+import {COLOR_WHITE, themes} from '../constants/colors';
+import HeaderLeft from '../containers/HeaderLeft';
+import SignUpSuccessView from '../views/SignUpSuccessView';
+import SignUpDataView from '../views/SignUpDataView';
 
 // Outside
-const Outside = createStackNavigator()
+const Outside = createStackNavigator();
 const OutsideStack = () => {
-  const theme = 'light'
+  const theme = 'light';
 
   return (
     <Outside.Navigator
@@ -22,42 +24,51 @@ const OutsideStack = () => {
         ...outsideHeader,
         ...themedHeader(theme),
         ...StackAnimation,
-      }}
-    >
+      }}>
       <Outside.Screen
         name="OnBoard"
         component={OnBoardingView}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Outside.Screen
         name="SignIn"
         component={SignInView}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Outside.Screen
         name="ForgotPassword"
         component={ForgotPasswordView}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Outside.Screen
         name="UpdatePassword"
         component={UpdatePasswordView}
-        options={(navigation) => ({
+        options={navigation => ({
           headerShown: true,
           headerLeft: () => <HeaderLeft props={navigation} />,
           headerTitle: () => <></>,
           gestureEnabled: false,
-          headerStyle: { backgroundColor: COLOR_WHITE },
+          headerStyle: {backgroundColor: COLOR_WHITE},
         })}
       />
       <Outside.Screen
         name="SignUp"
         component={SignUpView}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Outside.Screen name="About" component={AboutView} />
+      <Outside.Screen
+        name="SignUpSuccess"
+        component={SignUpSuccessView}
+        options={{headerShown: false}}
+      />
+      <Outside.Screen
+        name="SignUpData"
+        component={SignUpDataView}
+        options={{headerShown: false}}
+      />
     </Outside.Navigator>
-  )
-}
+  );
+};
 
-export default OutsideStack
+export default OutsideStack;

@@ -2,8 +2,7 @@ export default {
   'error-invalid-email-address': 'Email address is invalid',
   'error-invalid-password': 'Password is invalid',
   'error-invalid-email_or_password': 'Email or password is invalid',
-  'error-invalid-password-repeat':
-    'Password is not equal with confirm password。',
+  'error-invalid-password-repeat': 'Password is not equal with confirm password。',
   'error-invalid-user': 'This user is invalid',
   'error-user-is-not-activated': 'User is not activated',
   'error-user-not_registered': 'This user is not found',
@@ -16,8 +15,7 @@ export default {
   please_enter_email: 'Please input your email',
   please_enter_password: 'Please enter your password.',
   please_enter_old_password: 'Please enter your origin password.',
-  please_enter_password_with_min_length_6:
-    'Password should be at least 6 characters.',
+  please_enter_password_with_min_length_6: 'Password should be at least 6 characters.',
   please_enter_valid_website: 'Please enter valid website',
   please_enter_post_text: 'Please enter post text.',
   please_enter_address: 'Please fill your address',
@@ -28,8 +26,7 @@ export default {
   Add_a_comment: 'Add a comment',
   Alert: 'Alert',
   Typing: 'Typing',
-  Are_you_sure_you_want_to_leave_the_room:
-    'Are you sure you want to leave the room?',
+  Are_you_sure_you_want_to_leave_the_room: 'Are you sure you want to leave the room?',
   Back: 'Back',
   Block_user: 'Block',
   Cancel: 'Cancel',
@@ -49,8 +46,7 @@ export default {
   Edit: 'Edit',
   Mail: 'Email',
   Email: 'Email',
-  Estimated_delivery:
-    'Expected delivery day is between 5 to 10 days from the purchase date',
+  Estimated_delivery: 'Expected delivery day is between 5 to 10 days from the purchase date',
   For_your_security_you_must_enter_your_current_password_to_continue:
     'For your security you must enter your current password to continue',
   Forgot_Password: 'Forgot Password?',
@@ -72,8 +68,7 @@ export default {
   Last_name: 'Last Name',
   No: 'No',
   No_access_to_camera: 'No access to camera',
-  No_activity:
-    'Your friends are either not very active or don’t like what you post.',
+  No_activity: 'Your friends are either not very active or don’t like what you post.',
   No_friends: 'You actually need friends to see a newsfeed',
   No_Message: 'No Message',
   Notification: 'Notification',
@@ -150,8 +145,7 @@ export default {
   Product_cost: 'Product Cost',
   Tax: 'Tax',
   Total: 'Total',
-  Shipping_info_title:
-    'Kindly fill your shipping information to proceed with your order',
+  Shipping_info_title: 'Kindly fill your shipping information to proceed with your order',
   Shipping_information: 'Shipping Information',
   Order_no: 'ORDER NO.',
   Email_for_order: 'Email address (for order confirmation)',
@@ -226,8 +220,7 @@ export default {
   Unblock: 'Unblock',
   Updating_security_complete: 'You successfully changed your credential',
   Updating_security_failed: 'Changing credential failed',
-  Update_security_caption:
-    'Enter your username and password, then set a new password',
+  Update_security_caption: 'Enter your username and password, then set a new password',
   Years_of_service: 'Years of service',
   Role: 'Role',
   Year: 'Year',
@@ -236,8 +229,7 @@ export default {
   Salary: 'Salary',
   OK: 'OK',
   Thank_you_title_1: 'Thank you for applying \n' + 'to VIP Billionaires.',
-  Thank_you_2:
-    'Your application will be examined and within a few hours you will be notified of the result.',
+  Thank_you_2: 'Your application will be examined and within a few hours you will be notified of the result.',
   Thank_you_3:
     '* There might be cases your application might not be approved. In that case, the payment will be fully refunded.',
   Complete: 'Complete',
@@ -288,7 +280,6 @@ export default {
   please_complete_these_steps_to_confirm: 'Please complete these steps to confirm',
   Phone_number: 'Phone number',
 
-
   user_not_found: 'User not found',
   follow_you: 'follows you',
   agree_with: 'I agree with the',
@@ -315,5 +306,15 @@ export default {
   text: 'Text',
   placeholder_reply: 'Send your reply',
   media: 'Media',
-  update: 'UPDATE'
+  update: 'UPDATE',
+
+  welcome_to_vip: 'Welcome to VIP Billionaires',
+  upload_profile_image: 'Upload profile image',
+  update_basic_information: 'Update Basic information',
+  upload_now: 'Upload now',
+  update_experience: 'Update Experience',
+  add_experience: 'Add Experience',
+  others: 'Others',
+  confirm_and_create_an_account: 'Confirm & Create an Account',
+  upload_new_image: 'Upload new image',
 };

@@ -15,8 +15,7 @@ export default {
   please_enter_email: 'メールアドレスを入力してください',
   please_enter_password: 'パスワードを入力してください',
   please_enter_old_password: '以前のパスワードを入力してください',
-  please_enter_password_with_min_length_6:
-    'パスワードは６文字以上で入力してください',
+  please_enter_password_with_min_length_6: 'パスワードは６文字以上で入力してください',
   please_enter_valid_website: 'サイトが無効です',
   please_enter_post_text: '投稿のテキストを入力してください',
   please_enter_address: '住所を入力してください',
@@ -27,8 +26,7 @@ export default {
   Add_a_comment: 'コメントする',
   Alert: 'アラート',
   Typing: '入力中',
-  Are_you_sure_you_want_to_leave_the_room:
-    'トークルームを退室しますか? このトークルームの全ての履歴が削除されます',
+  Are_you_sure_you_want_to_leave_the_room: 'トークルームを退室しますか? このトークルームの全ての履歴が削除されます',
   Back: '戻る',
   Block_user: 'ブロックする',
   Cancel: 'キャンセル',
@@ -148,8 +146,7 @@ export default {
   Product_cost: '製品価格',
   Tax: '税金',
   Total: '合計',
-  Shipping_info_title:
-    'あなたの注文を進めるために、あなたの配送情報を入力してください。',
+  Shipping_info_title: 'あなたの注文を進めるために、あなたの配送情報を入力してください。',
   Shipping_information: '配送情報',
   Order_no: '注文番号',
   Email_for_order: 'メールアドレス(注文用)',
@@ -287,7 +284,7 @@ export default {
   follow_you: 'あなたをフォローしました',
   please_complete_these_steps_to_confirm: 'これらの手順を完了して確認してください',
   Phone_number: 'Phone_number',
-  
+
   agree_with: '同意する',
   terms_and_conditions: '規約・条件',
   privacy_policy: 'プライバシーポリシー',
@@ -312,5 +309,15 @@ export default {
   text: '文章',
   placeholder_reply: '返信を送信します',
   media: 'メディア',
-  update: 'UPDATE'
+  update: 'UPDATE',
+
+  welcome_to_vip: 'VIP Billionaires へようこそ',
+  upload_profile_image: 'プロフィール画像をアップロード',
+  update_basic_information: '基本情報の更新',
+  upload_now: '今すぐアップロード',
+  update_experience: 'エクスペリエンスの更新',
+  add_experience: '経験値を追加',
+  others: 'その他',
+  confirm_and_create_an_account: 'アカウントの確認と作成',
+  upload_new_image: '新しい画像をアップロード',
 };
