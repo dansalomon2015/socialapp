@@ -32,8 +32,8 @@ const Root = () => {
   }, [])
 
   useEffect(() => {
-    // setTheme('dark')
-    setTheme('light')
+    setTheme('dark')
+    // setTheme('light')
     // let timer = setInterval(() => {
     //   const hour = new Date().getHours()
     //   if (!theme) {

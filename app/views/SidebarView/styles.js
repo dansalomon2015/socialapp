@@ -151,20 +151,6 @@ export default StyleSheet.create({
   chevronIcon: {
     alignSelf: 'center',
   },
-  modalContent: {
-    backgroundColor: 'red',
-    padding: 24,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  modalTitle: {
-    fontWeight: '600',
-    fontFamily: 'Hind Vadodara',
-    fontSize: 18,
-    lineHeight: 28,
-    marginVertical: 8,
-    textAlign: 'center',
-  },
   submitBtn: {
     marginTop: 8,
     paddingVertical: 2,
@@ -175,5 +161,5 @@ export default StyleSheet.create({
     lineHeight: 26,
     fontWeight: '600',
     fontFamily: 'Raleway',
-  }
+  },
 })
