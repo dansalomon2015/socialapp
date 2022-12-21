@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     marginRight: 10,
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '500',
     lineHeight: 22,
     fontFamily: 'Raleway',

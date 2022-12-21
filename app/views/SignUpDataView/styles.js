@@ -38,4 +38,30 @@ export default StyleSheet.create({
     color: themes.light.textColor,
     marginBottom: 48,
   },
+  updateExperienceText: {
+    fontSize: 12,
+    fontWeight: '500',
+    marginLeft: 5,
+    fontFamily: 'Raleway',
+    lineHeight: 15,
+    marginVertical: 15,
+  },
+  footer: {
+    paddingVertical: 13,
+    backgroundColor: '#F8F8F8',
+  },
+  radioIcon: {
+    marginRight: 10,
+  },
+  privacy_container: {
+    flexDirection: 'row',
+    marginBottom: 15,
+  },
+  privacy: {
+    fontSize: 14,
+    lineHeight: 16,
+    fontWeight: '500',
+    fontFamily: 'Raleway',
+    color: themes.light.textColor,
+  },
 });
