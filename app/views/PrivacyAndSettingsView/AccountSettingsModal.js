@@ -24,7 +24,9 @@ const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
   }, [isShow, user])
 
   useEffect(() => {
-    isValid()
+    if (isShow) {
+      isValid()
+    }
   }, [userInfo])
 
   const isValid = () => {

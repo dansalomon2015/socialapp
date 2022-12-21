@@ -7,7 +7,7 @@ import { themes } from '../../constants/colors'
 import { VectorIcon } from '../../containers/VectorIcon'
 import ModalView from '../../containers/ModalView'
 
-const InviteModal = ({ isShow, onClose, theme, user }) => {
+const InviteModal = ({ isShow, onClose, theme }) => {
   const onClick = item => {
 
   }
