@@ -23,74 +23,67 @@ const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, logout }) => 
   const [email, setEmail] = useState(user.email)
   const [isLoading, setIsLoading] = useState(false)
   const [errEmail, setErrEmail] = useState('')
-  const [isBtnDisable, setBtnDisable] = useState(false)
   const [password, setPassword] = useState('')
   const [errPassword, setErrPassword] = useState('')
   const emailInput = useRef(null)
   const passwordInput = useRef(null)
-  const navigation = useNavigation()
 
   useEffect(() => {
     setEmail(user.email)
-  }, [isShow, user])
-
-  useEffect(() => {
     if (isShow) {
       isValid()
     }
-  }, [email, password])
+  }, [isShow, user])
 
   const isValid = () => {
-    setErrEmail('')
     setErrPassword('')
+    setErrEmail('')
     if (!email.length) {
       setErrEmail(I18n.t('please_enter_email'))
-      setBtnDisable(true)
       emailInput.current.focus()
       return false
     }
     if (!isValidEmail(email)) {
       setErrEmail(I18n.t('error-invalid-email-address'))
-      setBtnDisable(true)
       emailInput.current.focus()
       return false
     }
     if (!password.length) {
       setErrPassword(I18n.t('please_enter_password'))
-      setBtnDisable(true)
       return false
     }
-    setBtnDisable(false)
     return true
   }
   const onSubmit = () => {
-    setIsLoading(true)
+    if (isValid()) {
+      setIsLoading(true)
 
-    firebaseSdk
-      .reauthenticate(user.email, password)
-      .then(() => {
-        firebaseSdk
-          .updateEmail(email)
-          .then(async (data) => {
-            console.log(data)
-            const newUser = { ...user, email: email }
-            await AsyncStorage.setItem(CURRENT_USER, JSON.stringify(newUser))
-            setUser(newUser)
-            setIsLoading(false)
-            onClose()
-            showToast('You successfully changed your email')
-            // setTimeout(() => { logout() }, 1000)
-          })
-          .catch(err => {
-            setIsLoading(false)
-            showErrorAlert(I18n.t('Updating_security_failed'))
-            console.log('error', err)
-          })
-      })
-      .catch(() => {
-        setIsLoading(false)
-        showErrorAlert(I18n.t('error-invalid-password'))
-      })
+      firebaseSdk
+        .reauthenticate(user.email, password)
+        .then(() => {
+          firebaseSdk
+            .updateEmail(email)
+            .then(async (data) => {
+              console.log(data)
+              const newUser = { ...user, email: email }
+              await AsyncStorage.setItem(CURRENT_USER, JSON.stringify(newUser))
+              setUser(newUser)
+              setIsLoading(false)
+              onClose()
+              showToast('You successfully changed your email')
+              // setTimeout(() => { logout() }, 1000)
+            })
+            .catch(err => {
+              setIsLoading(false)
+              showErrorAlert(I18n.t('Updating_security_failed'))
+              console.log('error', err)
+            })
+        })
+        .catch(() => {
+          setIsLoading(false)
+          showErrorAlert(I18n.t('error-invalid-password'))
+        })
+    }
   }
 
   return (
@@ -126,7 +119,6 @@ const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, logout }) => 
         style={styles.submitBtn}
         title={'SAVE'}
         size="W"
-        disabled={isBtnDisable}
         onPress={onSubmit}
         loading={isLoading}
         theme={theme}

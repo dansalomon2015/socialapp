@@ -15,19 +15,15 @@ const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [errName, setErrName] = useState('')
   const [errUserName, setErrUserName] = useState('')
-  const [isBtnDisable, setBtnDisable] = useState(false)
   const nameInput = useRef(null)
   const usernameInput = useRef(null)
 
   useEffect(() => {
     setUserInfo({ name: user.displayName || '', username: user.handle || '' })
-  }, [isShow, user])
-
-  useEffect(() => {
     if (isShow) {
       isValid()
     }
-  }, [userInfo])
+  }, [isShow, user])
 
   const isValid = () => {
     setErrName('')
@@ -35,15 +31,12 @@ const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
     if (!userInfo.name.length) {
       setErrName(I18n.t('please_enter_name'))
       nameInput.current.focus()
-      setBtnDisable(true)
       return false
     } else if (!userInfo.username.length) {
       setErrUserName(I18n.t('please_enter_name'))
       usernameInput.current.focus()
-      setBtnDisable(true)
       return false
     } else {
-      setBtnDisable(false)
       return true
     }
   }
@@ -57,20 +50,22 @@ const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
   }
 
   const onSubmit = () => {
-    const update = { id: user.id, displayName: userInfo.name, handle: userInfo.username }
-    setIsLoading(true)
-    firebaseSdk
-      .setData(firebaseSdk.TBL_USER, DB_ACTION_UPDATE, update)
-      .then(() => {
-        setUser({ ...user, ...update })
-        setIsLoading(false)
-        onClose()
-        showToast('Account name and username has been successfully updated.')
-      })
-      .catch(() => {
-        showErrorAlert('Updating was failed', I18n.t('Oops'))
-        setIsLoading(false)
-      })
+    if (isValid()) {
+      const update = { id: user.id, displayName: userInfo.name, handle: userInfo.username }
+      setIsLoading(true)
+      firebaseSdk
+        .setData(firebaseSdk.TBL_USER, DB_ACTION_UPDATE, update)
+        .then(() => {
+          setUser({ ...user, ...update })
+          setIsLoading(false)
+          onClose()
+          showToast('Account name and username has been successfully updated.')
+        })
+        .catch(() => {
+          showErrorAlert('Updating was failed', I18n.t('Oops'))
+          setIsLoading(false)
+        })
+    }
   }
 
   return (
@@ -101,7 +96,6 @@ const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
         style={styles.submitBtn}
         title={'SAVE'}
         size="W"
-        disabled={isBtnDisable}
         onPress={onSubmit}
         loading={isLoading}
         theme={theme}
