@@ -1,15 +1,15 @@
-import { Alert } from 'react-native';
-import { LISTENER } from '../containers/Toast';
-import EventEmitter from '../utils/events';
-import I18n from '../i18n';
+import { Alert } from 'react-native'
+import { LISTENER } from '../containers/Toast'
+import EventEmitter from '../utils/events'
+import I18n from '../i18n'
 
 export const showErrorAlert = (message, title, onPress = () => {}) =>
   Alert.alert(title, message, [{ text: I18n.t('OK'), onPress }], {
     cancelable: true,
-  });
+  })
 
 export const showToast = message =>
-  EventEmitter.emit(LISTENER, { message: message });
+  EventEmitter.emit(LISTENER, { message: message })
 
 export const showConfirmationAlert = ({
   title,
@@ -32,4 +32,4 @@ export const showConfirmationAlert = ({
       },
     ],
     { cancelable: false },
-  );
+  )

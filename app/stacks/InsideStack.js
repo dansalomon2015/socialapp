@@ -2,7 +2,6 @@ import React from 'react'
 import { Dimensions } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { ThemeContext } from '../theme'
-import { outsideHeader, themedHeader, StackAnimation } from '../utils/navigation'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import SidebarView from '../views/SidebarView'
@@ -20,9 +19,7 @@ import PostDetailView from '../views/PostDetailView'
 import MessageView from '../views/MessageView'
 import ChatView from '../views/ChatView'
 import SettingView from '../views/SettingView'
-import AboutView from '../views/AboutView'
 import SecurityView from '../views/SecurityView'
-import BlockView from '../views/BlockView'
 import OtherProfileView from '../views/OtherProfileView'
 import ActivityView from '../views/ActivityView'
 import CategoryView from '../views/CategoryView'
@@ -34,6 +31,7 @@ import PickLibraryView from '../views/PickLibraryView'
 import UpdateProfileAndBasicInfo from '../views/UpdateProfileAndBasicInfo'
 import { MainTabBar } from '../containers/MainScreen'
 import MenuStack from './MenuStack'
+import AboutStack from './AboutStack'
 
 const Tab = createBottomTabNavigator()
 const Inside = createStackNavigator()
@@ -59,11 +57,11 @@ const TabStack = () => {
   return (
     <Tab.Navigator
       tabBar={props => <MainTabBar theme={theme} {...props} />}
-      screenOptions={{
-        ...outsideHeader,
-        ...themedHeader(theme),
-        ...StackAnimation,
-      }}
+      // screenOptions={{
+      //   ...outsideHeader,
+      //   ...themedHeader(theme),
+      //   ...StackAnimation,
+      // }}
       sceneContainerStyle={{ backgroundColor: 'transparent' }}
     >
       <Tab.Screen
@@ -90,11 +88,11 @@ const InsideStack = () => {
 
   return (
     <Inside.Navigator
-      screenOptions={{
-        ...outsideHeader,
-        ...themedHeader(theme),
-        ...StackAnimation,
-      }}
+      // screenOptions={{
+      //   ...outsideHeader,
+      //   ...themedHeader(theme),
+      //   ...StackAnimation,
+      // }}
     >
       <Inside.Screen
         name="Home"
@@ -137,9 +135,7 @@ const InsideStack = () => {
       />
       <Inside.Screen name="Chat" component={ChatView} />
       <Inside.Screen name="Setting" component={SettingView} />
-      {/*<Inside.Screen name="About" component={AboutView} />*/}
       <Inside.Screen name="Security" component={SecurityView} />
-      {/*<Inside.Screen name="Block" component={BlockView} />*/}
       <Inside.Screen name="ProductWeb" component={ProductWebView} />
       <Inside.Screen
         name="Category"
@@ -170,8 +166,8 @@ const DrawerNavigator = () => {
       )}
       initialRouteName="InsideStack"
       screenListeners={({ navigation }) => {
-        const state = navigation.getState()
-        if (state.history.length > 2 && state.history.filter((i) => i.type === 'drawer').length > 0) {
+        const { history } = navigation.getState()
+        if (history.length > 2 && history.filter((i) => i.type === 'drawer').length > 0) {
           navigation.navigate('InsideStack')
           navigation.toggleDrawer()
         }
@@ -190,6 +186,10 @@ const DrawerNavigator = () => {
       />
       <Drawer.Screen
         name="MenuStack" component={MenuStack}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="AboutStack" component={AboutStack}
         options={{ headerShown: false }}
       />
     </Drawer.Navigator>

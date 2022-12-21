@@ -8,8 +8,7 @@ import { VectorIcon } from '../VectorIcon'
 /* eslint-disable react-native/no-unused-styles */
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 13,
-    backgroundColor: COLOR_WHITE,
+    borderRadius: 8,
   },
   oauthButtonContainer: {
     margin: 8,
@@ -40,6 +39,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Raleway',
     lineHeight: 18,
+    fontWeight: '600',
   },
 
   button_size_Z: {
@@ -154,6 +154,7 @@ const Button = props => {
         styles.container,
         size ? styles[`button_size_${size}`] : {},
         style,
+        { opacity: disabled ? 0.5 : 1 },
       ]}
       {...otherProps}>
       <View
@@ -164,7 +165,7 @@ const Button = props => {
           height ? { height } : {},
           {
             backgroundColor: COLOR_BTN_BACKGROUND,
-            borderColor: COLOR_BTN_BORDER,
+            borderWidth: 0,
           },
         ]}>
         {icon ? (
@@ -176,7 +177,7 @@ const Button = props => {
           <ActivityIndicator color={COLOR_WHITE} />
         ) : (
           <>
-            <Text style={[styles.text, { color: disabled ? themes[theme].textColor : COLOR_WHITE }]}>
+            <Text style={[styles.text, { color: disabled ? themes[theme].subTextColor : COLOR_WHITE }]}>
               {text || title}
             </Text>
           </>

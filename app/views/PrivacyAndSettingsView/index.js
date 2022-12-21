@@ -1,45 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  Image,
   ScrollView,
   Text,
   TouchableOpacity,
   View,
-  Linking,
   SafeAreaView,
-  Pressable, TextInput,
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import {
-  COLOR_LIGHT_DARK, COLOR_RED,
-  COLOR_WHITE, COLOR_YELLOW,
-  HEADER_BAR_START,
-  NAV_BAR_END,
-  NAV_BAR_START,
-  themes,
-} from '../../constants/colors'
+import { COLOR_LIGHT_DARK, COLOR_RED, themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import styles from './styles'
-import images from '../../assets/images'
 import scrollPersistTaps from '../../utils/scrollPersistTaps'
-import { logout as logoutAction } from '../../actions/login'
-import { showConfirmationAlert } from '../../lib/info'
-import { GradientHeader } from '../../containers/GradientHeader'
-import I18n from '../../i18n'
-import { SITE_SHOP_URL } from '../../constants/app'
 import { VectorIcon } from '../../containers/VectorIcon'
-import OptionCardBtn from '../../containers/OptionCardBtn'
-import { Icon } from '../../containers/List'
 import SidebarItem from '../SidebarView/SidebarItem'
-import Modal from 'react-native-modal'
-import AccountSettingModal from './AccountSettingsModal'
+import AccountSettingsModal from './AccountSettingsModal'
+import { useNavigation } from '@react-navigation/native'
 
 const PrivacyAndSettingsView = (props) => {
-  const { user, theme, navigation } = props
+  const navigation = useNavigation()
+  const { user, theme } = props
   const [isShowAccountSettings, onShowAccountSettings] = useState(false)
-  const [isShowPasswordSettings, onShowPasswordSettings] = useState(false)
 
   useEffect(() => {
     navigation.setOptions({
@@ -61,6 +43,11 @@ const PrivacyAndSettingsView = (props) => {
 
   }
 
+  const goToPrivacySettings = () => {
+    navigation.navigate('MenuStack', { screen: 'PrivacySettings' })
+    // navigation.navigate('PrivacySettings')
+  }
+
   return (
     <SafeAreaView
       style={{
@@ -80,9 +67,18 @@ const PrivacyAndSettingsView = (props) => {
                       color={COLOR_LIGHT_DARK} size={20} />
           <Text style={[styles.title, { color: themes[theme].titleColor }]}>Privacy and Settings</Text>
         </View>
-        <SidebarItem text={'Account Settings'} onPress={() => onClick(onShowAccountSettings(true))} theme={theme}
-                     hasRight />
-        <SidebarItem text={'Privacy Setting'} onPress={() => onClick()} theme={theme} hasRight />
+        <SidebarItem
+          text={'Account Settings'}
+          onPress={() => onClick(onShowAccountSettings(true))}
+          theme={theme}
+          hasRight
+        />
+        <SidebarItem
+          text={'Privacy Setting'}
+          onPress={() => navigation.navigate('PrivacySettings')}
+          theme={theme}
+          hasRight
+        />
 
         <View style={{ marginTop: 56, marginBottom: 16 }}>
           <Text style={[styles.title, { color: themes[theme].titleColor, margin: 0 }]}>Other Settings</Text>
@@ -91,10 +87,7 @@ const PrivacyAndSettingsView = (props) => {
         <SidebarItem text={'Delete Account'} textStyle={{ color: COLOR_RED }} onPress={() => onClick()} theme={theme} />
       </ScrollView>
 
-      <AccountSettingModal
-        isShow={isShowAccountSettings} theme={theme}
-        onClose={() => onShowAccountSettings(false)}
-      />
+      <AccountSettingsModal isShow={isShowAccountSettings} theme={theme} onClose={() => onShowAccountSettings(false)} />
     </SafeAreaView>
   )
 }

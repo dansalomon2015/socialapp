@@ -21,9 +21,10 @@ const Item = React.memo(
             </Text>
           </View>
         </View>
-        {hasRight && (
-          <VectorIcon type="MaterialCommunityIcons" name="chevron-right" color={themes[theme].textColor} size={24} />
-        )
+        {
+          hasRight && (
+            <VectorIcon type="MaterialCommunityIcons" name="chevron-right" color={themes[theme].textColor} size={24} />
+          )
         }
       </TouchableOpacity>
     )

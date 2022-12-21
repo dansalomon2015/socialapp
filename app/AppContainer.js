@@ -51,7 +51,8 @@ const App = React.memo(({ root, isMasterDetail }) => {
         const routeName = getActiveRouteName(state)
         store.dispatch(setRoute(routeName))
         Navigation.routeNameRef.current = routeName
-      }}>
+      }}
+    >
       <Stack.Navigator
         screenOptions={{ headerShown: false, animationEnabled: false }}
         initialRouteName="OutsideStack"

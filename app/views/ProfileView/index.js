@@ -563,7 +563,4 @@ const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withActionSheet(withTheme(ProfileView)))
+export default connect(mapStateToProps, mapDispatchToProps)(withActionSheet(withTheme(ProfileView)))

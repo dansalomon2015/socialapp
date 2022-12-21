@@ -12,6 +12,7 @@ import {
   ROOT_VERIFY_EMAIL,
 } from '../actions/app'
 import { fetchUnread } from '../actions/chat'
+import firebase from '@react-native-firebase/app'
 
 const handleLoginSuccess = function* handleLoginSuccess({ data }) {
   yield put(setUser(data))

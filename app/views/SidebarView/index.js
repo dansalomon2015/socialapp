@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Image,
   ScrollView,
@@ -25,9 +25,11 @@ import I18n from '../../i18n'
 import { SITE_SHOP_URL } from '../../constants/app'
 import { VectorIcon } from '../../containers/VectorIcon'
 import OptionCardBtn from '../../containers/OptionCardBtn'
+import InviteModal from './InviteModal'
 
 const SidebarView = (props) => {
   const { user, theme, navigation } = props
+  const [isShowInvite, onShowInviteModal] = useState(false)
   const menus = [
     {
       id: 'shop',
@@ -75,30 +77,20 @@ const SidebarView = (props) => {
 
   const onClick = item => {
     switch (item.id) {
-      // case 'terms_of_use':
-      //   return onNavigate('About', { type: 0 })
       case 'privacy_and_settings':
-        return onNavigate('MenuStack')
-      // case 'eula':
-      //   return onNavigate('About', { type: 2 })
+        return navigation.navigate('MenuStack', { screen: 'PrivacyAndSettings' })
       case 'shop':
         return Linking.openURL(SITE_SHOP_URL)
       case 'help_and_support':
-        return onNavigate('HelpAndSupport')
+        return navigation.navigate('HelpAndSupport')
       case 'MyConnections':
-        return onNavigate('MyConnections')
+        return navigation.navigate('MyConnections')
       case 'vip_members':
-        return onNavigate('')
-      default:
-        onNavigate(item.route, { type: item.init })
+        return navigation.navigate('')
+      // default:
+      //   onNavigate(item.route, { type: item.init })
     }
   }
-
-  const onNavigate = (routeName, params) => {
-    const { navigation } = props
-    navigation.navigate(routeName, params)
-  }
-
   const onLogOut = () => {
     const { logout } = props
     showConfirmationAlert({
@@ -165,6 +157,7 @@ const SidebarView = (props) => {
           image={images.reward_badge}
           title="Premium Subscription"
           smallText="Upgrade plan"
+          onPress={()=>{}}
         />
         <OptionCardBtn
           image={images.fast_email_sending}
@@ -172,6 +165,7 @@ const SidebarView = (props) => {
           smallText="Invite now"
           rightIcon
           rightIconName="share"
+          onPress={()=>{onShowInviteModal(true)}}
         />
         <Text style={[styles.menuText, { color: themes[theme].titleColor }]}>Menu</Text>
         {menus.map(m => (
@@ -210,19 +204,32 @@ const SidebarView = (props) => {
       </TouchableOpacity>
       <View style={styles.bottomView}>
         <View style={styles.privacyTermsEulaContainer}>
-          <Text style={[styles.text, { color: themes[theme].textColor }]} onPress={() => {}}>Privacy policy</Text>
-          <Text style={[{ color: themes[theme].textColor }]}>.</Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]} onPress={() => {}}>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}
+                onPress={() => {navigation.navigate('AboutStack', { screen: 'PrivacyPolicy' })}}
+          >
+            Privacy policy
+          </Text>
+          <Text style={[{ color: themes[theme].titleColor }]}>|</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}
+                onPress={() => {navigation.navigate('AboutStack', { screen: 'TermsOfServices' })}}>
             Terms of services
           </Text>
-          <Text style={[{ color: themes[theme].textColor }]}>.</Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]} onPress={() => {}}>Eula</Text>
+          <Text style={[{ color: themes[theme].titleColor }]}>|</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}
+                onPress={() => {navigation.navigate('AboutStack', { screen: 'Eula' })}}>
+            Eula
+          </Text>
         </View>
         <View style={styles.languageContainer}>
           <Image source={images.en_language} />
           <Text style={[styles.languageText, { color: themes[theme].textColor }]}>English (US)</Text>
         </View>
       </View>
+
+      <InviteModal
+        isShow={isShowInvite} theme={theme}
+        onClose={() => onShowInviteModal(false)}
+      />
     </SafeAreaView>
   )
 }

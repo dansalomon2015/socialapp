@@ -151,4 +151,15 @@ export default StyleSheet.create({
   chevronIcon: {
     alignSelf: 'center',
   },
+  submitBtn: {
+    marginTop: 8,
+    paddingVertical: 2,
+    alignSelf: 'center',
+  },
+  copyText: {
+    fontSize: 10,
+    lineHeight: 26,
+    fontWeight: '600',
+    fontFamily: 'Raleway',
+  },
 })

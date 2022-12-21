@@ -1,23 +1,18 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { outsideHeader, themedHeader, StackAnimation } from '../utils/navigation'
 import PrivacyAndSettingsView from '../views/PrivacyAndSettingsView'
+import PrivacySettingsView from '../views/PrivacySettingsView'
 import BlockView from '../views/BlockView'
+import { ThemeContext } from '../theme'
 
-// Outside
+// Menu
 const Menu = createStackNavigator()
 const MenuStack = () => {
-  const theme = 'light'
-
   return (
-    <Menu.Navigator
-      screenOptions={{
-        ...outsideHeader,
-        ...themedHeader(theme),
-        ...StackAnimation,
-      }}>
+    <Menu.Navigator initialRouteName={'PrivacyAndSettings'}>
       <Menu.Screen name="PrivacyAndSettings" component={PrivacyAndSettingsView} />
       <Menu.Screen name="Block" component={BlockView} />
+      <Menu.Screen name="PrivacySettings" component={PrivacySettingsView} />
     </Menu.Navigator>
   )
 }
