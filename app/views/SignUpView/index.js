@@ -28,20 +28,9 @@ const SignUpView = props => {
   const {loginSuccess} = props;
   const navigation = useNavigation();
   const [state, setState] = useState({
-    name: '',
-    gender: null,
-    city: '',
-    phone: '',
     email: '',
     password: '',
     confirm_password: '',
-    birthday: null,
-    job: '',
-    company: '',
-    role: '',
-    years_of_service: 1,
-    salary: 2,
-    purpose: '',
     topScrollEnable: true,
     allowTerms: false,
     isLoading: false,
@@ -75,22 +64,8 @@ const SignUpView = props => {
   };
 
   const isValid = () => {
-    const {name, city, gender, password, confirm_password, email} = state;
+    const {password, confirm_password, email} = state;
 
-    if (!name.length) {
-      showToast(I18n.t('please_enter_name'));
-      nameInput.current.focus();
-      return false;
-    }
-    if (!gender) {
-      showToast(I18n.t('please_select_gender'));
-      return false;
-    }
-    if (!city.length) {
-      showToast(I18n.t('please_enter_city'));
-      cityInput.current.focus();
-      return false;
-    }
     if (!email.length) {
       showToast(I18n.t('please_enter_email'));
       emailInput.current.focus();
@@ -122,48 +97,10 @@ const SignUpView = props => {
   const onSubmit = () => {
     if (isValid()) {
       setState({...state, isLoading: true});
-      const {
-        name,
-        email,
-        password,
-        phone,
-        gender,
-        city,
-        birthday,
-        job,
-        company,
-        role,
-        years_of_service,
-        salary,
-        purpose,
-      } = state;
+      const {email, password} = state;
 
-      const user = {
-        displayName: name,
-        gender,
-        city,
-        phone,
-        email: email,
-        password: password,
-        birthday,
-        job,
-        company,
-        role,
-        years_of_service,
-        salary,
-        purpose,
-      };
-      const mailBody =
-        'Name : ' +
-        name +
-        '\nGender : ' +
-        gender +
-        '\nCity : ' +
-        city +
-        '\nPhone : ' +
-        phone +
-        '\nEmail : ' +
-        email;
+      const user = {...state};
+      const mailBody = '\nEmail : ' + email;
       sendEmail('info@zedinternational.net', 'A new user registered', mailBody);
 
       firebaseSdk
@@ -240,6 +177,7 @@ const SignUpView = props => {
               onSubmitEditing={() => {
                 passwordInput.current.focus();
               }}
+              autoCapitalize="none"
             />
             <FloatingTextInput
               inputRef={passwordInput}
@@ -270,8 +208,7 @@ const SignUpView = props => {
               style={styles.submitBtn}
               title={'Submit'}
               size="W"
-              // onPress={onSubmit}
-              onPress={onSignUpSuccess}
+              onPress={onSubmit}
               loading={isLoading}
               theme={theme}
             />
