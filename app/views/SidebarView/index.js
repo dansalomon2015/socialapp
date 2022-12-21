@@ -129,6 +129,9 @@ const SidebarView = (props) => {
               ]}>
               {user.displayName}
             </Text>
+            <Text style={[styles.profileName, { color: themes[theme].textColor, fontSize: 12 }]}>
+              {user.handle}
+            </Text>
             <Text style={[styles.roleName, { color: COLOR_YELLOW }]}>
               View Profile
             </Text>
@@ -157,7 +160,7 @@ const SidebarView = (props) => {
           image={images.reward_badge}
           title="Premium Subscription"
           smallText="Upgrade plan"
-          onPress={()=>{}}
+          onPress={() => {}}
         />
         <OptionCardBtn
           image={images.fast_email_sending}
@@ -165,7 +168,7 @@ const SidebarView = (props) => {
           smallText="Invite now"
           rightIcon
           rightIconName="share"
-          onPress={()=>{onShowInviteModal(true)}}
+          onPress={() => {onShowInviteModal(true)}}
         />
         <Text style={[styles.menuText, { color: themes[theme].titleColor }]}>Menu</Text>
         {menus.map(m => (

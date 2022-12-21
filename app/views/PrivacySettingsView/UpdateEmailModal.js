@@ -9,12 +9,11 @@ import { isValidEmail } from '../../utils/validators'
 import ModalView from '../../containers/ModalView'
 import firebaseSdk from '../../lib/firebaseSdk'
 import { showErrorAlert, showToast } from '../../lib/info'
-import { loginReset as loginResetAction, logout as logoutAction, setUser as setUserAction } from '../../actions/login'
+import { loginReset as loginResetAction, setUser as setUserAction } from '../../actions/login'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { CURRENT_USER } from '../../constants/keys'
-import { appInit as appInitAction } from '../../actions/app'
 
-const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, password, logout, loginReset }) => {
+const UpdateEmailModal = ({ isShow, onClose, theme, user, setUser, password, loginReset }) => {
   const [email, setEmail] = useState(user.email)
   const [isLoading, setIsLoading] = useState(false)
   const [errEmail, setErrEmail] = useState('')
@@ -104,8 +103,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setUser: params => dispatch(setUserAction(params)),
-  appInit: () => dispatch(appInitAction()),
-  logout: params => dispatch(logoutAction(params)),
   loginReset: params => dispatch(loginResetAction(params)),
 })
 
