@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   modalContent: {
@@ -10,11 +10,11 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontWeight: '600',
     fontFamily: 'Hind Vadodara',
-    fontSize: 18,
+    fontSize: 20,
     lineHeight: 28,
     marginVertical: 8,
     textAlign: 'center',
   },
-})
+});
 
-export default styles
+export default styles;

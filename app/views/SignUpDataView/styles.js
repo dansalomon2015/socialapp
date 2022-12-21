@@ -49,6 +49,7 @@ export default StyleSheet.create({
   footer: {
     paddingVertical: 13,
     backgroundColor: '#F8F8F8',
+    justifyContent: 'center',
   },
   radioIcon: {
     marginRight: 10,
@@ -59,9 +60,10 @@ export default StyleSheet.create({
   },
   privacy: {
     fontSize: 14,
-    lineHeight: 16,
+    lineHeight: 20,
     fontWeight: '500',
     fontFamily: 'Raleway',
     color: themes.light.textColor,
+    flexShrink: 1,
   },
 });

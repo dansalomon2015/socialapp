@@ -1,24 +1,35 @@
-import { Dimensions, StyleSheet } from 'react-native'
+import {Dimensions, StyleSheet} from 'react-native';
 
-const { width } = Dimensions.get('window')
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    width: width * 0.9,
-    alignSelf: 'center',
-    backgroundColor: '#F8F8F8',
+    // width: width * 0.9,
+    // alignSelf: 'center',
+    // backgroundColor: '#F8F8F8',
     borderRadius: 8,
     flexDirection: 'row',
-    shadowColor: '#ccc',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 1,
-    shadowRadius: 1,
-    elevation: 2,
-    alignItems: 'center',
+    // shadowColor: '#ccc',
+    // shadowOffset: {width: 0, height: 0},
+    // shadowOpacity: 1,
+    // shadowRadius: 1,
+    // elevation: 2,
     height: 130,
     paddingLeft: 17,
     marginVertical: 5,
+    backgroundColor: '#FFF',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2.6,
+    elevation: 2,
+    marginTop: 10,
   },
+
   closeIcon: {
     position: 'absolute',
     top: 20,
@@ -29,6 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '400',
     marginLeft: 10,
+    lineHeight: 22,
   },
   locationHomeImage: {
     width: 18,
@@ -39,12 +51,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '400',
     marginLeft: 10,
+    lineHeight: 22,
   },
   genderAndDob: {
     fontFamily: 'Raleway',
-    fontWeight: '300',
+    fontWeight: '400',
     fontSize: 12,
     marginBottom: 10,
+    lineHeight: 15,
   },
   iconAndText: {
     flexDirection: 'row',
@@ -52,11 +66,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   name: {
-    marginBottom: 3,
     fontSize: 16,
     fontFamily: 'Hind Vadodara',
     fontWeight: '500',
+    lineHeight: 22,
   },
-})
+});
 
-export default styles
+export default styles;

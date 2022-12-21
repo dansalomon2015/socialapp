@@ -12,13 +12,33 @@ import scrollPersistTaps from '../../utils/scrollPersistTaps';
 import BasicInfoUpdate from '../../containers/BasicInfoUpdate';
 import AddExperienceButton from '../../containers/AddExperienceButton';
 import {VectorIcon} from '../../containers/VectorIcon';
+import {appStart as appStartAction} from '../../actions/app';
+import {connect} from 'react-redux';
 import I18n from 'i18n-js';
 
-const SignUpDataView = () => {
+const SignUpDataView = props => {
   const [profileImage, setProfileImage] = useState({
     imageName: '',
     imageUrl: '',
   });
+
+  const [userInfo, setUserInfo] = useState({
+    displayName: '',
+    gender: 'male',
+    city: '',
+    phone: '',
+    birthday: '',
+    job: '',
+    company: '',
+    role: '',
+    years_of_service: '',
+  });
+
+  const onUserInfoUpdated = update => {
+    setUserInfo(info => {
+      return {...info, ...update};
+    });
+  };
 
   const [agreedPolicy, setAgreedPolicy] = useState(false);
 
@@ -27,7 +47,10 @@ const SignUpDataView = () => {
       <StatusBar />
       <View style={styles.main}>
         <View style={styles.body}>
-          <ScrollView style={{flex: 1, height: '100%'}} {...scrollPersistTaps} keyboardShouldPersistTaps="handled">
+          <ScrollView
+            style={{flex: 1, height: '100%'}}
+            {...scrollPersistTaps}
+            keyboardShouldPersistTaps="handled">
             <View style={styles.header}>
               <Image source={images.logo} style={styles.logo} />
               <Text style={styles.title}>{i18n.t('welcome_to_vip')}</Text>
@@ -36,7 +59,7 @@ const SignUpDataView = () => {
 
             <ProfileImageUpload {...profileImage} onUpload={setProfileImage} />
 
-            <BasicInfoUpdate />
+            <BasicInfoUpdate userInfo={userInfo} onUpdate={onUserInfoUpdated} />
 
             <Text style={styles.updateExperienceText}>{i18n.t('update_experience')}</Text>
 
@@ -55,7 +78,7 @@ const SignUpDataView = () => {
               style={styles.radioIcon}
               onPress={() => setAgreedPolicy(b => !b)}
             />
-            <Text style={styles.privacy}>
+            <Text style={styles.privacy} numberOfLines={2}>
               <Text style={{fontWeight: '400'}}>{I18n.t('agree_with')}</Text>{' '}
               <Text style={{color: COLOR_YELLOW}}>{I18n.t('Terms_and_conditions')} </Text>
               <Text style={{fontWeight: '400'}}>{i18n.t('and')} </Text>{' '}
@@ -69,4 +92,9 @@ const SignUpDataView = () => {
   );
 };
 
-export default withTheme(SignUpDataView);
+const mapDispatchToProps = dispatch => ({
+  loginSuccess: params => dispatch(loginSuccessAction(params)),
+  appStart: params => dispatch(appStartAction(params)),
+});
+
+export default connect(null, mapDispatchToProps)(withTheme(SignUpDataView));

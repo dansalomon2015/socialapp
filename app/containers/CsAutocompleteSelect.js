@@ -8,7 +8,7 @@ const { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
-    width: width * 0.92,
+    // width: width * 0.92,
     borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   label: {
-    marginLeft: 15,
+    // marginLeft: 15,
     fontFamily: 'Raleway',
     fontWeight: '400',
     color: '#4A4A4A',
@@ -38,6 +38,7 @@ const CsAutocompleteSelect = ({
   placeholder,
   theme,
   label,
+  containerStyle
 }) => {
 
   const [show, setShow] = useState(false)
@@ -56,7 +57,7 @@ const CsAutocompleteSelect = ({
   return (
     <>
       {label && <Text style={styles.label}>City</Text>}
-      <View style={styles.container}>
+      <View style={[styles.container,containerStyle]}>
         <AutocompleteDropdown
           clearOnFocus={false}
           closeOnBlur={true}
@@ -72,6 +73,7 @@ const CsAutocompleteSelect = ({
               color: themes[theme].activeTintColor,
               fontSize: 14,
             },
+            placeholderTextColor : themes[theme].subTextColor
           }}
           inputContainerStyle={{
             backgroundColor: 'transparent',

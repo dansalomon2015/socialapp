@@ -2,24 +2,32 @@ import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import ProfileDataPlaceholder from '../ProfileDataPlaceholder';
 import i18n from '../../i18n';
-import Modal from 'react-native-modal';
-import BottomSheet from '../BottomSheet';
+import BasicInfoModal from '../../views/UpdateProfileAndBasicInfo/BasicInfoModal';
+import BasicInfoUploaded from '../BasicInfoUploaded';
 
-const BasicInfoUpdate = ({name, gender, dob, phone, location}) => {
+const BasicInfoUpdate = ({userInfo, onUpdate}) => {
+  const {displayName, gender, birthday, phone, city} = userInfo;
   const [modalVisible, setModalVisible] = useState(false);
 
-  if (!name)
+  if (!displayName)
     return (
       <>
-        <ProfileDataPlaceholder title={i18n.t('update_basic_information')} onPress={() => setModalVisible(true)} />
-        <BottomSheet visible={modalVisible} close={() => setModalVisible(false)} />
+        <ProfileDataPlaceholder
+          title={i18n.t('update_basic_information')}
+          onPress={() => setModalVisible(true)}
+        />
+        <BasicInfoModal isVisible={modalVisible} close={() => setModalVisible(false)} onUpdate={onUpdate} />
       </>
     );
 
   return (
-    <View>
-      <Text> BasicInfoUpdate</Text>
-    </View>
+    <BasicInfoUploaded
+      name={userInfo.displayName}
+      gender={gender}
+      dob={birthday}
+      phone={phone}
+      location={city}
+    />
   );
 };
 

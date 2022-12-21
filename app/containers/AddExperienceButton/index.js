@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import BottomSheet from '../BottomSheet';
+import ModalView from '../ModalView';
 import {styles} from './styles';
 
 const AddExperienceButton = () => {
@@ -11,7 +11,7 @@ const AddExperienceButton = () => {
         <Text style={styles.title}>AddExperienceButton</Text>
       </TouchableOpacity>
 
-      <BottomSheet visible={modalVisible} close={() => setModalVisible(false)} />
+      {/* <ModalView  /> */}
     </>
   );
 };

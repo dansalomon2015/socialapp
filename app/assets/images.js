@@ -87,6 +87,7 @@ const images = {
   fast_email_sending: require('./img/fast_email_sending.png'),
   location_home: require('./images/location_home.png'),
   en_language: require('./images/en_language.png'),
-}
+  location_home_gray: require('./images/location_home_gray.png'),
+};
 
-export default images
+export default images;
