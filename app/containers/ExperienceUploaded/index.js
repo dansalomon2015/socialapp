@@ -6,7 +6,15 @@ import {VectorIcon} from '../VectorIcon';
 import {themes} from '../../constants/colors';
 import {useTheme} from '../../theme';
 
-const ExperienceUploaded = ({salary, jobTitle, companyName, numberOfYears, showCloseIcon, theme}) => {
+const ExperienceUploaded = ({
+  salary,
+  jobTitle,
+  companyName,
+  numberOfYears,
+  showCloseIcon,
+  theme,
+  onCancel,
+}) => {
   return (
     <View style={styles.container}>
       <View>
@@ -20,7 +28,14 @@ const ExperienceUploaded = ({salary, jobTitle, companyName, numberOfYears, showC
         </Text>
       </View>
       {showCloseIcon && (
-        <VectorIcon type="Ionicons" name="close-outline" size={20} color="#858585" style={styles.closeIcon} />
+        <VectorIcon
+          type="Ionicons"
+          name="close-outline"
+          size={20}
+          color="#858585"
+          style={styles.closeIcon}
+          onPress={onCancel}
+        />
       )}
     </View>
   );

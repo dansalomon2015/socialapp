@@ -10,7 +10,6 @@ import ExDatePicker from '../../../containers/ExDatePicker';
 import i18n from '../../../i18n';
 import ModalView from '../../../containers/ModalView';
 import {COLOR_RED, themes} from '../../../constants/colors';
-import {showToast} from '../../../lib/info';
 
 const theme = 'light';
 
@@ -39,7 +38,7 @@ const BasicInfoModal = ({isVisible, close, onUpdate}) => {
     }
 
     if (!city.length) {
-      setCityError(i18n.t('please_select_city'));
+      setCityError(i18n.t('please_enter_city'));
       return false;
     }
 

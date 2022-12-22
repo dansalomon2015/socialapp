@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ProfileDataPlaceholder from '../ProfileDataPlaceholder';
 import ImagePicker from 'react-native-image-crop-picker';
-import {Platform, Alert} from 'react-native';
+import {Alert} from 'react-native';
 import ProfileImageUploaded from '../../../containers/ProfileImageUploaded';
 import firebaseSdk from '../../../lib/firebaseSdk';
 import i18n from '../../../i18n';
