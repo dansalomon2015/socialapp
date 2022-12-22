@@ -35,36 +35,26 @@ const SidebarView = (props) => {
       id: 'shop',
       name: I18n.t('Shop'),
       icon: 'shopping',
-      route: 'Shop',
-      routes: ['Shop'],
     },
     {
       id: 'vip_members',
       name: I18n.t('Vip_members'),
       icon: 'star-circle',
-      route: 'VipMembers',
-      routes: ['VipMembers'],
     },
     {
       id: 'connections',
       name: 'My connections',
       icon: 'account-multiple',
-      route: 'VipMembers',
-      routes: ['MyConnetions'],
     },
     {
       id: 'privacy_and_settings',
       name: I18n.t('Privacy_and_settings'),
       icon: 'shield-lock',
-      route: 'Privacy',
-      routes: ['Privacy'],
     },
     {
       id: 'help_and_support',
       name: I18n.t('Help_and_support'),
       icon: 'comment-question',
-      route: 'Privacy',
-      routes: ['HelpAndSupport'],
     },
   ]
 
@@ -83,12 +73,12 @@ const SidebarView = (props) => {
         return Linking.openURL(SITE_SHOP_URL)
       case 'help_and_support':
         return navigation.navigate('HelpAndSupport')
-      case 'MyConnections':
-        return navigation.navigate('MyConnections')
+      case 'connections':
+        return navigation.navigate('MenuStack', { screen: 'MyConnections' })
       case 'vip_members':
         return navigation.navigate('')
-      // default:
-      //   onNavigate(item.route, { type: item.init })
+      default:
+        navigation.navigate('')
     }
   }
   const onLogOut = () => {

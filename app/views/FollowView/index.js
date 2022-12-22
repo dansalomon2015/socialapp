@@ -106,7 +106,7 @@ const FollowView = props => {
 
       if (searchText.length > 0) {
         let data = users.filter(d => {
-          const key = d.displayName
+          const key = d.displayName || ''
           return key.toLowerCase().indexOf(searchText.toLowerCase()) >= 0
         })
         setData(data)

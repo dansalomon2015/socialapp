@@ -20,11 +20,10 @@ export default StyleSheet.create({
   },
   title: {
     fontFamily: 'Raleway',
-    fontWeight: '500',
-    fontSize: 16,
+    fontWeight: '600',
+    fontSize: 18,
     lineHeight: 22,
-    marginBottom: 12,
-    marginTop: 32,
+    marginBottom: 12
   },
   text: {
     fontFamily: 'Raleway',
@@ -32,5 +31,12 @@ export default StyleSheet.create({
     fontSize: 14,
     lineHeight: 22,
     marginBottom: 12,
+  },
+  listText: {
+    flex: 1,
+    fontFamily: 'Raleway',
+    fontWeight: '500',
+    fontSize: 14,
+    lineHeight: 22,
   },
 })

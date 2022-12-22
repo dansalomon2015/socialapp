@@ -102,7 +102,7 @@ const PrivacySettingsView = (props) => {
 
         <SidebarItem
           text={'Change Password'}
-          onPress={() => onClick(onShowUpdatePasswordModal(true))}
+          onPress={() => onShowUpdatePasswordModal(true)}
           theme={theme}
           hasRight
         />
