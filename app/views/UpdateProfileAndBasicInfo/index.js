@@ -50,6 +50,11 @@ const UpdateProfileAndBasicInfo = ({loginSuccess, user, dispatch}) => {
   };
 
   const onSubmit = () => {
+    if (!profileImage.imageUrl || userInfo.displayName || userInfo.job) {
+      showToast(i18n.t('please_complete_these_steps_to_confirm'));
+      return;
+    }
+
     if (!radioButtonChecked) {
       showToast(i18n.t('you_should_agree_with_terms'));
       return;
