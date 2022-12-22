@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, View, TouchableOpacity, ActivityIndicator} from 'react-native';
-import i18n from '../../i18n';
-import {VectorIcon} from '../VectorIcon';
-import {COLOR_GRAY_DARK, COLOR_LIGHT_DARK} from '../../constants/colors';
+import i18n from '../../../i18n';
 import {styles} from './styles';
+import {COLOR_GRAY_DARK, COLOR_LIGHT_DARK} from '../../../constants/colors';
+import {VectorIcon} from '../../../containers/VectorIcon';
 
 const ProfileDataPlaceholder = ({title, onPress, loading}) => {
   if (loading)

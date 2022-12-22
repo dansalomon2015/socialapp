@@ -1,6 +1,6 @@
-import { Dimensions, StyleSheet } from "react-native";
+import {Dimensions, StyleSheet} from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {},
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 12,
     textAlign: 'center',
-    marginTop: 9
+    marginTop: 9,
   },
   uploadButtonsContainer: {
     width: width * 0.9,
@@ -42,18 +42,18 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '700',
     position: 'absolute',
-    right: 10
+    right: 10,
   },
   uploadProfileImageText: {
     marginLeft: 10,
     fontSize: 14,
     fontFamily: 'Hind Vadodara',
-    fontWeight: '500'
+    fontWeight: '500',
   },
   addExperienceContainer: {
     width: width * 0.9,
     alignSelf: 'center',
-    marginTop: 15
+    marginTop: 15,
   },
   addExperienceBtn: {
     width: '99%',
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   addExperienceTxt: {
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   updateExperienceTxt: {
     fontFamily: 'Raleway',
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
     marginBottom: 15,
-    marginLeft: 10
+    marginLeft: 10,
   },
   othersText: {
     fontFamily: 'Raleway',
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
     marginBottom: 15,
-    marginLeft: 10
+    marginLeft: 10,
   },
   basicSubscriptionBtn: {
     width: '99%',
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#B1B1B11A',
     opacity: 5,
     alignSelf: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   othersContainer: {
     width: width * 0.9,
@@ -112,62 +112,66 @@ const styles = StyleSheet.create({
     backgroundColor: '#B1B1B11A',
     opacity: 5,
     alignSelf: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   reward_badge: {
     resizeMode: 'contain',
     width: 40,
-    height: 43.22
+    height: 43.22,
   },
   fast_email_sending: {
     resizeMode: 'contain',
     width: 40,
-    height: 43.22
+    height: 43.22,
   },
   basicSubscriptionAndUpgradePlanContainer: {
-    marginLeft: 14
+    marginLeft: 14,
   },
   basicSubscriptionText: {
     fontFamily: 'Hind Vadodara',
     fontWeight: '600',
-    fontSize: 16
+    fontSize: 16,
   },
   upgradePlanText: {
     fontFamily: 'Raleway',
-    fontSize: 10
+    fontSize: 10,
   },
   inviteTitle: {
     fontFamily: 'Hind Vadodara',
     fontWeight: '600',
-    fontSize: 16
+    fontSize: 16,
   },
   inviteDescription: {
     fontFamily: 'Raleway',
-    fontSize: 10
+    fontSize: 10,
   },
   bottomSheet: {
-    width,
-    alignSelf: 'center',
-    backgroundColor: '#B1B1B11A',
-    opacity: 5,
-    position: 'absolute',
-    bottom: 0,
-    height: height * 0.18,
-    borderTopLeftRadius: 8,
-    alignItems: 'center',
+    // width,
+    // alignSelf: 'center',
+    // backgroundColor: '#B1B1B11A',
+    // opacity: 5,
+    // position: 'absolute',
+    // bottom: 0,
+    // height: height * 0.18,
+    // borderTopLeftRadius: 8,
+    // alignItems: 'center',
     paddingHorizontal: 24,
-    paddingTop: 5,
+    paddingVertical: 13,
+    backgroundColor: '#F8F8F8',
+    justifyContent: 'center',
   },
   termsAndConditions: {
     color: '#DBAA2E',
-    fontSize: 14
+    fontSize: 14,
   },
   privacyPolicy: {
     color: '#DBAA2E',
   },
   termsAndConditionsPrivacyPolicy: {
     fontFamily: 'Raleway',
-    fontSize: 12
+    flexShrink: 1,
+    fontSize: 14,
+    lineHeight: 20,
   },
   headerContainer: {
     marginTop: 0,
@@ -178,17 +182,23 @@ const styles = StyleSheet.create({
   confirmBtn: {
     height: 45,
     alignSelf: 'center',
-    width: '90%'
+    // width: '90%',
   },
   radioButton: {
-    position: 'absolute',
-    right: 10
+    marginRight: 10,
   },
   radioButtonAndText: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 5
-  }
+    marginBottom: 15,
+  },
+  updateExperienceText: {
+    fontSize: 12,
+    fontWeight: '500',
+    marginLeft: 5,
+    fontFamily: 'Raleway',
+    lineHeight: 15,
+    marginVertical: 15,
+  },
 });
 
 export default styles;

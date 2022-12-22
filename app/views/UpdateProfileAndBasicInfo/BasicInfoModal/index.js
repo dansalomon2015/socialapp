@@ -57,7 +57,7 @@ const BasicInfoModal = ({isVisible, close, onUpdate}) => {
   };
 
   const onSubmit = () => {
-    if (isValid())
+    if (isValid()) {
       onUpdate({
         displayName,
         phone,
@@ -65,7 +65,8 @@ const BasicInfoModal = ({isVisible, close, onUpdate}) => {
         city,
         gender,
       });
-    close();
+      close();
+    }
   };
 
   return (

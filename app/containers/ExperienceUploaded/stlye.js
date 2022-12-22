@@ -1,12 +1,12 @@
-import { Dimensions, StyleSheet } from "react-native";
+import {Dimensions, StyleSheet} from 'react-native';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    width: width * 0.9,
-    alignSelf: 'center',
-    backgroundColor: '#F8F8F8',
+    // width: width * 0.9,
+    // alignSelf: 'center',
+    backgroundColor: '#FFF',
     borderRadius: 8,
     flexDirection: 'row',
     shadowColor: '#ccc',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   closeIcon: {
     position: 'absolute',
     top: 20,
-    right: 20
+    right: 20,
   },
 });
 

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { Dimensions, StyleSheet, View, Text } from 'react-native'
-import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
-import { themes } from '../constants/colors'
-import { VectorIcon } from './VectorIcon'
+import React, {useState} from 'react';
+import {Dimensions, StyleSheet, View, Text} from 'react-native';
+import {AutocompleteDropdown} from 'react-native-autocomplete-dropdown';
+import {themes} from '../constants/colors';
+import {VectorIcon} from './VectorIcon';
 
-const { width, height } = Dimensions.get('window')
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -29,19 +29,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 14,
   },
-})
+});
 
-const CsAutocompleteSelect = ({
-  leftIcon,
-  data,
-  onSelectItem,
-  placeholder,
-  theme,
-  label,
-  containerStyle
-}) => {
-
-  const [show, setShow] = useState(false)
+const CsAutocompleteSelect = ({leftIcon, data, onSelectItem, placeholder, theme, label, containerStyle}) => {
+  const [show, setShow] = useState(false);
 
   const RightIcon = () => {
     return (
@@ -51,13 +42,13 @@ const CsAutocompleteSelect = ({
         color={themes[theme].activeTintColor}
         size={18}
       />
-    )
-  }
+    );
+  };
 
   return (
     <>
-      {label && <Text style={styles.label}>City</Text>}
-      <View style={[styles.container,containerStyle]}>
+      {label && <Text style={styles.label}>{label}</Text>}
+      <View style={[styles.container, containerStyle]}>
         <AutocompleteDropdown
           clearOnFocus={false}
           closeOnBlur={true}
@@ -73,7 +64,7 @@ const CsAutocompleteSelect = ({
               color: themes[theme].activeTintColor,
               fontSize: 14,
             },
-            placeholderTextColor : themes[theme].subTextColor
+            placeholderTextColor: themes[theme].subTextColor,
           }}
           inputContainerStyle={{
             backgroundColor: 'transparent',
@@ -84,13 +75,13 @@ const CsAutocompleteSelect = ({
             marginLeft: -40,
             backgroundColor: themes[theme].backgroundColor,
           }}
-          containerStyle={{ width: '95%' }}
+          containerStyle={{width: '95%'}}
           showChevron={false}
         />
         <RightIcon />
       </View>
     </>
-  )
-}
+  );
+};
 
-export default CsAutocompleteSelect
+export default CsAutocompleteSelect;

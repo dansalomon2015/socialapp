@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
 import ProfileDataPlaceholder from '../ProfileDataPlaceholder';
-import i18n from '../../i18n';
-import BasicInfoModal from '../../views/UpdateProfileAndBasicInfo/BasicInfoModal';
-import BasicInfoUploaded from '../BasicInfoUploaded';
+import BasicInfoModal from '../BasicInfoModal';
+import BasicInfoUploaded from '../../../containers/BasicInfoUploaded';
+import i18n from '../../../i18n';
 
 const BasicInfoUpdate = ({userInfo, onUpdate}) => {
   const {displayName, gender, birthday, phone, city} = userInfo;
