@@ -65,6 +65,6 @@ export default StyleSheet.create({
   captionText: {
     fontFamily: 'Raleway',
     fontSize: 12,
-    lineHeight: 14
+    lineHeight: 14,
   },
 })

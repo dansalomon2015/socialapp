@@ -91,7 +91,7 @@ export default function CsDatePicker({
           </Text>
         ) : null}
         <DateTimePicker
-          testID='date-time-picker'
+          testID="date-time-picker"
           style={{ width: 116 }}
           mode={type}
           is24Hour={true}

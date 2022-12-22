@@ -48,7 +48,7 @@ const FindFriendView = props => {
 
   useEffect(() => {
     if (inputBox.current)
-      inputBox.current.focus()
+      {inputBox.current.focus()}
   }, [])
 
   useEffect(() => {

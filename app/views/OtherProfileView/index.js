@@ -496,7 +496,7 @@ const OtherProfileView = props => {
           {isPostTab ? (
             posts.map(p => {
               if (p.type === POST_TYPE_TEXT)
-                return (
+                {return (
                   <PostText
                     key={p.id}
                     item={p}
@@ -508,7 +508,7 @@ const OtherProfileView = props => {
                     onActions={onActionPost(p)}
                     theme={theme}
                   />
-                )
+                )}
             })
           ) : (
             <View
@@ -529,7 +529,7 @@ const OtherProfileView = props => {
                 3,
               ).map((p, index) => {
                 if (index % 4 === 0)
-                  return (
+                  {return (
                     <View style={{ flexDirection: 'row' }}>
                       <TouchableOpacity onPress={() => onOpenPost(p[0])}>
                         <Image
@@ -558,9 +558,9 @@ const OtherProfileView = props => {
                         </TouchableOpacity>
                       </View>
                     </View>
-                  )
+                  )}
                 if (index % 4 === 1 || index % 4 === 3)
-                  return (
+                  {return (
                     <View style={{ flexDirection: 'row' }}>
                       <TouchableOpacity onPress={() => onOpenPost(p[0])}>
                         <Image
@@ -581,9 +581,9 @@ const OtherProfileView = props => {
                         />
                       </TouchableOpacity>
                     </View>
-                  )
+                  )}
                 if (index % 4 === 2)
-                  return (
+                  {return (
                     <View style={{ flexDirection: 'row' }}>
                       <View>
                         <TouchableOpacity onPress={() => onOpenPost(p[0])}>
@@ -606,7 +606,7 @@ const OtherProfileView = props => {
                         />
                       </TouchableOpacity>
                     </View>
-                  )
+                  )}
               })}
             </View>
           )}

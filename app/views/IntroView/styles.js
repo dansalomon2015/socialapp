@@ -48,7 +48,7 @@ export default StyleSheet.create({
     bottom: height * 0.05,
     left: 16,
     right: 16,
-    height: height * 0.2
+    height: height * 0.2,
   },
   paginationDots: {
     height: 16,

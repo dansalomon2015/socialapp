@@ -37,7 +37,7 @@ const SignUpSuccessView = props => {
         </Text>
 
         <Text style={[styles.instruction, styles.instruction_japanese]}>
-          {`ご登録ありがとうございます。\n次に進む前にメールアドレスの確認を\nお願いいたします。`}
+          {'ご登録ありがとうございます。\n次に進む前にメールアドレスの確認を\nお願いいたします。'}
         </Text>
       </View>
     </SafeAreaView>

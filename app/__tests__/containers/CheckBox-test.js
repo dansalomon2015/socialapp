@@ -13,7 +13,7 @@ test('checkbox performance', () => {
 
   render(<CheckBox title="CHECKBOX" onPress={mockFn} />);
   expect(screen.getByText('CHECKBOX')).toBeTruthy();
-  
+
   fireEvent.press(screen.getByText('CHECKBOX'));
   expect(mockFn).toBeCalledWith();
 });

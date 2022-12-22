@@ -23,7 +23,7 @@ export default StyleSheet.create({
     fontWeight: '600',
     fontSize: 18,
     lineHeight: 22,
-    marginBottom: 12
+    marginBottom: 12,
   },
   text: {
     fontFamily: 'Raleway',

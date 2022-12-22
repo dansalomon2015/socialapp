@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 10,
     width: width * 0.92,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   label: {
     marginBottom: 4,
     fontSize: 14,
-    fontFamily: 'Raleway'
+    fontFamily: 'Raleway',
 
   },
   required: {
@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 11,
     borderRadius: 8,
     // marginHorizontal: 3
-    width: '49%'
+    width: '49%',
   },
   optionText: {
-    fontFamily: 'Raleway'
-  }
+    fontFamily: 'Raleway',
+  },
 })
 
 const CsSelectGender = (props) => {
@@ -62,7 +62,7 @@ const CsSelectGender = (props) => {
     value,
     required,
     containerStyle,
-    theme
+    theme,
   } = props
 
   const setCheck = value => {

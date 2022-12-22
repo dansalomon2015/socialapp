@@ -48,7 +48,7 @@ const ThankYouView = ({ user, logout, navigation }) => {
     <SafeAreaView
       style={[
         sharedStyles.container,
-        { flexDirection: 'column', backgroundColor: themes[theme].backgroundColor }
+        { flexDirection: 'column', backgroundColor: themes[theme].backgroundColor },
       ]}>
       <ScrollView
         {...scrollPersistTaps}
@@ -82,7 +82,7 @@ const ThankYouView = ({ user, logout, navigation }) => {
           その場合にはいただいた代金は返金させていただきます。
         </Text>
         <Text style={styles.submittedApplicationText}>Your submitted applicationn</Text>
-        <Avatar.Image size={56} source={user.avatar ? user.avatar:images.default_avatar} style={styles.avatar} />
+        <Avatar.Image size={56} source={user.avatar ? user.avatar : images.default_avatar} style={styles.avatar} />
         <BasicInfoUploaded name={displayName} gender={gender} dob={birthday} phone={phone} location={ location && location.length > 0 ? location : city} />
         <ExperienceUploaded salary={salary} jobTitle={job} companyName={company} numberOfYears={years_of_service} />
       </ScrollView>

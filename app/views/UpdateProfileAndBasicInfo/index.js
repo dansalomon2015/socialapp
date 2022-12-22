@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, SafeAreaView, ScrollView, Image, Alert} from 'react-native';
 import {RadioButton} from 'react-native-paper';
 import ImagePicker from 'react-native-image-crop-picker';
-import Modal from "react-native-modal";
+import Modal from 'react-native-modal';
 
 import styles from './style';
 import images from '../../assets/images';

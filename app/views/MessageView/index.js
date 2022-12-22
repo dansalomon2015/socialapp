@@ -239,8 +239,7 @@ const MessageView = props => {
           style={[styles.badge, {
             backgroundColor: isOnline ? themes[theme].onlineStatusColor : themes[theme].focusedBackground,
             borderColor: themes[theme].borderColor,
-          }]}>
-        </Badge>
+          }]} />
       </View>
       <View style={styles.itemContent}>
         <Text

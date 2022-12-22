@@ -550,8 +550,7 @@ const PostDetailView = (props) => {
                       }]}>{c.text}</Text>
                     </View>
                   </View>
-                  <View style={styles.commentFooter}>
-                  </View>
+                  <View style={styles.commentFooter} />
                 </View>
               ))}
           </View>

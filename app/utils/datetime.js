@@ -109,7 +109,7 @@ export const dateStringFromNowShort = date => {
 }
 
 export const date_str_format = function (datetime, format) {
-  if (!datetime) return ''
+  if (!datetime) {return ''}
   let date = new Date(Date.parse(datetime))
   let yy = date.getFullYear()
   let mm = date.getMonth() + 1

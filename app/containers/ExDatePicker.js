@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   label: {
     marginBottom: 4,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Raleway',
     marginBottom: 5,
     marginLeft: 16,
-    color: '#4A4A4A'
+    color: '#4A4A4A',
   },
 })
 

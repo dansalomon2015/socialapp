@@ -38,7 +38,7 @@ const ProfileImageUpload = ({imageUrl, imageName, onUpload}) => {
     });
   };
 
-  if (!imageUrl) return <ProfileDataPlaceholder title={i18n.t('upload_profile_image')} onPress={pickImage} />;
+  if (!imageUrl) {return <ProfileDataPlaceholder title={i18n.t('upload_profile_image')} onPress={pickImage} />;}
 
   return <ProfileImageUploaded imageName={imageName} imageUrl={imageUrl} onCancel={onCancel} changeImage={pickImage} />;
 };

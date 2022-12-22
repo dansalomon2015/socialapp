@@ -20,13 +20,13 @@ describe('chat actions', () => {
     expect(Actions.fetchUnread()).toEqual(expectedAction);
     testedCount++;
   });
-  
+
   it('test all chat actions', () => {
     const keys = Object.keys(Actions);
     let actionCount = 0;
     for (let k in keys) {
       if (typeof Actions[keys[k]] === 'function') {
-        actionCount ++;
+        actionCount++;
       }
     }
     const expectedCount = {

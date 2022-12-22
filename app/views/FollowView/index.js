@@ -207,7 +207,7 @@ const FollowView = props => {
       <SafeAreaView style={[sharedStyles.contentContainer, {
         backgroundColor: themes[theme].backgroundColor,
         paddingTop: 10,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
       }]}>
         <StatusBar />
         {isSelf && (<SearchBox

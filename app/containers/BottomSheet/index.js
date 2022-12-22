@@ -11,7 +11,7 @@ const BottomSheet = ({visible, close}) => {
       onBackdropPress={close}
       swipeDirection={['down']}
       style={{justifyContent: 'flex-end', margin: 0}}>
-      <View style={{backgroundColor: COLOR_WHITE, padding: 20}}></View>
+      <View style={{backgroundColor: COLOR_WHITE, padding: 20}} />
     </Modal>
   );
 };

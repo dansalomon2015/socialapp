@@ -3,14 +3,9 @@ import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity, View, Text, ScrollView } from 'react-native'
 import { themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
-import SafeAreaView from '../../containers/SafeAreaView'
 import { withTheme } from '../../theme'
 import styles from './styles'
 import { VectorIcon } from '../../containers/VectorIcon'
-import I18n from '../../i18n'
-import { CONTENT_PRIVACY_POLICY, CONTENT_PRIVACY_POLICY_JP } from '../../constants/app'
-import { WebView } from 'react-native-webview'
-import sharedStyles from '../Styles'
 
 const PrivacyPolicy = props => {
   const navigation = useNavigation()
@@ -48,7 +43,7 @@ const PrivacyPolicy = props => {
             Billionaires.
           </Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            This Privacy Policy applies to our website, and its associated subdomains (collectively, our “Service”) alongside our application, VIP Billionaires. By accessing or using our Service, you
+            This Privacy Policy applies to our website, and its associated subdomains (collectively, our "Service") alongside our application, VIP Billionaires. By accessing or using our Service, you
             signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy and our Terms of Service.
           </Text>
         </View>
@@ -68,7 +63,7 @@ const PrivacyPolicy = props => {
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
             <Text style={[styles.listText, { color: themes[theme].textColor }]}>
-              Company: when this policy mentions “Company,” “we,” “us,” or “our,” it refers to Zein El Dine International Co., Ltd, Tokyo,
+              Company: when this policy mentions "Company," "we," "us," or "our," it refers to Zein El Dine International Co., Ltd, Tokyo,
               Japan that is responsible for your information under this Privacy Policy.
             </Text>
           </View>
@@ -502,7 +497,7 @@ const PrivacyPolicy = props => {
           </Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We use remarketing services. What Is Remarketing? In digital marketing, remarketing (or retargeting) is the practice of serving ads across the internet to people who have already visited
-            your website. It allows your company to seem like they're “following” people around the internet by serving ads on the websites and platforms they use most.
+            your website. It allows your company to seem like they're "following" people around the internet by serving ads on the websites and platforms they use most.
           </Text>
         </View>
 

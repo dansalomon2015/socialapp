@@ -9,12 +9,12 @@ const BasicInfoUpdate = ({name, gender, dob, phone, location}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   if (!name)
-    return (
+    {return (
       <>
         <ProfileDataPlaceholder title={i18n.t('update_basic_information')} onPress={() => setModalVisible(true)} />
         <BottomSheet visible={modalVisible} close={() => setModalVisible(false)} />
       </>
-    );
+    );}
 
   return (
     <View>

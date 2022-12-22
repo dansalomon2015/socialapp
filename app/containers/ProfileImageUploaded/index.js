@@ -11,7 +11,7 @@ import {TouchableOpacity} from 'react-native';
 
 const ProfileImageUploaded = ({imageUrl, imageName, onCancel, changeImage}) => {
   const displayFileName = useMemo(() => {
-    if (imageName.length < 20) return imageName;
+    if (imageName.length < 20) {return imageName;}
     return '...' + imageName.substring(imageName.length - 20, imageName.length);
   }, [imageName]);
 

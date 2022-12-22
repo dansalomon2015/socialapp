@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     justifyContent: 'space-between',
     height: 56,
-    borderColor: '#4A4A4A'
+    borderColor: '#4A4A4A',
   },
   label: {
     marginLeft: 15,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#4A4A4A',
     marginBottom: 5,
-    fontSize: 14
+    fontSize: 14,
   },
   iosPadding: {
     height: 50,
@@ -66,13 +66,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     maxHeight: height * 0.6,
     paddingTop: 40,
-    borderRadius: 8
+    borderRadius: 8,
   },
   closeIcon: {
     position: 'absolute',
     top: 10,
     right: 10,
-    zIndex: 9999
+    zIndex: 9999,
   },
   itemContainer:{
       borderWidth: 1,
@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
       height: 40,
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 6
-  }
+      borderRadius: 6,
+  },
 })
 
 export const CsSelect = React.memo(
@@ -93,7 +93,7 @@ export const CsSelect = React.memo(
      placeholder,
      value,
      theme,
-     onSelect
+     onSelect,
    }) => {
 
     const [selected, setSelected] = useState(false)

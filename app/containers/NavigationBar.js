@@ -31,8 +31,7 @@ const NavigationBar = React.memo(
       <View
         style={[styles.view, style]}
         testID={testID}
-        {...props}>
-      </View>
+        {...props} />
     )
   }
 )
