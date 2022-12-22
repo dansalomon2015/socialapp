@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, Platform, View } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, TouchableOpacity, Platform, View} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
-import { DATE_STRING_FORMAT, TIME_STRING_FORMAT } from '../utils/datetime';
-import { themes } from '../constants/colors';
+import {DATE_STRING_FORMAT, TIME_STRING_FORMAT} from '../utils/datetime';
+import {themes} from '../constants/colors';
 import sharedStyles from '../views/Styles';
-import { isIOS } from '../utils/deviceInfo';
+import {isIOS} from '../utils/deviceInfo';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,7 +45,7 @@ export default function CsDatePicker({
   const [show, onShow] = useState(false);
   const [currentDate, onChangeDate] = useState(value);
 
-  const onChange = ({ nativeEvent: { timestamp } }, date) => {
+  const onChange = ({nativeEvent: {timestamp}}, date) => {
     if (Platform.OS === 'android') {
       onShow(false);
     }
@@ -56,7 +56,7 @@ export default function CsDatePicker({
       }
       const newDate = date;
       onChangeDate(newDate);
-      action({ value: moment(newDate).format(DATE_STRING_FORMAT) });
+      action({value: moment(newDate).format(DATE_STRING_FORMAT)});
     } else {
       console.log('time', timestamp);
       if (!timestamp) {
@@ -64,7 +64,7 @@ export default function CsDatePicker({
       }
       const newDate = new Date(timestamp);
       onChangeDate(newDate);
-      action({ value: moment(newDate).format(TIME_STRING_FORMAT) });
+      action({value: moment(newDate).format(TIME_STRING_FORMAT)});
     }
   };
 
@@ -86,13 +86,13 @@ export default function CsDatePicker({
           <Text
             contentDescription={null}
             accessibilityLabel={null}
-            style={[styles.label, { color: themes[theme].infoText }]}>
+            style={[styles.label, {color: themes[theme].infoText}]}>
             {label}
           </Text>
         ) : null}
         <DateTimePicker
-          testID='date-time-picker'
-          style={{ width: 116 }}
+          testID="date-time-picker"
+          style={{width: 116}}
           mode={type}
           is24Hour={true}
           display="default"
@@ -110,9 +110,7 @@ export default function CsDatePicker({
     <TouchableOpacity style={styles.input} onPress={() => onShow(!show)}>
       <Text>
         {currentDate
-          ? moment(currentDate).format(
-            type === 'date' ? DATE_STRING_FORMAT : TIME_STRING_FORMAT,
-          )
+          ? moment(currentDate).format(type === 'date' ? DATE_STRING_FORMAT : TIME_STRING_FORMAT)
           : placeholder}
       </Text>
     </TouchableOpacity>
@@ -136,7 +134,7 @@ export default function CsDatePicker({
         <Text
           contentDescription={null}
           accessibilityLabel={null}
-          style={[styles.label, { color: themes[theme].infoText }]}>
+          style={[styles.label, {color: themes[theme].infoText}]}>
           {label}
         </Text>
       ) : null}

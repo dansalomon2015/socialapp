@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Dimensions, StyleSheet, View, Text} from 'react-native';
+import {Dimensions, StyleSheet, View, Text, Platform} from 'react-native';
 import {AutocompleteDropdown} from 'react-native-autocomplete-dropdown';
 import {themes} from '../constants/colors';
 import {VectorIcon} from './VectorIcon';
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
 
 const CsAutocompleteSelect = ({leftIcon, data, onSelectItem, placeholder, theme, label, containerStyle}) => {
   const [show, setShow] = useState(false);
+  const [focus, setFocus] = useState(false);
 
   const RightIcon = () => {
     return (
@@ -48,7 +49,7 @@ const CsAutocompleteSelect = ({leftIcon, data, onSelectItem, placeholder, theme,
   return (
     <>
       {label && <Text style={styles.label}>{label}</Text>}
-      <View style={[styles.container, containerStyle]}>
+      <View style={[styles.container, containerStyle, focus ? {zIndex: 1} : null]}>
         <AutocompleteDropdown
           clearOnFocus={false}
           closeOnBlur={true}
@@ -68,12 +69,15 @@ const CsAutocompleteSelect = ({leftIcon, data, onSelectItem, placeholder, theme,
           }}
           inputContainerStyle={{
             backgroundColor: 'transparent',
-            alignSelf: 'flex-end',
+            // alignSelf: 'flex-end',
           }}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
           suggestionsListContainerStyle={{
-            width: width * 0.76,
-            marginLeft: -40,
-            backgroundColor: themes[theme].backgroundColor,
+            // width: width * 0.76,
+            // marginLeft: -40,
+            // backgroundColor: themes[theme].backgroundColor,
+            backgroundColor: '#FFF',
           }}
           containerStyle={{width: '95%'}}
           showChevron={false}
