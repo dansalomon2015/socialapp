@@ -1,12 +1,18 @@
-import {put, takeLatest} from 'redux-saga/effects';
-import * as types from '../actions/actionsTypes';
-import {setUser} from '../actions/login';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {CURRENT_USER} from '../constants/keys';
-import firebaseSdk from '../lib/firebaseSdk';
-import {appStart, ROOT_BASIC_INFO, ROOT_INSIDE, ROOT_OUTSIDE, ROOT_THANK_YOU, ROOT_VERIFY_EMAIL} from '../actions/app';
-import {fetchUnread} from '../actions/chat';
-import firebase from '@react-native-firebase/app';
+import { put, takeLatest } from 'redux-saga/effects'
+import * as types from '../actions/actionsTypes'
+import { setUser } from '../actions/login'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { CURRENT_USER } from '../constants/keys'
+import firebaseSdk from '../lib/firebaseSdk'
+import {
+  appStart,
+  ROOT_INSIDE,
+  ROOT_OUTSIDE,
+  ROOT_THANK_YOU,
+  ROOT_VERIFY_EMAIL,
+} from '../actions/app'
+import { fetchUnread } from '../actions/chat'
+
 
 const handleLoginSuccess = function* handleLoginSuccess({data}) {
   yield put(setUser(data));

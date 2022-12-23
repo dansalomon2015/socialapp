@@ -11,7 +11,7 @@ import { setUser as setUserAction } from '../../actions/login'
 import ModalView from '../../containers/ModalView'
 
 const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
-  const [userInfo, setUserInfo] = useState({ name: user.displayName, username: user.handle })
+  const [userInfo, setUserInfo] = useState({ name: user.displayName || '', username: user.handle || '' })
   const [isLoading, setIsLoading] = useState(false)
   const [errName, setErrName] = useState('')
   const [errUserName, setErrUserName] = useState('')
@@ -20,11 +20,13 @@ const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
   const usernameInput = useRef(null)
 
   useEffect(() => {
-    setUserInfo({ name: user.displayName, username: user.handle })
+    setUserInfo({ name: user.displayName || '', username: user.handle || '' })
   }, [isShow, user])
 
   useEffect(() => {
-    isValid()
+    if (isShow) {
+      isValid()
+    }
   }, [userInfo])
 
   const isValid = () => {
@@ -35,15 +37,15 @@ const AccountSettingsModal = ({ isShow, onClose, theme, user, setUser }) => {
       nameInput.current.focus()
       setBtnDisable(true)
       return false
-    }
-    if (!userInfo.username.length) {
+    } else if (!userInfo.username.length) {
       setErrUserName(I18n.t('please_enter_name'))
       usernameInput.current.focus()
       setBtnDisable(true)
       return false
+    } else {
+      setBtnDisable(false)
+      return true
     }
-    setBtnDisable(false)
-    return true
   }
 
   const onChangeText = (text, type) => {

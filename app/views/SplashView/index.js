@@ -14,7 +14,6 @@ import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import { PERMISSIONS, requestMultiple } from 'react-native-permissions'
 import { styles } from './style'
-import { COLOR_BLACK, themes } from '../../constants/colors'
 
 const SplashView = (props) => {
   useEffect(() => {
