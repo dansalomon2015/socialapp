@@ -1,20 +1,21 @@
-import I18n from '../i18n';
+import I18n from '../i18n'
 
-export const POST_TYPE_TEXT = 'text';
-export const POST_TYPE_PHOTO = 'photo';
-export const POST_TYPE_VIDEO = 'video';
+export const POST_TYPE_TEXT = 'text'
+export const POST_TYPE_PHOTO = 'photo'
+export const POST_TYPE_VIDEO = 'video'
 
-export const SITE_SHOP_URL = 'https://www.vipbillionaires.com';
+export const SUPPORT_EMAIL = 'vip-support@zedinternational.net'
+export const SITE_SHOP_URL = 'https://www.vipbillionaires.com'
 export const SITE_VIP_MEMBERS_URL =
-  'https://www.vipbillionaires.com/vip-members';
+  'https://www.vipbillionaires.com/vip-members'
 export const CLOUD_URL =
-  'https://us-central1-vip-billionaires-c07df.cloudfunctions.net';
-export const MERCHANT_ID = 'merchant.com.ninasoft.vipbillionaires';
+  'https://us-central1-vip-billionaires-c07df.cloudfunctions.net'
+export const MERCHANT_ID = 'merchant.com.ninasoft.vipbillionaires'
 
 export const Genders = [
   { value: 'male', text: I18n.t('Male') },
   { value: 'female', text: I18n.t('Female') },
-];
+]
 
 export const Countries = [
   { value: 'Afghanistan', text: 'Afghanistan' },
@@ -218,7 +219,7 @@ export const Countries = [
   { value: 'Yemen', text: 'Yemen' },
   { value: 'Zambia', text: 'Zambia' },
   { value: 'Zimbabwe', text: 'Zimbabwe' },
-];
+]
 
 export const CONTENT_PRIVACY_POLICY =
   '<h1>Privacy Policy</h1>\n' +
@@ -535,7 +536,7 @@ export const CONTENT_PRIVACY_POLICY =
   'For more information about these rights, please contact us.\n' +
   '<h3>Contact Us</h3>\n' +
   '<p>Don\'t hesitate to contact us if you have any questions.</p>\n' +
-  '<p>● Via Email: info@zedinternational.net</p>';
+  '<p>● Via Email: info@zedinternational.net</p>'
 
 export const CONTENT_PRIVACY_POLICY_JP =
   '<h1>ご利用規約</h1>\n' +
@@ -685,7 +686,7 @@ export const CONTENT_PRIVACY_POLICY_JP =
   '\n' +
   '<h3>お問い合わせ</h3>\n' +
   '<p>ご不明な点がございましたら、ご遠慮なくお問い合わせください。</p>\n' +
-  '<p>電子メールで: info@zedinternational.net</p>\n';
+  '<p>電子メールで: info@zedinternational.net</p>\n'
 
 export const CONTENT_TERMS_AND_CONDITIONS =
   '<h2>Terms & Conditions</h2>\n' +
@@ -964,7 +965,7 @@ export const CONTENT_TERMS_AND_CONDITIONS =
   'error-free.</p>\n' +
   '<h3>Contact Us</h3>\n' +
   '<p>Don\'t hesitate to contact us if you have any questions.</p>\n' +
-  '<p>● Via Email: info@zedinternational.net</p>';
+  '<p>● Via Email: info@zedinternational.net</p>'
 
 export const CONTENT_TERMS_AND_CONDITIONS_JP =
   '<p>VIP Billionaires （以下「私たち」といいます。）は、VIP Billionaires の提供するサービス（以下「本サービス」といいます。）における、ユーザーについての個人情報を含む利用者情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」といいます。）を定めます。</p>\n' +
@@ -1050,7 +1051,7 @@ export const CONTENT_TERMS_AND_CONDITIONS_JP =
   '連絡先：Eメール  info@zedinternational.net</p>\n' +
   '\n' +
   '<h3>10.プライバシーポリシーの変更手続</h3>\n' +
-  '<p>VIP Billionaires は、必要に応じて、本ポリシーを変更します。但し、法令上ユーザーの同意が必要となるような本ポリシーの変更を行う場合、変更後の本ポリシーは、VIP Billionaires 所定の方法で変更に同意したユーザーに対してのみ適用されるものとします。なお、VIP Billionaires は、本ポリシーを変更する場合には、変更後の本ポリシーの施行時期及び内容をVIP Billionaires のウェブサイト上での表示その他の適切な方法により周知し、またはユーザーに通知します。</p>\n';
+  '<p>VIP Billionaires は、必要に応じて、本ポリシーを変更します。但し、法令上ユーザーの同意が必要となるような本ポリシーの変更を行う場合、変更後の本ポリシーは、VIP Billionaires 所定の方法で変更に同意したユーザーに対してのみ適用されるものとします。なお、VIP Billionaires は、本ポリシーを変更する場合には、変更後の本ポリシーの施行時期及び内容をVIP Billionaires のウェブサイト上での表示その他の適切な方法により周知し、またはユーザーに通知します。</p>\n'
 
 export const CONTENT_USER_AGREEMENT =
   '<h1>End-User License Agreement</h1>\n' +
@@ -1244,7 +1245,7 @@ export const CONTENT_USER_AGREEMENT =
   'which VIP Billionaires will provide to you at the time of such use or purchase.</p>\n' +
   '<h3>Contact Us</h3>\n' +
   '<p>Don\'t hesitate to contact us if you have any questions about this Agreement.</p>\n' +
-  '<p>● Via Email: info@zedinternational.net</p>\n';
+  '<p>● Via Email: info@zedinternational.net</p>\n'
 
 export const CONTENT_USER_AGREEMENT_JP =
   '<h1>エンドユーザーライセンス契約</h1>\n' +
@@ -1368,4 +1369,4 @@ export const CONTENT_USER_AGREEMENT_JP =
   '\n' +
   '<h3>お問い合わせ</h3>\n' +
   '<p>本契約についてご不明な点がございましたら、お気軽にお問い合わせください。\n' +
-  'メールでのお問い合わせ: info@zedinternational.net</p>\n';
+  'メールでのお問い合わせ: info@zedinternational.net</p>\n'

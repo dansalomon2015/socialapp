@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import {
-  ScrollView,
   Text,
   TouchableOpacity,
   View,
-  SafeAreaView, useWindowDimensions, FlatList, RefreshControl, Image,
+  SafeAreaView, useWindowDimensions, FlatList, RefreshControl, Image, TextInput,
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import { COLOR_LIGHT_DARK, themes } from '../../constants/colors'
+import { themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import styles from './styles'
-import scrollPersistTaps from '../../utils/scrollPersistTaps'
 import { VectorIcon } from '../../containers/VectorIcon'
 import { useNavigation } from '@react-navigation/native'
 import { SceneMap, TabView } from 'react-native-tab-view'
@@ -20,6 +18,8 @@ import NoFriends from '../HomeView/NoFriends'
 import firestore from '@react-native-firebase/firestore'
 import firebaseSdk from '../../lib/firebaseSdk'
 import images from '../../assets/images'
+import { SearchBox } from '../../containers/SearchBox'
+import I18n from '../../i18n'
 
 const ConnectionsView = ({ theme, user }) => {
   const layout = useWindowDimensions()
@@ -28,6 +28,8 @@ const ConnectionsView = ({ theme, user }) => {
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [followers, setFollowers] = useState([])
   const [followings, setFollowings] = useState([])
+  const [connections, setConnections] = useState({ followers: [], followings: [] })
+  const [searchKeyword, setSearchKeyword] = useState('')
   const [index, setIndex] = React.useState(0)
   const [routes, setRoutes] = React.useState([
     { key: 'first', title: 'Followers' },
@@ -54,6 +56,38 @@ const ConnectionsView = ({ theme, user }) => {
     init()
   }, [user])
 
+  useEffect(() => {
+    filterConnections()
+  }, [searchKeyword, connections])
+
+  const filterConnections = () => {
+    if (searchKeyword.length > 0) {
+      let followers = connections.followers.filter(d => {
+        const key = d.displayName || ''
+        return key.toLowerCase().indexOf(searchKeyword.toLowerCase()) >= 0
+      })
+      setFollowers(followers)
+
+      let followings = connections.followings.filter(d => {
+        const key = d.displayName || ''
+        return key.toLowerCase().indexOf(searchKeyword.toLowerCase()) >= 0
+      })
+      setFollowings(followings)
+
+      setRoutes([
+        { key: 'first', title: `Followers (${followers.length})` },
+        { key: 'second', title: `Followings (${followings.length})` },
+      ])
+    } else {
+      setFollowers(connections.followers)
+      setFollowings(connections.followings)
+      setRoutes([
+        { key: 'first', title: `Followers (${connections.followers.length})` },
+        { key: 'second', title: `Followings (${connections.followings.length})` },
+      ])
+    }
+  }
+
   const init = async () => {
     const userSnaps = await firestore().collection(firebaseSdk.TBL_USER).get()
 
@@ -70,15 +104,9 @@ const ConnectionsView = ({ theme, user }) => {
         }
       }
     })
-    setFollowers(followers_list)
-    setFollowings(followings_list)
     setIsLoading(false)
     setIsRefreshing(false)
-
-    setRoutes([
-      { key: 'first', title: `${followers_list.length < 1 ? 'Followers' : followers_list.length + ' followers'}` },
-      { key: 'second', title: `${followings_list.length < 1 ? 'Followings' : followings_list.length + ' followings'}` },
-    ])
+    setConnections({ followers: followers_list, followings: followings_list })
   }
 
   const onRefresh = () => {
@@ -110,7 +138,13 @@ const ConnectionsView = ({ theme, user }) => {
     )
   }
 
+  const unFollow = (item) => {
+    // setIsRefreshing(true)
+    // init()
+  }
+
   const renderItem = ({ item }) => {
+    const isFollowing = user.followings.includes(item.userId)
     return (
       <View style={styles.itemContainer}>
         <View style={styles.itemHeader}>
@@ -127,11 +161,11 @@ const ConnectionsView = ({ theme, user }) => {
             </Text>
           </View>
         </View>
-        <TouchableOpacity onPress={() => {}}>
-          <Text style={[styles.blockText, { color: themes[theme].textColor }]}>
-            Unblock
-          </Text>
-        </TouchableOpacity>
+        {isFollowing && (
+          <TouchableOpacity onPress={() => {unFollow(item)}}>
+            <Text style={[styles.blockText, { color: themes[theme].textColor }]}>UnFollow</Text>
+          </TouchableOpacity>
+        )}
       </View>
     )
   }
@@ -162,7 +196,6 @@ const ConnectionsView = ({ theme, user }) => {
     second: (() => <RenderFlatListItem type={'followings'} data={followings} />),
   })
 
-
   return (
     <SafeAreaView
       style={{
@@ -170,6 +203,13 @@ const ConnectionsView = ({ theme, user }) => {
         backgroundColor: themes[theme].backgroundColor,
       }}>
       <StatusBar />
+      <View style={{ paddingHorizontal: 16 }}>
+        <SearchBox
+          onChangeText={setSearchKeyword}
+          theme={theme}
+          placeholder={I18n.t('Search')}
+        />
+      </View>
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}

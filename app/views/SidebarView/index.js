@@ -7,7 +7,7 @@ import {
   View,
   Linking,
   SafeAreaView,
-  Pressable,
+  Pressable, TextInput,
 } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -22,7 +22,7 @@ import { logout as logoutAction } from '../../actions/login'
 import { showConfirmationAlert } from '../../lib/info'
 import { GradientHeader } from '../../containers/GradientHeader'
 import I18n from '../../i18n'
-import { SITE_SHOP_URL } from '../../constants/app'
+import { SITE_SHOP_URL, SITE_VIP_MEMBERS_URL, SUPPORT_EMAIL } from '../../constants/app'
 import { VectorIcon } from '../../containers/VectorIcon'
 import OptionCardBtn from '../../containers/OptionCardBtn'
 import InviteModal from './InviteModal'
@@ -72,11 +72,11 @@ const SidebarView = (props) => {
       case 'shop':
         return Linking.openURL(SITE_SHOP_URL)
       case 'help_and_support':
-        return navigation.navigate('HelpAndSupport')
+        return Linking.openURL(`mailto:${SUPPORT_EMAIL}?subject=&body=`)
       case 'connections':
         return navigation.navigate('MenuStack', { screen: 'MyConnections' })
       case 'vip_members':
-        return navigation.navigate('')
+        return Linking.openURL(SITE_VIP_MEMBERS_URL)
       default:
         navigation.navigate('')
     }
