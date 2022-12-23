@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { Dimensions, StyleSheet, View, Text } from 'react-native'
-import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
-import { themes } from '../constants/colors'
-import { VectorIcon } from './VectorIcon'
+import React, {useState} from 'react';
+import {Dimensions, StyleSheet, View, Text, Platform} from 'react-native';
+import {AutocompleteDropdown} from 'react-native-autocomplete-dropdown';
+import {themes} from '../constants/colors';
+import {VectorIcon} from './VectorIcon';
 
-const { width, height } = Dimensions.get('window')
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    width: width * 0.92,
+    // width: width * 0.92,
     borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -22,25 +22,18 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   label: {
-    marginLeft: 15,
+    // marginLeft: 15,
     fontFamily: 'Raleway',
     fontWeight: '400',
     color: '#4A4A4A',
     marginBottom: 5,
     fontSize: 14,
   },
-})
+});
 
-const CsAutocompleteSelect = ({
-  leftIcon,
-  data,
-  onSelectItem,
-  placeholder,
-  theme,
-  label,
-}) => {
-
-  const [show, setShow] = useState(false)
+const CsAutocompleteSelect = ({leftIcon, data, onSelectItem, placeholder, theme, label, containerStyle}) => {
+  const [show, setShow] = useState(false);
+  const [focus, setFocus] = useState(false);
 
   const RightIcon = () => {
     return (
@@ -50,13 +43,13 @@ const CsAutocompleteSelect = ({
         color={themes[theme].activeTintColor}
         size={18}
       />
-    )
-  }
+    );
+  };
 
   return (
     <>
-      {label && <Text style={styles.label}>City</Text>}
-      <View style={styles.container}>
+      {label && <Text style={styles.label}>{label}</Text>}
+      <View style={[styles.container, containerStyle, focus ? {zIndex: 1} : null]}>
         <AutocompleteDropdown
           clearOnFocus={false}
           closeOnBlur={true}
@@ -72,23 +65,27 @@ const CsAutocompleteSelect = ({
               color: themes[theme].activeTintColor,
               fontSize: 14,
             },
+            placeholderTextColor: themes[theme].subTextColor,
           }}
           inputContainerStyle={{
             backgroundColor: 'transparent',
-            alignSelf: 'flex-end',
+            // alignSelf: 'flex-end',
           }}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
           suggestionsListContainerStyle={{
-            width: width * 0.76,
-            marginLeft: -40,
-            backgroundColor: themes[theme].backgroundColor,
+            // width: width * 0.76,
+            // marginLeft: -40,
+            // backgroundColor: themes[theme].backgroundColor,
+            backgroundColor: '#FFF',
           }}
-          containerStyle={{ width: '95%' }}
+          containerStyle={{width: '95%'}}
           showChevron={false}
         />
         <RightIcon />
       </View>
     </>
-  )
-}
+  );
+};
 
-export default CsAutocompleteSelect
+export default CsAutocompleteSelect;

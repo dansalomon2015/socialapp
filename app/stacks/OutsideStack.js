@@ -9,8 +9,6 @@ import OnBoardingView from '../views/OnBoardingView';
 import AboutView from '../views/AboutView';
 import {COLOR_WHITE, themes} from '../constants/colors';
 import HeaderLeft from '../containers/HeaderLeft';
-import SignUpSuccessView from '../views/SignUpSuccessView';
-import SignUpDataView from '../views/SignUpDataView';
 
 // Outside
 const Outside = createStackNavigator();
@@ -57,16 +55,6 @@ const OutsideStack = () => {
         options={{headerShown: false}}
       />
       <Outside.Screen name="About" component={AboutView} />
-      <Outside.Screen
-        name="SignUpSuccess"
-        component={SignUpSuccessView}
-        options={{headerShown: false}}
-      />
-      <Outside.Screen
-        name="SignUpData"
-        component={SignUpDataView}
-        options={{headerShown: false}}
-      />
     </Outside.Navigator>
   );
 };

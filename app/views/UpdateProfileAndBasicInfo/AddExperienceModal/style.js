@@ -1,6 +1,6 @@
-import { Dimensions, StyleSheet } from "react-native";
+import {Dimensions, StyleSheet} from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 20,
     marginTop: 26,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   descriptionText: {
     fontFamily: 'Raleway',
@@ -26,16 +26,18 @@ const styles = StyleSheet.create({
     fontSize: 12,
     alignSelf: 'center',
     textAlign: 'center',
-    marginTop: 6,
-    paddingHorizontal: 20
+    // marginTop: 6,
+    paddingHorizontal: 20,
+    marginBottom: 27,
+    lineHeight: 15,
   },
   submitBtn: {
     marginTop: 8,
     paddingVertical: 2,
     alignSelf: 'center',
     height: 45,
-    width: width * 0.92
-  }
+    width: width * 0.92,
+  },
 });
 
 export default styles;

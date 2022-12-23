@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import { Dimensions, StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
-import Modal from 'react-native-modal'
-import sharedStyles from '../views/Styles'
-import { themes } from '../constants/colors'
-import { VectorIcon } from './VectorIcon'
+import React, {useState} from 'react';
+import {Dimensions, StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
+import Modal from 'react-native-modal';
+import sharedStyles from '../views/Styles';
+import {themes} from '../constants/colors';
+import {VectorIcon} from './VectorIcon';
 
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
-    width: width * 0.92,
+    // width: width * 0.92,
     borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -20,15 +20,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     justifyContent: 'space-between',
     height: 56,
-    borderColor: '#4A4A4A'
+    borderColor: '#4A4A4A',
+    flex: 1,
   },
   label: {
-    marginLeft: 15,
+    // marginLeft: 15,
     fontFamily: 'Raleway',
     fontWeight: '400',
     color: '#4A4A4A',
     marginBottom: 5,
-    fontSize: 14
+    fontSize: 14,
   },
   iosPadding: {
     height: 50,
@@ -57,75 +58,67 @@ const styles = StyleSheet.create({
   loading: {
     padding: 0,
   },
-  iconStyle: {
-
-  },
-  modalItems:{
+  iconStyle: {},
+  modalItems: {
     width: width * 0.9,
     backgroundColor: '#ffffff',
     paddingVertical: 10,
     maxHeight: height * 0.6,
     paddingTop: 40,
-    borderRadius: 8
+    borderRadius: 8,
   },
   closeIcon: {
     position: 'absolute',
     top: 10,
     right: 10,
-    zIndex: 9999
+    zIndex: 9999,
   },
-  itemContainer:{
-      borderWidth: 1,
-      width: '80%',
-      alignSelf: 'center',
-      marginVertical: 10,
-      height: 40,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 6
-  }
-})
+  itemContainer: {
+    borderWidth: 1,
+    width: '80%',
+    alignSelf: 'center',
+    marginVertical: 10,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 6,
+  },
+});
 
 export const CsSelect = React.memo(
-  ({
-     label,
-     options = [],
-     placeholder,
-     value,
-     theme,
-     onSelect
-   }) => {
-
-    const [selected, setSelected] = useState(false)
+  ({label, options = [], placeholder, value, theme, onSelect, containerStyle}) => {
+    const [selected, setSelected] = useState(false);
 
     const items = options.map(option => ({
       label: option,
       value: option,
-    }))
+    }));
 
     const [showItems, setShowItems] = useState(false);
 
-    const onSelectItem = (value) => {
-      onSelect(value)
-      setSelected(true)
-      setShowItems(false)
-    }
+    const onSelectItem = value => {
+      onSelect(value);
+      setSelected(true);
+      setShowItems(false);
+    };
 
     return (
       <>
         {label && <Text style={styles.label}>{label}</Text>}
-        <TouchableOpacity
-          style={[styles.container]}
-          onPress={() => setShowItems(!showItems)}>
-          <Text style={[ { color: selected ? '#000000' : '#C4C4C4' } ]}>{!selected ? placeholder : value}</Text>
-          <VectorIcon
-            type={'Entypo'}
-            name={selected ? 'chevron-thin-right' : 'chevron-thin-down'}
-            color={themes[theme].activeTintColor}
-            size={20}
-            style={styles.iconStyle}
-          />
-        </TouchableOpacity>
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity
+            style={[styles.container, containerStyle]}
+            onPress={() => setShowItems(!showItems)}>
+            <Text style={[{color: selected ? '#000000' : '#C4C4C4'}]}>{!selected ? placeholder : value}</Text>
+            <VectorIcon
+              type={'Entypo'}
+              name={selected ? 'chevron-thin-right' : 'chevron-thin-down'}
+              color={themes[theme].activeTintColor}
+              size={20}
+              style={styles.iconStyle}
+            />
+          </TouchableOpacity>
+        </View>
         <Modal isVisible={showItems} onBackdropPress={() => setShowItems(false)}>
           <View style={styles.modalItems}>
             <VectorIcon
@@ -137,7 +130,7 @@ export const CsSelect = React.memo(
             />
             <ScrollView>
               {items.map(item => (
-                <TouchableOpacity style={styles.itemContainer} onPress={()=>onSelectItem(item.value)}>
+                <TouchableOpacity style={styles.itemContainer} onPress={() => onSelectItem(item.value)}>
                   <Text>{item.label}</Text>
                 </TouchableOpacity>
               ))}
@@ -147,4 +140,4 @@ export const CsSelect = React.memo(
       </>
     );
   },
-)
+);

@@ -26,7 +26,8 @@ export default {
   Add_a_comment: 'コメントする',
   Alert: 'アラート',
   Typing: '入力中',
-  Are_you_sure_you_want_to_leave_the_room: 'トークルームを退室しますか? このトークルームの全ての履歴が削除されます',
+  Are_you_sure_you_want_to_leave_the_room:
+    'トークルームを退室しますか? このトークルームの全ての履歴が削除されます',
   Back: '戻る',
   Block_user: 'ブロックする',
   Cancel: 'キャンセル',
@@ -320,4 +321,8 @@ export default {
   others: 'その他',
   confirm_and_create_an_account: 'アカウントの確認と作成',
   upload_new_image: '新しい画像をアップロード',
+
+  you_should_agree_with_terms: '当社の利用規約とプライバシーポリシーに同意する必要があります',
+  please_enter_phone: '電話番号を入力してください',
+  please_select_birthday: '誕生日を選択してください',
 };

@@ -14,8 +14,8 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 10,
-    width: width * 0.92,
-    alignSelf: 'center'
+    // width: width * 0.92,
+    alignSelf: 'center',
   },
   label: {
     marginBottom: 4,
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 11,
     borderRadius: 8,
     // marginHorizontal: 3
-    width: '49%'
+    // width: '49%'
+    flex : 1
   },
   optionText: {
     fontFamily: 'Raleway'
@@ -62,7 +63,8 @@ const CsSelectGender = (props) => {
     value,
     required,
     containerStyle,
-    theme
+    theme,
+    itemStyle
   } = props
 
   const setCheck = value => {
@@ -75,7 +77,7 @@ const CsSelectGender = (props) => {
         <Text
           contentDescription={null}
           accessibilityLabel={null}
-          style={[styles.label, {color: themes[theme].inputLabel}]}>
+          style={[styles.label, {color: themes[theme].textColor}]}>
           {label}
           {required ? (
             <Text
@@ -90,10 +92,10 @@ const CsSelectGender = (props) => {
           <Pressable
             onPress={() => setCheck(val.value)}
             key={index}
-            style={styles.optionContainer}>
+            style={[styles.optionContainer, itemStyle , {marginRight : index === 0 ? 6.5 : 0, marginLeft : index === 1 ? 6.5 : 0}]}>
             <Text style={[styles.selectText, {color: value === val.value ? '#2F3131' : '#C4C4C4' }]}>{val.text}</Text>
             {value === val.value && (
-              <VectorIcon type="AntDesign" name="checkcircle" color="#858585" size={18}  />
+              <VectorIcon type="AntDesign" name="checkcircle" color="#2F3131" size={18}  />
             )}
           </Pressable>
         ))}

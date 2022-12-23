@@ -124,10 +124,7 @@ const firebaseSdk = {
 
   socialLogin(socialCredential) {
     return new Promise(async (resolve, reject) => {
-      const userInfos = await firebase
-        .firestore()
-        .collection(this.TBL_USER)
-        .get();
+      const userInfos = await firebase.firestore().collection(this.TBL_USER).get();
       let userInfo = null;
       userInfos.forEach(doc => {
         if (doc.data().email === socialCredential.email) {
@@ -158,9 +155,7 @@ const firebaseSdk = {
           activities: [],
           outdoor: [],
         };
-        const userDoc = await firestore()
-          .collection(this.TBL_USER)
-          .add(userInfo);
+        const userDoc = await firestore().collection(this.TBL_USER).add(userInfo);
         resolve({
           id: userDoc.id,
           ...userInfo,
@@ -330,6 +325,21 @@ const firebaseSdk = {
     });
   },
 
+  updateUser(userInfo) {
+    return new Promise((resolve, reject) => {
+      firestore()
+        .collection(this.TBL_USER)
+        .doc(userInfo.id)
+        .set(userInfo)
+        .then(() => {
+          resolve();
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  },
+
   getData(kind = '') {
     return new Promise((resolve, reject) => {
       firebase
@@ -454,12 +464,8 @@ const firebaseSdk = {
             myFollowings = [...myFollowings, userDoc.data().userId];
             userFollowers = [...userFollowers, myDoc.data().userId];
           } else {
-            myFollowings = myFollowings.filter(
-              f => f !== userDoc.data().userId,
-            );
-            userFollowers = userFollowers.filter(
-              f => f !== myDoc.data().userId,
-            );
+            myFollowings = myFollowings.filter(f => f !== userDoc.data().userId);
+            userFollowers = userFollowers.filter(f => f !== myDoc.data().userId);
           }
 
           t.update(myRef, {followings: myFollowings});
@@ -490,15 +496,11 @@ const firebaseSdk = {
   },
 
   async saveMessage(roomId, message, sender, receiver) {
-    const statusRef = database().ref(
-      'rooms/' + roomId + '/status/' + message.receiver,
-    );
+    const statusRef = database().ref('rooms/' + roomId + '/status/' + message.receiver);
     const status = (await statusRef.once('value')).val();
     console.log('chatter status', status);
     if (!status || status === 'offline') {
-      const roomData = (
-        await firebase.firestore().collection(this.TBL_ROOM).doc(roomId).get()
-      ).data();
+      const roomData = (await firebase.firestore().collection(this.TBL_ROOM).doc(roomId).get()).data();
       let unReads = roomData.unReads + 1;
       if (roomData.confirmUser !== receiver.userId) {
         unReads = 1;
@@ -724,6 +726,33 @@ const firebaseSdk = {
       .set(false)
       .then(() => {})
       .catch(() => {});
+  },
+
+  updateUserInfo(user) {
+    return new Promise((resolve, reject) => {
+      const userInfo = {
+        displayName: user.displayName,
+        city: user.city,
+        phone: user.phone,
+        gender: user.gender,
+        birthday: user.birthday,
+        company: user.company,
+        role: user.role,
+        years_of_service: user.years_of_service,
+        job: user.job,
+        salary: user.salary,
+        acceptTerms: true,
+      };
+
+      this.createUser(userInfo)
+        .then(() => {
+          resolve(userInfo);
+        })
+        .catch(err => {
+          console.log('error', err);
+          reject(err);
+        });
+    });
   },
 };
 

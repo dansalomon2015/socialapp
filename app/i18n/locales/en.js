@@ -317,4 +317,8 @@ export default {
   others: 'Others',
   confirm_and_create_an_account: 'Confirm & Create an Account',
   upload_new_image: 'Upload new image',
+
+  you_should_agree_with_terms: 'You should agree with our terms and privacy policy',
+  please_enter_phone: 'Please enter your phone number',
+  please_select_birthday: 'Please select your birthday',
 };
