@@ -63,35 +63,31 @@ const PrivacyPolicy = props => {
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
             <Text style={[styles.listText, { color: themes[theme].textColor }]}>
-              Company: when this policy mentions "Company," "we," "us," or "our," it refers to Zein El Dine International Co., Ltd, Tokyo,
-              Japan that is responsible for your information under this Privacy Policy.
+              Company: when this policy mentions "Company," "we," "us," or "our," it refers to Zein El Dine International Co., Ltd, Tokyo, Japan that is responsible for your information under this
+              Privacy Policy.
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor }]}>Country: where VIP Billionaires or the owners/founders of VIP Billionaires are based, in this case is Japan</Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor }]}>
+              Customer: refers to the company, organization or person that signs up to use the VIP Billionaires Service to manage the relationships with your consumers or service users.
             </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
             <Text style={[styles.listText, { color: themes[theme].textColor }]}>
-              Country: where VIP Billionaires or the owners/founders of VIP Billionaires are based, in this case is Japan
+              Device: any internet connected device such as a phone, tablet, computer or any other device that can be used to visit VIP Billionaires and use the services.
             </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
             <Text style={[styles.listText, { color: themes[theme].textColor }]}>
-              Customer: refers to the company, organization or person that signs up to use the VIP Billionaires Service to manage the
-              relationships with your consumers or service users.
-            </Text>
-          </View>
-          <View style={{ flexDirection: 'row' }}>
-            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor }]}>
-              Device: any internet connected device such as a phone, tablet, computer or any other device that can be used to visit VIP
-              Billionaires and use the services.
-            </Text>
-          </View>
-          <View style={{ flexDirection: 'row' }}>
-            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor }]}>
-              IP address: Every device connected to the Internet is assigned a number known as an Internet protocol (IP) address.
-              These numbers are usually assigned in geographic blocks. An IP address can often be used to identify the location from which a device is connecting to the Internet.
+              IP address: Every device connected to the Internet is assigned a number known as an Internet protocol (IP) address. These numbers are usually assigned in geographic blocks. An IP address
+              can often be used to identify the location from which a device is connecting to the Internet.
             </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
@@ -116,21 +112,17 @@ const PrivacyPolicy = props => {
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
             <Text style={[styles.listText, { color: themes[theme].textColor }]}>
-              Third-party service: refers to advertisers, contest sponsors, promotional and marketing partners, and others who provide
-              our content or whose products or services we think may interest you.
+              Third-party service: refers to advertisers, contest sponsors, promotional and marketing partners, and others who provide our content or whose products or services we think may interest
+              you.
             </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor }]}>
-              Website: VIP Billionaires."’s" site, which can be accessed via this URL:
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor }]}>Website: VIP Billionaires."’s" site, which can be accessed via this URL:</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor }]}>
-              You: a person or entity that is registered with VIP Billionaires to use the Services.
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor }]}>You: a person or entity that is registered with VIP Billionaires to use the Services.</Text>
           </View>
         </View>
 
@@ -202,14 +194,10 @@ const PrivacyPolicy = props => {
 
         <View style={{ marginBottom: 32 }}>
           <Text style={[styles.title, { color: themes[theme].titleColor }]}>How Do We Use The Information We Collect?</Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            Any of the information we collect from you may be used in one of the following ways:
-          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>Any of the information we collect from you may be used in one of the following ways:</Text>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
-              To personalize your experience (your information helps us to better respond to your individual needs)
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>To personalize your experience (your information helps us to better respond to your individual needs)</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
@@ -220,35 +208,26 @@ const PrivacyPolicy = props => {
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
             <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
-              To improve customer service (your information helps us to more effectively respond to your customer service requests and
-              support needs)
+              To improve customer service (your information helps us to more effectively respond to your customer service requests and support needs)
             </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
-              To process transactions
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>To process transactions</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
-              To administer a contest, promotion, survey or other site feature
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>To administer a contest, promotion, survey or other site feature</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
-              To send periodic emails
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>To send periodic emails</Text>
           </View>
         </View>
 
         <View style={{ marginBottom: 16 }}>
           <Text style={[styles.title, { color: themes[theme].titleColor }]}>When does VIP Billionaires use end user information from third parties?</Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            VIP Billionaires will collect End User Data necessary to provide the VIP Billionaires services to our customers.
-          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>VIP Billionaires will collect End User Data necessary to provide the VIP Billionaires services to our customers.</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             End users may voluntarily provide us with information they have made available on social media websites. If you provide us with any such information, we may collect publicly available
             information from the social media websites you have indicated. You can control how much of your information social media websites make public by visiting these websites and changing your
@@ -268,10 +247,9 @@ const PrivacyPolicy = props => {
         <View style={{ marginBottom: 16 }}>
           <Text style={[styles.title, { color: themes[theme].titleColor }]}>Do we share the information we collect with third parties?</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            We may share the information that we collect, both personal and non-personal, with third parties such as advertisers, contest
-            sponsors, promotional and marketing partners, and others who provide our content or whose products or services we think may interest you. We may also share it with our current and future
-            affiliated companies and business partners, and if we are involved in a merger, asset sale or other business reorganization, we may also share or transfer your personal and non-personal
-            information to our successors-in-interest.
+            We may share the information that we collect, both personal and non-personal, with third parties such as advertisers, contest sponsors, promotional and marketing partners, and others who
+            provide our content or whose products or services we think may interest you. We may also share it with our current and future affiliated companies and business partners, and if we are
+            involved in a merger, asset sale or other business reorganization, we may also share or transfer your personal and non-personal information to our successors-in-interest.
           </Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We may engage trusted third party service providers to perform functions and provide services to us, such as hosting and maintaining our servers and the app, database storage and
@@ -296,9 +274,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            How Do We Use Your Email Address?
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>How Do We Use Your Email Address?</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             By submitting your email address on this app, you agree to receive emails from us. You can cancel your participation in any of these email lists at any time by clicking on the opt-out link
             or other unsubscribe option that is included in the respective email. We only send emails to people who have authorized us to contact them, either directly, or through a third party. We do
@@ -311,9 +287,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            How Long Do We Keep Your Information?
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>How Long Do We Keep Your Information?</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We keep your information only so long as we need it to provide VIP Billionaires to you and fulfill the purposes described in this policy. This is also the case for anyone that we share
             your information with and who carries out services on our behalf. When we no longer need to use your information and there is no need for us to keep it to comply with our legal or
@@ -322,9 +296,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            How Do We Protect Your Information?
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>How Do We Protect Your Information?</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We implement a variety of security measures to maintain the safety of your personal information when you place an order or enter, submit, or access your personal information. We offer the
             use of a secure server. All supplied sensitive/credit information is transmitted via Secure Socket Layer (SSL) technology and then encrypted into our Payment gateway providers database
@@ -336,9 +308,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Could my information be transferred to other countries?
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Could my information be transferred to other countries?</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             VIP Billionaires is incorporated in Japan. Information collected via our website, through direct interactions with you, or from use of our help services may be transferred from time to
             time to our offices or personnel, or to third parties, located throughout the world, and may be viewed and hosted anywhere in the world, including countries that may not have laws of
@@ -348,9 +318,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Is the information collected through the VIP Billionaires Service secure?
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Is the information collected through the VIP Billionaires Service secure?</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We take precautions to protect the security of your information. We have physical, electronic, and managerial procedures to help safeguard, prevent unauthorized access, maintain data
             security, and correctly use your information. However, neither people nor security systems are foolproof, including encryption systems. In addition, people can commit intentional crimes,
@@ -360,9 +328,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Can I update or correct my information?
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Can I update or correct my information?</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             The rights you have to request updates or corrections to the information VIP Billionaires collects depend on your relationship with VIP Billionaires. Personnel may update or correct their
             information as detailed in our internal company employment policies.
@@ -387,9 +353,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Personnel
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Personnel</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             If you are a VIP Billionaires worker or applicant, we collect information you voluntarily provide to us. We use the information collected for Human Resources purposes in order to
             administer benefits to workers and screen applicants.
@@ -402,9 +366,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Sale of Business
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Sale of Business</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We reserve the right to transfer information to a third party in the event of a sale, merger or other transfer of all or substantially all of the assets of VIP Billionaires or any of its
             Corporate Affiliates (as defined herein), or that portion of VIP Billionaires or any of its Corporate Affiliates to which the Service relates, or in the event that we discontinue our
@@ -414,9 +376,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Affiliates
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Affiliates</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We may disclose information (including personal information) about you to our Corporate Affiliates. For purposes of this Privacy Policy, "Corporate Affiliate" means any person or entity
             which directly or indirectly controls, is controlled by or is under common control with VIP Billionaires, whether by ownership or otherwise. Any information relating to you that we provide
@@ -425,9 +385,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Governing Law
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Governing Law</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             This Privacy Policy is governed by the laws of Japan without regard to its conflict of laws provision. You consent to the exclusive jurisdiction of the courts in connection with any action
             or dispute arising between the parties under or in connection with this Privacy Policy except for those individuals who may have rights to make claims under Privacy Shield, or the Swiss-US
@@ -445,19 +403,15 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Your Consent
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Your Consent</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            We've updated our Privacy Policy to provide you with complete transparency into what is being set when you visit our site and
-            how it's being used. By using our app, registering an account, or making a purchase, you hereby consent to our Privacy Policy and agree to its terms.
+            We've updated our Privacy Policy to provide you with complete transparency into what is being set when you visit our site and how it's being used. By using our app, registering an account,
+            or making a purchase, you hereby consent to our Privacy Policy and agree to its terms.
           </Text>
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Links to Other Websites
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Links to Other Websites</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             This Privacy Policy applies only to the Services. The Services may contain links to other websites not operated or controlled by VIP Billionaires. We are not responsible for the content,
             accuracy or opinions expressed in such websites, and such websites are not investigated, monitored or checked for accuracy or completeness by us. Please remember that when you use a link
@@ -467,9 +421,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Cookies
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Cookies</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             VIP Billionaires uses "Cookies" to identify the areas of our website that you have visited. A Cookie is a small piece of data stored on your computer or mobile device by your web browser.
             We use Cookies to enhance the performance and functionality of our app but are non-essential to their use. However, without these cookies, certain functionality like videos may become
@@ -480,9 +432,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Blocking and disabling cookies and similar technologies
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Blocking and disabling cookies and similar technologies</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             Wherever you're located you may also set your browser to block cookies and similar technologies, but this action may block our essential cookies and prevent our website from functioning
             properly, and you may not be able to fully utilize all of its features and services. You should also be aware that you may also lose some saved information (e.g. saved login details, site
@@ -492,9 +442,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Remarketing Services
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Remarketing Services</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We use remarketing services. What Is Remarketing? In digital marketing, remarketing (or retargeting) is the practice of serving ads across the internet to people who have already visited
             your website. It allows your company to seem like they're "following" people around the internet by serving ads on the websites and platforms they use most.
@@ -502,29 +450,23 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Payment Details
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Payment Details</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             In respect to any credit card or other payment processing details you have provided us, we commit that this confidential information will be stored in the most secure manner possible.
           </Text>
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Kids' Privacy
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Kids' Privacy</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            We do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone
-            under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected
-            Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove that information from Our servers.
+            We do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and You are
+            aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 13 without verification of
+            parental consent, We take steps to remove that information from Our servers.
           </Text>
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Changes To Our Privacy Policy
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Changes To Our Privacy Policy</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We may change our Service and policies, and we may need to make changes to this Privacy Policy so that they accurately reflect our Service and policies. Unless otherwise required by law,
             we will notify you (for example, through our Service) before we make changes to this Privacy Policy and give you an opportunity to review them before they go into effect. Then, if you
@@ -533,9 +475,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Third-Party Services
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Third-Party Services</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We may display, include or make available third-party content (including data, information, applications and other products services) or provide links to third-party websites or services
             ("Third- Party Services").
@@ -552,9 +492,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Facebook Pixel
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Facebook Pixel</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             Facebook pixel is an analytics tool that allows you to measure the effectiveness of your advertising by understanding the actions people take on your website. You can use the pixel to:
             Make sure your ads are shown to the right people. Facebook pixel may collect information from your device when you use the service. Facebook pixel collects information that is held in
@@ -563,9 +501,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Information about General Data Protection Regulation (GDPR)
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Information about General Data Protection Regulation (GDPR)</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We may be collecting and using information from you if you are from the European Economic Area (EEA), and in this section of our Privacy Policy we are going to explain exactly how and why
             is this data collected, and how we maintain this data under protection from being replicated or used in the wrong way.
@@ -573,9 +509,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            What is GDPR?
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>What is GDPR?</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             GDPR is an EU-wide privacy and data protection law that regulates how EU residents' data is protected by companies and enhances the control the EU residents have, over their personal data.
             The GDPR is relevant to any globally operating company and not just the EU-based businesses and EU residents. Our customers’ data is important irrespective of where they are located, which
@@ -584,17 +518,13 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 32 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            What is personal data?
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>What is personal data?</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             Any data that relates to an identifiable or identified individual. GDPR covers a broad spectrum of information that could be used on its own, or in combination with other pieces of
             information, to identify a person. Personal data extends beyond a person’s name or email address. Some examples include financial information, political opinions, genetic data, biometric
             data, IP addresses, physical address, sexual orientation, and ethnicity.
           </Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            The Data Protection Principles include requirements such as:
-          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>The Data Protection Principles include requirements such as:</Text>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
             <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
@@ -610,9 +540,7 @@ const PrivacyPolicy = props => {
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
-              Personal data should be held no longer than necessary to fulfil its purpose.
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>Personal data should be held no longer than necessary to fulfil its purpose.</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
@@ -624,9 +552,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Why is GDPR important?
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Why is GDPR important?</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             GDPR adds some new requirements regarding how companies should protect individuals' personal data that they collect and process. It also raises the stakes for compliance by increasing
             enforcement and imposing greater fines for breach. Beyond these facts it's simply the right thing to do. At VIP Billionaires we strongly believe that your data privacy is very important
@@ -635,9 +561,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Individual Data Subject's Rights - Data Access, Portability and Deletion
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Individual Data Subject's Rights - Data Access, Portability and Deletion</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             We are committed to helping our customers meet the data subject rights requirements of GDPR. VIP Billionaires processes or stores all personal data in fully vetted, DPA compliant vendors.
             We do store all conversation and personal data for up to 6 years unless your account is deleted. In which case, we dispose of all data in accordance with our Terms of Service and Privacy
@@ -651,9 +575,7 @@ const PrivacyPolicy = props => {
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            California Residents
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>California Residents</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             The California Consumer Privacy Act (CCPA) requires us to disclose categories of Personal Information we collect and how we use it, the categories of sources from whom we collect Personal
             Information, and the third parties with whom we share it, which we have explained above.
@@ -665,15 +587,13 @@ const PrivacyPolicy = props => {
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
             <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
               Right to Know and Access. You may submit a verifiable request for information regarding the: (1) categories of Personal Information we collect, use, or share; (2) purposes for which
-              categories of Personal Information are collected or used by us; (3) categories of sources from which we collect Personal Information; and (4) specific pieces of Personal Information
-              we have collected about you.
+              categories of Personal Information are collected or used by us; (3) categories of sources from which we collect Personal Information; and (4) specific pieces of Personal Information we
+              have collected about you.
             </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
-              Right to Equal Service. We will not discriminate against you if you exercise your privacy rights.
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>Right to Equal Service. We will not discriminate against you if you exercise your privacy rights.</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
@@ -683,45 +603,33 @@ const PrivacyPolicy = props => {
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
-              Request that a business that sells a consumer's personal data, not sell the consumer's personal data.
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>Request that a business that sells a consumer's personal data, not sell the consumer's personal data.</Text>
           </View>
           <Text style={[styles.text, { color: themes[theme].textColor, marginTop: 16 }]}>
             If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.
           </Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            We do not sell the Personal Information of our users.
-          </Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            For more information about these rights, please contact us.
-          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>We do not sell the Personal Information of our users.</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>For more information about these rights, please contact us.</Text>
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            California Online Privacy Protection Act (CalOPPA)
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>California Online Privacy Protection Act (CalOPPA)</Text>
           <Text style={[styles.text, { color: themes[theme].textColor }]}>
             CalOPPA requires us to disclose categories of Personal Information we collect and how we use it, the categories of sources from whom we collect Personal Information, and the third parties
             with whom we share it, which we have explained above.
           </Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            CalOPPA users have the following rights:
-          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>CalOPPA users have the following rights:</Text>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
             <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
               Right to Know and Access. You may submit a verifiable request for information regarding the: (1) categories of Personal Information we collect, use, or share; (2) purposes for which
-              categories of Personal Information are collected or used by us; (3) categories of sources from which we collect Personal Information; and (4) specific pieces of Personal Information
-              we have collected about you.
+              categories of Personal Information are collected or used by us; (3) categories of sources from which we collect Personal Information; and (4) specific pieces of Personal Information we
+              have collected about you.
             </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
-              Right to Equal Service. We will not discriminate against you if you exercise your privacy rights.
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>Right to Equal Service. We will not discriminate against you if you exercise your privacy rights.</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
@@ -738,26 +646,16 @@ const PrivacyPolicy = props => {
           <Text style={[styles.text, { color: themes[theme].textColor, marginTop: 16 }]}>
             If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.
           </Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            We do not sell the Personal Information of our users.
-          </Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            For more information about these rights, please contact us.
-          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>We do not sell the Personal Information of our users.</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>For more information about these rights, please contact us.</Text>
         </View>
 
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.title, { color: themes[theme].titleColor }]}>
-            Contact Us
-          </Text>
-          <Text style={[styles.text, { color: themes[theme].textColor }]}>
-            Don't hesitate to contact us if you have any questions.
-          </Text>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Contact Us</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>Don't hesitate to contact us if you have any questions.</Text>
           <View style={{ flexDirection: 'row' }}>
             <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
-            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
-              Via Email: info@zedinternational.net
-            </Text>
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>Via Email: info@zedinternational.net</Text>
           </View>
         </View>
       </ScrollView>
