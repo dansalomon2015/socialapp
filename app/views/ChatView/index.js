@@ -150,8 +150,7 @@ const ChatView = props => {
               <Badge
                 visible={true}
                 size={12}
-                style={[styles.badge, { backgroundColor: isOnline ? themes[theme].onlineStatusColor : themes[theme].focusedBackground }, { borderColor: themes[theme].backgroundColor }]}>
-              </Badge>
+                style={[styles.badge, { backgroundColor: isOnline ? themes[theme].onlineStatusColor : themes[theme].focusedBackground }, { borderColor: themes[theme].backgroundColor }]} />
             </View>
             <View style={{ flex: 1, alignSelf: 'center', marginLeft: 8 }}>
               <Text style={[styles.displayName, { color: themes[theme].titleColor }]}>

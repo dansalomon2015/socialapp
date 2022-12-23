@@ -12,7 +12,7 @@ describe('cart actions', () => {
     expect(Actions.addToCart(product)).toEqual(expectedAction);
     testedCount++;
   });
-  
+
   it('removeFromCart', () => {
     const id = 0;
     const expectedAction = {
@@ -56,7 +56,7 @@ describe('cart actions', () => {
     let actionCount = 0;
     for (let k in keys) {
       if (typeof Actions[keys[k]] === 'function') {
-        actionCount ++;
+        actionCount++;
       }
     }
     const expectedCount = {

@@ -40,13 +40,13 @@ describe('login actions', () => {
     expect(Actions.setUser(user)).toEqual(expectedAction);
     testedCount++;
   });
-  
+
   it('test all login actions', () => {
     const keys = Object.keys(Actions);
     let actionCount = 0;
     for (let k in keys) {
       if (typeof Actions[keys[k]] === 'function') {
-        actionCount ++;
+        actionCount++;
       }
     }
     const expectedCount = {

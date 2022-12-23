@@ -7,7 +7,7 @@ import {
   View,
   Linking,
   SafeAreaView,
-  Pressable,
+  Pressable, TextInput,
 } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -22,7 +22,7 @@ import { logout as logoutAction } from '../../actions/login'
 import { showConfirmationAlert } from '../../lib/info'
 import { GradientHeader } from '../../containers/GradientHeader'
 import I18n from '../../i18n'
-import { SITE_SHOP_URL } from '../../constants/app'
+import { SITE_SHOP_URL, SITE_VIP_MEMBERS_URL, SUPPORT_EMAIL } from '../../constants/app'
 import { VectorIcon } from '../../containers/VectorIcon'
 import OptionCardBtn from '../../containers/OptionCardBtn'
 import InviteModal from './InviteModal'
@@ -35,36 +35,26 @@ const SidebarView = (props) => {
       id: 'shop',
       name: I18n.t('Shop'),
       icon: 'shopping',
-      route: 'Shop',
-      routes: ['Shop'],
     },
     {
       id: 'vip_members',
       name: I18n.t('Vip_members'),
       icon: 'star-circle',
-      route: 'VipMembers',
-      routes: ['VipMembers'],
     },
     {
       id: 'connections',
       name: 'My connections',
       icon: 'account-multiple',
-      route: 'VipMembers',
-      routes: ['MyConnetions'],
     },
     {
       id: 'privacy_and_settings',
       name: I18n.t('Privacy_and_settings'),
       icon: 'shield-lock',
-      route: 'Privacy',
-      routes: ['Privacy'],
     },
     {
       id: 'help_and_support',
       name: I18n.t('Help_and_support'),
       icon: 'comment-question',
-      route: 'Privacy',
-      routes: ['HelpAndSupport'],
     },
   ]
 
@@ -82,13 +72,13 @@ const SidebarView = (props) => {
       case 'shop':
         return Linking.openURL(SITE_SHOP_URL)
       case 'help_and_support':
-        return navigation.navigate('HelpAndSupport')
-      case 'MyConnections':
-        return navigation.navigate('MyConnections')
+        return Linking.openURL(`mailto:${SUPPORT_EMAIL}?subject=&body=`)
+      case 'connections':
+        return navigation.navigate('MenuStack', { screen: 'MyConnections' })
       case 'vip_members':
-        return navigation.navigate('')
-      // default:
-      //   onNavigate(item.route, { type: item.init })
+        return Linking.openURL(SITE_VIP_MEMBERS_URL)
+      default:
+        navigation.navigate('')
     }
   }
   const onLogOut = () => {
@@ -129,6 +119,9 @@ const SidebarView = (props) => {
               ]}>
               {user.displayName}
             </Text>
+            <Text style={[styles.profileName, { color: themes[theme].textColor, fontSize: 12 }]}>
+              {user.handle}
+            </Text>
             <Text style={[styles.roleName, { color: COLOR_YELLOW }]}>
               View Profile
             </Text>
@@ -157,7 +150,7 @@ const SidebarView = (props) => {
           image={images.reward_badge}
           title="Premium Subscription"
           smallText="Upgrade plan"
-          onPress={()=>{}}
+          onPress={() => {}}
         />
         <OptionCardBtn
           image={images.fast_email_sending}
@@ -165,7 +158,7 @@ const SidebarView = (props) => {
           smallText="Invite now"
           rightIcon
           rightIconName="share"
-          onPress={()=>{onShowInviteModal(true)}}
+          onPress={() => {onShowInviteModal(true)}}
         />
         <Text style={[styles.menuText, { color: themes[theme].titleColor }]}>Menu</Text>
         {menus.map(m => (

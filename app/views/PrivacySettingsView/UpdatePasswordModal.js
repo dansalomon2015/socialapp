@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { withTheme } from '../../theme'
 import styles from './styles'
@@ -21,60 +21,49 @@ const UpdatePasswordModal = ({ isShow, onClose, theme, user }) => {
   const passwordInput = useRef(null)
   const confirmPasswordInput = useRef(null)
 
-  useEffect(() => {
-    if (isShow) {
-      isValid()
-    }
-  }, [state])
-
   const isValid = () => {
     setErrOld('')
     setErrNew('')
     setErrConfirm('')
     if (!state.old.length) {
       setErrOld(I18n.t('please_enter_old_password'))
-      setBtnDisable(true)
+      oldPasswordInput.current.focus()
       return false
-    } if (!state.new.length) {
+    } else if (!state.new.length) {
       setErrNew('Please enter your new password.')
-      setBtnDisable(true)
+      passwordInput.current.focus()
       return false
     } else if (!state.confirm.length) {
       setErrConfirm('Please enter your confirm password.')
-      setBtnDisable(true)
+      confirmPasswordInput.current.focus()
       return false
     } else if (state.confirm !== state.new) {
-      setErrConfirm('Please enter your confirm password.')
-      setBtnDisable(true)
+      setErrConfirm('The confirmation password doesn\'t match the new password.')
+      confirmPasswordInput.current.focus()
       return false
     } else {
-      setBtnDisable(false)
       return true
     }
   }
 
   const onSubmit = () => {
-    setIsLoading(true)
-    firebaseSdk
-      .reauthenticate(user.email, state.old)
-      .then(() => {
-        firebaseSdk
-          .updateCredential(user.email, state.new)
-          .then(async () => {
-            setIsLoading(false)
-            showToast('You successfully changed your password')
-            onClose()
-          })
-          .catch(err => {
-            setIsLoading(false)
-            showErrorAlert(I18n.t('Updating_security_failed'))
-            console.log('error', err)
-          })
-      })
-      .catch(() => {
+    if (isValid()) {
+      setIsLoading(true)
+      firebaseSdk.reauthenticate(user.email, state.old).then(() => {
+        firebaseSdk.updateCredential(user.email, state.new).then(async () => {
+          setIsLoading(false)
+          showToast('You successfully changed your password')
+          onClose()
+        }).catch(err => {
+          setIsLoading(false)
+          showErrorAlert(I18n.t('Updating_security_failed'))
+          console.log('error', err)
+        })
+      }).catch(() => {
         setIsLoading(false)
         showErrorAlert(I18n.t('error-invalid-email_or_password'))
       })
+    }
   }
 
   return (

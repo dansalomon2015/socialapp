@@ -16,11 +16,11 @@ import firestore from '@react-native-firebase/firestore'
 import firebaseSdk, { DB_ACTION_UPDATE } from '../../lib/firebaseSdk'
 import images from '../../assets/images'
 import I18n from '../../i18n'
+import { setUser as setUserAction } from '../../actions/login'
+
 const BlockView = (props) => {
   const { user, theme, navigation } = props
-
   const [data, setData] = useState([])
-  const [unBlocked, setUnBlocked] = useState([])
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(true)
   const [updating, setUpdating] = useState(false)
@@ -59,42 +59,31 @@ const BlockView = (props) => {
     })
     setData(block_list)
     setLoading(false)
-    console.log('block list', block_list)
+    setUpdating(false)
+    setRefreshing(false)
   }
 
-  const toggleUnBlock = item => {
-    if (unBlocked.includes(item.userId)) {
-      setUnBlocked(unBlocked.filter(b => b !== item.userId))
-    } else {
-      setUnBlocked([...unBlocked, item.userId])
-    }
-  }
-
-  const onUnBlock = () => {
+  const unBlock = (item) => {
     const { user, setUser } = props
 
     if (!user.blocked) {
       return
     }
 
-    let blocked = user.blocked.filter(b => !unBlocked.includes(b))
-    let update = { id: user.id, blocked }
-
+    let blocked = user.blocked.filter(b => b !== item.userId)
     setUpdating(true)
-    firebaseSdk
-      .setData(firebaseSdk.TBL_USER, DB_ACTION_UPDATE, update)
-      .then(() => {
-        setUser({ blocked: blocked })
-        setUpdating(false)
-        // init();
+    firebaseSdk.setData(firebaseSdk.TBL_USER, DB_ACTION_UPDATE, { id: user.id, blocked })
+      .then(async () => {
+        setUser({ ...user, blocked: blocked }, () => {
+          init()
+        })
       })
-      .catch(err => {
+      .catch(() => {
         setUpdating(false)
       })
   }
 
   const renderItem = ({ item }) => {
-    let fUnBlocked = unBlocked.includes(item.userId)
     return (
       <View style={styles.itemContainer}>
         <View style={styles.itemHeader}>
@@ -111,9 +100,9 @@ const BlockView = (props) => {
             </Text>
           </View>
         </View>
-        <TouchableOpacity onPress={() => toggleUnBlock(item)}>
-          <Text style={[fUnBlocked ? styles.blockText : styles.unBlockText, { color: themes[theme].textColor }]}>
-            {fUnBlocked ? I18n.t('Block') : `${I18n.t('Unblock')}`}
+        <TouchableOpacity onPress={() => unBlock(item)}>
+          <Text style={[styles.blockText, { color: themes[theme].textColor }]}>
+            Unblock
           </Text>
         </TouchableOpacity>
       </View>
@@ -140,9 +129,6 @@ const BlockView = (props) => {
       )}
       <View style={{ flexDirection: 'column', marginBottom: 8, padding: 16 }}>
         <Text style={[styles.title, { color: themes[theme].titleColor }]}>Blocked Users</Text>
-        <Text style={[styles.subtitle, { color: themes[theme].titleColor }]}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum vel egestas egestas cras.
-        </Text>
       </View>
       <View style={styles.container}>
         {data.length > 0 && (
@@ -169,6 +155,8 @@ const mapStateToProps = state => ({
   user: state.login.user,
 })
 
-const mapDispatchToProps = () => ({})
+const mapDispatchToProps = dispatch => ({
+  setUser: params => dispatch(setUserAction(params)),
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTheme(BlockView))

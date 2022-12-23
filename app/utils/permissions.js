@@ -58,8 +58,8 @@ const fetchCameraPermission = () => {
       .then(result => {
         console.log('permission', result);
         if (result === RESULTS.GRANTED || result === RESULTS.LIMITED)
-          resolve(true);
-        else resolve(false);
+          {resolve(true);}
+        else {resolve(false);}
       })
       .catch(error => {
         resolve(false);
@@ -78,8 +78,8 @@ const fetchPhotosPermission = () => {
       .then(result => {
         console.log('permission', result);
         if (result === RESULTS.GRANTED || result === RESULTS.LIMITED)
-          resolve(true);
-        else resolve(false);
+          {resolve(true);}
+        else {resolve(false);}
       })
       .catch(error => {
         resolve(false);

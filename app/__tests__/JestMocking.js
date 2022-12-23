@@ -34,7 +34,7 @@ jest.doMock('react-native', () => {
         OS: 'ios',
         Version: 123,
         isTesting: true,
-        select: objs => objs['ios'],
+        select: objs => objs.ios,
       },
       NativeModules: {
         ...ReactNative.NativeModules,

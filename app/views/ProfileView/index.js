@@ -64,7 +64,7 @@ const ProfileView = props => {
   let unSubscribePost = ''
 
   useEffect(() => {
-    if (!isEmpty(user)) init()
+    if (!isEmpty(user)) {init()}
   }, [user])
 
   const setSafeState = states => {

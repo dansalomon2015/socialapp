@@ -1,35 +1,35 @@
-import React, {useState} from 'react';
-import {View, Text, SafeAreaView, ScrollView, Image} from 'react-native';
-import styles from './style';
-import images from '../../assets/images';
-import {COLOR_LIGHT_DARK, COLOR_WHITE, themes} from '../../constants/colors';
-import StatusBar from '../../containers/StatusBar';
-import {withTheme} from '../../theme';
-import scrollPersistTaps from '../../utils/scrollPersistTaps';
-import i18n from '../../i18n';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {VectorIcon} from '../../containers/VectorIcon';
-import Button from '../../containers/Button';
-import ProfileImageUpload from './ProfileImageUpload';
-import BasicInfoUpdate from './BasicInfoUpdate';
-import AddExperienceButton from './AddExperienceButton';
-import firebaseSdk from '../../lib/firebaseSdk';
+import React, { useState } from 'react'
+import { View, Text, SafeAreaView, ScrollView, Image } from 'react-native'
+import styles from './style'
+import images from '../../assets/images'
+import { COLOR_LIGHT_DARK, COLOR_WHITE, themes } from '../../constants/colors'
+import StatusBar from '../../containers/StatusBar'
+import { withTheme } from '../../theme'
+import scrollPersistTaps from '../../utils/scrollPersistTaps'
+import i18n from '../../i18n'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { VectorIcon } from '../../containers/VectorIcon'
+import Button from '../../containers/Button'
+import ProfileImageUpload from './ProfileImageUpload'
+import BasicInfoUpdate from './BasicInfoUpdate'
+import AddExperienceButton from './AddExperienceButton'
+import firebaseSdk from '../../lib/firebaseSdk'
 
-import {showToast} from '../../lib/info';
-import {loginSuccess as loginSuccessAction} from '../../actions/login';
-import {appStart as appStartAction} from '../../actions/app';
-import {connect} from 'react-redux';
+import { showToast } from '../../lib/info'
+import { loginSuccess as loginSuccessAction } from '../../actions/login'
+import { appStart as appStartAction } from '../../actions/app'
+import { connect } from 'react-redux'
 
-const theme = 'light';
+const theme = 'light'
 
-const UpdateProfileAndBasicInfo = ({loginSuccess, user, dispatch}) => {
-  const [radioButtonChecked, setRadioButtonChecked] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+const UpdateProfileAndBasicInfo = ({ loginSuccess, user, dispatch }) => {
+  const [radioButtonChecked, setRadioButtonChecked] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const [profileImage, setProfileImage] = useState({
     imageName: '',
     imageUrl: '',
-  });
+  })
 
   const [userInfo, setUserInfo] = useState({
     displayName: '',
@@ -41,49 +41,49 @@ const UpdateProfileAndBasicInfo = ({loginSuccess, user, dispatch}) => {
     company: '',
     role: '',
     years_of_service: '',
-  });
+  })
 
   const onUserInfoUpdated = update => {
     setUserInfo(info => {
-      return {...info, ...update};
-    });
-  };
+      return { ...info, ...update }
+    })
+  }
 
   const onSubmit = () => {
     if (!profileImage.imageUrl || userInfo.displayName || userInfo.job) {
-      showToast(i18n.t('please_complete_these_steps_to_confirm'));
-      return;
+      showToast(i18n.t('please_complete_these_steps_to_confirm'))
+      return
     }
 
     if (!radioButtonChecked) {
-      showToast(i18n.t('you_should_agree_with_terms'));
-      return;
+      showToast(i18n.t('you_should_agree_with_terms'))
+      return
     }
 
-    setIsLoading(true);
-    const user_ = {...user, ...userInfo, avatar: profileImage.imageUrl};
+    setIsLoading(true)
+    const user_ = { ...user, ...userInfo, avatar: profileImage.imageUrl }
     firebaseSdk
       .updateUser(user_)
       .then(async () => {
-        showToast(i18n.t('Register_complete'));
-        loginSuccess({...user_, emailVerified: true});
+        showToast(i18n.t('Register_complete'))
+        loginSuccess({ ...user_, emailVerified: true })
       })
       .catch(err => {
-        showErrorAlert(i18n.t('Register_fail'));
+        showErrorAlert(i18n.t('Register_fail'))
       })
-      .finally(() => setIsLoading(false));
-  };
+      .finally(() => setIsLoading(false))
+  }
 
   return (
-    <SafeAreaView style={{flex: 1, flexDirection: 'column', backgroundColor: COLOR_WHITE}}>
+    <SafeAreaView style={{ flex: 1, flexDirection: 'column', backgroundColor: COLOR_WHITE }}>
       <StatusBar />
       <ScrollView
-        style={{flex: 1, backgroundColor: COLOR_WHITE, height: '100%', paddingHorizontal: 24}}
+        style={{ flex: 1, backgroundColor: COLOR_WHITE, height: '100%', paddingHorizontal: 24 }}
         {...scrollPersistTaps}
         keyboardShouldPersistTaps="handled">
         <View style={styles.headerContainer}>
           <Image style={styles.logo} source={images.logo} />
-          <Text style={[styles.welcomeText, {color: themes[theme].headerTitleColor}]}>
+          <Text style={[styles.welcomeText, { color: themes[theme].headerTitleColor }]}>
             {i18n.t('Onboard_text_welcome')}
           </Text>
           <Text style={styles.completeStepsText}>{i18n.t('please_complete_these_steps_to_confirm')}</Text>
@@ -144,16 +144,16 @@ const UpdateProfileAndBasicInfo = ({loginSuccess, user, dispatch}) => {
         />
       </View>
     </SafeAreaView>
-  );
-};
+  )
+}
 
 const mapStateToProps = state => ({
   user: state.login.user,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loginSuccess: params => dispatch(loginSuccessAction(params)),
   appStart: params => dispatch(appStartAction(params)),
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTheme(UpdateProfileAndBasicInfo));
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(UpdateProfileAndBasicInfo))

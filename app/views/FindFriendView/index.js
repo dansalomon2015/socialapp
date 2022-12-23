@@ -48,7 +48,7 @@ const FindFriendView = props => {
 
   useEffect(() => {
     if (inputBox.current)
-      inputBox.current.focus()
+      {inputBox.current.focus()}
   }, [])
 
   useEffect(() => {
@@ -65,10 +65,7 @@ const FindFriendView = props => {
       postSnaps.forEach(p => posts.push({ id: p.id, userId: p.data().userId }))
       userSnaps.forEach(s => {
         const userInfo = { ...s.data(), id: s.id }
-        if (
-          userInfo.userId !== user.userId &&
-          !user.blocked.includes(userInfo.userId)
-        ) {
+        if (userInfo.userId !== user.userId && !user.blocked.includes(userInfo.userId)) {
           const userPosts = posts.filter(p => p.userId === userInfo.userId)
           users.push({ ...userInfo, postCount: userPosts.length })
           if (user.followings.includes(userInfo.userId)) {
@@ -79,7 +76,7 @@ const FindFriendView = props => {
 
       if (searchText.length > 0) {
         const data = users.filter(d => {
-          const key = d.displayName
+          const key = d.displayName || ''
           return key.toLowerCase().indexOf(searchText.toLowerCase()) >= 0
         })
         setData(data)

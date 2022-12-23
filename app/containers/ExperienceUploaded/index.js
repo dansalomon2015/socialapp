@@ -1,10 +1,10 @@
-import {View, Text} from 'react-native';
-import React from 'react';
+import { View, Text } from 'react-native'
+import React from 'react'
 
-import styles from './stlye';
-import {VectorIcon} from '../VectorIcon';
-import {themes} from '../../constants/colors';
-import {useTheme} from '../../theme';
+import styles from './stlye'
+import { VectorIcon } from '../VectorIcon'
+import { themes } from '../../constants/colors'
+import { useTheme } from '../../theme'
 
 const ExperienceUploaded = ({
   salary,
@@ -18,11 +18,11 @@ const ExperienceUploaded = ({
   return (
     <View style={styles.container}>
       <View>
-        <Text style={[styles.jobTitle, {color: themes[theme].titleColor}]}>{jobTitle}</Text>
-        <Text style={[styles.companyNameAndNumberOfYears, {color: themes[theme].titleColor}]}>
+        <Text style={[styles.jobTitle, { color: themes[theme].titleColor }]}>{jobTitle}</Text>
+        <Text style={[styles.companyNameAndNumberOfYears, { color: themes[theme].titleColor }]}>
           {companyName} | {numberOfYears} years
         </Text>
-        <Text style={{color: '#858585'}}>
+        <Text style={{ color: '#858585' }}>
           {' '}
           <Text style={[styles.salaryText]}>{salary},000</Text> USD / per month{' '}
         </Text>
@@ -38,7 +38,7 @@ const ExperienceUploaded = ({
         />
       )}
     </View>
-  );
-};
+  )
+}
 
-export default ExperienceUploaded;
+export default ExperienceUploaded

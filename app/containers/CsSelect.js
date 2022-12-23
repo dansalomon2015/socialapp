@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {Dimensions, StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
-import Modal from 'react-native-modal';
-import sharedStyles from '../views/Styles';
-import {themes} from '../constants/colors';
-import {VectorIcon} from './VectorIcon';
+import React, { useState } from 'react'
+import { Dimensions, StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
+import Modal from 'react-native-modal'
+import sharedStyles from '../views/Styles'
+import { themes } from '../constants/colors'
+import { VectorIcon } from './VectorIcon'
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
@@ -83,33 +83,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 6,
   },
-});
+})
 
 export const CsSelect = React.memo(
-  ({label, options = [], placeholder, value, theme, onSelect, containerStyle}) => {
-    const [selected, setSelected] = useState(false);
+  ({ label, options = [], placeholder, value, theme, onSelect, containerStyle }) => {
+    const [selected, setSelected] = useState(false)
 
     const items = options.map(option => ({
       label: option,
       value: option,
-    }));
+    }))
 
-    const [showItems, setShowItems] = useState(false);
+    const [showItems, setShowItems] = useState(false)
 
     const onSelectItem = value => {
-      onSelect(value);
-      setSelected(true);
-      setShowItems(false);
-    };
+      onSelect(value)
+      setSelected(true)
+      setShowItems(false)
+    }
 
     return (
       <>
         {label && <Text style={styles.label}>{label}</Text>}
-        <View style={{flexDirection: 'row'}}>
+        <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity
             style={[styles.container, containerStyle]}
             onPress={() => setShowItems(!showItems)}>
-            <Text style={[{color: selected ? '#000000' : '#C4C4C4'}]}>{!selected ? placeholder : value}</Text>
+            <Text style={[{ color: selected ? '#000000' : '#C4C4C4' }]}>{!selected ? placeholder : value}</Text>
             <VectorIcon
               type={'Entypo'}
               name={selected ? 'chevron-thin-right' : 'chevron-thin-down'}
@@ -138,6 +138,6 @@ export const CsSelect = React.memo(
           </View>
         </Modal>
       </>
-    );
+    )
   },
-);
+)

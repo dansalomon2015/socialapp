@@ -127,7 +127,7 @@ const ExYears = (props) => {
 
   useEffect(() => {
     if (show)
-      setState({ ...state, show: !props.topScrollEnable })
+      {setState({ ...state, show: !props.topScrollEnable })}
   }, [props.topScrollEnable])
 
   const onChange = value => {

@@ -58,13 +58,13 @@ describe('app actions', () => {
     expect(Actions.setRoute(routeName)).toEqual(expectedAction);
     testedCount++;
   });
-  
+
   it('test all app actions', () => {
     const keys = Object.keys(Actions);
     let actionCount = 0;
     for (let k in keys) {
       if (typeof Actions[keys[k]] === 'function') {
-        actionCount ++;
+        actionCount++;
       }
     }
     const expectedCount = {

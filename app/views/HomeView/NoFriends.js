@@ -1,10 +1,10 @@
-import React from 'react';
-import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import I18n from '../../i18n';
-import images from '../../assets/images';
-import { withTheme } from '../../theme';
-import { themes } from '../../constants/colors';
+import React from 'react'
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import I18n from '../../i18n'
+import images from '../../assets/images'
+import { withTheme } from '../../theme'
+import { themes } from '../../constants/colors'
 
 const styles = StyleSheet.create({
   btnContainer: {
@@ -25,12 +25,14 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: 'contain',
   },
-});
+})
 
-const NoFriends = ({ onPress, theme }) => {
-  const tabbarHeight = useBottomTabBarHeight();
+const NoFriends = ({ onPress, theme, isOverlay }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const tabBarHeight = !isOverlay ? useBottomTabBarHeight() : 0
+
   return (
-    <View style={[styles.btnContainer, { marginBottom: tabbarHeight }]}>
+    <View style={[styles.btnContainer, { marginBottom: tabBarHeight }]}>
       <TouchableOpacity style={styles.container} onPress={onPress}>
         <Image
           source={
@@ -43,7 +45,7 @@ const NoFriends = ({ onPress, theme }) => {
         <Text style={[styles.titleText, { color: themes[theme].activeTintColor }]}>{I18n.t('No_friends')}</Text>
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}
 
-export default withTheme(NoFriends);
+export default withTheme(NoFriends)

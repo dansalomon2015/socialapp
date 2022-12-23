@@ -23,7 +23,7 @@ const InviteModal = ({ isShow, onClose, theme }) => {
           lineHeight: 22,
           color: themes[theme].textColor,
         }}>
-          {`Hello \nJust joined VIP billionare. At Vipbillionaires, accessible from https://www.vipbillionaires.com/, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Vipbillionaires and how we use it. If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us. https://www.vipbillionaires.com/user/invite Thank you`}
+          {'Hello \nJust joined VIP billionare. At Vipbillionaires, accessible from https://www.vipbillionaires.com/, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Vipbillionaires and how we use it. If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us. https://www.vipbillionaires.com/user/invite Thank you'}
         </Text>
       </View>
       <Text style={{ fontSize: 12, color: themes[theme].textColor, marginBottom: 8 }}>Invite via</Text>

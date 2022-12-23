@@ -85,7 +85,7 @@ describe('app reducer', () => {
       isMasterDetail: action.isMasterDetail,
     });
   });
-  
+
   it('handle APP.SET_ROUTE', () => {
     const action = {
       type: ActionTypes.APP.SET_ROUTE,

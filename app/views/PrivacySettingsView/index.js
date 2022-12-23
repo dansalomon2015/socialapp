@@ -19,10 +19,18 @@ import moment from 'moment'
 import { getDeviceModel, isIOS } from '../../utils/deviceInfo'
 import UpdateEmailModal from './UpdateEmailModal'
 import UpdatePasswordModal from './UpdatePasswordModal'
+import I18n from '../../i18n'
+import DialogInput from 'react-native-dialog-input'
+import firebaseSdk from '../../lib/firebaseSdk'
+import { showErrorAlert } from '../../lib/info'
+import ActivityIndicator from '../../containers/ActivityIndicator'
 
 const PrivacySettingsView = (props) => {
   const lastSignInTime = firebase.auth().currentUser.metadata.lastSignInTime
-  const { theme, navigation } = props
+  const { theme, navigation, user } = props
+  const [isLoading, setIsLoading] = useState(false)
+  const [isShowPasswordConfirm, setShowPasswordConfirm] = useState(false)
+  const [password, setPassword] = useState(false)
   const [isShowUpdateEmail, onShowUpdateEmailModal] = useState(false)
   const [isShowUpdatePassword, onShowUpdatePasswordModal] = useState(false)
 
@@ -42,13 +50,29 @@ const PrivacySettingsView = (props) => {
     })
   }, [theme])
 
-  const onClick = item => {
-
+  const confirmPassword = (password) => {
+    setIsLoading(true)
+    firebaseSdk
+      .signInWithEmail(user.email, password)
+      .then(_ => {
+        onShowUpdateEmailModal(true)
+        setIsLoading(false)
+        setPassword(password)
+      })
+      .catch(err => {
+        setPassword(null)
+        setIsLoading(false)
+        showErrorAlert(I18n.t('error-invalid-password'))
+        console.log('error', err)
+      })
   }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: themes[theme].backgroundColor }}>
       <StatusBar />
+      {isLoading && (
+        <ActivityIndicator absolute theme={theme} size={'large'} />
+      )}
       <ScrollView
         style={{
           flexGrow: 1,
@@ -60,15 +84,25 @@ const PrivacySettingsView = (props) => {
           <Text style={[styles.title, { color: themes[theme].titleColor }]}>Privacy Settings</Text>
         </View>
 
-        <SidebarItem
-          text={'Update Email Address'}
-          onPress={() => onClick(onShowUpdateEmailModal(true))}
-          theme={theme}
-          hasRight
-        />
+        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', marginBottom: 0 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor, fontSize: 14 }]}>Update Email Address</Text>
+        </View>
+        <View style={[styles.container, { backgroundColor: themes[theme].buttonBackground, marginBottom: 16 }]}>
+          <View style={styles.item}>
+            <View style={styles.itemCenter}>
+              <Text style={[styles.itemText, { color: themes[theme].subTextColor }]}>
+                {user.email}
+              </Text>
+            </View>
+          </View>
+          <TouchableOpacity onPress={() => setShowPasswordConfirm(true)}>
+            <VectorIcon type="MaterialCommunityIcons" name="pencil" color={themes[theme].titleColor} size={24} />
+          </TouchableOpacity>
+        </View>
+
         <SidebarItem
           text={'Change Password'}
-          onPress={() => onClick(onShowUpdatePasswordModal(true))}
+          onPress={() => onShowUpdatePasswordModal(true)}
           theme={theme}
           hasRight
         />
@@ -108,8 +142,24 @@ const PrivacySettingsView = (props) => {
         </View>
       </ScrollView>
 
+      <DialogInput
+        isDialogVisible={isShowPasswordConfirm}
+        textInputProps={{ secureTextEntry: true }}
+        title={'Update Email'}
+        message={'Please enter your password to confirm!'}
+        hintInput={I18n.t('please_enter_password')}
+        submitInput={(password) => {
+          if (password && password !== '') {
+            setShowPasswordConfirm(false)
+            confirmPassword(password)
+          }
+        }}
+        closeDialog={() => {setShowPasswordConfirm(false)}}
+      />
+
       <UpdateEmailModal
         isShow={isShowUpdateEmail} theme={theme}
+        password={password}
         onClose={() => onShowUpdateEmailModal(false)}
       />
 

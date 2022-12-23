@@ -62,7 +62,7 @@ const AboutView = props => {
     switch (type) {
       case 0:
         title = I18n.t('Terms_of_use')
-        content = `<html><head><meta name="viewport" content="width=device-width, initial-scale=0.8"><style>body{padding: 8px; line-height: 1.4rem}</style></head><body>${
+        content = `<html><head><meta name="viewport" content="width=device-width, initial-scale=0.8"><style>body{font-family: 'Raleway';padding: 8px; line-height: 1.4rem}</style></head><body>${
           I18n.locale === 'ja'
             ? CONTENT_TERMS_AND_CONDITIONS_JP
             : CONTENT_TERMS_AND_CONDITIONS
@@ -70,7 +70,7 @@ const AboutView = props => {
         break
       case 1:
         title = I18n.t('Privacy_policy')
-        content = `<html><head><meta name="viewport" content="width=device-width, initial-scale=0.8"><style>body{padding: 8px; line-height: 1.4rem}</style></head><body>${
+        content = `<html><head><meta name="viewport" content="width=device-width, initial-scale=0.8"><style>body{font-family: 'Raleway'; font-weight: 500; font-size: 14px; line-height: 22px}</style></head><body>${
           I18n.locale === 'ja'
             ? CONTENT_PRIVACY_POLICY_JP
             : CONTENT_PRIVACY_POLICY

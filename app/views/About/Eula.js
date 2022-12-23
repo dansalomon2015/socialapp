@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { TouchableOpacity, Alert, View, Text, ScrollView, BackHandler } from 'react-native'
+import { TouchableOpacity, View, Text, ScrollView } from 'react-native'
 import { themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
@@ -33,127 +33,360 @@ const Eula = props => {
   return (
     <View style={{ backgroundColor: themes[theme].backgroundColor }}>
       <StatusBar />
-      <View style={[styles.container, { marginBottom: 16 }]}>
-        <Text style={[styles.title, { color: themes[theme].titleColor }]}>What is an EULA</Text>
-        <Text style={[styles.text, { color: themes[theme].textColor }]}>Updated at 2021-09-27</Text>
-      </View>
       <ScrollView style={[styles.container, { marginBottom: 16 }]}>
-        <Text style={[styles.text, { color: themes[theme].textColor }]}>
-          At VipBillionaires, accessible from https://www.vipBillionaires.com/, one of our main priorities is the
-          privacy of our visitors. This Privacy Policy document contains types of information that is collected and
-          recorded by VipBillionaires and how we use it.
-          If you have additional questions or require more information about our Privacy Policy, do not hesitate to
-          contact us.
-          This Privacy Policy applies only to our online activities and is valid for visitors to our website with
-          regards to the information that they shared and/or collect in VipBillionaires. This policy is not applicable
-          to any information collected offline or via channels other than this website. Our Privacy Policy was created
-          with the help of the Free Privacy Policy Generator.
-          Consent
-          By using our website, you hereby consent to our Privacy Policy and agree to its terms.
-          Information we collect
-          The personal information that you are asked to provide, and the reasons why you are asked to provide it,
-          will
-          be made clear to you at the point we ask you to provide your personal information.
-          If you contact us directly, we may receive additional information about you such as your name, email
-          address,
-          phone number, the contents of the message and/or attachments you may send us, and any other information you
-          may choose to provide.
-          When you register for an Account, we may ask for your contact information, including items such as name,
-          company name, address, email address, and telephone number.
-          How we use your information
-          We use the information we collect in various ways, including to:
-          Provide, operate, and maintain our website
-          Improve, personalize, and expand our website
-          Understand and analyze how you use our website
-          Develop new products, services, features, and functionality
-          Communicate with you, either directly or through one of our partners, including for customer service, to
-          provide you with updates and other information relating to the website, and for marketing and promotional
-          purposes
-          Send you emails
-          Find and prevent fraud
-          Log Files
-          VipBillionaires follows a standard procedure of using log files. These files log visitors when they visit
-          websites. All hosting companies do this and a part of hosting services' analytics. The information collected
-          by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date
-          and
-          time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information
-          that is personally identifiable. The purpose of the information is for analyzing trends, administering the
-          site, tracking users' movement on the website, and gathering demographic information.
-          Cookies and Web Beacons
-          Like any other website, VipBillionaires uses 'cookies'. These cookies are used to store information
-          including
-          visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is
-          used to optimize the users' experience by customizing our web page content based on visitors' browser type
-          and/or other information.
-          Google DoubleClick DART Cookie
-          Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads
-          to our site visitors based upon their visit to www.website.com and other sites on the internet. However,
-          visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy
-          Policy at the following URL – https://policies.google.com/technologies/ads
-          Our Advertising Partners
-          Some of advertisers on our site may use cookies and web beacons. Our advertising partners are listed below.
-          Each of our advertising partners has their own Privacy Policy for their policies on user data. For easier
-          access, we hyperlinked to their Privacy Policies below.
-          Google
-          https://policies.google.com/technologies/ads
-          Advertising Partners Privacy Policies
-          You may consult this list to find the Privacy Policy for each of the advertising partners of
-          VipBillionaires.
-          Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are
-          used
-          in their respective advertisements and links that appear on VipBillionaires, which are sent directly to
-          users'
-          browser. They automatically receive your IP address when this occurs. These technologies are used to measure
-          the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see
-          on
-          websites that you visit.
-          Note that VipBillionaires has no access to or control over these cookies that are used by third-party
-          advertisers.
-          Third Party Privacy Policies
-          VipBillionaires's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you
-          to
-          consult the respective Privacy Policies of these third-party ad servers for more detailed information. It
-          may
-          include their practices and instructions about how to opt-out of certain options.
-          You can choose to disable cookies through your individual browser options. To know more detailed information
-          about cookie management with specific web browsers, it can be found at the browsers' respective websites.
-          CCPA Privacy Rights (Do Not Sell My Personal Information)
-          Under the CCPA, among other rights, California consumers have the right to:
-          Request that a business that collects a consumer's personal data disclose the categories and specific pieces
-          of personal data that a business has collected about consumers.
-          Request that a business delete any personal data about the consumer that a business has collected.
-          Request that a business that sells a consumer's personal data, not sell the consumer's personal data.
-          If you make a request, we have one month to respond to you. If you would like to exercise any of these
-          rights,
-          please contact us.
-          GDPR Data Protection Rights
-          We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled
-          to the following:
-          The right to access – You have the right to request copies of your personal data. We may charge you a small
-          fee for this service.
-          The right to rectification – You have the right to request that we correct any information you believe is
-          inaccurate. You also have the right to request that we complete the information you believe is incomplete.
-          The right to erasure – You have the right to request that we erase your personal data, under certain
-          conditions.
-          The right to restrict processing – You have the right to request that we restrict the processing of your
-          personal data, under certain conditions.
-          The right to object to processing – You have the right to object to our processing of your personal data,
-          under certain conditions.
-          The right to data portability – You have the right to request that we transfer the data that we have
-          collected
-          to another organization, or directly to you, under certain conditions.
-          If you make a request, we have one month to respond to you. If you would like to exercise any of these
-          rights,
-          please contact us.
-          Children's Information
-          Another part of our priority is adding protection for children while using the internet. We encourage
-          parents
-          and guardians to observe, participate in, and/or monitor and guide their online activity.
-          VipBillionaires does not knowingly collect any Personal Identifiable Information from children under the age
-          of 13. If you think that your child provided this kind of information on our website, we strongly encourage
-          you to contact us immediately and we will do our best efforts to promptly remove such information from our
-          records.
-        </Text>
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>End-User License Agreement</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>Updated at 2021-09-27</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>VIP Billionaires hereby grants you access to (“the Website”) and invites you to purchase the services offered here.</Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Definitions and key terms</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            To help explain things as clearly as possible in this Eula, every time any of these terms are referenced, are strictly defined as:
+          </Text>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
+              Cookie: small amount of data generated by a website and saved by your web browser. It is used to identify your browser, provide analytics, remember information about you such as your
+              language preference or login information.
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
+              Company: when this policy mentions “Company,” “we,” “us,” or “our,” it refers to Zein El Dine International Co., Ltd, Tokyo, Japan that is responsible for your information under this
+              Eula.
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
+              Country: where VIP Billionaires or the owners/founders of VIP Billionaires are based, in this case is Japan
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
+              Service: refers to the service provided by VIP Billionaires as described in the relative terms (if available) and on this platform.
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
+              Third-party service: refers to advertisers, contest sponsors, promotional and marketing partners, and others who provide our content or whose products or services we think may interest
+              you.
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>You: a person or entity that is registered with VIP Billionaires to use the Services.</Text>
+          </View>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Introduction</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            This End User License Agreement (the “Agreement”) is a binding agreement between you (“End User”,“you” or “your”) and Zein El Dine International Co., Ltd (“Company”, “we”, “us” or “our”).
+            This Agreement governs the relationship between you and us, and your use of the Company VIP Billionaires. Throughout this Agreement, End User and Company may each be referred to as a
+            “Party” or collectively, the “Parties”.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            If you are using the app on behalf of your employer or other entity (an “Organisation”) for whose benefit you utilise the app or who owns or otherwise controls the means through which you
+            utilise or access the app, then the terms “End User”, “you”, and “your” shall apply collectively to you as an individual and to the Organisation. If you use, or purchase a license or to,
+            the app on behalf of an Organisation, you hereby acknowledge, warrant, and covenant that you have the authority to 1) purchase a license to the app on behalf of the Organisation; 2) bind
+            the Organisation to the terms of this Agreement.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            By downloading, installing, accessing, or using the app you: (a) affirm that you have all of the necessary permissions and authorisations to access and use the app; (b) if you are using
+            the app pursuant to a license purchased by an organisation, that you are authorised by that organisation to access and use the app(c) acknowledge that you have read and that you understand
+            this agreement; (d) represent that you are of sound mind and of legal age (18 years of age or older) to enter into a binding agreement; and (e) accept and agree to be legally bound by the
+            terms and conditions of this agreement.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            If you do not agree to these terms, do not download, install, access, or use the software. if you have already downloaded the software, delete it from your computing device.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            The Application is licensed, not sold, to you by VIP Billionaires for use strictly in accordance with the terms of this Agreement.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>License</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            Subject to the terms of this Agreement and, if applicable, those terms provided in the License Agreement, VIP Billionaires grants you a limited, non-exclusive, perpetual, revocable, and
+            non-transferable license to:
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            (a) download, install and use the Software on one (1) Computing Device per single user license that you have purchased and been granted. If you have multiple Computer Devices in which you
+            wish to use the Software, you agree to acquire a license for the number of devices you intend to use; (b) access, view, and use on such Computing Device the End User Provided Materials
+            made available in or otherwise accessible through the Software, strictly in accordance with this Agreement, and any other terms and conditions applicable to such End User Provided
+            Materials; (c) install and use the trial version of the Software on any number of Computing Devices for a trial period of fifteen (15) unique days after installation. (d) receive updates
+            and new features that become available during the one (1) year period from the date on which you purchased the license to the Software.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Restrictions</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>You agree not to, and you will not permit others to:</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
+              License, sell, rent, lease, assign, distribute, transmit, host, outsource, disclose or otherwise commercially exploit the Application or make the Application available to any third
+              party.
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
+              Modify, make derivative works of, disassemble, decrypt, reverse compile or reverse engineer any part of the Application.
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>
+              Remove, alter or obscure any proprietary notice (including any notice of copyright or trademark) of VIP Billionaires or its affiliates, partners, suppliers or the licensors of the
+              Application.
+            </Text>
+          </View>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Intellectual Property</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            All intellectual property rights, including copyrights, patents, patent disclosures and inventions (whether patentable or not), trademarks service marks, trade secrets, know-how and other
+            confidential information, trade dress, trade names, logos, corporate names and domain names, together with all of the good will associated there with, derivative works and all other rights
+            (collectively, “Intellectual Property Rights”) that are part of the Software that are otherwise owned by VIP Billionaires shall always remain the exclusive property of VIP Billionaires (or
+            of its suppliers or licensors, if and when applicable). Nothing in this Agreement grants you (or any Organisation) a license to VIP Billionaires."’s" Intellectual Property Rights.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            You agree that this is Agreement conveys a limited license to use VIP Billionaires."’s" Intellectual Property Rights, solely as part of the Software (and not independently of it), and only
+            for the effective Term of the license granted to you hereunder. Accordingly, your use of any of VIP Billionaires."’s" Intellectual Property Rights independently of the Software or outside
+            the scope of this Agreement shall be considered an infringement of VIP Billionaires."’s" Intellectual Property Rights. This shall not limit, however, any claim VIP Billionaires may have
+            for a breach of contract in the event you breach a term or condition of this Agreement. You shall use the highest standard of care to safeguard all Software (including all copies thereof)
+            from infringement, misappropriation, theft, misuse or unauthorised access. Except as expressly granted in this Agreement, VIP Billionaires reserves and shall retain all rights, title, and
+            interest in the Software, including all copyrights and copyrightable subject matter, trademarks and trademark able subject matter, patents and patentable subject matter, trade secrets, and
+            other intellectual property rights, registered, unregistered, granted, applied-for, or both now in existence or that may be created, relating to the thereto.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            You (or the Organisation, if and as applicable) shall retain ownership of all Intellectual Property Rights in and to the work products that you create through or with the assistance of the
+            Software.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Your Suggestions</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            Any feedback, comments, ideas, improvements or suggestions (collectively, "Suggestions") provided by you to VIP Billionaires with respect to the Application shall remain the sole and
+            exclusive property of VIP Billionaires.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            VIP Billionaires shall be free to use, copy, modify, publish, or redistribute the Suggestions for any purpose and in any way without any credit or any compensation to you.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Modifications to Application</Text>
+          <Text style={[styles.text, { color: themes[theme].titleColor }]}>
+            {' '}
+            VIP Billionaires reserves the right to modify, suspend or discontinue, temporarily or permanently, the Application or any service to which it connects, with or without notice and without
+            liability to you.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Updates to Application</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            VIP Billionaires may from time to time provide enhancements or improvements to the features/ functionality of the Application, which may include patches, bug fixes, updates, upgrades and
+            other modifications ("Updates").
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            Updates may modify or delete certain features and/or functionalities of the Application. You agree that VIP Billionaires has no obligation to (i) provide any Updates, or (ii) continue to
+            provide or enable any particular features and/or functionalities of the Application to you.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            You further agree that all Updates will be (i) deemed to constitute an integral part of the Application, and (ii) subject to the terms and conditions of this Agreement.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Term and Termination</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>This Agreement shall remain in effect until terminated by you or VIP Billionaires.</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            VIP Billionaires may, in its sole discretion, at any time and for any or no reason, suspend or terminate this Agreement with or without prior notice.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            This Agreement will terminate immediately, without prior notice from VIP Billionaires, in the event that you fail to comply with any provision of this Agreement. You may also terminate
+            this Agreement by deleting the Application and all copies thereof from your computer.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            Upon termination of this Agreement, you shall cease all use of the Application and delete all copies of the Application from your computer.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            Termination of this Agreement will not limit any of VIP Billionaires."’s" rights or remedies at law or in equity in case of breach by you (during the term of this Agreement) of any of your
+            obligations under the present Agreement.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Indemnification</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            You agree to indemnify, defend and hold harmless VIP Billionaires and its officers, directors, employees, agents, affiliates, successors, and assigns from and against any and all losses,
+            damages, liabilities, deficiencies, claims, actions, judgments, settlements, interest, awards, penalties, fines, costs, or expenses of whatever kind, including reasonable attorneys’ fees,
+            arising from or relating to: i) your use or misuse of the Software; ii) your failure to comply with any applicable law, regulation, or government directive; iii) your breach of this
+            Agreement; or iv) your agreement or relationship with an Organisation (if applicable) or any third party. Furthermore, you agree that VIP Billionaires assumes no responsibility for the
+            information or content you submit or make available through this Software or the content that is made available to you by third parties.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>No Warranties</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            The Application is provided to you "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, VIP
+            Billionaires, on its own behalf and on behalf of its affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied,
+            statutory or otherwise, with respect to the Application, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement, and warranties
+            that may arise out of course of dealing, course of performance, usage or trade practice. Without limitation to the foregoing, VIP Billionaires provides no warranty or undertaking, and
+            makes no representation of any kind that the Application will meet your requirements, achieve any intended results, be compatible or work with any other software, applications, systems or
+            services, operate without interruption, meet any performance or reliability standards or be error free or that any errors or defects can or will be corrected.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            Without limiting the foregoing, neither VIP Billionaires nor any VIP Billionaires."’s" provider makes any representation or warranty of any kind, express or implied: (i) as to the
+            operation or availability of the Application, or the information, content, and materials or products included thereon; (ii) that the Application will be uninterrupted or error-free; (iii)
+            as to the accuracy, reliability, or currency of any information or content provided through the Application; or (iv) that the Application, its servers, the content, or e-mails sent from or
+            on behalf of VIP Billionaires are free of viruses, scripts, trojan horses, worms, malware, time bombs or other harmful components.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            Some jurisdictions do not allow the exclusion of or limitations on implied warranties or the limitations on the applicable statutory rights of a consumer, so some or all of the above
+            exclusions and limitations may not apply to you.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Limitation of Liability</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            Notwithstanding any damages that you might incur, the entire liability of VIP Billionaires and any of its suppliers under any provision of this Agreement and your exclusive remedy for all
+            of the foregoing shall be limited to the amount actually paid by you for the Application.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            To the maximum extent permitted by applicable law, in no event shall VIP Billionaires or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever
+            (including, but not limited to, damages for loss of profits, for loss of data or other information, for business interruption, for personal injury, for loss of privacy arising out of or in
+            any way related to the use of or inability to use the Application, third-party software and/or third-party hardware used with the Application, or otherwise in connection with any provision
+            of this Agreement), even if VIP Billionaires or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            Some states/jurisdictions do not allow the exclusion or limitation of incidental or consequential damages, so the above limitation or exclusion may not apply to you.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Severability</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            If any provision of this Agreement is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest
+            extent possible under applicable law and the remaining provisions will continue in full force and effect.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Waiver</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            No failure to exercise, and no delay in exercising, on the part of either party, any right or any power under this Agreement shall operate as a waiver of that right or power. Nor shall any
+            single or partial exercise of any right or power under this Agreement preclude further exercise of that or any other right granted herein. In the event of a conflict between this Agreement
+            and any applicable purchase or other terms, the terms of this Agreement shall govern.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Amendments to this Agreement</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            VIP Billionaires reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material we will provide at least 30 days' notice prior to
+            any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            By continuing to access or use our Application after any revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you are no longer
+            authorized to use the Application.
+          </Text>
+        </View>
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Governing Law</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            The laws of Japan, excluding its conflicts of law rules, shall govern this Agreement and your use of the Application. Your use of the Application may also be subject to other local, state,
+            national, or international laws.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Changes to this agreement</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            We reserve the exclusive right to make changes to this Agreement from time to time. Your continued access to and use of the app constitutes your agreement to be bound by, and your
+            acceptance of, the terms and conditions posted at such time. You acknowledge and agree that you accept this Agreement (and any amendments thereto) each time you load, access, or use the
+            app. Therefore, we encourage you to review this Agreement regularly.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            If, within thirty (30) days of us posting changes or amendments to this Agreement, you decide that you do not agree to the updated terms, you may withdraw your acceptance to the amended
+            terms by providing us with written notice of your withdrawal. Upon providing us with the written notice of the withdrawal of your acceptance, you are no longer authorised to access or use
+            the app.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>No Employment or Agency Relationship</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            No provision of this Agreement, or any part of relationship between you and VIP Billionaires, is intended to create nor shall they be deemed or construed to create any relationship between
+            you and VIP Billionaires other than that of and end user of the app and services provided.
+          </Text>
+        </View>
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Equitable Relief</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            You acknowledge and agree that your breach of this Agreement would cause VIP Billionaires irreparable harm for which money damages alone would be inadequate. In addition to damages and any
+            other remedies to which VIP Billionaires may be entitled, you acknowledge and agree that we may seek injunctive relief to prevent the actual, threatened or continued breach of this
+            Agreement.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Headings</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            The headings in this Agreement are for reference only and shall not limit the scope of, or otherwise affect, the interpretation of this Agreement.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Geographic Restrictions</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            The Company is based in Japan and provided for access and use primarily by persons located in Japan, and is maintains compliance with Japan laws and regulations. If you use the app from
+            outside Japan, you are solely and exclusively responsible for compliance with local laws.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Limitation of Time to File Claims</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            Any cause of action or claim you may have arising out of or relating to this agreement or the app must be commenced within one (1) year after the cause of action accrues, otherwise, such
+            cause of action or claim is permanently barred.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Entire Agreement</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            The Agreement constitutes the entire agreement between you and VIP Billionaires regarding your use of the Application and supersedes all prior and contemporaneous written or oral
+            agreements between you and VIP Billionaires.
+          </Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>
+            You may be subject to additional terms and conditions that apply when you use or purchase other VIP Billionaires."’s" services, which VIP Billionaires will provide to you at the time of
+            such use or purchase.
+          </Text>
+        </View>
+
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.title, { color: themes[theme].titleColor }]}>Contact Us</Text>
+          <Text style={[styles.text, { color: themes[theme].textColor }]}>Don't hesitate to contact us if you have any questions.</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <VectorIcon type="MaterialCommunityIcons" name="circle-medium" color={themes[theme].textColor} size={24} />
+            <Text style={[styles.listText, { color: themes[theme].textColor, flex: 1 }]}>Via Email: info@zedinternational.net</Text>
+          </View>
+        </View>
       </ScrollView>
     </View>
   )

@@ -26,7 +26,7 @@ const VipMembersClubView = (props) => {
   return (
     <View style={[
       sharedStyles.container,
-      { backgroundColor: themes[theme].navbarBackground }
+      { backgroundColor: themes[theme].navbarBackground },
     ]}>
       <StatusBar />
       <View style={[sharedStyles.contentContainer, { backgroundColor: themes[theme].backgroundColor, height: '100%' }]}>

@@ -11,6 +11,13 @@ export default StyleSheet.create({
     paddingHorizontal: 12,
     justifyContent: 'center',
   },
+  headerTitle: {
+    fontFamily: 'Raleway',
+    fontWeight: '600',
+    fontSize: 18,
+    lineHeight: 22,
+    marginBottom: 12,
+  },
   title: {
     fontFamily: 'Raleway',
     fontWeight: '600',
@@ -21,8 +28,15 @@ export default StyleSheet.create({
   text: {
     fontFamily: 'Raleway',
     fontWeight: '500',
-    fontSize: 12,
+    fontSize: 14,
     lineHeight: 22,
     marginBottom: 12,
+  },
+  listText: {
+    flex: 1,
+    fontFamily: 'Raleway',
+    fontWeight: '500',
+    fontSize: 14,
+    lineHeight: 22,
   },
 })

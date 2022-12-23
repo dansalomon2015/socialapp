@@ -106,7 +106,7 @@ const FollowView = props => {
 
       if (searchText.length > 0) {
         let data = users.filter(d => {
-          const key = d.displayName
+          const key = d.displayName || ''
           return key.toLowerCase().indexOf(searchText.toLowerCase()) >= 0
         })
         setData(data)
@@ -207,7 +207,7 @@ const FollowView = props => {
       <SafeAreaView style={[sharedStyles.contentContainer, {
         backgroundColor: themes[theme].backgroundColor,
         paddingTop: 10,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
       }]}>
         <StatusBar />
         {isSelf && (<SearchBox

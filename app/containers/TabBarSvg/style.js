@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
         width,
         position: 'absolute',
         bottom: 2,
-        alignSelf: 'center'
-    }
+        alignSelf: 'center',
+    },
 });
 
 export default styles

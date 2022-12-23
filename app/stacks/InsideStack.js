@@ -19,7 +19,6 @@ import PostDetailView from '../views/PostDetailView'
 import MessageView from '../views/MessageView'
 import ChatView from '../views/ChatView'
 import SettingView from '../views/SettingView'
-import SecurityView from '../views/SecurityView'
 import OtherProfileView from '../views/OtherProfileView'
 import ActivityView from '../views/ActivityView'
 import CategoryView from '../views/CategoryView'
@@ -135,7 +134,6 @@ const InsideStack = () => {
       />
       <Inside.Screen name="Chat" component={ChatView} />
       <Inside.Screen name="Setting" component={SettingView} />
-      <Inside.Screen name="Security" component={SecurityView} />
       <Inside.Screen name="ProductWeb" component={ProductWebView} />
       <Inside.Screen
         name="Category"

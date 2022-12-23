@@ -1,13 +1,13 @@
-import React from "react"
-import { Dimensions,Image } from "react-native"
-import { themes } from "../../constants/colors"
-import { useTheme } from "../../theme"
+import React from 'react'
+import { Dimensions,Image } from 'react-native'
+import { themes } from '../../constants/colors'
+import { useTheme } from '../../theme'
 
 import images from '../../assets/images'
-import styles from "./style"
+import styles from './style'
 
 const TabBarImage = (props) => {
-  
+
     const { width, height } = Dimensions.get('window');
     // const aspectRatio = 700/500;
 
@@ -15,7 +15,7 @@ const TabBarImage = (props) => {
 
     const originalWidth = 319;
     const originalHeight = 120;
-    const windowWidth = Dimensions.get("window").width;
+    const windowWidth = Dimensions.get('window').width;
     const aspectRatio = windowWidth / originalHeight;
 
     return (

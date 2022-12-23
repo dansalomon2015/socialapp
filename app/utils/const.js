@@ -4,7 +4,7 @@ import { CATEGORY_ARRAY } from '../constants/app'
 import firebaseSdk, { DB_ACTION_UPDATE } from '../lib/firebaseSdk'
 
 export const getActivities = activities => {
-  if (!activities) return ''
+  if (!activities) {return ''}
   const categories = activities.map(a => CATEGORY_ARRAY[a])
   return categories.join(',')
 }

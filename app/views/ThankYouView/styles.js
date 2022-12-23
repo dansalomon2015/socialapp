@@ -13,14 +13,14 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 40,
     height: 300,
-    backgroundColor: 'red'
+    backgroundColor: 'red',
   },
   logo: {
     maxHeight: 180,
     resizeMode: 'contain',
     width: 175,
     height: 105,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   logoText: {
     maxWidth: '60%',
@@ -41,7 +41,7 @@ export default StyleSheet.create({
     marginHorizontal: 32,
     marginTop: 20,
     fontFamily: 'Raleway',
-    fontSize: 14
+    fontSize: 14,
   },
   actionBtn: {
     marginTop: 20,
@@ -64,17 +64,17 @@ export default StyleSheet.create({
   },
   avatar: {
     alignSelf: 'center',
-    marginBottom: 10
+    marginBottom: 10,
   },
   submittedApplicationText: {
     fontFamily: 'Raleway',
     fontWeight: '500',
     fontSize: 12,
-    margin: 24
+    margin: 24,
   },
   logoutText: {
     alignSelf: 'flex-end',
     marginRight: 33,
-    marginVertical: 11
-  }
+    marginVertical: 11,
+  },
 });

@@ -123,7 +123,7 @@ const ExGender = props => {
   const inputBox = useRef(null)
 
   useEffect(() => {
-    if (show) setState({ ...state, show: !props.topScrollEnable })
+    if (show) {setState({ ...state, show: !props.topScrollEnable })}
   }, [props.topScrollEnable])
 
   const onChange = value => {
