@@ -10,28 +10,22 @@ import KeyboardView from '../../containers/KeyboardView';
 import sharedStyles from '../Styles';
 import StatusBar from '../../containers/StatusBar';
 import styles from './styles';
-import images from '../../assets/images';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
 import SafeAreaView from '../../containers/SafeAreaView';
 import {showErrorAlert, showToast} from '../../lib/info';
 import {setUser as setUserAction} from '../../actions/login';
-import * as HeaderButton from '../../containers/HeaderButton';
 import CsTextInput from '../../containers/CsTextInput';
 import ActivityIndicator from '../../containers/ActivityIndicator';
 import {POST_TYPE_PHOTO, POST_TYPE_TEXT, POST_TYPE_VIDEO} from '../../constants/app';
 import firebaseSdk, {DB_ACTION_ADD} from '../../lib/firebaseSdk';
 import I18n from '../../i18n';
 import {VectorIcon} from '../../containers/VectorIcon';
-import {COLOR_YELLOW, HEADER_BAR_END, HEADER_BAR_START, themes} from '../../constants/colors';
+import {COLOR_YELLOW, themes} from '../../constants/colors';
 import i18n from '../../i18n';
-import ButtonAction from './ButtonAction';
 import UploadPhoto from './UploadPhoto';
 import Capture from './Capture';
 import UploadVideo from './UploadVideo';
 import Button from '../../containers/Button';
-import {Dimensions} from 'react-native';
-
-const {width} = Dimensions.get('screen');
 
 const CreatePostView = props => {
   const navigation = useNavigation();

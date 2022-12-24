@@ -48,6 +48,8 @@ export default StyleSheet.create({
     minHeight: 150,
     textAlignVertical: 'top',
     maxHeight: height / 2.5,
+    fontSize: 14,
+    lineHeight: 19,
   },
   inputContainer: {
     // flexGrow: 1,
