@@ -6382,10 +6382,10 @@ react-native-codegen@^0.70.6:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
-react-native-create-thumbnail@^1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/react-native-create-thumbnail/-/react-native-create-thumbnail-1.6.3.tgz#3032bb7f5c07a44f578c362c3cc1c671baa0d445"
-  integrity sha512-QsIhUBAefXBYq808KUMe0MnvgIokO4ULM43X1jJ2N9xzQX6Zyu/D1VhlE0LjGL0jHoiULmIRa05QdJgnq/2zBA==
+react-native-create-thumbnail@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/react-native-create-thumbnail/-/react-native-create-thumbnail-1.6.4.tgz#90f5b0a587de6e3738a7632fe3d9a9624ed83581"
+  integrity sha512-JWuKXswDXtqUPfuqh6rjCVMvTSSG3kUtwvSK/YdaNU0i+nZKxeqHmt/CO2+TyI/WSUFynGVmWT1xOHhCZAFsRQ==
 
 react-native-device-info@^10.3.0:
   version "10.3.0"
@@ -6563,6 +6563,13 @@ react-native-vector-icons@>=7.0.0, react-native-vector-icons@^9.2.0:
   dependencies:
     prop-types "^15.7.2"
     yargs "^16.1.1"
+
+react-native-video-player@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/react-native-video-player/-/react-native-video-player-0.14.0.tgz#7156496191065689c0d2e34dcde9ac903aee583f"
+  integrity sha512-lgdqq9h3Mi2poRII3sCE9RgrZIA140bWd83NEzyZp3andKaUiXKYSFcWu+BoySn2Y24dCrDFnhVEkvPq6sTndg==
+  dependencies:
+    deprecated-react-native-prop-types "^2.3.0"
 
 react-native-video@^5.2.1:
   version "5.2.1"

@@ -1,225 +1,223 @@
-import I18n from '../i18n'
+import I18n from '../i18n';
 
-export const POST_TYPE_TEXT = 'text'
-export const POST_TYPE_PHOTO = 'photo'
-export const POST_TYPE_VIDEO = 'video'
+export const POST_TYPE_TEXT = 'text';
+export const POST_TYPE_PHOTO = 'photo';
+export const POST_TYPE_VIDEO = 'video';
 
-export const SUPPORT_EMAIL = 'vip-support@zedinternational.net'
-export const SITE_SHOP_URL = 'https://www.vipbillionaires.com'
-export const SITE_VIP_MEMBERS_URL =
-  'https://www.vipbillionaires.com/vip-members'
-export const CLOUD_URL =
-  'https://us-central1-vip-billionaires-c07df.cloudfunctions.net'
-export const MERCHANT_ID = 'merchant.com.ninasoft.vipbillionaires'
+export const SUPPORT_EMAIL = 'vip-support@zedinternational.net';
+export const SITE_SHOP_URL = 'https://www.vipbillionaires.com';
+export const SITE_VIP_MEMBERS_URL = 'https://www.vipbillionaires.com/vip-members';
+export const CLOUD_URL = 'https://us-central1-vip-billionaires-c07df.cloudfunctions.net';
+export const MERCHANT_ID = 'merchant.com.ninasoft.vipbillionaires';
 
 export const Genders = [
-  { value: 'male', text: I18n.t('Male') },
-  { value: 'female', text: I18n.t('Female') },
-]
+  {value: 'male', text: I18n.t('Male')},
+  {value: 'female', text: I18n.t('Female')},
+];
 
 export const Countries = [
-  { value: 'Afghanistan', text: 'Afghanistan' },
-  { value: 'Albania', text: 'Albania' },
-  { value: 'Algeria', text: 'Algeria' },
-  { value: 'Andorra', text: 'Andorra' },
-  { value: 'Angola', text: 'Angola' },
-  { value: 'Antigua and Barbuda', text: 'Antigua and Barbuda' },
-  { value: 'Argentina', text: 'Argentina' },
-  { value: 'Armenia', text: 'Armenia' },
-  { value: 'Australia', text: 'Australia' },
-  { value: 'Austria', text: 'Austria' },
-  { value: 'Azerbaijan', text: 'Azerbaijan' },
-  { value: 'Bahamas', text: 'Bahamas' },
-  { value: 'Bahrain', text: 'Bahrain' },
-  { value: 'Bangladesh', text: 'Bangladesh' },
-  { value: 'Barbados', text: 'Barbados' },
-  { value: 'Belarus', text: 'Belarus' },
-  { value: 'Belgium', text: 'Belgium' },
-  { value: 'Belize', text: 'Belize' },
-  { value: 'Benin', text: 'Benin' },
-  { value: 'Bhutan', text: 'Bhutan' },
-  { value: 'Bolivia', text: 'Bolivia' },
-  { value: 'Bosnia and Herzegovina', text: 'Bosnia and Herzegovina' },
-  { value: 'Botswana', text: 'Botswana' },
-  { value: 'Brazil', text: 'Brazil' },
-  { value: 'Brunei', text: 'Brunei' },
-  { value: 'Bulgaria', text: 'Bulgaria' },
-  { value: 'Burkina Faso', text: 'Burkina Faso' },
-  { value: 'Burundi', text: 'Burundi' },
-  { value: 'Côte d\'Ivoire', text: 'Côte d\'Ivoire' },
-  { value: 'Cabo Verde', text: 'Cabo Verde' },
-  { value: 'Cambodia', text: 'Cambodia' },
-  { value: 'Cameroon', text: 'Cameroon' },
-  { value: 'Canada', text: 'Canada' },
-  { value: 'Central African Republic', text: 'Central African Republic' },
-  { value: 'Chad', text: 'Chad' },
-  { value: 'Chile', text: 'Chile' },
-  { value: 'China', text: 'China' },
-  { value: 'Colombia', text: 'Colombia' },
-  { value: 'Comoros', text: 'Comoros' },
-  { value: 'Congo (Congo-Brazzaville)', text: 'Congo (Congo-Brazzaville)' },
-  { value: 'Costa Rica', text: 'Costa Rica' },
-  { value: 'Croatia', text: 'Croatia' },
-  { value: 'Cuba', text: 'Cuba' },
-  { value: 'Cyprus', text: 'Cyprus' },
-  { value: 'Czechia (Czech Republic)', text: 'Czechia (Czech Republic)' },
+  {value: 'Afghanistan', text: 'Afghanistan'},
+  {value: 'Albania', text: 'Albania'},
+  {value: 'Algeria', text: 'Algeria'},
+  {value: 'Andorra', text: 'Andorra'},
+  {value: 'Angola', text: 'Angola'},
+  {value: 'Antigua and Barbuda', text: 'Antigua and Barbuda'},
+  {value: 'Argentina', text: 'Argentina'},
+  {value: 'Armenia', text: 'Armenia'},
+  {value: 'Australia', text: 'Australia'},
+  {value: 'Austria', text: 'Austria'},
+  {value: 'Azerbaijan', text: 'Azerbaijan'},
+  {value: 'Bahamas', text: 'Bahamas'},
+  {value: 'Bahrain', text: 'Bahrain'},
+  {value: 'Bangladesh', text: 'Bangladesh'},
+  {value: 'Barbados', text: 'Barbados'},
+  {value: 'Belarus', text: 'Belarus'},
+  {value: 'Belgium', text: 'Belgium'},
+  {value: 'Belize', text: 'Belize'},
+  {value: 'Benin', text: 'Benin'},
+  {value: 'Bhutan', text: 'Bhutan'},
+  {value: 'Bolivia', text: 'Bolivia'},
+  {value: 'Bosnia and Herzegovina', text: 'Bosnia and Herzegovina'},
+  {value: 'Botswana', text: 'Botswana'},
+  {value: 'Brazil', text: 'Brazil'},
+  {value: 'Brunei', text: 'Brunei'},
+  {value: 'Bulgaria', text: 'Bulgaria'},
+  {value: 'Burkina Faso', text: 'Burkina Faso'},
+  {value: 'Burundi', text: 'Burundi'},
+  {value: "Côte d'Ivoire", text: "Côte d'Ivoire"},
+  {value: 'Cabo Verde', text: 'Cabo Verde'},
+  {value: 'Cambodia', text: 'Cambodia'},
+  {value: 'Cameroon', text: 'Cameroon'},
+  {value: 'Canada', text: 'Canada'},
+  {value: 'Central African Republic', text: 'Central African Republic'},
+  {value: 'Chad', text: 'Chad'},
+  {value: 'Chile', text: 'Chile'},
+  {value: 'China', text: 'China'},
+  {value: 'Colombia', text: 'Colombia'},
+  {value: 'Comoros', text: 'Comoros'},
+  {value: 'Congo (Congo-Brazzaville)', text: 'Congo (Congo-Brazzaville)'},
+  {value: 'Costa Rica', text: 'Costa Rica'},
+  {value: 'Croatia', text: 'Croatia'},
+  {value: 'Cuba', text: 'Cuba'},
+  {value: 'Cyprus', text: 'Cyprus'},
+  {value: 'Czechia (Czech Republic)', text: 'Czechia (Czech Republic)'},
   {
     value: 'Democratic Republic of the Congo',
     text: 'Democratic Republic of the Congo',
   },
-  { value: 'Denmark', text: 'Denmark' },
-  { value: 'Djibouti', text: 'Djibouti' },
-  { value: 'Dominica', text: 'Dominica' },
-  { value: 'Dominican Republic', text: 'Dominican Republic' },
-  { value: 'Ecuador', text: 'Ecuador' },
-  { value: 'Egypt', text: 'Egypt' },
-  { value: 'El Salvador', text: 'El Salvador' },
-  { value: 'Equatorial Guinea', text: 'Equatorial Guinea' },
-  { value: 'Eritrea', text: 'Eritrea' },
-  { value: 'Estonia', text: 'Estonia' },
-  { value: 'Eswatini', text: 'Eswatini' },
-  { value: 'Ethiopia', text: 'Ethiopia' },
-  { value: 'Fiji', text: 'Fiji' },
-  { value: 'Finland', text: 'Finland' },
-  { value: 'France', text: 'France' },
-  { value: 'Gabon', text: 'Gabon' },
-  { value: 'Gambia', text: 'Gambia' },
-  { value: 'Georgia', text: 'Georgia' },
-  { value: 'Germany', text: 'Germany' },
-  { value: 'Ghana', text: 'Ghana' },
-  { value: 'Greece', text: 'Greece' },
-  { value: 'Grenada', text: 'Grenada' },
-  { value: 'Guatemala', text: 'Guatemala' },
-  { value: 'Guinea', text: 'Guinea' },
-  { value: 'Guinea-Bissau', text: 'Guinea-Bissau' },
-  { value: 'Guyana', text: 'Guyana' },
-  { value: 'Haiti', text: 'Haiti' },
-  { value: 'Holy See', text: 'Holy See' },
-  { value: 'Honduras', text: 'Honduras' },
-  { value: 'Hungary', text: 'Hungary' },
-  { value: 'Iceland', text: 'Iceland' },
-  { value: 'India', text: 'India' },
-  { value: 'Indonesia', text: 'Indonesia' },
-  { value: 'Iran', text: 'Iran' },
-  { value: 'Iraq', text: 'Iraq' },
-  { value: 'Ireland', text: 'Ireland' },
-  { value: 'Israel', text: 'Israel' },
-  { value: 'Italy', text: 'Italy' },
-  { value: 'Jamaica', text: 'Jamaica' },
-  { value: 'Japan', text: 'Japan' },
-  { value: 'Jordan', text: 'Jordan' },
-  { value: 'Kazakhstan', text: 'Kazakhstan' },
-  { value: 'Kenya', text: 'Kenya' },
-  { value: 'Kiribati', text: 'Kiribati' },
-  { value: 'Kuwait', text: 'Kuwait' },
-  { value: 'Kyrgyzstan', text: 'Kyrgyzstan' },
-  { value: 'Laos', text: 'Laos' },
-  { value: 'Latvia', text: 'Latvia' },
-  { value: 'Lebanon', text: 'Lebanon' },
-  { value: 'Lesotho', text: 'Lesotho' },
-  { value: 'Liberia', text: 'Liberia' },
-  { value: 'Libya', text: 'Libya' },
-  { value: 'Liechtenstein', text: 'Liechtenstein' },
-  { value: 'Lithuania', text: 'Lithuania' },
-  { value: 'Luxembourg', text: 'Luxembourg' },
-  { value: 'Madagascar', text: 'Madagascar' },
-  { value: 'Malawi', text: 'Malawi' },
-  { value: 'Malaysia', text: 'Malaysia' },
-  { value: 'Maldives', text: 'Maldives' },
-  { value: 'Mali', text: 'Mali' },
-  { value: 'Malta', text: 'Malta' },
-  { value: 'Marshall Islands', text: 'Marshall Islands' },
-  { value: 'Mauritania', text: 'Mauritania' },
-  { value: 'Mauritius', text: 'Mauritius' },
-  { value: 'Mexico', text: 'Mexico' },
-  { value: 'Micronesia', text: 'Micronesia' },
-  { value: 'Moldova', text: 'Moldova' },
-  { value: 'Monaco', text: 'Monaco' },
-  { value: 'Mongolia', text: 'Mongolia' },
-  { value: 'Montenegro', text: 'Montenegro' },
-  { value: 'Morocco', text: 'Morocco' },
-  { value: 'Mozambique', text: 'Mozambique' },
-  { value: 'Myanmar (formerly Burma)', text: 'Myanmar (formerly Burma)' },
-  { value: 'Namibia', text: 'Namibia' },
-  { value: 'Nauru', text: 'Nauru' },
-  { value: 'Nepal', text: 'Nepal' },
-  { value: 'Netherlands', text: 'Netherlands' },
-  { value: 'New Zealand', text: 'New Zealand' },
-  { value: 'Nicaragua', text: 'Nicaragua' },
-  { value: 'Niger', text: 'Niger' },
-  { value: 'Nigeria', text: 'Nigeria' },
-  { value: 'North Korea', text: 'North Korea' },
-  { value: 'North Macedonia', text: 'North Macedonia' },
-  { value: 'Norway', text: 'Norway' },
-  { value: 'Oman', text: 'Oman' },
-  { value: 'Pakistan', text: 'Pakistan' },
-  { value: 'Palau', text: 'Palau' },
-  { value: 'Palestine State', text: 'Palestine State' },
-  { value: 'Panama', text: 'Panama' },
-  { value: 'Papua New Guinea', text: 'Papua New Guinea' },
-  { value: 'Paraguay', text: 'Paraguay' },
-  { value: 'Peru', text: 'Peru' },
-  { value: 'Philippines', text: 'Philippines' },
-  { value: 'Poland', text: 'Poland' },
-  { value: 'Portugal', text: 'Portugal' },
-  { value: 'Qatar', text: 'Qatar' },
-  { value: 'Romania', text: 'Romania' },
-  { value: 'Russia', text: 'Russia' },
-  { value: 'Rwanda', text: 'Rwanda' },
-  { value: 'Saint Kitts and Nevis', text: 'Saint Kitts and Nevis' },
-  { value: 'Saint Lucia', text: 'Saint Lucia' },
+  {value: 'Denmark', text: 'Denmark'},
+  {value: 'Djibouti', text: 'Djibouti'},
+  {value: 'Dominica', text: 'Dominica'},
+  {value: 'Dominican Republic', text: 'Dominican Republic'},
+  {value: 'Ecuador', text: 'Ecuador'},
+  {value: 'Egypt', text: 'Egypt'},
+  {value: 'El Salvador', text: 'El Salvador'},
+  {value: 'Equatorial Guinea', text: 'Equatorial Guinea'},
+  {value: 'Eritrea', text: 'Eritrea'},
+  {value: 'Estonia', text: 'Estonia'},
+  {value: 'Eswatini', text: 'Eswatini'},
+  {value: 'Ethiopia', text: 'Ethiopia'},
+  {value: 'Fiji', text: 'Fiji'},
+  {value: 'Finland', text: 'Finland'},
+  {value: 'France', text: 'France'},
+  {value: 'Gabon', text: 'Gabon'},
+  {value: 'Gambia', text: 'Gambia'},
+  {value: 'Georgia', text: 'Georgia'},
+  {value: 'Germany', text: 'Germany'},
+  {value: 'Ghana', text: 'Ghana'},
+  {value: 'Greece', text: 'Greece'},
+  {value: 'Grenada', text: 'Grenada'},
+  {value: 'Guatemala', text: 'Guatemala'},
+  {value: 'Guinea', text: 'Guinea'},
+  {value: 'Guinea-Bissau', text: 'Guinea-Bissau'},
+  {value: 'Guyana', text: 'Guyana'},
+  {value: 'Haiti', text: 'Haiti'},
+  {value: 'Holy See', text: 'Holy See'},
+  {value: 'Honduras', text: 'Honduras'},
+  {value: 'Hungary', text: 'Hungary'},
+  {value: 'Iceland', text: 'Iceland'},
+  {value: 'India', text: 'India'},
+  {value: 'Indonesia', text: 'Indonesia'},
+  {value: 'Iran', text: 'Iran'},
+  {value: 'Iraq', text: 'Iraq'},
+  {value: 'Ireland', text: 'Ireland'},
+  {value: 'Israel', text: 'Israel'},
+  {value: 'Italy', text: 'Italy'},
+  {value: 'Jamaica', text: 'Jamaica'},
+  {value: 'Japan', text: 'Japan'},
+  {value: 'Jordan', text: 'Jordan'},
+  {value: 'Kazakhstan', text: 'Kazakhstan'},
+  {value: 'Kenya', text: 'Kenya'},
+  {value: 'Kiribati', text: 'Kiribati'},
+  {value: 'Kuwait', text: 'Kuwait'},
+  {value: 'Kyrgyzstan', text: 'Kyrgyzstan'},
+  {value: 'Laos', text: 'Laos'},
+  {value: 'Latvia', text: 'Latvia'},
+  {value: 'Lebanon', text: 'Lebanon'},
+  {value: 'Lesotho', text: 'Lesotho'},
+  {value: 'Liberia', text: 'Liberia'},
+  {value: 'Libya', text: 'Libya'},
+  {value: 'Liechtenstein', text: 'Liechtenstein'},
+  {value: 'Lithuania', text: 'Lithuania'},
+  {value: 'Luxembourg', text: 'Luxembourg'},
+  {value: 'Madagascar', text: 'Madagascar'},
+  {value: 'Malawi', text: 'Malawi'},
+  {value: 'Malaysia', text: 'Malaysia'},
+  {value: 'Maldives', text: 'Maldives'},
+  {value: 'Mali', text: 'Mali'},
+  {value: 'Malta', text: 'Malta'},
+  {value: 'Marshall Islands', text: 'Marshall Islands'},
+  {value: 'Mauritania', text: 'Mauritania'},
+  {value: 'Mauritius', text: 'Mauritius'},
+  {value: 'Mexico', text: 'Mexico'},
+  {value: 'Micronesia', text: 'Micronesia'},
+  {value: 'Moldova', text: 'Moldova'},
+  {value: 'Monaco', text: 'Monaco'},
+  {value: 'Mongolia', text: 'Mongolia'},
+  {value: 'Montenegro', text: 'Montenegro'},
+  {value: 'Morocco', text: 'Morocco'},
+  {value: 'Mozambique', text: 'Mozambique'},
+  {value: 'Myanmar (formerly Burma)', text: 'Myanmar (formerly Burma)'},
+  {value: 'Namibia', text: 'Namibia'},
+  {value: 'Nauru', text: 'Nauru'},
+  {value: 'Nepal', text: 'Nepal'},
+  {value: 'Netherlands', text: 'Netherlands'},
+  {value: 'New Zealand', text: 'New Zealand'},
+  {value: 'Nicaragua', text: 'Nicaragua'},
+  {value: 'Niger', text: 'Niger'},
+  {value: 'Nigeria', text: 'Nigeria'},
+  {value: 'North Korea', text: 'North Korea'},
+  {value: 'North Macedonia', text: 'North Macedonia'},
+  {value: 'Norway', text: 'Norway'},
+  {value: 'Oman', text: 'Oman'},
+  {value: 'Pakistan', text: 'Pakistan'},
+  {value: 'Palau', text: 'Palau'},
+  {value: 'Palestine State', text: 'Palestine State'},
+  {value: 'Panama', text: 'Panama'},
+  {value: 'Papua New Guinea', text: 'Papua New Guinea'},
+  {value: 'Paraguay', text: 'Paraguay'},
+  {value: 'Peru', text: 'Peru'},
+  {value: 'Philippines', text: 'Philippines'},
+  {value: 'Poland', text: 'Poland'},
+  {value: 'Portugal', text: 'Portugal'},
+  {value: 'Qatar', text: 'Qatar'},
+  {value: 'Romania', text: 'Romania'},
+  {value: 'Russia', text: 'Russia'},
+  {value: 'Rwanda', text: 'Rwanda'},
+  {value: 'Saint Kitts and Nevis', text: 'Saint Kitts and Nevis'},
+  {value: 'Saint Lucia', text: 'Saint Lucia'},
   {
     value: 'Saint Vincent and the Grenadines',
     text: 'Saint Vincent and the Grenadines',
   },
-  { value: 'Samoa', text: 'Samoa' },
-  { value: 'San Marino', text: 'San Marino' },
-  { value: 'Sao Tome and Principe', text: 'Sao Tome and Principe' },
-  { value: 'Saudi Arabia', text: 'Saudi Arabia' },
-  { value: 'Senegal', text: 'Senegal' },
-  { value: 'Serbia', text: 'Serbia' },
-  { value: 'Seychelles', text: 'Seychelles' },
-  { value: 'Sierra Leone', text: 'Sierra Leone' },
-  { value: 'Singapore', text: 'Singapore' },
-  { value: 'Slovakia', text: 'Slovakia' },
-  { value: 'Slovenia', text: 'Slovenia' },
-  { value: 'Solomon Islands', text: 'Solomon Islands' },
-  { value: 'Somalia', text: 'Somalia' },
-  { value: 'South Africa', text: 'South Africa' },
-  { value: 'South Korea', text: 'South Korea' },
-  { value: 'South Sudan', text: 'South Sudan' },
-  { value: 'Spain', text: 'Spain' },
-  { value: 'Sri Lanka', text: 'Sri Lanka' },
-  { value: 'Sudan', text: 'Sudan' },
-  { value: 'Suriname', text: 'Suriname' },
-  { value: 'Sweden', text: 'Sweden' },
-  { value: 'Switzerland', text: 'Switzerland' },
-  { value: 'Syria', text: 'Syria' },
-  { value: 'Tajikistan', text: 'Tajikistan' },
-  { value: 'Tanzania', text: 'Tanzania' },
-  { value: 'Thailand', text: 'Thailand' },
-  { value: 'Timor-Leste', text: 'Timor-Leste' },
-  { value: 'Togo', text: 'Togo' },
-  { value: 'Tonga', text: 'Tonga' },
-  { value: 'Trinidad and Tobago', text: 'Trinidad and Tobago' },
-  { value: 'Tunisia', text: 'Tunisia' },
-  { value: 'Turkey', text: 'Turkey' },
-  { value: 'Turkmenistan', text: 'Turkmenistan' },
-  { value: 'Tuvalu', text: 'Tuvalu' },
-  { value: 'Uganda', text: 'Uganda' },
-  { value: 'Ukraine', text: 'Ukraine' },
-  { value: 'United Arab Emirates', text: 'United Arab Emirates' },
-  { value: 'United Kingdom', text: 'United Kingdom' },
-  { value: 'United States of America', text: 'United States of America' },
-  { value: 'Uruguay', text: 'Uruguay' },
-  { value: 'Uzbekistan', text: 'Uzbekistan' },
-  { value: 'Vanuatu', text: 'Vanuatu' },
-  { value: 'Venezuela', text: 'Venezuela' },
-  { value: 'Vietnam', text: 'Vietnam' },
-  { value: 'Yemen', text: 'Yemen' },
-  { value: 'Zambia', text: 'Zambia' },
-  { value: 'Zimbabwe', text: 'Zimbabwe' },
-]
+  {value: 'Samoa', text: 'Samoa'},
+  {value: 'San Marino', text: 'San Marino'},
+  {value: 'Sao Tome and Principe', text: 'Sao Tome and Principe'},
+  {value: 'Saudi Arabia', text: 'Saudi Arabia'},
+  {value: 'Senegal', text: 'Senegal'},
+  {value: 'Serbia', text: 'Serbia'},
+  {value: 'Seychelles', text: 'Seychelles'},
+  {value: 'Sierra Leone', text: 'Sierra Leone'},
+  {value: 'Singapore', text: 'Singapore'},
+  {value: 'Slovakia', text: 'Slovakia'},
+  {value: 'Slovenia', text: 'Slovenia'},
+  {value: 'Solomon Islands', text: 'Solomon Islands'},
+  {value: 'Somalia', text: 'Somalia'},
+  {value: 'South Africa', text: 'South Africa'},
+  {value: 'South Korea', text: 'South Korea'},
+  {value: 'South Sudan', text: 'South Sudan'},
+  {value: 'Spain', text: 'Spain'},
+  {value: 'Sri Lanka', text: 'Sri Lanka'},
+  {value: 'Sudan', text: 'Sudan'},
+  {value: 'Suriname', text: 'Suriname'},
+  {value: 'Sweden', text: 'Sweden'},
+  {value: 'Switzerland', text: 'Switzerland'},
+  {value: 'Syria', text: 'Syria'},
+  {value: 'Tajikistan', text: 'Tajikistan'},
+  {value: 'Tanzania', text: 'Tanzania'},
+  {value: 'Thailand', text: 'Thailand'},
+  {value: 'Timor-Leste', text: 'Timor-Leste'},
+  {value: 'Togo', text: 'Togo'},
+  {value: 'Tonga', text: 'Tonga'},
+  {value: 'Trinidad and Tobago', text: 'Trinidad and Tobago'},
+  {value: 'Tunisia', text: 'Tunisia'},
+  {value: 'Turkey', text: 'Turkey'},
+  {value: 'Turkmenistan', text: 'Turkmenistan'},
+  {value: 'Tuvalu', text: 'Tuvalu'},
+  {value: 'Uganda', text: 'Uganda'},
+  {value: 'Ukraine', text: 'Ukraine'},
+  {value: 'United Arab Emirates', text: 'United Arab Emirates'},
+  {value: 'United Kingdom', text: 'United Kingdom'},
+  {value: 'United States of America', text: 'United States of America'},
+  {value: 'Uruguay', text: 'Uruguay'},
+  {value: 'Uzbekistan', text: 'Uzbekistan'},
+  {value: 'Vanuatu', text: 'Vanuatu'},
+  {value: 'Venezuela', text: 'Venezuela'},
+  {value: 'Vietnam', text: 'Vietnam'},
+  {value: 'Yemen', text: 'Yemen'},
+  {value: 'Zambia', text: 'Zambia'},
+  {value: 'Zimbabwe', text: 'Zimbabwe'},
+];
 
 export const CONTENT_PRIVACY_POLICY =
   '<h1>Privacy Policy</h1>\n' +
@@ -334,7 +332,7 @@ export const CONTENT_PRIVACY_POLICY =
   '<p>We keep your information only so long as we need it to provide VIP Billionaires to you and fulfill the purposes described in this\n' +
   'policy. This is also the case for anyone that we share your information with and who carries out services on our behalf. When\n' +
   'we no longer need to use your information and there is no need for us to keep it to comply with our legal or regulatory\n' +
-  'obligations, we’ll either remove it from our systems or depersonalize it so that we can\'t identify you.\n' +
+  "obligations, we’ll either remove it from our systems or depersonalize it so that we can't identify you.\n" +
   '<h3>How Do We Protect Your Information?</h3>\n' +
   '<p>We implement a variety of security measures to maintain the safety of your personal information when you place an order or\n' +
   'enter, submit, or access your personal information. We offer the use of a secure server. All supplied sensitive/credit information\n' +
@@ -406,8 +404,8 @@ export const CONTENT_PRIVACY_POLICY =
   'with us, or following the posting of changes to this Privacy Policy that do not significantly affect the use or disclosure of your\n' +
   'personal information will mean that you accept those changes.</p>\n' +
   '<h3>Your Consent</h3>\n' +
-  '<p>We\'ve updated our Privacy Policy to provide you with complete transparency into what is being set when you visit our site and\n' +
-  'how it\'s being used. By using our app, registering an account, or making a purchase, you hereby consent to our Privacy Policy\n' +
+  "<p>We've updated our Privacy Policy to provide you with complete transparency into what is being set when you visit our site and\n" +
+  "how it's being used. By using our app, registering an account, or making a purchase, you hereby consent to our Privacy Policy\n" +
   'and agree to its terms.\n' +
   'Links to Other Websites\n' +
   'This Privacy Policy applies only to the Services. The Services may contain links to other websites not operated or controlled by\n' +
@@ -425,20 +423,20 @@ export const CONTENT_PRIVACY_POLICY =
   'disable Cookies, you may not be able to access functionality on our website correctly or at all. We never place Personally\n' +
   'Identifiable Information in Cookies.\n' +
   '<h3>Blocking and disabling cookies and similar technologies</h3>\n' +
-  '<p>Wherever you\'re located you may also set your browser to block cookies and similar technologies, but this action may block our\n' +
+  "<p>Wherever you're located you may also set your browser to block cookies and similar technologies, but this action may block our\n" +
   'essential cookies and prevent our website from functioning properly, and you may not be able to fully utilize all of its features\n' +
   'and services. You should also be aware that you may also lose some saved information (e.g. saved login details, site\n' +
   'preferences) if you block cookies on your browser. Different browsers make different controls available to you. Disabling a\n' +
   'cookie or category of cookie does not delete the cookie from your browser, you will need to do this yourself from within your\n' +
-  'browser, you should visit your browser\'s help menu for more information.\n' +
+  "browser, you should visit your browser's help menu for more information.\n" +
   '<h3>Remarketing Services</h3>\n' +
   '<p>We use remarketing services. What Is Remarketing? In digital marketing, remarketing (or retargeting) is the practice of serving\n' +
-  'ads across the internet to people who have already visited your website. It allows your company to seem like they\'re “following”\n' +
+  "ads across the internet to people who have already visited your website. It allows your company to seem like they're “following”\n" +
   'people around the internet by serving ads on the websites and platforms they use most.\n' +
   'Payment Details\n' +
   'In respect to any credit card or other payment processing details you have provided us, we commit that this confidential\n' +
   'information will be stored in the most secure manner possible.\n' +
-  '<h3>Kids\' Privacy</h3>\n' +
+  "<h3>Kids' Privacy</h3>\n" +
   '<p>We do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone\n' +
   'under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data,\n' +
   'please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 13 without\n' +
@@ -457,7 +455,7 @@ export const CONTENT_PRIVACY_POLICY =
   'does not assume and shall not have any liability or responsibility to you or any other person or entity for any Third-Party\n' +
   'Services.</p>\n' +
   '<p>Third-Party Services and links thereto are provided solely as a convenience to you and you access and use them entirely at\n' +
-  'your own risk and subject to such third parties\' terms and conditions.\n' +
+  "your own risk and subject to such third parties' terms and conditions.\n" +
   '<h3>Facebook Pixel</h3>\n' +
   '<p>Facebook pixel is an analytics tool that allows you to measure the effectiveness of your advertising by understanding the actions\n' +
   'people take on your website. You can use the pixel to: Make sure your ads are shown to the right people. Facebook pixel may\n' +
@@ -468,7 +466,7 @@ export const CONTENT_PRIVACY_POLICY =
   'our Privacy Policy we are going to explain exactly how and why is this data collected, and how we maintain this data under\n' +
   'protection from being replicated or used in the wrong way.\n' +
   'What is GDPR?\n' +
-  'GDPR is an EU-wide privacy and data protection law that regulates how EU residents\' data is protected by companies and\n' +
+  "GDPR is an EU-wide privacy and data protection law that regulates how EU residents' data is protected by companies and\n" +
   'enhances the control the EU residents have, over their personal data.\n' +
   'The GDPR is relevant to any globally operating company and not just the EU-based businesses and EU residents. Our\n' +
   'customers’ data is important irrespective of where they are located, which is why we have implemented GDPR controls as our\n' +
@@ -487,17 +485,17 @@ export const CONTENT_PRIVACY_POLICY =
   '● People covered by the GDPR have the right to access their own personal data. They can also request a copy of their data,\n' +
   'and that their data be updated, deleted, restricted, or moved to another organization.</p>\n' +
   '<h3>Why is GDPR important?</h3>\n' +
-  '<p>GDPR adds some new requirements regarding how companies should protect individuals\' personal data that they collect and\n' +
+  "<p>GDPR adds some new requirements regarding how companies should protect individuals' personal data that they collect and\n" +
   'process. It also raises the stakes for compliance by increasing enforcement and imposing greater fines for breach. Beyond\n' +
-  'these facts it\'s simply the right thing to do. At VIP Billionaires we strongly believe that your data privacy is very important and we\n' +
+  "these facts it's simply the right thing to do. At VIP Billionaires we strongly believe that your data privacy is very important and we\n" +
   'already have solid security and privacy practices in place that go beyond the requirements of this new regulation.\n' +
-  '<h3>Individual Data Subject\'s Rights - Data Access, Portability and Deletion</h3>\n' +
+  "<h3>Individual Data Subject's Rights - Data Access, Portability and Deletion</h3>\n" +
   '<p>We are committed to helping our customers meet the data subject rights requirements of GDPR. VIP Billionaires processes or\n' +
   'stores all personal data in fully vetted, DPA compliant vendors. We do store all conversation and personal data for up to 6 years\n' +
   'unless your account is deleted. In which case, we dispose of all data in accordance with our Terms of Service and Privacy\n' +
   'Policy, but we will not hold it longer than 60 days.\n' +
   'We are aware that if you are working with EU customers, you need to be able to provide them with the ability to access, update,\n' +
-  'retrieve and remove personal data. We got you! We\'ve been set up as self service from the start and have always given you\n' +
+  "retrieve and remove personal data. We got you! We've been set up as self service from the start and have always given you\n" +
   'access to your data and your customers data. Our customer support team is here for you to answer any questions you might\n' +
   'have about working with the API.\n' +
   '<h3>California Residents</h3>\n' +
@@ -513,7 +511,7 @@ export const CONTENT_PRIVACY_POLICY =
   '● Right to Equal Service. We will not discriminate against you if you exercise your privacy rights.<br/>\n' +
   '● Right to Delete. You may submit a verifiable request to close your account and we will delete Personal Information about\n' +
   'you that we have collected.<br/>\n' +
-  '● Request that a business that sells a consumer\'s personal data, not sell the consumer\'s personal data.\n' +
+  "● Request that a business that sells a consumer's personal data, not sell the consumer's personal data.\n" +
   'If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact\n' +
   'us.</p>\n' +
   '<p>We do not sell the Personal Information of our users.</p>\n' +
@@ -529,14 +527,14 @@ export const CONTENT_PRIVACY_POLICY =
   '● Right to Equal Service. We will not discriminate against you if you exercise your privacy rights.<br/>\n' +
   '● Right to Delete. You may submit a verifiable request to close your account and we will delete Personal Information about\n' +
   'you that we have collected.<br/>\n' +
-  '● Right to request that a business that sells a consumer\'s personal data, not sell the consumer\'s personal data.<br/>\n' +
+  "● Right to request that a business that sells a consumer's personal data, not sell the consumer's personal data.<br/>\n" +
   'If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact\n' +
   'us.</p>\n' +
   'We do not sell the Personal Information of our users.\n' +
   'For more information about these rights, please contact us.\n' +
   '<h3>Contact Us</h3>\n' +
-  '<p>Don\'t hesitate to contact us if you have any questions.</p>\n' +
-  '<p>● Via Email: info@zedinternational.net</p>'
+  "<p>Don't hesitate to contact us if you have any questions.</p>\n" +
+  '<p>● Via Email: info@zedinternational.net</p>';
 
 export const CONTENT_PRIVACY_POLICY_JP =
   '<h1>ご利用規約</h1>\n' +
@@ -686,7 +684,7 @@ export const CONTENT_PRIVACY_POLICY_JP =
   '\n' +
   '<h3>お問い合わせ</h3>\n' +
   '<p>ご不明な点がございましたら、ご遠慮なくお問い合わせください。</p>\n' +
-  '<p>電子メールで: info@zedinternational.net</p>\n'
+  '<p>電子メールで: info@zedinternational.net</p>\n';
 
 export const CONTENT_TERMS_AND_CONDITIONS =
   '<h2>Terms & Conditions</h2>\n' +
@@ -741,7 +739,7 @@ export const CONTENT_TERMS_AND_CONDITIONS =
   '<p>As with any shopping experience, there are terms and conditions that apply to transactions at VIP Billionaires. We’ll be as brief\n' +
   'as our attorneys will allow. The main thing to remember is that by placing an order or making a purchase at VIP Billionaires, you\n' +
   'agree to the terms along with VIP Billionaires."’s" Privacy Policy.</p>\n' +
-  '<p>If, for any reason, You are not completely satisfied with any good or service that we provide, don\'t hesitate to contact us and we\n' +
+  "<p>If, for any reason, You are not completely satisfied with any good or service that we provide, don't hesitate to contact us and we\n" +
   'will discuss any of the issues you are going through with our product.</p>\n' +
   '<h3>Your Suggestions</h3>\n' +
   '<p>Any feedback, comments, ideas, improvements or suggestions (collectively, "Suggestions") provided by you to VIP Billionaires\n' +
@@ -749,8 +747,8 @@ export const CONTENT_TERMS_AND_CONDITIONS =
   '<p>VIP Billionaires shall be free to use, copy, modify, publish, or redistribute the Suggestions for any purpose and in any way\n' +
   'without any credit or any compensation to you.</p>\n' +
   '<h3>Your Consent</h3>\n' +
-  '<p>We\'ve updated our Terms & Conditions to provide you with complete transparency into what is being set when you visit our site\n' +
-  'and how it\'s being used. By using our app, registering an account, or making a purchase, you hereby consent to our Terms &\n' +
+  "<p>We've updated our Terms & Conditions to provide you with complete transparency into what is being set when you visit our site\n" +
+  "and how it's being used. By using our app, registering an account, or making a purchase, you hereby consent to our Terms &\n" +
   'Conditions.</p>\n' +
   '<h3>Links to Other Websites</h3>\n' +
   '<p>This Terms & Conditions applies only to the Services. The Services may contain links to other websites not operated or\n' +
@@ -793,7 +791,7 @@ export const CONTENT_TERMS_AND_CONDITIONS =
   'does not assume and shall not have any liability or responsibility to you or any other person or entity for any Third-Party\n' +
   'Services.</p>\n' +
   '<p>Third-Party Services and links thereto are provided solely as a convenience to you and you access and use them entirely at\n' +
-  'your own risk and subject to such third parties\' terms and conditions.</p>\n' +
+  "your own risk and subject to such third parties' terms and conditions.</p>\n" +
   '<h3>Term and Termination</h3>\n' +
   '<p>This Agreement shall remain in effect until terminated by you or VIP Billionaires.</p>\n' +
   '<p>VIP Billionaires may, in its sole discretion, at any time and for any or no reason, suspend or terminate this Agreement with or\n' +
@@ -802,7 +800,7 @@ export const CONTENT_TERMS_AND_CONDITIONS =
   'provision of this Agreement. You may also terminate this Agreement by deleting the app and all copies thereof from your\n' +
   'computer.</p>\n' +
   '<p>Upon termination of this Agreement, you shall cease all use of the app and delete all copies of the app from your computer.\n' +
-  'Termination of this Agreement will not limit any of VIP Billionaires\'s rights or remedies at law or in equity in case of breach by\n' +
+  "Termination of this Agreement will not limit any of VIP Billionaires's rights or remedies at law or in equity in case of breach by\n" +
   'you (during the term of this Agreement) of any of your obligations under the present Agreement.</p>\n' +
   'Copyright Infringement Notice\n' +
   '<p>If you are a copyright owner or such owner’s agent and believe any material on our app constitutes an infringement on your\n' +
@@ -813,7 +811,7 @@ export const CONTENT_TERMS_AND_CONDITIONS =
   'is accurate, and, under penalty of perjury you are authorized to act on behalf of the owner.</p>\n' +
   '<h3>Indemnification</h3>\n' +
   '<p>You agree to indemnify and hold VIP Billionaires and its parents, subsidiaries, affiliates, officers, employees, agents, partners\n' +
-  'and licensors (if any) harmless from any claim or demand, including reasonable attorneys\' fees, due to or arising out of your: (a)\n' +
+  "and licensors (if any) harmless from any claim or demand, including reasonable attorneys' fees, due to or arising out of your: (a)\n" +
   'use of the app; (b) violation of this Agreement or any law or regulation; or (c) violation of any right of a third party.</p>\n' +
   '<h3>No Warranties</h3>\n' +
   '<p>The app is provided to you "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the\n' +
@@ -825,7 +823,7 @@ export const CONTENT_TERMS_AND_CONDITIONS =
   'kind that the app will meet your requirements, achieve any intended results, be compatible or work with any other software, ,\n' +
   'systems or services, operate without interruption, meet any performance or reliability standards or be error free or that any\n' +
   'errors or defects can or will be corrected.</p>\n' +
-  '<p>Without limiting the foregoing, neither VIP Billionaires nor any VIP Billionaires\'s provider makes any representation or warranty\n' +
+  "<p>Without limiting the foregoing, neither VIP Billionaires nor any VIP Billionaires's provider makes any representation or warranty\n" +
   'of any kind, express or implied: (i) as to the operation or availability of the app, or the information, content, and materials or\n' +
   'products included thereon; (ii) that the app will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of\n' +
   'any information or content provided through the app; or (iv) that the app, its servers, the content, or e-mails sent from or on\n' +
@@ -858,7 +856,7 @@ export const CONTENT_TERMS_AND_CONDITIONS =
   'AFTER THE CAUSE OF ACTION ACCRUES. OTHERWISE, SUCH CAUSE OF ACTION IS PERMANENTLY BARRED.</p>\n' +
   '<h3>Waiver</h3>\n' +
   '<p>Except as provided herein, the failure to exercise a right or to require performance of an obligation under this Agreement shall\n' +
-  'not effect a party\'s ability to exercise such right or require such performance at any time thereafter nor shall be the waiver of a\n' +
+  "not effect a party's ability to exercise such right or require such performance at any time thereafter nor shall be the waiver of a\n" +
   'breach constitute waiver of any subsequent breach.</p>\n' +
   '<p>o failure to exercise, and no delay in exercising, on the part of either party, any right or any power under this Agreement shall\n' +
   'operate as a waiver of that right or power. Nor shall any single or partial exercise of any right or power under this Agreement\n' +
@@ -866,14 +864,14 @@ export const CONTENT_TERMS_AND_CONDITIONS =
   'applicable purchase or other terms, the terms of this Agreement shall govern.</p>\n' +
   '<h3>Amendments to this Agreement</h3>\n' +
   '<p>VIP Billionaires reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material\n' +
-  'we will provide at least 30 days\' notice prior to any new terms taking effect. What constitutes a material change will be\n' +
+  "we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be\n" +
   'determined at our sole discretion.</p>\n' +
   '<p>By continuing to access or use our app after any revisions become effective, you agree to be bound by the revised terms. If you\n' +
   'do not agree to the new terms, you are no longer authorized to use VIP Billionaires.</p>\n' +
   '<h3>Entire Agreement</h3>\n' +
   '<p>The Agreement constitutes the entire agreement between you and VIP Billionaires regarding your use of the app and\n' +
   'supersedes all prior and contemporaneous written or oral agreements between you and VIP Billionaires.\n' +
-  'You may be subject to additional terms and conditions that apply when you use or purchase other VIP Billionaires\'s services,\n' +
+  "You may be subject to additional terms and conditions that apply when you use or purchase other VIP Billionaires's services,\n" +
   'which VIP Billionaires will provide to you at the time of such use or purchase.</p>\n' +
   '<h3>Updates to Our Terms</h3>\n' +
   '<p>We may change our Service and policies, and we may need to make changes to these Terms so that they accurately reflect our\n' +
@@ -964,8 +962,8 @@ export const CONTENT_TERMS_AND_CONDITIONS =
   'the foregoing, VIP Billionaires does not warrant that the VIP Billionaires Service will be uninterrupted, uncorrupted, timely, or\n' +
   'error-free.</p>\n' +
   '<h3>Contact Us</h3>\n' +
-  '<p>Don\'t hesitate to contact us if you have any questions.</p>\n' +
-  '<p>● Via Email: info@zedinternational.net</p>'
+  "<p>Don't hesitate to contact us if you have any questions.</p>\n" +
+  '<p>● Via Email: info@zedinternational.net</p>';
 
 export const CONTENT_TERMS_AND_CONDITIONS_JP =
   '<p>VIP Billionaires （以下「私たち」といいます。）は、VIP Billionaires の提供するサービス（以下「本サービス」といいます。）における、ユーザーについての個人情報を含む利用者情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」といいます。）を定めます。</p>\n' +
@@ -1051,7 +1049,7 @@ export const CONTENT_TERMS_AND_CONDITIONS_JP =
   '連絡先：Eメール  info@zedinternational.net</p>\n' +
   '\n' +
   '<h3>10.プライバシーポリシーの変更手続</h3>\n' +
-  '<p>VIP Billionaires は、必要に応じて、本ポリシーを変更します。但し、法令上ユーザーの同意が必要となるような本ポリシーの変更を行う場合、変更後の本ポリシーは、VIP Billionaires 所定の方法で変更に同意したユーザーに対してのみ適用されるものとします。なお、VIP Billionaires は、本ポリシーを変更する場合には、変更後の本ポリシーの施行時期及び内容をVIP Billionaires のウェブサイト上での表示その他の適切な方法により周知し、またはユーザーに通知します。</p>\n'
+  '<p>VIP Billionaires は、必要に応じて、本ポリシーを変更します。但し、法令上ユーザーの同意が必要となるような本ポリシーの変更を行う場合、変更後の本ポリシーは、VIP Billionaires 所定の方法で変更に同意したユーザーに対してのみ適用されるものとします。なお、VIP Billionaires は、本ポリシーを変更する場合には、変更後の本ポリシーの施行時期及び内容をVIP Billionaires のウェブサイト上での表示その他の適切な方法により周知し、またはユーザーに通知します。</p>\n';
 
 export const CONTENT_USER_AGREEMENT =
   '<h1>End-User License Agreement</h1>\n' +
@@ -1203,7 +1201,7 @@ export const CONTENT_USER_AGREEMENT =
   'applicable purchase or other terms, the terms of this Agreement shall govern.</p>\n' +
   '<h3>Amendments to this Agreement</h3>\n' +
   '<p>VIP Billionaires reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material\n' +
-  'we will provide at least 30 days\' notice prior to any new terms taking effect. What constitutes a material change will be\n' +
+  "we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be\n" +
   'determined at our sole discretion.</p>\n' +
   '<p>By continuing to access or use our Application after any revisions become effective, you agree to be bound by the revised\n' +
   'terms. If you do not agree to the new terms, you are no longer authorized to use the Application.</p>\n' +
@@ -1244,8 +1242,8 @@ export const CONTENT_USER_AGREEMENT =
   '<p>You may be subject to additional terms and conditions that apply when you use or purchase other VIP Billionaires."’s" services,\n' +
   'which VIP Billionaires will provide to you at the time of such use or purchase.</p>\n' +
   '<h3>Contact Us</h3>\n' +
-  '<p>Don\'t hesitate to contact us if you have any questions about this Agreement.</p>\n' +
-  '<p>● Via Email: info@zedinternational.net</p>\n'
+  "<p>Don't hesitate to contact us if you have any questions about this Agreement.</p>\n" +
+  '<p>● Via Email: info@zedinternational.net</p>\n';
 
 export const CONTENT_USER_AGREEMENT_JP =
   '<h1>エンドユーザーライセンス契約</h1>\n' +
@@ -1369,4 +1367,7 @@ export const CONTENT_USER_AGREEMENT_JP =
   '\n' +
   '<h3>お問い合わせ</h3>\n' +
   '<p>本契約についてご不明な点がございましたら、お気軽にお問い合わせください。\n' +
-  'メールでのお問い合わせ: info@zedinternational.net</p>\n'
+  'メールでのお問い合わせ: info@zedinternational.net</p>\n';
+
+export const MEDIA_PICKER_TYPE_IMAGE = 'Photos';
+export const MEDIA_PICKER_TYPE_VIDEO = 'Videos';

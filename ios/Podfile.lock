@@ -991,7 +991,7 @@ PODS:
     - glog
   - react-native-cameraroll (5.2.0):
     - React-Core
-  - react-native-create-thumbnail (1.6.3):
+  - react-native-create-thumbnail (1.6.4):
     - React-Core
   - react-native-keyboard-controller (1.4.1):
     - React-Core
@@ -1439,7 +1439,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 60769e5a0a6d4b32294a2456077f59d0266f9a8b
   React-logger: 1623c216abaa88974afce404dc8f479406bbc3a0
   react-native-cameraroll: 0ff04cc4e0ff5f19a94ff4313e5c8bc4503cd86d
-  react-native-create-thumbnail: 94e68f6cc050a870f830352d1a924c1e8d38b52f
+  react-native-create-thumbnail: e022bcdcba8a0b4529a50d3fa1a832ec921be39d
   react-native-keyboard-controller: 21d4aacc7c5fac64cd6e6d19777e71eea713a3ab
   react-native-netinfo: 2517ad504b3d303e90d7a431b0fcaef76d207983
   react-native-pager-view: 54bed894cecebe28cede54c01038d9d1e122de43

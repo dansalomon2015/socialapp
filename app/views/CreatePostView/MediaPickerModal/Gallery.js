@@ -7,58 +7,58 @@ import {useTheme} from '../../../theme';
 import {VectorIcon} from '../../../containers/VectorIcon';
 
 const {width} = Dimensions.get('screen');
-const IMG_PAGE = 50;
+const PAGE_SIZE = 50;
 const ITEM_WIDTH = width / 4;
 
-const ImageGallery = ({onUpdate, selectedImages}) => {
+const Gallery = ({onUpdate, selectedMedias, assetType}) => {
   const {theme} = useTheme();
-  const [images, setImages] = useState([]);
+  const [medias, setMedias] = useState([]);
   const [end_cursor, setEndCursor] = useState('');
   const [has_next_page, setHasNextPage] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  const onSelect = img => {
-    onUpdate([...selectedImages, img]);
+  const onSelect = media => {
+    onUpdate([...selectedMedias, media]);
   };
 
-  const unSelect = img => {
-    onUpdate([...selectedImages.filter(({uri}) => !(uri === img.uri))]);
+  const unSelect = media => {
+    onUpdate([...selectedMedias.filter(({uri}) => !(uri === media.uri))]);
   };
 
   const isSelected = useCallback(
-    img => {
-      return !!selectedImages.find(({uri}) => uri === img.uri);
+    media => {
+      return !!selectedMedias.find(({uri}) => uri === media.uri);
     },
-    [selectedImages],
+    [selectedMedias],
   );
 
-  const loadPhotos = () => {
+  const loadMedias = () => {
     if (!has_next_page) return;
-    let options = {first: IMG_PAGE, assetType: 'Photos'};
-    if (end_cursor) options = {first: IMG_PAGE, assetType: 'Photos', after: end_cursor};
+    let options = {first: PAGE_SIZE, assetType};
+    if (end_cursor) options = {first: PAGE_SIZE, assetType, after: end_cursor};
     setLoading(true);
     CameraRoll.getPhotos(options)
       .then(res => {
         const list = res.edges.map(e => e.node.image);
         setHasNextPage(res.page_info.has_next_page);
         setEndCursor(res.page_info.end_cursor);
-        setImages([...images, ...list]);
+        setMedias([...medias, ...list]);
       })
       .catch(console.warn)
       .finally(() => setLoading(false));
   };
 
   useEffect(() => {
-    loadPhotos();
+    loadMedias();
   }, []);
 
   return (
     <FlatList
-      data={images}
-      keyExtractor={(item, index) => index.toString()}
+      data={medias}
+      keyExtractor={(_, index) => index.toString()}
       renderItem={({item, index}) => {
         return (
-          <ImageItem
+          <MediaItem
             uri={item.uri}
             selected={isSelected(item)}
             theme={theme}
@@ -67,8 +67,8 @@ const ImageGallery = ({onUpdate, selectedImages}) => {
         );
       }}
       numColumns={4}
-      onEndReached={loadPhotos}
-      contentContainerStyle={{flex: 1}}
+      onEndReached={loadMedias}
+      // contentContainerStyle={{flex: 1}}
       ListFooterComponent={() =>
         loading ? <ActivityIndicator size="small" color={themes[theme].textColor} /> : null
       }
@@ -77,7 +77,7 @@ const ImageGallery = ({onUpdate, selectedImages}) => {
   );
 };
 
-const ImageItem = ({uri, selected, onPress, theme}) => {
+const MediaItem = ({uri, selected, onPress, theme}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -103,7 +103,7 @@ const ImageItem = ({uri, selected, onPress, theme}) => {
   );
 };
 
-export default ImageGallery;
+export default Gallery;
 
 const styles = StyleSheet.create({
   imageContainer: {

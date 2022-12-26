@@ -88,6 +88,7 @@ const images = {
   location_home: require('./images/location_home.png'),
   en_language: require('./images/en_language.png'),
   location_home_gray: require('./images/location_home_gray.png'),
+  video_thumb_default: require('./images/video_thumb_default.png'),
 };
 
 export default images;

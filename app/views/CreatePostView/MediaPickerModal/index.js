@@ -7,10 +7,15 @@ import i18n from '../../../i18n';
 import {VectorIcon} from '../../../containers/VectorIcon';
 import {SafeAreaView} from 'react-native';
 import ImageViewer from './ImageViewer';
-import ImageGallery from './ImageGallery';
+import Gallery from './Gallery';
+import VideoPlayer from './VideoPlayer';
+import {MEDIA_PICKER_TYPE_IMAGE, MEDIA_PICKER_TYPE_VIDEO} from '../../../constants/app';
+
+const url_video = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+const thumbnail_video = 'https://picsum.photos/seed/picsum/200/300';
 
 const MediaPickerModal = ({visible, close, mediaType}) => {
-  mediaType = mediaType || 'image';
+  mediaType = mediaType || MEDIA_PICKER_TYPE_IMAGE;
   const {theme} = useTheme();
   const [medias, setMedias] = useState([]);
 
@@ -40,7 +45,11 @@ const MediaPickerModal = ({visible, close, mediaType}) => {
               <Text style={styles.nextText}>{i18n.t('Next')}</Text>
             </View>
 
-            <ImageViewer url={getUrl} />
+            {mediaType === MEDIA_PICKER_TYPE_IMAGE ? (
+              <ImageViewer url={getUrl} />
+            ) : (
+              <VideoPlayer uri={getUrl} />
+            )}
             <View style={[styles.row, styles.spaceBetween, {marginBottom: 13}]}>
               <View style={[styles.row]}>
                 <Text style={[styles.subTitle, {color: themes[theme].textColor}]}>Recent</Text>
@@ -58,7 +67,11 @@ const MediaPickerModal = ({visible, close, mediaType}) => {
             </View>
           </View>
 
-          <ImageGallery onUpdate={setMedias} selectedImages={medias} />
+          {mediaType === MEDIA_PICKER_TYPE_IMAGE ? (
+            <Gallery onUpdate={setMedias} selectedMedias={medias} assetType={MEDIA_PICKER_TYPE_IMAGE} />
+          ) : (
+            <Gallery onUpdate={setMedias} selectedMedias={medias} assetType={MEDIA_PICKER_TYPE_VIDEO} />
+          )}
         </View>
       </SafeAreaView>
     </Modal>
