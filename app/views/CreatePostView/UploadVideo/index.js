@@ -17,11 +17,7 @@ const UploadVideo = () => {
         onPress={() => setVisible(true)}
       />
 
-      <MediaPickerModal
-        visible={visible}
-        close={() => setVisible(false)}
-        mediaType={MEDIA_PICKER_TYPE_VIDEO}
-      />
+      <MediaPickerModal visible={visible} close={() => setVisible(false)} mediaType={''} />
     </>
   );
 };
