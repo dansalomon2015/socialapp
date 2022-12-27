@@ -79,7 +79,6 @@ const BasicInfoModal = ({isVisible, close, onUpdate}) => {
           value={displayName}
           returnKeyType="next"
           keyboardType="default"
-          textContentType="oneTimeCode"
           label={i18n.t('Name')}
           placeholder={'Enter Your name'}
           onChangeText={name => setDisplayName(name)}
@@ -93,7 +92,7 @@ const BasicInfoModal = ({isVisible, close, onUpdate}) => {
           value={gender}
           itemStyle={{borderColor: themes[theme].borderColor}}
         />
-        <CsAutocompleteSelect
+        {/* <CsAutocompleteSelect
           theme={theme}
           placeholder={'Select city'}
           label="City"
@@ -105,13 +104,23 @@ const BasicInfoModal = ({isVisible, close, onUpdate}) => {
             {id: 1, title: 'Hon Kong'},
             {id: 2, title: 'New York'},
           ]}
+        /> */}
+        <FloatingTextInput
+          //   inputRef={nameInput}
+          value={city}
+          returnKeyType="next"
+          keyboardType="default"
+          label={'City'}
+          placeholder={i18n.t('please_enter_city')}
+          onChangeText={name => setCity(name)}
+          theme={theme}
+          error={cityError}
         />
         <FloatingTextInput
           //   inputRef={nameInput}
           value={phone}
           returnKeyType="next"
           keyboardType="default"
-          textContentType="oneTimeCode"
           label={i18n.t('Phone_number')}
           placeholder={'Type phone number'}
           onChangeText={phone => setPhone(phone)}
