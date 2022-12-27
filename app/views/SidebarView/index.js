@@ -122,9 +122,11 @@ const SidebarView = (props) => {
             <Text style={[styles.profileName, { color: themes[theme].textColor, fontSize: 12 }]}>
               {user.handle}
             </Text>
-            <Text style={[styles.roleName, { color: COLOR_YELLOW }]}>
-              View Profile
-            </Text>
+            <TouchableOpacity onPress={()=> navigation.navigate('Profile')}>
+              <Text style={[styles.roleName, { color: COLOR_YELLOW }]}>
+                View Profile
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
         <Pressable onPress={() => navigation.closeDrawer()} style={styles.closeIconAndText}>

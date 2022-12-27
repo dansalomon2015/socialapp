@@ -1,214 +1,120 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native'
+import { COLOR_BTN_BORDER, COLOR_WHITE, COLOR_YELLOW } from '../../constants/colors'
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get('window')
 
 export default StyleSheet.create({
-  logoContainer: {
-    alignItems: 'center',
+  container: {},
+  header: {
+    fontFamily: 'Raleway',
+    fontSize: 18,
+    lineHeight: 16,
+    paddingHorizontal: 16,
     justifyContent: 'center',
-    position: 'relative',
-    height: 250,
   },
-  mainContent: {
-    flex: 1,
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
-    marginTop: -50,
-    backgroundColor: 'white',
-  },
-  backAction: {
-    position: 'absolute',
-    bottom: 62,
-    right: 12,
-  },
-  backImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-    backgroundColor: '#aaaaaa',
-  },
-  logo: {
-    maxHeight: 150,
-    resizeMode: 'contain',
-  },
-  profileContainer: {
-    paddingVertical: 12,
-    paddingHorizontal: 12,
-  },
-  mainInfo: {
+  profileHeader: {
     flexDirection: 'row',
-  },
-  bio: {
-    marginTop: 4,
-    fontSize: 12,
-  },
-  city: {
-    marginTop: 10,
-    fontSize: 12,
-  },
-  location: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  website: {
-    marginTop: 2,
-  },
-  job: {
-    marginTop: 2,
-    fontSize: 12,
+    justifyContent: 'center',
   },
   avatarContainer: {
     width: 100,
     height: 100,
-    borderRadius: 50,
+    borderRadius: 10,
+    borderWidth: 4,
     alignSelf: 'center',
-    marginTop: -50,
     alignItems: 'center',
     justifyContent: 'center',
   },
   avatar: {
-    borderRadius: 45,
-    width: 90,
-    height: 90,
+    width: '100%',
+    height: '100%',
+    alignSelf: 'center',
+    borderRadius: 6,
+    resizeMode: 'cover',
+  },
+  backImage: {
+    width: width,
+    height: 200,
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    borderWidth: 2,
+    borderColor: COLOR_WHITE,
+    borderRadius: 12,
+    backgroundColor: COLOR_YELLOW,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgPlus: {
+    position: 'absolute',
+    top: -18,
+    left: 42,
   },
   profileInfo: {
-    flexGrow: 1,
     alignItems: 'center',
-    marginVertical: 20,
+    padding: 16,
   },
   profileTitle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    fontFamily: 'Raleway',
+    fontWeight: '600',
+    fontSize: 24,
+    lineHeight: 26,
+    alignSelf: 'center',
   },
-  handle: {
-    fontSize: 12,
-    color: 'grey',
-  },
-  profileHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  profileName: {
-    fontSize: 15,
-    fontWeight: '700',
-  },
-  settingIcon: {
-    width: 16,
-    height: 16,
-    resizeMode: 'contain',
-  },
-  editProfile: {
-    marginTop: 12,
-  },
-  editProfileBtn: {
-    width: 100,
-    height: 24,
-    resizeMode: 'contain',
-  },
-  actionContainer: {
-    marginTop: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  itemAction: {
-    width: 100,
-    height: 24,
-    resizeMode: 'contain',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  actionText: {
-    color: 'white',
-  },
-  options: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    marginVertical: 8,
-  },
-  optionContainer: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '30%',
-  },
-  borderLeft: {
-    borderLeftWidth: StyleSheet.hairlineWidth,
-    borderLeftColor: 'grey',
-  },
-  borderRight: {
-    borderRightWidth: StyleSheet.hairlineWidth,
-    borderRightColor: 'grey',
-  },
-  optionValue: {
+  profileText: {
+    fontFamily: 'Raleway',
+    fontWeight: '500',
     fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 4,
+    lineHeight: 18,
   },
-  optionTitle: {
-    fontSize: 12,
+  submitBtn: {
+    alignSelf: 'center',
   },
-  followWrap: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: -25,
-    paddingHorizontal: '10%',
-  },
-  topRightButtons: {
-    position: 'absolute',
-    top: 5,
-    right: 20,
-    zIndex: 2,
-    left: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  toolButton: {
-    width: 44,
-    height: 44,
-    resizeMode: 'contain',
-  },
-  sideButton: {
-    width: 44,
-    height: 44,
-    alignItems: 'center',
-    borderRadius: 22,
-    backgroundColor: '#2A2A2AB2',
-    justifyContent: 'center',
-  },
-  tab: {
+  details: {
+    padding: 16,
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 15,
+  },
+  detailsTitle: {
+    fontFamily: 'Hind Vadodara',
+    fontWeight: '600',
+    fontSize: 24,
+    lineHeight: 26,
+    alignSelf: 'center',
+  },
+  detailsText: {
+    fontFamily: 'Hind Vadodara',
+    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 18,
+    alignSelf: 'center',
+  },
+  divider: {
+    borderWidth: 0.5,
+  },
+  tabBar: {
+    margin: 16,
+    borderRadius: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   tabItem: {
-    paddingBottom: 4,
-    borderBottomColor: '#A2A8B8',
-    borderBottomWidth: 3,
-    marginHorizontal: 15,
+    flex: 1,
+    paddingVertical: 12,
+    margin: 4,
+    alignItems: 'center',
   },
-  tabItemText: {
-    fontWeight: '400',
-    fontSize: 13,
+  activeTab: {
+    borderWidth: 1,
+    borderRadius: 12,
+    borderColor: COLOR_BTN_BORDER,
   },
-
-  tile1: {
-    width: 200,
-    height: 200,
-    margin: 5,
+  tabText: {
+    fontFamily: 'Hind Vadodara',
+    fontWeight: '600',
+    fontSize: 16,
+    lineHeight: 18,
   },
-  tile2: {
-    width: width - 230,
-    height: 95,
-    margin: 5,
-  },
-  tile3: {
-    width: (width - 40) / 3,
-    height: 167,
-    margin: 5,
-  },
-});
+})

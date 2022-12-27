@@ -5,9 +5,8 @@ import { COLOR_TRANSPARENT, themes } from '../../constants/colors'
 import { dateStringFromNowShort } from '../../utils/datetime'
 import images from '../../assets/images'
 import { POST_TYPE_PHOTO, POST_TYPE_TEXT, POST_TYPE_VIDEO } from '../../constants/app'
-import { VectorIcon } from '../../containers/VectorIcon'
-import PopupMenu from '../../containers/PopupMenu'
-import { getUserRepresentString } from '../../utils/const'
+import { VectorIcon } from '../VectorIcon'
+import PopupMenu from '../PopupMenu'
 
 const styles = StyleSheet.create({
   container: {
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignSelf: 'center',
-    borderRadius: 5,
+    borderRadius: 6,
     resizeMode: 'cover',
     borderWidth: 0.3,
     borderColor: '#eeeeee',
@@ -188,7 +187,6 @@ const styles = StyleSheet.create({
 
 const Post = ({ key, item, isLiking, onPressUser, onPress, onPressShare, onActions, onLike, theme, style }) => {
   const [playing, setPlaying] = useState(false)
-
   return (
     <View
       key={key}

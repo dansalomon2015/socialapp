@@ -18,7 +18,6 @@ import { withTheme } from '../../theme'
 import NoFriends from './NoFriends'
 import ActivityIndicator from '../../containers/ActivityIndicator'
 import MainHeader from '../../containers/MainHeader'
-import * as HeaderButton from '../../containers/HeaderButton'
 import MainScreen from '../../containers/MainScreen'
 import firebaseSdk, {
   DB_ACTION_ADD,
@@ -26,7 +25,7 @@ import firebaseSdk, {
   DB_ACTION_UPDATE,
   NOTIFICATION_TYPE_LIKE,
 } from '../../lib/firebaseSdk'
-import Post from './Post'
+import Post from '../../containers/Post/Post'
 import { withActionSheet } from '../../containers/ActionSheet'
 import { showErrorAlert, showToast } from '../../lib/info'
 import I18n from '../../i18n'
@@ -280,7 +279,7 @@ const HomeView = props => {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
-              tintColor={themes[theme].actionTintColor}
+              tintColor={themes[theme].activeTintColor}
             />
           }
           contentContainerStyle={{ paddingBottom: 20 }}

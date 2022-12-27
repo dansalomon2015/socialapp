@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
-import { withTheme } from '../../theme';
-import { themes } from '../../constants/colors';
+import {withTheme} from '../../theme';
+import {themes} from '../../constants/colors';
 import images from '../../assets/images';
-import { dateStringFromNowShort } from '../../utils/datetime';
+import {dateStringFromNowShort} from '../../utils/datetime';
 import PopupMenu from '../../containers/PopupMenu';
-import { getUserRepresentString } from '../../utils/const';
+import {getUserRepresentString} from '../../utils/const';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,42 +68,25 @@ const styles = StyleSheet.create({
   },
 });
 
-const PostText = ({
-  item,
-  isLiking,
-  onPressUser,
-  onPress,
-  onPressShare,
-  onActions,
-  onLike,
-  theme,
-}) => {
+const PostText = ({item, isLiking, onPressUser, onPress, onPressShare, onActions, onLike, theme}) => {
   return (
-    <View
-      style={[
-        styles.container,
-        { borderColor: themes[theme].profilePostBorder },
-      ]}>
+    <View style={[styles.container, {borderColor: themes[theme].profilePostBorder}]}>
       <TouchableOpacity onPress={onPressUser}>
         <Image
-          source={
-            item?.owner?.avatar
-              ? { uri: item?.owner?.avatar }
-              : images.default_avatar
-          }
+          source={item?.owner?.avatar ? {uri: item?.owner?.avatar} : images.default_avatar}
           style={styles.avatar}
         />
       </TouchableOpacity>
-      <View style={{ marginLeft: 7, flex: 1 }}>
+      <View style={{marginLeft: 7, flex: 1}}>
         <View style={styles.userInfo}>
           <View style={styles.row}>
-            <Text style={[styles.name, { color: themes[theme].activeTintColor }]}>
+            <Text style={[styles.name, {color: themes[theme].activeTintColor}]}>
               {item?.owner?.displayName}
             </Text>
-            <Text style={[styles.handle, { color: themes[theme].profileHandle }]}>
+            <Text style={[styles.handle, {color: themes[theme].profileHandle}]}>
               {getUserRepresentString(item?.owner)}
             </Text>
-            <Text style={[styles.handle, { color: themes[theme].profileHandle }]}>
+            <Text style={[styles.handle, {color: themes[theme].profileHandle}]}>
               {item?.date ? dateStringFromNowShort(item?.date) : null}
             </Text>
           </View>
@@ -111,23 +94,16 @@ const PostText = ({
             theme={theme}
             options={onActions.options}
             renderTrigger={() => (
-              <Image
-                source={images.more}
-                style={[styles.more, { tintColor: themes[theme].moreIcon }]}
-              />
+              <Image source={images.more} style={[styles.more, {tintColor: themes[theme].moreIcon}]} />
             )}
           />
         </View>
         <TouchableOpacity onPress={onPress}>
-          <Text style={[styles.text, { color: themes[theme].activeTintColor }]}>
-            {item?.text}
-          </Text>
+          <Text style={[styles.text, {color: themes[theme].activeTintColor}]}>{item?.text}</Text>
         </TouchableOpacity>
         <View style={styles.userInfo}>
           <View style={styles.row}>
-            <TouchableOpacity
-              style={styles.row}
-              onPress={() => onLike(isLiking)}>
+            <TouchableOpacity style={styles.row} onPress={() => onLike(isLiking)}>
               <Image
                 source={images.heart}
                 style={[
@@ -137,15 +113,13 @@ const PostText = ({
                   },
                 ]}
               />
-              <Text
-                style={[styles.count, { color: themes[theme].activeTintColor }]}>
+              <Text style={[styles.count, {color: themes[theme].activeTintColor}]}>
                 {item.likes?.length ?? 0}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={onPress} style={styles.row}>
               <Image source={images.chat} style={styles.chatIcon} />
-              <Text
-                style={[styles.count, { color: themes[theme].activeTintColor }]}>
+              <Text style={[styles.count, {color: themes[theme].activeTintColor}]}>
                 {item.comments?.length ?? 0}
               </Text>
             </TouchableOpacity>

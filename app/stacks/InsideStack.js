@@ -56,12 +56,8 @@ const TabStack = () => {
   return (
     <Tab.Navigator
       tabBar={props => <MainTabBar theme={theme} {...props} />}
-      // screenOptions={{
-      //   ...outsideHeader,
-      //   ...themedHeader(theme),
-      //   ...StackAnimation,
-      // }}
       sceneContainerStyle={{ backgroundColor: 'transparent' }}
+      // initialRouteName={'Profile'}
     >
       <Tab.Screen
         name="Home"
@@ -71,7 +67,6 @@ const TabStack = () => {
       <Tab.Screen
         name="Profile"
         component={ProfileView}
-        options={{ headerShown: false }}
       />
       <Tab.Screen
         name="Message"
