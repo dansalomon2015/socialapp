@@ -326,4 +326,5 @@ export default {
   Upload_Photo: 'Upload photo',
   Capture: 'Capture',
   Selected: 'Selected',
+  City: 'City',
 };
