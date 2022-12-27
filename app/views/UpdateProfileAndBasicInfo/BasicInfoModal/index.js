@@ -110,7 +110,7 @@ const BasicInfoModal = ({isVisible, close, onUpdate}) => {
           value={city}
           returnKeyType="next"
           keyboardType="default"
-          label={'City'}
+          label={i18n.t('City')}
           placeholder={i18n.t('please_enter_city')}
           onChangeText={name => setCity(name)}
           theme={theme}
@@ -122,14 +122,14 @@ const BasicInfoModal = ({isVisible, close, onUpdate}) => {
           returnKeyType="next"
           keyboardType="default"
           label={i18n.t('Phone_number')}
-          placeholder={'Type phone number'}
+          placeholder={i18n.t('please_enter_phone')}
           onChangeText={phone => setPhone(phone)}
           theme={theme}
           error={phoneError}
         />
         <ExDatePicker
           theme={theme}
-          placeholder={'Select Date of birth'}
+          placeholder={i18n.t('please_select_birthday')}
           value={birthday}
           action={({value}) => {
             if (!value) {
