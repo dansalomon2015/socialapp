@@ -18,7 +18,7 @@ import firebaseSdk, {
   DB_ACTION_UPDATE,
   NOTIFICATION_TYPE_LIKE,
 } from '../../lib/firebaseSdk'
-import Post from './Post'
+import Post from '../../containers/Post/Post'
 import { withActionSheet } from '../../containers/ActionSheet'
 import { showErrorAlert, showToast } from '../../lib/info'
 import I18n from '../../i18n'

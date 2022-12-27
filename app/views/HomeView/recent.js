@@ -13,7 +13,7 @@ import firebaseSdk, {
   DB_ACTION_UPDATE,
   NOTIFICATION_TYPE_LIKE,
 } from '../../lib/firebaseSdk'
-import Post from './Post'
+import Post from '../../containers/Post/Post'
 import styles from '../ChatView/styles'
 import images from '../../assets/images'
 import SafeAreaView from '../../containers/SafeAreaView'

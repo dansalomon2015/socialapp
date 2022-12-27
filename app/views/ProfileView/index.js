@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Alert,
+  Alert, Dimensions, FlatList,
   Image,
   Linking,
   SafeAreaView,
-  ScrollView,
   Text,
-  TouchableOpacity,
+  TouchableOpacity, useWindowDimensions,
   View,
 } from 'react-native'
 import { connect } from 'react-redux'
 import firestore from '@react-native-firebase/firestore'
 import ImagePicker from 'react-native-image-crop-picker'
-import Feather from 'react-native-vector-icons/Feather'
-import { chunk, isEmpty } from 'lodash'
-
-import { themes } from '../../constants/colors'
+import { isEmpty } from 'lodash'
+import { COLOR_BTN_BACKGROUND, COLOR_TRANSPARENT, COLOR_WHITE, COLOR_YELLOW, themes } from '../../constants/colors'
 import StatusBar from '../../containers/StatusBar'
 import { withTheme } from '../../theme'
 import images from '../../assets/images'
@@ -29,7 +26,6 @@ import firebaseSdk, {
 } from '../../lib/firebaseSdk'
 import { showErrorAlert, showToast } from '../../lib/info'
 import { VectorIcon } from '../../containers/VectorIcon'
-import scrollPersistTaps from '../../utils/scrollPersistTaps'
 import I18n from '../../i18n'
 import {
   checkCameraPermission,
@@ -38,16 +34,17 @@ import {
 } from '../../utils/permissions'
 import { isValidURL } from '../../utils/validators'
 import { withActionSheet } from '../../containers/ActionSheet'
-import PostText from './PostText'
-import PopupMenu from '../../containers/PopupMenu'
-import {
-  POST_TYPE_PHOTO,
-  POST_TYPE_TEXT,
-  POST_TYPE_VIDEO,
-} from '../../constants/app'
-import { getUserRepresentString, onSharePost } from '../../utils/const'
+import sharedStyles from '../Styles'
+import Button from '../../containers/Button'
+import { SceneMap, TabView } from 'react-native-tab-view'
+import Post from '../../containers/Post/Post'
+import { onSharePost } from '../../utils/const'
+import { POST_TYPE_PHOTO, POST_TYPE_TEXT, POST_TYPE_VIDEO } from '../../constants/app'
+import MediaView from '../../containers/MediaView'
 
+const { width } = Dimensions.get('screen')
 const ProfileView = props => {
+  const layout = useWindowDimensions()
   const { navigation, user, theme } = props
   const [state, setState] = useState({
     account: {
@@ -58,10 +55,33 @@ const ProfileView = props => {
     updating: false,
     refreshing: false,
   })
-  const [isPostTab, setIsPostTab] = useState(true)
+
+  const [index, setIndex] = React.useState(0)
+  const [routes] = React.useState([
+    { key: 'first', title: 'Post' },
+    { key: 'second', title: 'Media' },
+  ])
 
   const { account, posts, isLoading } = state
   let unSubscribePost = ''
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity style={styles.header} onPress={() => navigation.toggleDrawer()}>
+          <VectorIcon type="MaterialCommunityIcons" name="menu" color={themes[theme].titleColor} size={24} />
+        </TouchableOpacity>),
+      title: 'VIP BILLIONAIRES',
+      headerRight: () => (
+        <TouchableOpacity style={styles.header} onPress={() => navigation.navigate('FindFriend')}>
+          <VectorIcon type="MaterialCommunityIcons" name="magnify" color={themes[theme].titleColor} size={24} />
+        </TouchableOpacity>
+      ),
+      headerStyle: {
+        backgroundColor: themes[theme].backgroundColor,
+        shadowOpacity: 0,
+      },
+    })
+  }, [theme])
 
   useEffect(() => {
     if (!isEmpty(user)) {init()}
@@ -72,7 +92,6 @@ const ProfileView = props => {
   }
 
   const init = () => {
-    const { navigation } = props
     firebaseSdk
       .getUser(state.account.userId)
       .then(user => {
@@ -90,30 +109,15 @@ const ProfileView = props => {
           }
         })
       })
-      .catch(err => {
+      .catch(() => {
         setSafeState({ isLoading: false })
-        // showErrorAlert(I18n.t('user_not_found'), '', () => navigation.pop());
       })
   }
 
-  const goToFollowers = async () => {
-    const { navigation } = props
-    navigation.push('Follow', {
-      type: 'followers',
-      account: state.account,
-    })
-  }
-
-  const goToFollowings = async () => {
-    const { navigation } = props
-    navigation.push('Follow', {
-      type: 'followings',
-      account: state.account,
-    })
-  }
-
   const onOpenPost = item => {
-    props.navigation.push('PostDetail', { post: item })
+    if (item) {
+      props.navigation.push('PostDetail', { post: item })
+    }
   }
 
   const onToggleLike = (item, isLiking) => {
@@ -189,7 +193,7 @@ const ProfileView = props => {
         .then(image_url => {
           let userInfo = {
             id: user.id,
-            back_image: image_url,
+            avatar: image_url,
           }
 
           firebaseSdk
@@ -212,7 +216,7 @@ const ProfileView = props => {
     }
   }
 
-  const onEditBackImage = () => {
+  const onEditAvatar = () => {
     Alert.alert('', I18n.t('Upload_photo'), [
       {
         text: I18n.t('Cancel'),
@@ -250,7 +254,7 @@ const ProfileView = props => {
           showToast(I18n.t('Remove_post_complete'))
           setState({ ...state, isUpdating: false })
         })
-        .catch(err => {
+        .catch(() => {
           showErrorAlert(I18n.t('Remove_post_failed'), I18n.t('Oops'))
           setState({ ...state, isUpdating: false })
         })
@@ -270,287 +274,134 @@ const ProfileView = props => {
     return { options: ownerOptions }
   }
 
-  return (
-    <View style={{ flex: 1 }}>
-      <StatusBar />
-      <SafeAreaView style={styles.topRightButtons}>
-        <TouchableOpacity
-          onPress={navigation.toggleDrawer}
-          style={styles.sideButton}>
-          <Feather name="menu" size={22} color={'white'} />
-        </TouchableOpacity>
-        <View style={{ flexDirection: 'row' }}>
-          <TouchableOpacity onPress={() => navigation.navigate('FindFriend')}>
-            <Image
-              source={images.profile_search}
-              style={[styles.toolButton, { marginRight: 10 }]}
-            />
-          </TouchableOpacity>
-          <PopupMenu
-            theme={theme}
-            options={[
-              {
-                title: I18n.t('Edit_profile'),
-                onPress: () => navigation.navigate('ProfileEdit'),
-              },
-            ]}
-            renderTrigger={() => (<Image source={images.profile_more} style={styles.toolButton} />)}
-          />
-        </View>
-      </SafeAreaView>
-      <ScrollView
-        {...scrollPersistTaps}
-        contentContainerStyle={{ paddingBottom: 80 }}>
-        <View style={styles.logoContainer}>
-          <Image style={styles.backImage} source={{ uri: account.back_image }} />
-          <TouchableOpacity
-            onPress={() => onEditBackImage()}
-            style={styles.backAction}>
-            <VectorIcon
-              name={'camera-alt'}
-              size={24}
-              color={'white'}
-              type={'MaterialIcons'}
-            />
-          </TouchableOpacity>
-        </View>
-        <View
-          style={[
-            styles.mainContent,
-            { backgroundColor: themes[theme].backgroundColor },
-          ]}>
-          <View
-            style={[
-              styles.avatarContainer,
-              { backgroundColor: themes[theme].backgroundColor },
-            ]}>
-            <Image
-              source={
-                account.avatar ? { uri: account.avatar } : images.default_avatar
-              }
-              style={styles.avatar}
-            />
-          </View>
-          <View style={styles.followWrap}>
+  const renderScene = SceneMap({
+    first: (() => <RenderPostItem posts={posts.filter(p => p.type === POST_TYPE_TEXT || p.type === POST_TYPE_PHOTO)} />),
+    second: (() => <MediaView posts={posts.filter(p => p.type === POST_TYPE_PHOTO || p.type === POST_TYPE_VIDEO)} onOpenPost={onOpenPost} theme={theme} />),
+  })
+
+  const RenderPostItem = ({ posts }) => (
+    <FlatList
+      style={{ width }}
+      data={posts}
+      renderItem={({ item, index }) => (
+        <Post
+          item={item}
+          onPress={() => onOpenPost(item)}
+          onPressUser={() => {}}
+          onPressShare={() => onSharePost(item)}
+          onLike={isLiking => onToggleLike(item, isLiking)}
+          isLiking={item.likes && item.likes.includes(user.userId)}
+          onActions={onActionPost(item)}
+          theme={theme}
+          style={{ marginTop: index === 0 ? 0 : 8 }}
+        />
+      )}
+      showsVerticalScrollIndicator={false}
+      keyExtractor={item => `profile_${item.id}`}
+      contentContainerStyle={{ paddingBottom: 100 }}
+    />
+  )
+
+  const renderTabBar = (props) => {
+    return (
+      <View style={[styles.tabBar, { backgroundColor: themes[theme].buttonBackground }]}>
+        {props.navigationState.routes.map((route, i) => {
+          return (
             <TouchableOpacity
-              onPress={() => goToFollowers()}
-              style={[styles.optionContainer]}>
-              <Text
-                style={[
-                  styles.optionValue,
-                  { color: themes[theme].activeTintColor },
-                ]}>
-                {account.followers?.length ?? 0}
-              </Text>
-              <Text
-                style={[
-                  styles.optionTitle,
-                  { color: themes[theme].activeTintColor },
-                ]}>
-                {I18n.t('Followers')}
+              key={i}
+              style={[styles.tabItem, index === i ? styles.activeTab : '', {
+                backgroundColor: index === i ? COLOR_BTN_BACKGROUND : COLOR_TRANSPARENT,
+              }]}
+              onPress={() => setIndex(i)}>
+              <Text style={[styles.tabText, {
+                color: index === i ? COLOR_WHITE : themes[theme].textColor,
+              }]}
+              >
+                {route.title}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => goToFollowings()}
-              style={styles.optionContainer}>
-              <Text
-                style={[
-                  styles.optionValue,
-                  { color: themes[theme].activeTintColor },
-                ]}>
+          )
+        })}
+      </View>
+    )
+  }
+
+  return (
+    <View style={{ flex: 1, backgroundColor: themes[theme].backgroundColor }}>
+      <StatusBar />
+      {isLoading ? <ActivityIndicator absolute size="large" theme={theme} /> : null}
+      <SafeAreaView style={sharedStyles.container}>
+        <View style={styles.profileHeader}>
+          <View style={[styles.avatarContainer, { borderColor: themes[theme].borderColor }]}>
+            <Image source={account.avatar ? { uri: account.avatar } : images.default_avatar} style={styles.avatar} />
+            <View style={{ width: 24 }}>
+              <TouchableOpacity onPress={() => onEditAvatar()} style={[styles.icon, styles.imgPlus]}>
+                <VectorIcon name={'plus'} size={20} color={COLOR_WHITE} type={'MaterialCommunityIcons'} />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+        <View style={styles.profileInfo}>
+          <Text style={[styles.profileTitle, { color: themes[theme].titleColor }]}>
+            {account.displayName}
+          </Text>
+          {account.handle && account.handle.length > 0 ? (
+            <Text style={[styles.profileText, { color: themes[theme].textColor }]}>{account.handle}</Text>
+          ) : null}
+          {account.bio && account.bio.length > 0 ? (
+            <Text style={[styles.profileText, { color: themes[theme].textColor }]}>{account.bio}</Text>
+          ) : null}
+          {account.website && account.website.length > 0 ? (
+            <TouchableOpacity onPress={() => openLink(account.website)}>
+              <Text style={[styles.profileText, { color: COLOR_YELLOW }]}>{account.website}</Text>
+            </TouchableOpacity>
+          ) : null}
+        </View>
+        <View style={{ paddingHorizontal: 16 }}>
+          <Button style={styles.submitBtn} title={'Edit Profile'} size="W" onPress={() => navigation.push('ProfileEdit')} theme={theme} />
+        </View>
+        <View style={styles.details}>
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.detailsTitle, { color: themes[theme].activeTintColor }]}>
+              {posts?.length ?? 0}
+            </Text>
+            <Text style={[styles.detailsText, { color: themes[theme].activeTintColor }]}>
+              {I18n.t('Posts')}
+            </Text>
+          </View>
+          <View style={{
+            flex: 1, borderLeftWidth: 1, borderRightWidth: 1, borderLeftColor: themes[theme].borderColor, borderRightColor: themes[theme].borderColor,
+          }}>
+            <TouchableOpacity onPress={() => navigation.push('Follow', { type: 'followings', account: account })}>
+              <Text style={[styles.detailsTitle, { color: themes[theme].titleColor }]}>
                 {account.followings?.length ?? 0}
               </Text>
-              <Text
-                style={[
-                  styles.optionTitle,
-                  { color: themes[theme].activeTintColor },
-                ]}>
+              <Text style={[styles.detailsText, { color: themes[theme].activeTintColor }]}>
                 {I18n.t('Followings')}
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.mainInfo}>
-            <View style={styles.profileInfo}>
-              <Text
-                style={[
-                  styles.profileName,
-                  { color: themes[theme].activeTintColor },
-                ]}>
-                {getUserRepresentString(account)}
+          <View style={{ flex: 1 }}>
+            <TouchableOpacity onPress={() => navigation.push('Follow', { type: 'followers', account: account })}>
+              <Text style={[styles.detailsTitle, { color: themes[theme].activeTintColor }]}>
+                {account.followers?.length ?? 0}
               </Text>
-              {account.city && account.city.length > 0 ? (
-                <Text style={[styles.city, { color: themes[theme].jobText }]}>
-                  {account.job}
-                </Text>
-              ) : null}
-              <View style={styles.location}>
-                {account.website && account.website.length > 0 ? (
-                  <TouchableOpacity
-                    style={styles.website}
-                    onPress={() => openLink(account.website)}>
-                    <Text style={{ fontSize: 12 }}>{account.website}</Text>
-                  </TouchableOpacity>
-                ) : null}
-              </View>
-              {
-                account.purpose && account.purpose.length > 0
-                  ? (<Text style={styles.bio}>{account.purpose}</Text>)
-                  : null
-              }
-            </View>
-          </View>
-          <View style={styles.tab}>
-            <TouchableOpacity
-              onPress={() => setIsPostTab(true)}
-              style={[
-                styles.tabItem,
-                { borderBottomColor: isPostTab ? '#A2A8B8' : 'transparent' },
-              ]}>
-              <Text
-                style={[
-                  styles.tabItemText,
-                  { color: themes[theme].activeTintColor },
-                ]}>
-                {I18n.t('Posts')}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => setIsPostTab(false)}
-              style={[
-                styles.tabItem,
-                { borderBottomColor: !isPostTab ? '#A2A8B8' : 'transparent' },
-              ]}>
-              <Text
-                style={[
-                  styles.tabItemText,
-                  { color: themes[theme].activeTintColor },
-                ]}>
-                {I18n.t('media')}
+              <Text style={[styles.detailsText, { color: themes[theme].activeTintColor }]}>
+                {I18n.t('Followers')}
               </Text>
             </TouchableOpacity>
           </View>
-          {isPostTab ? (
-            posts.map(p => {
-              if (p.type === POST_TYPE_TEXT) {
-                return (
-                  <PostText
-                    key={p.id}
-                    item={p}
-                    onPress={() => onOpenPost(p)}
-                    onPressUser={() => {}}
-                    onPressShare={() => onSharePost(p)}
-                    onLike={isLiking => onToggleLike(p, isLiking)}
-                    isLiking={p.likes && p.likes.includes(user.userId)}
-                    onActions={onActionPost(p)}
-                    theme={theme}
-                  />
-                )
-              }
-            })
-          ) : (
-            <View
-              style={{
-                borderTopLeftRadius: 50,
-                borderTopRightRadius: 50,
-                backgroundColor: themes[theme].postBackground,
-                shadowColor: 'black',
-                shadowOpacity: 0.2,
-                shadowOffset: { x: 2, y: 2 },
-                elevation: 2,
-                padding: 5,
-              }}>
-              {
-                chunk(posts.filter(p => p.type === POST_TYPE_PHOTO || p.type === POST_TYPE_VIDEO), 3)
-                  .map((p, index) => {
-                    if (index % 4 === 0) {
-                      return (
-                        <View style={{ flexDirection: 'row' }} key={index}>
-                          <TouchableOpacity onPress={() => onOpenPost(p[0])}>
-                            <Image
-                              source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
-                              style={[
-                                styles.tile1,
-                                index === 0 && { borderTopLeftRadius: 50 },
-                              ]}
-                            />
-                          </TouchableOpacity>
-                          <View>
-                            <TouchableOpacity onPress={() => onOpenPost(p[1])}>
-                              <Image
-                                source={{ uri: p[1]?.photo || p[1]?.thumbnail }}
-                                style={[
-                                  styles.tile2,
-                                  index === 0 && { borderTopRightRadius: 50 },
-                                ]}
-                              />
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => onOpenPost(p[2])}>
-                              <Image
-                                source={{ uri: p[2]?.photo || p[2]?.thumbnail }}
-                                style={styles.tile2}
-                              />
-                            </TouchableOpacity>
-                          </View>
-                        </View>
-                      )
-                    }
-                    if (index % 4 === 1 || index % 4 === 3) {
-                      return (
-                        <View style={{ flexDirection: 'row' }} key={index}>
-                          <TouchableOpacity onPress={() => onOpenPost(p[0])}>
-                            <Image
-                              source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
-                              style={styles.tile3}
-                            />
-                          </TouchableOpacity>
-                          <TouchableOpacity onPress={() => onOpenPost(p[1])}>
-                            <Image
-                              source={{ uri: p[1]?.photo || p[1]?.thumbnail }}
-                              style={styles.tile3}
-                            />
-                          </TouchableOpacity>
-                          <TouchableOpacity onPress={() => onOpenPost(p[2])}>
-                            <Image
-                              source={{ uri: p[2]?.photo || p[2]?.thumbnail }}
-                              style={styles.tile3}
-                            />
-                          </TouchableOpacity>
-                        </View>
-                      )
-                    }
-                    if (index % 4 === 2) {
-                      return (
-                        <View style={{ flexDirection: 'row' }} key={index}>
-                          <View>
-                            <TouchableOpacity onPress={() => onOpenPost(p[0])}>
-                              <Image
-                                source={{ uri: p[0]?.photo || p[0]?.thumbnail }}
-                                style={styles.tile2}
-                              />
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => onOpenPost(p[1])}>
-                              <Image
-                                source={{ uri: p[1]?.photo || p[1]?.thumbnail }}
-                                style={styles.tile2}
-                              />
-                            </TouchableOpacity>
-                          </View>
-                          <TouchableOpacity onPress={() => onOpenPost(p[2])}>
-                            <Image
-                              source={{ uri: p[2]?.photo || p[2]?.thumbnail }}
-                              style={styles.tile1}
-                            />
-                          </TouchableOpacity>
-                        </View>
-                      )
-                    }
-                  })
-              }
-            </View>
-          )}
         </View>
-      </ScrollView>
-      {isLoading ? <ActivityIndicator absolute size="large" theme={theme} /> : null}
+        <View style={[styles.divider, { borderColor: themes[theme].borderColor }]} />
+
+        <TabView
+          navigationState={{ index, routes }}
+          renderScene={renderScene}
+          renderTabBar={renderTabBar}
+          initialLayout={{ width: layout.width }}
+          onIndexChange={setIndex}
+        />
+      </SafeAreaView>
     </View>
   )
 }
