@@ -1,33 +1,42 @@
-import * as React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { Icon } from '../List'
-import { ThemeContext } from '../../theme'
-import { themes } from '../../constants/colors'
+import * as React from 'react';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Icon} from '../List';
+import {ThemeContext, useTheme} from '../../theme';
+import {themes} from '../../constants/colors';
 
-export default function HeaderLeft({ props, to }) {
-  const { theme } = React.useContext(ThemeContext)
+export default function HeaderLeft({props, to}) {
+  const {theme} = useTheme();
   const goto = () => {
     if (to) {
-      props.navigation.navigate(to)
+      props.navigation.navigate(to);
     } else {
-      props.navigation.goBack()
+      props.navigation.goBack();
     }
-  }
+  };
 
   return (
     <View style={styles.headerLeft}>
       <TouchableOpacity style={styles.headerLeft} onPress={() => goto()}>
-        <Icon size={32} name="arrow-left" style={{ color: 'blue' }} />
-        <Text style={{marginHorizontal: 8, color: themes[theme].headerColor}}>Back</Text>
+        <Icon size={24} name="arrow-left" color={themes[theme].titleColor} />
+        <Text
+          style={{
+            marginHorizontal: 8,
+            fontSize: 16,
+            fontWeight: '500',
+            lineHeight: 21,
+            color: themes[theme].titleColor,
+          }}>
+          Back
+        </Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   headerLeft: {
-    marginHorizontal: 4,
+    marginHorizontal: 8,
     alignItems: 'center',
     flexDirection: 'row',
   },
-})
+});

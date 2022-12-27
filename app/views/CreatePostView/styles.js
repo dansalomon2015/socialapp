@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import {Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
+
+const {height} = Dimensions.get('screen');
 
 export default StyleSheet.create({
   headerContainer: {
@@ -24,8 +27,8 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   roundInput: {
-    borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 16,
+    borderWidth: 1,
+    borderRadius: 8,
   },
   underlineInput: {
     marginHorizontal: 8,
@@ -42,13 +45,17 @@ export default StyleSheet.create({
     resizeMode: 'contain',
   },
   textStyle: {
-    height: 200,
+    minHeight: 150,
     textAlignVertical: 'top',
+    maxHeight: height / 2.5,
+    fontSize: 14,
+    lineHeight: 19,
   },
   inputContainer: {
-    flexGrow: 1,
-    paddingVertical: 8,
-    paddingHorizontal: 8,
+    // flexGrow: 1,
+    paddingTop: 9,
+    paddingBottom: 16,
+    // paddingHorizontal: 8,
   },
   video: {
     width: '100%',
@@ -68,5 +75,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: 300,
+  },
+
+  whatsOn: {
+    fontSize: 16,
+    fontWeight: '600',
+    lineHeight: 25,
+    fontFamily: 'Raleway',
+    marginLeft: 12,
   },
 });

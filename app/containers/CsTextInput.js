@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { View, StyleSheet, Text, TextInput, Image } from 'react-native'
-import sharedStyles from '../views/Styles'
-import { themes } from '../constants/colors'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { isIOS } from '../utils/deviceInfo'
+import React, {useState} from 'react';
+import {View, StyleSheet, Text, TextInput, Image} from 'react-native';
+import sharedStyles from '../views/Styles';
+import {themes} from '../constants/colors';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {isIOS} from '../utils/deviceInfo';
 
 const styles = StyleSheet.create({
   error: {
@@ -68,10 +68,20 @@ const styles = StyleSheet.create({
   icon: {
     color: '#2F343D',
   },
-})
+  counterContainer: {
+    position: 'absolute',
+    right: 15,
+    bottom: 7,
+  },
+  counterText: {
+    fontWeight: '400',
+    fontSize: 12,
+    lineHeight: 20,
+  },
+});
 
 const CsTextInput = props => {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     label,
@@ -90,41 +100,32 @@ const CsTextInput = props => {
     testID,
     placeholder,
     theme,
+    withCount,
     ...inputProps
-  } = props
+  } = props;
 
-  const { dangerColor } = themes[theme]
+  const {dangerColor} = themes[theme];
 
   const leftIcon = () => {
     return (
-      <View
-        style={[
-          styles.iconContainer,
-          { backgroundColor: themes[theme].avatarBackground },
-        ]}>
+      <View style={[styles.iconContainer, {backgroundColor: themes[theme].avatarBackground}]}>
         <Image
           source={iconLeft}
           testID={testID ? `${testID}-icon-left` : null}
-          style={[styles.iconLeft, { color: themes[theme].bodyText }]}
+          style={[styles.iconLeft, {color: themes[theme].bodyText}]}
         />
       </View>
-    )
-  }
+    );
+  };
 
   const rightIcon = () => {
-    const { iconRight, onIconRightPress, theme } = props
-    return (
-      <MaterialCommunityIcons
-        name={iconRight.icon}
-        style={{ color: themes[theme].bodyText }}
-        size={18}
-      />
-    )
-  }
+    const {iconRight, onIconRightPress, theme} = props;
+    return <MaterialCommunityIcons name={iconRight.icon} style={{color: themes[theme].bodyText}} size={18} />;
+  };
 
   const tooglePassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   return (
     <View style={[styles.inputContainer, containerStyle]}>
@@ -133,12 +134,7 @@ const CsTextInput = props => {
           <Text
             contentDescription={null}
             accessibilityLabel={null}
-            style={[
-              styles.label,
-              { color: themes[theme].infoText },
-              error.error && { color: dangerColor },
-              labelStyle,
-            ]}>
+            style={[styles.label, {color: themes[theme].infoText}, error.error && {color: dangerColor}, labelStyle]}>
             {label}
             {required ? (
               <Text
@@ -172,7 +168,7 @@ const CsTextInput = props => {
           accessibilityLabel={placeholder}
           placeholder={placeholder}
           contentDescription={placeholder}
-          placeholderTextColor={themes[theme].auxiliaryText}
+          placeholderTextColor={inputProps.placeholderTextColor || themes[theme].auxiliaryText}
           theme={'light'}
           {...inputProps}
         />
@@ -181,17 +177,19 @@ const CsTextInput = props => {
         {loading ? loading : null}
         {left}
       </View>
-      {error && error.reason ? (
-        <Text style={[styles.error, { color: dangerColor }]}>
-          {error.reason}
+      {error && error.reason ? <Text style={[styles.error, {color: dangerColor}]}>{error.reason}</Text> : null}
+
+      <View style={styles.counterContainer}>
+        <Text style={[styles.counterText, {color: themes[theme].textColor}]}>
+          {inputProps.value.length} / {inputProps.maxLength}
         </Text>
-      ) : null}
+      </View>
     </View>
-  )
-}
+  );
+};
 
 CsTextInput.defaultProps = {
   error: {},
   // theme: 'dark',
-}
-export default CsTextInput
+};
+export default CsTextInput;

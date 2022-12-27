@@ -233,7 +233,7 @@ export default {
   Thank_you_3:
     '* There might be cases your application might not be approved. In that case, the payment will be fully refunded.',
   Complete: 'Complete',
-  Publish: 'POST',
+  Publish: 'PUBLISH',
   Report_post_complete: 'This post has been successfully reported',
   Report_post_failed: 'Reporting was failed',
   Report_user_complete: 'This user has been successfully reported',
@@ -272,8 +272,8 @@ export default {
   Salary_select_5: 'Over 300,000 USD',
   Salary_select_6: 'Over 500,000 USD',
   Salary_select_7: 'Over 1,000,000 USD',
-  New_post: 'NEW POST',
-  Next: 'NEXT',
+  New_post: 'New post',
+  Next: 'Next',
   Recent: 'RECENT',
   No_files_in_device: 'There are no files on your phone',
   Sent_message_to_you: '{{name}} sent you "{{message}}"',
@@ -321,4 +321,9 @@ export default {
   you_should_agree_with_terms: 'You should agree with our terms and privacy policy',
   please_enter_phone: 'Please enter your phone number',
   please_select_birthday: 'Please select your birthday',
+
+  Whats_on_your_mind: "What's on your mind",
+  Upload_Photo: 'Upload photo',
+  Capture: 'Capture',
+  Selected: 'Selected',
 };
