@@ -54,7 +54,7 @@ export default StyleSheet.create({
   inputContainer: {
     // flexGrow: 1,
     paddingTop: 9,
-    paddingBottom: 16,
+    paddingBottom: 10,
     // paddingHorizontal: 8,
   },
   video: {

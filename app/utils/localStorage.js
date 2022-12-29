@@ -5,6 +5,5 @@ export const LOCALSTORAGE = new Storage({
   size: 1000,
   storageBackend: AsyncStorage,
   defaultExpires: 1000 * 3600 * 24 * 4,
-  enableCache: true,
   sync: {},
 });

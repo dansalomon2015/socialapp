@@ -32,21 +32,16 @@ import {MainTabBar} from '../containers/MainScreen';
 import MenuStack from './MenuStack';
 import AboutStack from './AboutStack';
 
+import HeaderLeft from '../containers/HeaderLeft';
+import {themes} from '../constants/colors';
+
 const Tab = createBottomTabNavigator();
 const Inside = createStackNavigator();
 
 const HomeStack = () => (
   <Inside.Navigator>
-    <Inside.Screen
-      name="Home"
-      component={HomeView}
-      options={{headerShown: false}}
-    />
-    <Inside.Screen
-      name="Posts"
-      component={PostsView}
-      options={{headerShown: false}}
-    />
+    <Inside.Screen name="Home" component={HomeView} options={{headerShown: false}} />
+    <Inside.Screen name="Posts" component={PostsView} options={{headerShown: false}} />
   </Inside.Navigator>
 );
 
@@ -59,17 +54,9 @@ const TabStack = () => {
       sceneContainerStyle={{backgroundColor: 'transparent'}}
       // initialRouteName={'Profile'}
     >
-      <Tab.Screen
-        name="Home"
-        component={HomeStack}
-        options={{headerShown: false}}
-      />
+      <Tab.Screen name="Home" component={HomeStack} options={{headerShown: false}} />
       <Tab.Screen name="Profile" component={ProfileView} />
-      <Tab.Screen
-        name="Message"
-        component={MessageView}
-        options={{headerShown: false}}
-      />
+      <Tab.Screen name="Message" component={MessageView} options={{headerShown: false}} />
       <Tab.Screen name="Activity" component={ActivityView} />
     </Tab.Navigator>
   );
@@ -86,58 +73,31 @@ const InsideStack = () => {
     //   ...StackAnimation,
     // }}
     >
-      <Inside.Screen
-        name="Home"
-        component={TabStack}
-        options={{headerShown: false}}
-      />
-      <Inside.Screen
-        name="Recent"
-        component={RecentView}
-        options={RecentView.navigationOptions}
-      />
-      <Inside.Screen
-        name="Popular"
-        component={PopularView}
-        options={PopularView.navigationOptions}
-      />
+      <Inside.Screen name="Home" component={TabStack} options={{headerShown: false}} />
+      <Inside.Screen name="Recent" component={RecentView} options={RecentView.navigationOptions} />
+      <Inside.Screen name="Popular" component={PopularView} options={PopularView.navigationOptions} />
       <Inside.Screen name="ProfileEdit" component={ProfileEditView} />
-      <Inside.Screen
-        name="Friend"
-        component={FriendView}
-        options={FriendView.navigationOptions}
-      />
-      <Inside.Screen
-        name="FindFriend"
-        component={FindFriendView}
-        options={{headerShown: false}}
-      />
-      <Inside.Screen
-        name="OtherProfile"
-        component={OtherProfileView}
-        options={{headerShown: false}}
-      />
+      <Inside.Screen name="Friend" component={FriendView} options={FriendView.navigationOptions} />
+      <Inside.Screen name="FindFriend" component={FindFriendView} options={{headerShown: false}} />
+      <Inside.Screen name="OtherProfile" component={OtherProfileView} options={{headerShown: false}} />
       <Inside.Screen name="Follow" component={FollowView} />
-      <Inside.Screen name="CreatePost" component={CreatePostView} />
-      <Inside.Screen name="EditPost" component={EditPostView} />
       <Inside.Screen
-        name="PostDetail"
-        component={PostDetailView}
-        options={{headerShown: false}}
+        name="CreatePost"
+        component={CreatePostView}
+        options={navigation => ({
+          headerLeft: () => <HeaderLeft props={navigation} to="Home" />,
+          headerTitle: () => <></>,
+          gestureEnabled: false,
+          headerStyle: {backgroundColor: themes[theme].backgroundColor},
+        })}
       />
+      <Inside.Screen name="EditPost" component={EditPostView} />
+      <Inside.Screen name="PostDetail" component={PostDetailView} options={{headerShown: false}} />
       <Inside.Screen name="Chat" component={ChatView} />
       <Inside.Screen name="Setting" component={SettingView} />
       <Inside.Screen name="ProductWeb" component={ProductWebView} />
-      <Inside.Screen
-        name="Category"
-        component={CategoryView}
-        options={CategoryView.navigationOptions}
-      />
-      <Inside.Screen
-        name="VipMembers"
-        component={VipMembersClubView}
-        options={VipMembersClubView.navigationOptions}
-      />
+      <Inside.Screen name="Category" component={CategoryView} options={CategoryView.navigationOptions} />
+      <Inside.Screen name="VipMembers" component={VipMembersClubView} options={VipMembersClubView.navigationOptions} />
       <Inside.Screen name="ProductDetail" component={ProductDetailView} />
       <Inside.Screen name="PickLibrary" component={PickLibraryView} />
       <Inside.Screen
@@ -152,16 +112,11 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
-      drawerContent={({navigation, state}) => (
-        <SidebarView navigation={navigation} state={state} />
-      )}
+      drawerContent={({navigation, state}) => <SidebarView navigation={navigation} state={state} />}
       initialRouteName="InsideStack"
       screenListeners={({navigation}) => {
         const {history} = navigation.getState();
-        if (
-          history.length > 2 &&
-          history.filter(i => i.type === 'drawer').length > 0
-        ) {
+        if (history.length > 2 && history.filter(i => i.type === 'drawer').length > 0) {
           navigation.navigate('InsideStack');
           navigation.toggleDrawer();
         }
@@ -172,21 +127,9 @@ const DrawerNavigator = () => {
           width: Dimensions.get('window').width,
         },
       }}>
-      <Drawer.Screen
-        name="InsideStack"
-        component={InsideStack}
-        options={{headerShown: false}}
-      />
-      <Drawer.Screen
-        name="MenuStack"
-        component={MenuStack}
-        options={{headerShown: false}}
-      />
-      <Drawer.Screen
-        name="AboutStack"
-        component={AboutStack}
-        options={{headerShown: false}}
-      />
+      <Drawer.Screen name="InsideStack" component={InsideStack} options={{headerShown: false}} />
+      <Drawer.Screen name="MenuStack" component={MenuStack} options={{headerShown: false}} />
+      <Drawer.Screen name="AboutStack" component={AboutStack} options={{headerShown: false}} />
     </Drawer.Navigator>
   );
 };

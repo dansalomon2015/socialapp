@@ -26,7 +26,7 @@ export default function HeaderLeft({props, to}) {
             lineHeight: 21,
             color: themes[theme].titleColor,
           }}>
-          Back
+          Back to {to}
         </Text>
       </TouchableOpacity>
     </View>

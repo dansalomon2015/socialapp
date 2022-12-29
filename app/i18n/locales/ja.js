@@ -26,8 +26,7 @@ export default {
   Add_a_comment: 'コメントする',
   Alert: 'アラート',
   Typing: '入力中',
-  Are_you_sure_you_want_to_leave_the_room:
-    'トークルームを退室しますか? このトークルームの全ての履歴が削除されます',
+  Are_you_sure_you_want_to_leave_the_room: 'トークルームを退室しますか? このトークルームの全ての履歴が削除されます',
   Back: '戻る',
   Block_user: 'ブロックする',
   Cancel: 'キャンセル',
@@ -331,4 +330,6 @@ export default {
   Capture: '写真を撮る',
   Selected: '選択済み',
   City: '都市',
+
+  Some_upload_are_in_progress: '一部のダウンロードが進行中です。 お待ちください！',
 };

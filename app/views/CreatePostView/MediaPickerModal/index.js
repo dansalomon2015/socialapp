@@ -11,10 +11,7 @@ import Gallery from './Gallery';
 import VideoPlayer from './VideoPlayer';
 import {MEDIA_PICKER_TYPE_IMAGE, MEDIA_PICKER_TYPE_VIDEO} from '../../../constants/app';
 
-const url_video = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
-const thumbnail_video = 'https://picsum.photos/seed/picsum/200/300';
-
-const MediaPickerModal = ({visible, close, mediaType}) => {
+const MediaPickerModal = ({visible, close, mediaType, onNextPress}) => {
   mediaType = mediaType || MEDIA_PICKER_TYPE_IMAGE;
   const {theme} = useTheme();
   const [medias, setMedias] = useState([]);
@@ -24,6 +21,12 @@ const MediaPickerModal = ({visible, close, mediaType}) => {
   }, [medias]);
 
   const onClose = () => {
+    setMedias([]);
+    close();
+  };
+
+  const onComplete = () => {
+    onNextPress(medias);
     setMedias([]);
     close();
   };
@@ -42,14 +45,12 @@ const MediaPickerModal = ({visible, close, mediaType}) => {
                 onPress={onClose}
               />
               <Text style={[styles.title, {color: themes[theme].titleColor}]}>{i18n.t('New_post')}</Text>
-              <Text style={styles.nextText}>{i18n.t('Next')}</Text>
+              <Text onPress={onComplete} style={styles.nextText}>
+                {i18n.t('Next')}
+              </Text>
             </View>
 
-            {mediaType === MEDIA_PICKER_TYPE_IMAGE ? (
-              <ImageViewer url={getUrl} />
-            ) : (
-              <VideoPlayer uri={getUrl} />
-            )}
+            {mediaType === MEDIA_PICKER_TYPE_IMAGE ? <ImageViewer url={getUrl} /> : <VideoPlayer uri={getUrl} />}
             <View style={[styles.row, styles.spaceBetween, {marginBottom: 13}]}>
               <View style={[styles.row]}>
                 <Text style={[styles.subTitle, {color: themes[theme].textColor}]}>Recent</Text>
@@ -61,9 +62,7 @@ const MediaPickerModal = ({visible, close, mediaType}) => {
                   onPress={close}
                 />
               </View>
-              <Text style={[styles.subTitle, {color: themes[theme].textColor}]}>
-                {medias.length} Selected
-              </Text>
+              <Text style={[styles.subTitle, {color: themes[theme].textColor}]}>{medias.length} Selected</Text>
             </View>
           </View>
 

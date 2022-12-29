@@ -4,7 +4,7 @@ import ButtonAction from '../ButtonAction';
 import i18n from '../../../i18n';
 import MediaPickerModal from '../MediaPickerModal';
 
-const UploadPhoto = () => {
+const UploadPhoto = ({onNextPress}) => {
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -14,7 +14,7 @@ const UploadPhoto = () => {
         iconName="images"
         onPress={() => setVisible(true)}
       />
-      <MediaPickerModal visible={visible} close={() => setVisible(false)} />
+      <MediaPickerModal visible={visible} close={() => setVisible(false)} onNextPress={onNextPress} />
     </>
   );
 };

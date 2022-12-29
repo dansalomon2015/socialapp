@@ -5,7 +5,7 @@ import i18n from '../../../i18n';
 import MediaPickerModal from '../MediaPickerModal';
 import {MEDIA_PICKER_TYPE_VIDEO} from '../../../constants/app';
 
-const UploadVideo = () => {
+const UploadVideo = ({onNextPress}) => {
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -21,6 +21,7 @@ const UploadVideo = () => {
         visible={visible}
         close={() => setVisible(false)}
         mediaType={MEDIA_PICKER_TYPE_VIDEO}
+        onNextPress={onNextPress}
       />
     </>
   );

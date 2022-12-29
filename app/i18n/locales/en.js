@@ -327,4 +327,6 @@ export default {
   Capture: 'Capture',
   Selected: 'Selected',
   City: 'City',
+
+  Some_upload_are_in_progress: 'Some downloads are in progress. Please wait!',
 };

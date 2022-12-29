@@ -5,6 +5,7 @@ import {Image} from 'react-native';
 import {COLOR_WHITE, COLOR_YELLOW, themes} from '../../../constants/colors';
 import {useTheme} from '../../../theme';
 import {VectorIcon} from '../../../containers/VectorIcon';
+import {MAX_NUMBER_OF_MEDIA_PER_POST} from '../../../constants/app';
 
 const {width} = Dimensions.get('screen');
 const PAGE_SIZE = 50;
@@ -18,7 +19,7 @@ const Gallery = ({onUpdate, selectedMedias, assetType}) => {
   const [loading, setLoading] = useState(true);
 
   const onSelect = media => {
-    onUpdate([...selectedMedias, media]);
+    if (selectedMedias.length < MAX_NUMBER_OF_MEDIA_PER_POST) onUpdate([...selectedMedias, media]);
   };
 
   const unSelect = media => {
@@ -62,16 +63,13 @@ const Gallery = ({onUpdate, selectedMedias, assetType}) => {
             uri={item.uri}
             selected={isSelected(item)}
             theme={theme}
-            onPress={() => (isSelected(item) ? unSelect(item) : onSelect(item))}
+            onPress={() => (isSelected(item) ? unSelect(item) : onSelect({...item, assetType}))}
           />
         );
       }}
       numColumns={4}
       onEndReached={loadMedias}
-      // contentContainerStyle={{flex: 1}}
-      ListFooterComponent={() =>
-        loading ? <ActivityIndicator size="small" color={themes[theme].textColor} /> : null
-      }
+      ListFooterComponent={() => (loading ? <ActivityIndicator size="small" color={themes[theme].textColor} /> : null)}
       ListFooterComponentStyle={{marginTop: 10}}
     />
   );
@@ -79,9 +77,7 @@ const Gallery = ({onUpdate, selectedMedias, assetType}) => {
 
 const MediaItem = ({uri, selected, onPress, theme}) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styles.imageContainer, {borderColor: themes[theme].borderColor}]}>
+    <TouchableOpacity onPress={onPress} style={[styles.imageContainer, {borderColor: themes[theme].borderColor}]}>
       <Image
         style={{
           width: '100%',

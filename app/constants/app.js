@@ -1371,3 +1371,4 @@ export const CONTENT_USER_AGREEMENT_JP =
 
 export const MEDIA_PICKER_TYPE_IMAGE = 'Photos';
 export const MEDIA_PICKER_TYPE_VIDEO = 'Videos';
+export const MAX_NUMBER_OF_MEDIA_PER_POST = 5;
